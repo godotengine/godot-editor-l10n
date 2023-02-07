@@ -1,6 +1,7 @@
 # Makefile providing various facilities to manage translations
 
 TEMPLATE = classes.pot
+MIN_COMPLETION = 0.10
 POFILES = $(wildcard *.po)
 LANGS = $(POFILES:%.po=%)
 
@@ -23,12 +24,13 @@ merge:
 check:
 	@for po in $(POFILES); do msgfmt -c $$po -o /dev/null; done
 
-# Generate completion ratio from statistics string such as:
+# Export translation files with a high enough completion ratio.
+# Completion ratio is derived from statistics string such as:
 # 2775 translated messages, 272 fuzzy translations, 151 untranslated messages.
 # First number can be 0, second and third numbers are only present if non-zero.
-include-list:
-	@list=""; \
-	threshold=0.10; \
+export:
+	@dest=../godot/doc/translations; \
+	mkdir -p $$dest; \
 	for po in $(POFILES); do \
 	  res=`msgfmt --statistics $$po -o /dev/null 2>&1 | sed 's/[^0-9,]*//g'`; \
 	  complete=`cut -d',' -f1 <<< $$res`; \
@@ -37,9 +39,8 @@ include-list:
 	  if [ -z "$$fuzzy_or_untranslated" ]; then fuzzy_or_untranslated=0; fi; \
 	  if [ -z "$$untranslated_maybe" ]; then untranslated_maybe=0; fi; \
 	  incomplete=`expr $$fuzzy_or_untranslated + $$untranslated_maybe`; \
-	  if `awk "BEGIN {exit !($$complete / ($$complete + $$incomplete) > $$threshold)}"`; then \
-	    lang=`basename $$po .po`; \
-	    list+="$$lang,"; \
+	  if `awk "BEGIN {exit !($$complete / ($$complete + $$incomplete) > $(MIN_COMPLETION))}"`; then \
+	    echo $$po; \
+	    msgattrib -w 79 --translated --no-fuzzy --no-location $$po | sed -e "/^#\. .*/d" > $$dest/$$po; \
 	  fi; \
-	done; \
-	echo $$list;
+	done;
