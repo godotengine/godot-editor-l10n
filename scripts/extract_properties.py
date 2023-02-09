@@ -58,7 +58,7 @@ message_patterns = {
         r"(ADD_PROPERTYI?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
-        + r'(, [_A-Z0-9]+(, "([^"\\]|\\.)*"(, (?P<usage>[_A-Z0-9]+))?)?|\))'  # [, hint[, hint string[, usage]]].
+        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9]+))?)?|\))'  # [, hint[, hint string[, usage]]].
     ): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
@@ -154,7 +154,13 @@ def process_file(f, fname):
                     if extract_type == ExtractType.TEXT:
                         _add_message(msg, msg_plural, msgctx, location, translator_comment)
                     elif extract_type == ExtractType.PROPERTY_PATH:
-                        if captures.get("usage") == "PROPERTY_USAGE_NO_EDITOR":
+                        usage = captures.get("usage")
+                        if usage == "PROPERTY_USAGE_NO_EDITOR":
+                            continue
+                        if usage == "PROPERTY_USAGE_GROUP":
+                            _add_message(msg, msg_plural, msgctx, location, translator_comment)
+                            current_group = captures["hint_string"]
+                            current_subgroup = ""
                             continue
 
                         if current_subgroup:
