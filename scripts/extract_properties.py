@@ -55,7 +55,7 @@ message_patterns = {
         r'EDITOR_SETTING(_USAGE)?\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
     ): ExtractType.PROPERTY_PATH,
     re.compile(
-        r"(ADD_PROPERTYI?|ImportOption|ExportOption)\(PropertyInfo\("
+        r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
         + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9]+))?)?|\))'  # [, hint[, hint string[, usage]]].
