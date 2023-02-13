@@ -58,7 +58,7 @@ message_patterns = {
         r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
-        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9]+))?)?|\))'  # [, hint[, hint string[, usage]]].
+        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
     ): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
@@ -154,13 +154,19 @@ def process_file(f, fname):
                     if extract_type == ExtractType.TEXT:
                         _add_message(msg, msg_plural, msgctx, location, translator_comment)
                     elif extract_type == ExtractType.PROPERTY_PATH:
-                        usage = captures.get("usage")
-                        if usage == "PROPERTY_USAGE_NO_EDITOR":
-                            continue
-                        if usage == "PROPERTY_USAGE_GROUP":
+                        usage_string = captures.get("usage") or "PROPERTY_USAGE_DEFAULT"
+                        usages = [e.strip() for e in usage_string.split("|")]
+
+                        if "PROPERTY_USAGE_GROUP" in usages:
                             _add_message(msg, msg_plural, msgctx, location, translator_comment)
                             current_group = captures["hint_string"]
                             current_subgroup = ""
+                            continue
+
+                        # Ignore properties that are not meant to be displayed in the editor.
+                        if "PROPERTY_USAGE_NO_EDITOR" in usages:
+                            continue
+                        if "PROPERTY_USAGE_DEFAULT" not in usages and "PROPERTY_USAGE_EDITOR" not in usages:
                             continue
 
                         if current_subgroup:
