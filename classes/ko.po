@@ -340,6 +340,32 @@ msgstr ""
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid ""
+"Returns [code]true[/code] if [param value] is an instance of [param type]. "
+"The [param type] value must be one of the following:\n"
+"- A constant from the [enum Variant.Type] enumeration, for example [constant "
+"TYPE_INT].\n"
+"- An [Object]-derived class which exists in [ClassDB], for example [Node].\n"
+"- A [Script] (you can use any class, including inner one).\n"
+"Unlike the right operand of the [code]is[/code] operator, [param type] can "
+"be a non-constant value. The [code]is[/code] operator supports more features "
+"(such as typed arrays) and is more performant. Use the operator instead of "
+"this method if you do not need dynamic type checking.\n"
+"Examples:\n"
+"[codeblock]\n"
+"print(is_instance_of(a, TYPE_INT))\n"
+"print(is_instance_of(a, Node))\n"
+"print(is_instance_of(a, MyClass))\n"
+"print(is_instance_of(a, MyClass.InnerClass))\n"
+"[/codeblock]\n"
+"[b]Note:[/b] If [param value] and/or [param type] are freed objects (see "
+"[method @GlobalScope.is_instance_valid]), or [param type] is not one of the "
+"above options, this method will raise an runtime error.\n"
+"See also [method @GlobalScope.typeof], [method type_exists], [method Array."
+"is_same_typed] (and other [Array] methods)."
+msgstr ""
+
+#: modules/gdscript/doc_classes/@GDScript.xml
+msgid ""
 "Returns the length of the given Variant [param var]. The length can be the "
 "character count of a [String], the element count of any array type or the "
 "size of a [Dictionary]. For every other Variant type, a run-time error is "
@@ -20560,7 +20586,7 @@ msgstr ""
 
 #: doc/classes/Color.xml
 msgid ""
-"Encodes a [Color] from a RGBE9995 format integer. See [constant Image."
+"Decodes a [Color] from a RGBE9995 format integer. See [constant Image."
 "FORMAT_RGBE9995]."
 msgstr ""
 
@@ -23457,7 +23483,7 @@ msgid ""
 "automatically after the drag has ended.\n"
 "[codeblocks]\n"
 "[gdscript]\n"
-"export (Color, RGBA) var color = Color(1, 0, 0, 1)\n"
+"@export var color = Color(1, 0, 0, 1)\n"
 "\n"
 "func _get_drag_data(position):\n"
 "    # Use a control that is not in the tree\n"
@@ -23783,7 +23809,9 @@ msgstr ""
 #: doc/classes/Control.xml
 msgid ""
 "The node's rotation around its pivot, in radians. See [member pivot_offset] "
-"to change the pivot's position."
+"to change the pivot's position.\n"
+"[b]Note:[/b] This property is edited in the inspector in degrees. If you "
+"want to use degrees in a script, use [member rotation_degrees]."
 msgstr ""
 
 #: doc/classes/Control.xml doc/classes/Node2D.xml doc/classes/Node3D.xml
@@ -30820,6 +30848,14 @@ msgstr ""
 msgid "Removes all filters except for \"All Files (*)\"."
 msgstr ""
 
+#: doc/classes/EditorFileDialog.xml doc/classes/FileDialog.xml
+msgid ""
+"Returns the LineEdit for the selected file.\n"
+"[b]Warning:[/b] This is a required internal node, removing and freeing it "
+"may cause a crash. If you wish to hide it or any of its children, use their "
+"[member CanvasItem.visible] property."
+msgstr ""
+
 #: doc/classes/EditorFileDialog.xml
 msgid ""
 "Returns the [code]VBoxContainer[/code] used to display the file system.\n"
@@ -30868,6 +30904,15 @@ msgstr ""
 msgid ""
 "The dialog's open or save mode, which affects the selection behavior. See "
 "[enum FileMode]"
+msgstr ""
+
+#: doc/classes/EditorFileDialog.xml doc/classes/FileDialog.xml
+msgid ""
+"The available file type filters. For example, this shows only [code].png[/"
+"code] and [code].gd[/code] files: [code]set_filters(PackedStringArray([\"*."
+"png ; PNG Images\",\"*.gd ; GDScript Files\"]))[/code]. Multiple file types "
+"can also be specified in a single filter. [code]\"*.png, *.jpg, *.jpeg ; "
+"Supported Images\"[/code] will show both PNG and JPEG files when selected."
 msgstr ""
 
 #: doc/classes/EditorFileDialog.xml
@@ -35055,13 +35100,6 @@ msgstr ""
 
 #: doc/classes/EditorSettings.xml
 msgid ""
-"If [code]true[/code], increases the touch area for the UI elements to "
-"improve usability on touchscreen devices.\n"
-"[b]Note:[/b] Defaults to [code]true[/code] on touchscreen devices."
-msgstr ""
-
-#: doc/classes/EditorSettings.xml
-msgid ""
 "The icon and font color scheme to use in the editor.\n"
 "- [b]Auto[/b] determines the color scheme to use automatically based on "
 "[member interface/theme/base_color].\n"
@@ -35089,6 +35127,26 @@ msgstr ""
 msgid ""
 "The opacity to use when drawing relationship lines in the editor's [Tree]-"
 "based GUIs (such as the Scene tree dock)."
+msgstr ""
+
+#: doc/classes/EditorSettings.xml
+msgid ""
+"If [code]true[/code], long press on touchscreen is treated as right click.\n"
+"[b]Note:[/b] Defaults to [code]true[/code] on touchscreen devices."
+msgstr ""
+
+#: doc/classes/EditorSettings.xml
+msgid ""
+"If [code]true[/code], enable two finger pan and scale gestures on "
+"touchscreen devices.\n"
+"[b]Note:[/b] Defaults to [code]true[/code] on touchscreen devices."
+msgstr ""
+
+#: doc/classes/EditorSettings.xml
+msgid ""
+"If [code]true[/code], increases the scrollbar touch area to improve "
+"usability on touchscreen devices.\n"
+"[b]Note:[/b] Defaults to [code]true[/code] on touchscreen devices."
 msgstr ""
 
 #: doc/classes/EditorSettings.xml
@@ -35380,7 +35438,7 @@ msgstr ""
 #: doc/classes/EditorSettings.xml
 msgid ""
 "The indentation style to use (tabs or spaces).\n"
-"[b]Note:[/b] The [url=$DOCS_URL/getting_started/scripting/gdscript/"
+"[b]Note:[/b] The [url=$DOCS_URL/tutorials/scripting/gdscript/"
 "gdscript_styleguide.html]GDScript style guide[/url] recommends using tabs "
 "for indentation. It is advised to change this setting only if you need to "
 "work on a project that currently uses spaces for indentation."
@@ -39366,14 +39424,6 @@ msgstr ""
 
 #: doc/classes/FileDialog.xml
 msgid ""
-"Returns the LineEdit for the selected file.\n"
-"[b]Warning:[/b] This is a required internal node, removing and freeing it "
-"may cause a crash. If you wish to hide it or any of its children, use their "
-"[member CanvasItem.visible] property."
-msgstr ""
-
-#: doc/classes/FileDialog.xml
-msgid ""
 "Returns the vertical box container of the dialog, custom controls can be "
 "added to it.\n"
 "[b]Warning:[/b] This is a required internal node, removing and freeing it "
@@ -39410,15 +39460,6 @@ msgstr ""
 msgid ""
 "The dialog's open or save mode, which affects the selection behavior. See "
 "[enum FileMode]."
-msgstr ""
-
-#: doc/classes/FileDialog.xml
-msgid ""
-"The available file type filters. For example, this shows only [code].png[/"
-"code] and [code].gd[/code] files: [code]set_filters(PackedStringArray([\"*."
-"png ; PNG Images\",\"*.gd ; GDScript Files\"]))[/code]. Multiple file types "
-"can also be specified in a single filter. [code]\"*.png, *.jpg, *.jpeg ; "
-"Supported Images\"[/code] will show both PNG and JPEG files when selected."
 msgstr ""
 
 #: doc/classes/FileDialog.xml
@@ -51224,7 +51265,7 @@ msgid ""
 "[b]Note:[/b] Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not "
 "supported, as these cannot store UV2 data required for baking.\n"
 "[b]Note:[/b] If no custom lightmappers are installed, [LightmapGI] can only "
-"be baked when using the Vulkan backend (Clustered or Mobile), not OpenGL."
+"be baked when using the Vulkan backend (Forward+ or Mobile), not OpenGL."
 msgstr ""
 
 #: doc/classes/LightmapGI.xml
@@ -51370,7 +51411,7 @@ msgstr ""
 msgid ""
 "Highest bake quality (slowest bake times). The quality of this preset can be "
 "adjusted by changing [member ProjectSettings.rendering/lightmapping/"
-"bake_quality/high_quality_ray_count] and [member ProjectSettings.rendering/"
+"bake_quality/ultra_quality_ray_count] and [member ProjectSettings.rendering/"
 "lightmapping/bake_quality/ultra_quality_probe_ray_count]."
 msgstr ""
 
@@ -51550,8 +51591,8 @@ msgid ""
 "bake lightmaps much faster than most CPU-based lightmappers. LightmapperRD "
 "uses compute shaders to bake lightmaps, so it does not require CUDA or "
 "OpenCL libraries to be installed to be usable.\n"
-"[b]Note:[/b] Only usable when using the Vulkan backend (Clustered or "
-"Mobile), not OpenGL."
+"[b]Note:[/b] Only usable when using the Vulkan backend (Forward+ or Mobile), "
+"not OpenGL."
 msgstr ""
 
 #: doc/classes/LightmapProbe.xml
@@ -53287,7 +53328,7 @@ msgstr ""
 #: doc/classes/Mesh.xml
 msgid ""
 "Indicates this custom channel contains full float colors, in a "
-"[PackedFloat32Array]. Only the red green channel is used."
+"[PackedFloat32Array]. Only the red channel is used."
 msgstr ""
 
 #: doc/classes/Mesh.xml
@@ -55131,6 +55172,12 @@ msgstr ""
 
 #: modules/multiplayer/doc_classes/MultiplayerSynchronizer.xml
 msgid ""
+"Emitted when a new synchronization state is received by this synchronizer "
+"after the variables have been updated."
+msgstr ""
+
+#: modules/multiplayer/doc_classes/MultiplayerSynchronizer.xml
+msgid ""
 "Emitted when visibility of [code]for_peer[/code] is updated. See [method "
 "update_visibility]."
 msgstr ""
@@ -56736,7 +56783,7 @@ msgstr "두 벡터의 나머지를 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
 #, fuzzy
-msgid "Returns the [code]enter_cost[/code] of this [code]link[/code]."
+msgid "Returns the enter cost of this [param link]."
 msgstr "두 벡터의 나머지를 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
@@ -56763,7 +56810,7 @@ msgstr "매개변수의 사인 값을 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
 #, fuzzy
-msgid "Returns the [code]travel_cost[/code] of this [code]link[/code]."
+msgid "Returns the travel cost of this [param link]."
 msgstr "매개변수의 사인 값을 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
@@ -56958,7 +57005,7 @@ msgstr ""
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
 #, fuzzy
-msgid "Returns the [code]enter_cost[/code] of this [param region]."
+msgid "Returns the enter cost of this [param region]."
 msgstr "두 벡터의 나머지를 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
@@ -56980,7 +57027,7 @@ msgstr "두 벡터의 나머지를 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
 #, fuzzy
-msgid "Returns the [code]travel_cost[/code] of this [param region]."
+msgid "Returns the travel cost of this [param region]."
 msgstr "매개변수의 사인 값을 반환합니다."
 
 #: doc/classes/NavigationServer2D.xml doc/classes/NavigationServer3D.xml
@@ -58918,7 +58965,10 @@ msgid "Position, relative to the node's parent."
 msgstr ""
 
 #: doc/classes/Node2D.xml
-msgid "Rotation in radians, relative to the node's parent."
+msgid ""
+"Rotation in radians, relative to the node's parent.\n"
+"[b]Note:[/b] This property is edited in the inspector in degrees. If you "
+"want to use degrees in a script, use [member rotation_degrees]."
 msgstr ""
 
 #: doc/classes/Node2D.xml
@@ -59228,7 +59278,9 @@ msgid ""
 "[Vector3] data structure not because the rotation is a vector, but only "
 "because [Vector3] exists as a convenient data-structure to store 3 floating-"
 "point numbers. Therefore, applying affine operations on the rotation "
-"\"vector\" is not meaningful."
+"\"vector\" is not meaningful.\n"
+"[b]Note:[/b] This property is edited in the inspector in degrees. If you "
+"want to use degrees in a script, use [member rotation_degrees]."
 msgstr ""
 
 #: doc/classes/Node3D.xml
@@ -73477,6 +73529,12 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
+"macOS specific override for the shortcut to select the word currently under "
+"the caret."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
 "Default [InputEventAction] to submit a text field.\n"
 "[b]Note:[/b] Default [code]ui_*[/code] actions cannot be removed as they are "
 "necessary for the internal logic of several [Control]s. The events assigned "
@@ -75659,6 +75717,21 @@ msgid ""
 "[CameraAttributes] resource to be set at bake time to reduce the dynamic "
 "range. At run time, Godot will automatically reconcile the baked exposure "
 "with the active exposure to ensure lighting remains consistent."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"The maximum number of clustered elements ([OmniLight3D] + [SpotLight3D] + "
+"[Decal] + [ReflectionProbe]) that can be rendered at once in the camera "
+"view. If there are more clustered elements present in the camera view, some "
+"of them will not be rendered (leading to pop-in during camera movement). "
+"Enabling distance fade on lights and decals ([member Light3D."
+"distance_fade_enabled], [member Decal.distance_fade_enabled]) can help avoid "
+"reaching this limit.\n"
+"Decreasing this value may improve GPU performance on certain setups, even if "
+"the maximum number of clustered elements is never reached in the project.\n"
+"[b]Note:[/b] This setting is only effective when using the Forward+ "
+"rendering method, not Mobile and Compatibility."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -87430,10 +87503,12 @@ msgid ""
 "duration of [code]1.0[/code]. You can calculate the absolute duration (in "
 "seconds) of a frame using the following formula:\n"
 "[codeblock]\n"
-"absolute_duration = relative_duration / (animation_fps * abs(speed_scale))\n"
+"absolute_duration = relative_duration / (animation_fps * "
+"abs(playing_speed))\n"
 "[/codeblock]\n"
-"In this example, [code]speed_scale[/code] refers to either [member "
-"AnimatedSprite2D.speed_scale] or [member AnimatedSprite3D.speed_scale]."
+"In this example, [code]playing_speed[/code] refers to either [method "
+"AnimatedSprite2D.get_playing_speed] or [method AnimatedSprite3D."
+"get_playing_speed]."
 msgstr ""
 
 #: doc/classes/SpriteFrames.xml
@@ -96200,7 +96275,7 @@ msgstr "두 벡터의 나머지를 반환합니다."
 #: doc/classes/TileSet.xml
 #, fuzzy
 msgid ""
-"Returns if there is and alternative-level proxy for the given identifiers."
+"Returns if there is an alternative-level proxy for the given identifiers."
 msgstr "매개변수의 아크사인 값을 반환합니다."
 
 #: doc/classes/TileSet.xml
@@ -97043,7 +97118,8 @@ msgstr ""
 #: doc/classes/Time.xml
 msgid ""
 "Converts the given Unix timestamp to a dictionary of keys: [code]year[/"
-"code], [code]month[/code], [code]day[/code], and [code]weekday[/code].\n"
+"code], [code]month[/code], [code]day[/code], [code]weekday[/code], "
+"[code]hour[/code], [code]minute[/code], and [code]second[/code].\n"
 "The returned Dictionary's values will be the same as the [method "
 "get_datetime_dict_from_system] if the Unix timestamp is the current time, "
 "with the exception of Daylight Savings Time as it cannot be determined from "
@@ -107384,7 +107460,7 @@ msgid ""
 msgstr ""
 
 #: doc/classes/VoxelGI.xml
-msgid "GI probes"
+msgid "VoxelGI"
 msgstr ""
 
 #: doc/classes/VoxelGI.xml
