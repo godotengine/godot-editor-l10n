@@ -1553,8 +1553,8 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
-"Returns the maximum of the given values. This function can take any number "
-"of arguments.\n"
+"Returns the maximum of the given numeric values. This function can take any "
+"number of arguments.\n"
 "[codeblock]\n"
 "max(1, 7, 3, -6, 5) # Returns 7\n"
 "[/codeblock]"
@@ -1580,8 +1580,8 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
-"Returns the minimum of the given values. This function can take any number "
-"of arguments.\n"
+"Returns the minimum of the given numeric values. This function can take any "
+"number of arguments.\n"
 "[codeblock]\n"
 "min(1, 7, 3, -6, 5) # Returns -6\n"
 "[/codeblock]"
@@ -29366,8 +29366,7 @@ msgstr ""
 msgid ""
 "No vertical synchronization, which means the engine will display frames as "
 "fast as possible (tearing may be visible). Framerate is unlimited "
-"(nonwithstanding [member Engine.max_fps]). Not supported when using the "
-"Compatibility rendering method."
+"(nonwithstanding [member Engine.max_fps])."
 msgstr ""
 
 #: doc/classes/DisplayServer.xml
@@ -29383,7 +29382,8 @@ msgid ""
 "screen's refresh rate to reduce stuttering (tearing may be visible). "
 "Otherwise, vertical synchronization is enabled to avoid tearing. Framerate "
 "is limited by the monitor refresh rate (nonwithstanding [member Engine."
-"max_fps]). Not supported when using the Compatibility rendering method."
+"max_fps]). Behaves like [constant VSYNC_ENABLED] when using the "
+"Compatibility rendering method."
 msgstr ""
 
 #: doc/classes/DisplayServer.xml
@@ -29394,8 +29394,8 @@ msgid ""
 "Although not guaranteed, the images can be rendered as fast as possible, "
 "which may reduce input lag (also called \"Fast\" V-Sync mode). [constant "
 "VSYNC_MAILBOX] works best when at least twice as many frames as the display "
-"refresh rate are rendered. Not supported when using the Compatibility "
-"rendering method."
+"refresh rate are rendered. Behaves like [constant VSYNC_ENABLED] when using "
+"the Compatibility rendering method."
 msgstr ""
 
 #: doc/classes/DisplayServer.xml
@@ -29878,8 +29878,11 @@ msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
 msgid ""
-"Return true if this plugin will customize resources based on the platform "
-"and features used."
+"Return [code]true[/code] if this plugin will customize resources based on "
+"the platform and features used.\n"
+"When enabled, [method _get_customization_configuration_hash], [method "
+"_customize_resource] and [method _customize_scene] will be called and must "
+"be implemented."
 msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
@@ -29894,14 +29897,18 @@ msgid ""
 "resource. Otherwise, return [code]null[/code].\n"
 "The [i]path[/i] argument is only used when customizing an actual file, "
 "otherwise this means that this resource is part of another one and it will "
-"be empty."
+"be empty.\n"
+"Implementing this method is required if [method _begin_customize_resources] "
+"returns [code]true[/code]."
 msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
 msgid ""
 "Customize a scene. If changes are made to it, return the same or a new "
 "scene. Otherwise, return [code]null[/code]. If a new scene is returned, it "
-"is up to you to dispose of the old one."
+"is up to you to dispose of the old one.\n"
+"Implementing this method is required if [method _begin_customize_resources] "
+"returns [code]true[/code]."
 msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
@@ -29943,7 +29950,9 @@ msgstr ""
 msgid ""
 "Return a hash based on the configuration passed (for both scenes and "
 "resources). This helps keep separate caches for separate export "
-"configurations."
+"configurations.\n"
+"Implementing this method is required if [method _begin_customize_resources] "
+"returns [code]true[/code]."
 msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
@@ -29955,7 +29964,8 @@ msgstr ""
 #: doc/classes/EditorExportPlugin.xml
 msgid ""
 "Return the name identifier of this plugin (for future identification by the "
-"exporter)."
+"exporter). The plugins are sorted by name before exporting.\n"
+"Implementing this method is required."
 msgstr ""
 
 #: doc/classes/EditorExportPlugin.xml
@@ -37873,7 +37883,8 @@ msgid ""
 msgstr ""
 
 #: doc/classes/Expression.xml
-msgid "Returns the error text if [method parse] has failed."
+msgid ""
+"Returns the error text if [method parse] or [method execute] has failed."
 msgstr ""
 
 #: doc/classes/Expression.xml
@@ -52246,6 +52257,89 @@ msgstr ""
 
 #: doc/classes/Mesh.xml
 msgid ""
+"Virtual method to override the [AABB] for a custom class extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the number of blend shapes for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the retrieval of blend shape names for a custom "
+"class extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface count for a custom class extending "
+"[Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the names of blend shapes for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface array index length for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface array length for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface arrays for a custom class extending "
+"[Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the blend shape arrays for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface format for a custom class extending "
+"[Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface LODs for a custom class extending "
+"[Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface material for a custom class extending "
+"[Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the surface primitive type for a custom class "
+"extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
+"Virtual method to override the setting of a [param material] at the given "
+"[param index] for a custom class extending [Mesh]."
+msgstr ""
+
+#: doc/classes/Mesh.xml
+msgid ""
 "Calculate a [ConvexPolygonShape3D] from the mesh.\n"
 "If [param clean] is [code]true[/code] (default), duplicate and interior "
 "vertices are removed automatically. You can set it to [code]false[/code] to "
@@ -52908,17 +53002,40 @@ msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
 msgid ""
-"Returns the [Material] that will be used by the [Mesh] when drawing. This "
-"can return the [member GeometryInstance3D.material_override], the surface "
-"override [Material] defined in this [MeshInstance3D], or the surface "
-"[Material] defined in the [Mesh]. For example, if [member GeometryInstance3D."
-"material_override] is used, all surfaces will return the override material."
+"Returns the index of the blend shape with the given [param name]. Returns "
+"[code]-1[/code] if no blend shape with this name exists, including when "
+"[member mesh] is [code]null[/code]."
 msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
 msgid ""
-"Returns the override [Material] for the specified surface of the [Mesh] "
-"resource."
+"Returns the [Material] that will be used by the [Mesh] when drawing. This "
+"can return the [member GeometryInstance3D.material_override], the surface "
+"override [Material] defined in this [MeshInstance3D], or the surface "
+"[Material] defined in the [member mesh]. For example, if [member "
+"GeometryInstance3D.material_override] is used, all surfaces will return the "
+"override material.\n"
+"Returns [code]null[/code] if no material is active, including when [member "
+"mesh] is [code]null[/code]."
+msgstr ""
+
+#: doc/classes/MeshInstance3D.xml
+msgid ""
+"Returns the number of blend shapes available. Produces an error if [member "
+"mesh] is [code]null[/code]."
+msgstr ""
+
+#: doc/classes/MeshInstance3D.xml
+msgid ""
+"Returns the value of the blend shape at the given [param blend_shape_idx]. "
+"Returns [code]0.0[/code] and produces an error if [member mesh] is "
+"[code]null[/code] or doesn't have a blend shape at that index."
+msgstr ""
+
+#: doc/classes/MeshInstance3D.xml
+msgid ""
+"Returns the override [Material] for the specified [param surface] of the "
+"[Mesh] resource."
 msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
@@ -52929,9 +53046,16 @@ msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
 msgid ""
-"Sets the override [Material] for the specified surface of the [Mesh] "
-"resource. This material is associated with this [MeshInstance3D] rather than "
-"with the [Mesh] resource."
+"Sets the value of the blend shape at [param blend_shape_idx] to [param "
+"value]. Produces an error if [member mesh] is [code]null[/code] or doesn't "
+"have a blend shape at that index."
+msgstr ""
+
+#: doc/classes/MeshInstance3D.xml
+msgid ""
+"Sets the override [param material] for the specified [param surface] of the "
+"[Mesh] resource. This material is associated with this [MeshInstance3D] "
+"rather than with [member mesh]."
 msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
@@ -52943,7 +53067,7 @@ msgid "[NodePath] to the [Skeleton3D] associated with the instance."
 msgstr ""
 
 #: doc/classes/MeshInstance3D.xml
-msgid "Sets the skin to be used by this instance."
+msgid "The [Skin] to be used by this instance."
 msgstr ""
 
 #: doc/classes/MeshLibrary.xml
@@ -98005,7 +98129,8 @@ msgstr ""
 #: doc/classes/Tween.xml
 msgid ""
 "Sets the default ease type for [PropertyTweener]s and [MethodTweener]s "
-"animated by this [Tween]."
+"animated by this [Tween].\n"
+"If not specified, the default value is [constant EASE_IN_OUT]."
 msgstr ""
 
 #: doc/classes/Tween.xml
@@ -98051,7 +98176,8 @@ msgstr ""
 #: doc/classes/Tween.xml
 msgid ""
 "Sets the default transition type for [PropertyTweener]s and [MethodTweener]s "
-"animated by this [Tween]."
+"animated by this [Tween].\n"
+"If not specified, the default value is [constant TRANS_LINEAR]."
 msgstr ""
 
 #: doc/classes/Tween.xml
@@ -100938,10 +101064,12 @@ msgstr ""
 
 #: doc/classes/VehicleBody3D.xml
 msgid ""
-"The steering angle for the vehicle, in radians. Setting this to a non-zero "
-"value will result in the vehicle turning when it's moving. Wheels that have "
-"[member VehicleWheel3D.use_as_steering] set to [code]true[/code] will "
-"automatically be rotated."
+"The steering angle for the vehicle. Setting this to a non-zero value will "
+"result in the vehicle turning when it's moving. Wheels that have [member "
+"VehicleWheel3D.use_as_steering] set to [code]true[/code] will automatically "
+"be rotated.\n"
+"[b]Note:[/b] This property is edited in the inspector in degrees. In code "
+"the property is set in radians."
 msgstr ""
 
 #: doc/classes/VehicleWheel3D.xml
@@ -102252,9 +102380,14 @@ msgstr ""
 
 #: doc/classes/VisualInstance3D.xml
 msgid ""
-"The sorting offset used by this [VisualInstance3D]. Adjusting it to a higher "
-"value will make the [VisualInstance3D] reliably draw on top of other "
-"[VisualInstance3D]s that are otherwise positioned at the same spot."
+"The amount by which the depth of this [VisualInstance3D] will be adjusted "
+"when sorting by depth. Uses the same units as the engine (which are "
+"typically meters). Adjusting it to a higher value will make the "
+"[VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that "
+"are otherwise positioned at the same spot. To ensure it always draws on top "
+"of other objects around it (not positioned at the same spot), set the value "
+"to be greater than the distance between this [VisualInstance3D] and the "
+"other nearby [VisualInstance3D]s."
 msgstr ""
 
 #: doc/classes/VisualInstance3D.xml
@@ -103353,7 +103486,7 @@ msgstr ""
 #: doc/classes/VisualShaderNodeDerivativeFunc.xml
 msgid ""
 "Sets the level of precision to use for the derivative function. See [enum "
-"Precision] for options. When using the GL_Compatibility renderer, this "
+"Precision] for options. When using the GL Compatibility renderer, this "
 "setting has no effect."
 msgstr ""
 
