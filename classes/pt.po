@@ -16,12 +16,15 @@
 # Baiterson <baiter160@gmail.com>, 2022.
 # Breno Alves Sampaio <chibifoxdiscord@gmail.com>, 2023.
 # SamuelPatrickMeneses <samuelmeneses800@gmail.com>, 2023.
+# Francisco Cândido <franciscocandidolyrio@gmail.com>, 2023.
+# Wesley PI <wesleypi2@hotmail.com.br>, 2023.
+# Luiz Guilherme Alvarez <luizgpa@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Godot Engine class reference\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\n"
-"PO-Revision-Date: 2023-02-16 02:38+0000\n"
-"Last-Translator: SamuelPatrickMeneses <samuelmeneses800@gmail.com>\n"
+"PO-Revision-Date: 2023-03-12 20:08+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/godot-engine/"
 "godot-class-reference/pt/>\n"
 "Language: pt\n"
@@ -29,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: doc/tools/make_rst.py
 msgid "Description"
@@ -44,7 +47,6 @@ msgid "Properties"
 msgstr "Propriedades"
 
 #: doc/tools/make_rst.py
-#, fuzzy
 msgid "Constructors"
 msgstr "Construtores"
 
@@ -77,18 +79,16 @@ msgid "Property Descriptions"
 msgstr "Descrições de propriedades"
 
 #: doc/tools/make_rst.py
-#, fuzzy
 msgid "Constructor Descriptions"
-msgstr "Descrições de propriedades"
+msgstr "Descrições do construtor"
 
 #: doc/tools/make_rst.py
 msgid "Method Descriptions"
 msgstr "Descrições de Métodos"
 
 #: doc/tools/make_rst.py
-#, fuzzy
 msgid "Operator Descriptions"
-msgstr "Descrições de propriedades"
+msgstr "Descrições do Operador"
 
 #: doc/tools/make_rst.py
 msgid "Theme Property Descriptions"
@@ -173,10 +173,13 @@ msgid ""
 "from any script.\n"
 "For the list of the global functions and constants see [@GlobalScope]."
 msgstr ""
+"Uma lista de funções utilitárias e anotações especificadas para o GDScript "
+"acessíveis a partir de qualquer script.\n"
+" Para obter a lista de funções e constantes globais, consulte [@GlobalScope]."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid "GDScript exports"
-msgstr ""
+msgstr "exportação GDScript"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid ""
@@ -189,9 +192,19 @@ msgid ""
 "var my_color = Color8(306, 255, 0, 102) # Same as Color(1.2, 1, 0, 0.4).\n"
 "[/codeblock]"
 msgstr ""
+"Retorna uma [Color] criada a partir de valores inteiros para vermelho([param "
+"r8]), verde ([param g8]), azul ([param b8]) e opcionalmente alfa ([param a8])"
+", cada um dividido por [code]255.0 [/code] para seu valor final.\n"
+"[codeblock]\n"
+"var red = Color8(255, 0, 0)                              # O mesmo que Color("
+"1, 0, 0).\n"
+"var dark_blue = Color8(0, 0, 51)                  # O mesmo que Color(0, 0, 0"
+".2).\n"
+"var my_color = Color8(306, 255, 0, 102)   # O mesmo que Color(1.2, 1, 0, 0."
+"4).\n"
+"[/codeblock]"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
-#, fuzzy
 msgid ""
 "Asserts that the [param condition] is [code]true[/code]. If the [param "
 "condition] is [code]false[/code], an error is generated. When running from "
@@ -216,29 +229,28 @@ msgid ""
 "assert(speed < 20, \"the speed limit is 20\") # Show a message.\n"
 "[/codeblock]"
 msgstr ""
-"Afirma que [code]condition[/code] (condição) é [code]true[/code]. Se "
-"[code]condition[/code] é [code]false[/code], um erro é gerado. Ao executar a "
-"partir do editor, o programa também será interrompido, até que o retome. "
-"Isso pode ser usado como uma forma mais forte de [method push_error] para "
-"reportar erros aos programadores do projeto ou para utilizadores de add-"
-"ons.\n"
+"Afirma que a [param condition] é [code]true[/code]. Se a [param condition] é "
+"[code]false[/code], um erro é gerado. Ao executar a partir do editor, o "
+"programa também será interrompido, até que o retome. Isso pode ser usado "
+"como uma forma mais eficaz de [method @GlobalScope.push_error] para reportar "
+"erros aos programadores do projeto ou para usuários de add-ons.\n"
+"O argumento opcional [param message], é mostrado em complemento à mensagem "
+"genérica \"Assertion failed\". Pode ser usado para fornecer mais detalhes do "
+"porquê a afirmação falhou.\n"
 "[b]Obs.:[/b] Por motivos de desempenho, o código inserido no [method assert] "
 "só é executado em compilações de depuração ou quando o projeto é executado a "
-"partir do editor. Não insira código com efeitos colaterais dentro de um "
-"[method assert], senão o projeto terá um comportamento diferente quando "
+"partir do editor. Não insira código com efeitos colaterais dentro de um ["
+"method assert], senão o projeto terá um comportamento diferente quando "
 "exportado em modo de lançamento.\n"
-"O argumento opcional [code]message[/code], se dado, é mostrado em "
-"complemento à mensagem genérica \"Assertion failed\". Pode usar isso para "
-"fornecer detalhes adicionais do porquê a afirmação falhou.\n"
 "[codeblock]\n"
-"# Imagine que queremos que a velocidade se situe sempre entre 0 e 20.\n"
+"# Imagine que queremos que a velocidade fique sempre entre 0 e 20.\n"
 "var speed = -10\n"
 "assert(speed < 20) # True, o programa irá continuar\n"
 "assert(speed >= 0) # False, o programa irá parar\n"
-"assert(speed >= 0 && speed < 20) # Também pode combinar os dois parâmetros "
+"assert(speed >= 0 and speed < 20) # Também pode combinar os dois parâmetros "
 "condicionais numa verificação\n"
-"assert(speed < 20, \"speed = %f, mas o limite de velocidade é 20\" % speed) "
-"# Mostra uma mensagem com mais detalhes\n"
+"assert(speed < 20, \"o limite de velocidade é 20\") # Mostra uma mensagem "
+"detalhada.\n"
 "[/codeblock]"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
@@ -252,14 +264,13 @@ msgid ""
 "a = char(8364)    # a is \"€\"\n"
 "[/codeblock]"
 msgstr ""
-"Retorna um caractere como uma cadeia de caracteres de um dado code point "
-"Unicode (compatível com ASCII code);\n"
+"Retorna um caractere (como uma [String]) de um determinado código Unicode ("
+"que é compatível com código ASCII).\n"
 "[codeblock]\n"
 "a = char(65)      # a é \"A\"\n"
 "a = char(65 + 32) # a é \"a\"\n"
 "a = char(8364)    # a é \"€\"\n"
-"[/codeblock]\n"
-"Isso é o inverso de [method ord]."
+"[/codeblock]"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 #, fuzzy
@@ -4800,74 +4811,105 @@ msgid ""
 "down on the key after it \"bottoms out\". This message is different from "
 "polyphonic after-touch as it indicates the highest pressure across all keys."
 msgstr ""
+"Mensagem de pressão do canal MIDI. Esta mensagem geralmente é enviada ao "
+"pressionar a tecla após ela \"ir de dentro para fora\". Essa mensagem é "
+"diferente do pós-toque polifônico, pois indica a pressão mais alta em todas "
+"as teclas."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI pitch bend message. This message is sent to indicate a change in the "
 "pitch bender (wheel or lever, typically)."
 msgstr ""
+"Mensagem MIDI de dobra de tom (pitch bend). Esta mensagem é enviada para "
+"indicar uma mudança no dobrador de tom (roda ou alavanca, tipicamente)."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI system exclusive message. This has behavior exclusive to the device "
 "you're receiving input from. Getting this data is not implemented in Godot."
 msgstr ""
+"Mensagem exclusiva do sistema MIDI. Isso tem um comportamento exclusivo do "
+"aparelho do qual está a receber entrada. A obtenção desses dados não está "
+"implementada no Godot."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI quarter frame message. Contains timing information that is used to "
 "synchronize MIDI devices. Getting this data is not implemented in Godot."
 msgstr ""
+"Mensagem MIDI de um quarto de quadro. Contém informações de tempo usadas "
+"para sincronizar aparelhos MIDI. A obtenção desses dados não está "
+"implementada no Godot."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI song position pointer message. Gives the number of 16th notes since the "
 "start of the song. Getting this data is not implemented in Godot."
 msgstr ""
+"Mensagem de ponteiro de posição de música MIDI. Dá a quantidade de "
+"semicolcheias (cada 16ª nota) desde o início da música. A obtenção desses "
+"dados não está implementada no Godot."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI song select message. Specifies which sequence or song is to be played. "
 "Getting this data is not implemented in Godot."
 msgstr ""
+"Mensagem MIDI de seleção de música. Especifica qual sequência ou música será "
+"tocada. A obtenção desses dados não está implementada no Godot."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI tune request message. Upon receiving a tune request, all analog "
 "synthesizers should tune their oscillators."
 msgstr ""
+"Mensagem de solicitação de sintonia MIDI. Ao receber uma solicitação de "
+"sintonia, todos os sintetizadores analógicos devem sintonizar os osciladores "
+"deles."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI timing clock message. Sent 24 times per quarter note when "
 "synchronization is required."
 msgstr ""
+"Mensagem de relógio de tempo MIDI. Enviado 24 vezes por semínima quando a "
+"sincronização é necessária."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI start message. Start the current sequence playing. This message will be "
 "followed with Timing Clocks."
 msgstr ""
+"mensagem de início MIDI. Inicie a reprodução da sequência atual. Esta "
+"mensagem será seguida de relógios de temporização."
 
 #: doc/classes/@GlobalScope.xml
 msgid "MIDI continue message. Continue at the point the sequence was stopped."
 msgstr ""
+"Mensagem de continuação MIDI. Continue no ponto em que a sequência foi "
+"interrompida."
 
 #: doc/classes/@GlobalScope.xml
 msgid "MIDI stop message. Stop the current sequence."
-msgstr ""
+msgstr "Mensagem de parada MIDI. Pare a sequência atual."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI active sensing message. This message is intended to be sent repeatedly "
 "to tell the receiver that a connection is alive."
 msgstr ""
+"Mensagem de detecção ativa de MIDI. Esta mensagem deve ser enviada "
+"repetidamente para informar ao receptor que uma conexão está ativa."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "MIDI system reset message. Reset all receivers in the system to power-up "
 "status. It should not be sent on power-up itself."
 msgstr ""
+"Mensagem de reinicialização do sistema MIDI. Redefina todos os receptores no "
+"sistema para o estado de inicialização. Ele não deve ser enviado no próprio "
+"power-up."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -5006,7 +5048,7 @@ msgstr "Erro Bloqueado (Locked error)."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Timeout error."
-msgstr ""
+msgstr "Erro tempo esgotado."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Can't connect error."
@@ -5014,7 +5056,7 @@ msgstr "Erro não foi possível conectar."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Can't resolve error."
-msgstr ""
+msgstr "Erro não se pode resolver."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Connection error."
@@ -5038,7 +5080,7 @@ msgstr "Erro, parâmetro inválido."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Already exists error."
-msgstr ""
+msgstr "Erro já existe."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Does not exist error."
@@ -5062,7 +5104,7 @@ msgstr "Erro de método não encontrado."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Linking failed error."
-msgstr ""
+msgstr "Erro falha de link."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -5071,7 +5113,7 @@ msgstr "Erro falha no script."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Cycling link (import cycle) error."
-msgstr ""
+msgstr "Erro de ligação cíclica (importar ciclo)."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Invalid declaration error."
@@ -5088,7 +5130,7 @@ msgstr "Erro de parse."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Busy error."
-msgstr ""
+msgstr "Erro de disponibilidade."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Skip error."
@@ -5341,7 +5383,7 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid "The property is serialized and saved in the scene file (default)."
-msgstr ""
+msgstr "A propriedade é serializada e salva no ficheiro de cena (padrão)."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -5365,7 +5407,7 @@ msgstr "A propriedade pode ser checada no inspetor do editor."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Used to categorize properties together in the editor."
-msgstr ""
+msgstr "Utilizado para categorizar propriedades juntas ao editor."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -5376,7 +5418,7 @@ msgstr "A propriedade pode ser checada no inspetor do editor."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The property does not save its state in [PackedScene]."
-msgstr ""
+msgstr "A propriedade não grava o estado dele em [PackedScene]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Editing the property prompts the user for restarting the editor."
@@ -5419,21 +5461,22 @@ msgstr "A propriedade pode ser checada no inspetor do editor."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Default usage (storage, editor and network)."
-msgstr ""
+msgstr "Uso padrão (armazenamento, editor e rede)."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
 "Default usage but without showing the property in the editor (storage, "
 "network)."
 msgstr ""
+"Uso padrão, mas sem mostrar a propriedade no editor (armazenamento, rede)."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Flag for a normal method."
-msgstr ""
+msgstr "Sinalizador para um método normal."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Flag for an editor method."
-msgstr ""
+msgstr "Sinalizador para um método de editor."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Flag for a constant method."
@@ -5640,23 +5683,23 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid "Equality operator ([code]==[/code])."
-msgstr ""
+msgstr "Operador de igualdade ([code]==[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Inequality operator ([code]!=[/code])."
-msgstr ""
+msgstr "Operador de desigualdade ([code]!=[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Less than operator ([code]<[/code])."
-msgstr ""
+msgstr "Operador menor que ([code]<[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Less than or equal operator ([code]<=[/code])."
-msgstr ""
+msgstr "Operador menor que ou igual ([code]<=[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Greater than operator ([code]>[/code])."
-msgstr ""
+msgstr "Operador maior que ([code]>[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Greater than or equal operator ([code]>=[/code])."
@@ -5668,7 +5711,7 @@ msgstr "Operador de adição ([code]+[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Subtraction operator ([code]-[/code])."
-msgstr ""
+msgstr "Operador de subtração ([code]-[/code])."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Multiplication operator ([code]*[/code])."
@@ -5741,7 +5784,7 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid "Represents the size of the [enum Variant.Operator] enum."
-msgstr ""
+msgstr "Representa o tamanho da enumeração [enum Variant.Operator]."
 
 #: doc/classes/AABB.xml
 msgid "Axis-Aligned Bounding Box."
@@ -6000,6 +6043,8 @@ msgid ""
 "This dialog is useful for small notifications to the user about an event. It "
 "can only be accepted or closed, with the same result."
 msgstr ""
+"Este diálogo é útil para pequenas notificações ao utilizador sobre um "
+"evento. Ele só pode ser aceito ou fechado, com o mesmo resultado."
 
 #: doc/classes/AcceptDialog.xml
 msgid ""
@@ -21971,11 +22016,11 @@ msgstr ""
 
 #: doc/classes/Color.xml
 msgid "Chocolate color."
-msgstr ""
+msgstr "Cor chocolate."
 
 #: doc/classes/Color.xml
 msgid "Coral color."
-msgstr ""
+msgstr "Cor coral."
 
 #: doc/classes/Color.xml
 #, fuzzy
@@ -21993,7 +22038,7 @@ msgstr ""
 
 #: doc/classes/Color.xml
 msgid "Cyan color."
-msgstr ""
+msgstr "Cor ciano."
 
 #: doc/classes/Color.xml
 msgid "Dark blue color."
@@ -62218,7 +62263,7 @@ msgstr "Nó de animação."
 
 #: modules/openxr/doc_classes/OpenXRActionMap.xml
 msgid "Add an interaction profile."
-msgstr ""
+msgstr "Adicione um perfil de interação."
 
 #: modules/openxr/doc_classes/OpenXRActionMap.xml
 msgid "Setup this action set with our default actions."
@@ -67098,7 +67143,7 @@ msgstr ""
 #: doc/classes/PhysicsDirectBodyState2D.xml
 #: doc/classes/PhysicsDirectBodyState3D.xml doc/classes/RigidBody2D.xml
 msgid "The body's rotational velocity in [i]radians[/i] per second."
-msgstr ""
+msgstr "A velocidade rotacional dos corpos em [i]radianos[/i] por segundo."
 
 #: doc/classes/PhysicsDirectBodyState2D.xml
 #: doc/classes/PhysicsDirectBodyState3D.xml
@@ -82240,7 +82285,7 @@ msgstr ""
 
 #: doc/classes/Resource.xml
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
 #: doc/classes/Resource.xml
 msgid ""
@@ -102107,7 +102152,7 @@ msgstr "Desconectado."
 
 #: modules/upnp/doc_classes/UPNPDevice.xml
 msgid "Unknown device."
-msgstr ""
+msgstr "Aparelho desconhecido."
 
 #: modules/upnp/doc_classes/UPNPDevice.xml
 msgid "Invalid control."
@@ -106433,6 +106478,8 @@ msgid ""
 "The distance fade effect fades out each pixel based on its distance to "
 "another object."
 msgstr ""
+"O efeito de esmaecimento de distância esmaece cada pixel com base na "
+"distância a que se encontra de outro objecto."
 
 #: doc/classes/VisualShaderNodeDotProduct.xml
 msgid "Calculates a dot product of two vectors within the visual shader graph."
@@ -107551,6 +107598,8 @@ msgid ""
 "The proximity fade effect fades out each pixel based on its distance to "
 "another object."
 msgstr ""
+"O efeito de esmaecimento de proximidade esmaece cada pixel com base na "
+"distância a que se encontra de outro objecto."
 
 #: doc/classes/VisualShaderNodeRandomRange.xml
 msgid "A visual shader node that generates a pseudo-random scalar."
@@ -111210,6 +111259,8 @@ msgid ""
 "Skips the current section. If the node contains other elements, they will be "
 "ignored and the cursor will go to the closing of the current element."
 msgstr ""
+"Pula a secção atual. Se o nó contêm outros elementos,  serão ignorados e o "
+"cursor irá ao encerramento do elemento atual."
 
 #: doc/classes/XMLParser.xml
 msgid "There's no node (no file or buffer opened)."
