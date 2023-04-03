@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Godot Engine class reference\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\n"
 "PO-Revision-Date: 2023-03-19 19:24+0000\n"
-"Last-Translator: Muhammad Azri Fatihah Susanto <muhammad.azri.f.s@gmail.com>"
-"\n"
+"Last-Translator: Muhammad Azri Fatihah Susanto <muhammad.azri.f.s@gmail."
+"com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/godot-engine/"
 "godot-class-reference/id/>\n"
 "Language: id\n"
@@ -182,12 +182,19 @@ msgstr "ekspor GDScript"
 msgid ""
 "Returns a [Color] constructed from red ([param r8]), green ([param g8]), "
 "blue ([param b8]), and optionally alpha ([param a8]) integer channels, each "
-"divided by [code]255.0[/code] for their final value.\n"
+"divided by [code]255.0[/code] for their final value. Using [method Color8] "
+"instead of the standard [Color] constructor is useful when you need to match "
+"exact color values in an [Image].\n"
 "[codeblock]\n"
 "var red = Color8(255, 0, 0)             # Same as Color(1, 0, 0).\n"
 "var dark_blue = Color8(0, 0, 51)        # Same as Color(0, 0, 0.2).\n"
 "var my_color = Color8(306, 255, 0, 102) # Same as Color(1.2, 1, 0, 0.4).\n"
-"[/codeblock]"
+"[/codeblock]\n"
+"[b]Note:[/b] Due to the lower precision of [method Color8] compared to the "
+"standard [Color] constructor, a color created with [method Color8] will "
+"generally not be equal to the same color created with the standard [Color] "
+"constructor. Use [method Color.is_equal_approx] for comparisons to avoid "
+"issues with floating-point precision error."
 msgstr ""
 
 #: modules/gdscript/doc_classes/@GDScript.xml
@@ -832,10 +839,10 @@ msgid ""
 "that have this prefix. The grouping will break on the first property that "
 "doesn't have a prefix. The prefix is also removed from the property's name "
 "in the Inspector dock.\n"
-"If no [param prefix] is provided, the every following property is added to "
-"the group. The group ends when then next group or category is defined. You "
-"can also force end a group by using this annotation with empty strings for "
-"parameters, [code]@export_group(\"\", \"\")[/code].\n"
+"If no [param prefix] is provided, then every following property will be "
+"added to the group. The group ends when then next group or category is "
+"defined. You can also force end a group by using this annotation with empty "
+"strings for parameters, [code]@export_group(\"\", \"\")[/code].\n"
 "Groups cannot be nested, use [annotation @export_subgroup] to add subgroups "
 "within groups.\n"
 "See also [constant PROPERTY_USAGE_GROUP].\n"
@@ -1826,7 +1833,7 @@ msgid ""
 "this range are allowed and can be used to perform [i]extrapolation[/i]. If "
 "this is not desired, use [method clampf] on the result of this function.\n"
 "[codeblock]\n"
-"lerp(0, 4, 0.75) # Returns 3.0\n"
+"lerpf(0, 4, 0.75) # Returns 3.0\n"
 "[/codeblock]\n"
 "See also [method inverse_lerp] which performs the reverse of this operation. "
 "To perform eased interpolation with [method lerp], combine it with [method "
@@ -1866,10 +1873,14 @@ msgstr ""
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
 msgid ""
-"Returns the natural logarithm of [param x]. This is the amount of time "
-"needed to reach a certain level of continuous growth.\n"
+"Returns the [url=https://en.wikipedia.org/wiki/Natural_logarithm]natural "
+"logarithm[/url] of [param x] (base [url=https://en.wikipedia.org/wiki/"
+"E_(mathematical_constant)][i]e[/i][/url], with [i]e[/i] being approximately "
+"2.71828). This is the amount of time needed to reach a certain level of "
+"continuous growth.\n"
 "[b]Note:[/b] This is not the same as the \"log\" function on most "
-"calculators, which uses a base 10 logarithm.\n"
+"calculators, which uses a base 10 logarithm. To use base 10 logarithm, use "
+"[code]log(x) / log(10)[/code].\n"
 "[codeblock]\n"
 "log(10) # Returns 2.302585\n"
 "[/codeblock]\n"
@@ -2504,9 +2515,9 @@ msgid ""
 "Returns [code]-1.0[/code] if [param x] is negative, [code]1.0[/code] if "
 "[param x] is positive, and [code]0.0[/code] if [param x] is zero.\n"
 "[codeblock]\n"
-"sign(-6.5) # Returns -1.0\n"
-"sign(0.0)  # Returns 0.0\n"
-"sign(6.5)  # Returns 1.0\n"
+"signf(-6.5) # Returns -1.0\n"
+"signf(0.0)  # Returns 0.0\n"
+"signf(6.5)  # Returns 1.0\n"
 "[/codeblock]"
 msgstr ""
 
@@ -2515,9 +2526,9 @@ msgid ""
 "Returns [code]-1[/code] if [param x] is negative, [code]1[/code] if [param "
 "x] is positive, and [code]0[/code] if if [param x] is zero.\n"
 "[codeblock]\n"
-"sign(-6) # Returns -1\n"
-"sign(0)  # Returns 0\n"
-"sign(6)  # Returns 1\n"
+"signi(-6) # Returns -1\n"
+"signi(0)  # Returns 0\n"
+"signi(6)  # Returns 1\n"
 "[/codeblock]"
 msgstr ""
 
@@ -2606,20 +2617,27 @@ msgid ""
 "decimals.\n"
 "A type-safe version of [method snapped], returning a [float].\n"
 "[codeblock]\n"
-"snapped(32.0, 2.5)  # Returns 32.5\n"
-"snapped(3.14159, 0.01)  # Returns 3.14\n"
+"snappedf(32.0, 2.5)  # Returns 32.5\n"
+"snappedf(3.14159, 0.01)  # Returns 3.14\n"
 "[/codeblock]"
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
+#, fuzzy
 msgid ""
 "Returns the multiple of [param step] that is the closest to [param x].\n"
 "A type-safe version of [method snapped], returning an [int].\n"
 "[codeblock]\n"
-"snapped(53, 16)  # Returns 48\n"
-"snapped(4096, 100)  # Returns 4100\n"
+"snappedi(53, 16)  # Returns 48\n"
+"snappedi(4096, 100)  # Returns 4100\n"
 "[/codeblock]"
 msgstr ""
+"Menghasilkan [code]value[/code] yang dikurangi oleh [code]step[/code] "
+"sebanyak [code]amount[/code].\n"
+"[codeblock]\n"
+"# a = 59\n"
+"a = dectime(60, 10, 0.1))\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4772,6 +4790,10 @@ msgid "The property is shown in the [EditorInspector] (default)."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
+msgid "The property is excluded from the class reference."
+msgstr ""
+
+#: doc/classes/@GlobalScope.xml
 msgid "The property can be checked in the [EditorInspector]."
 msgstr ""
 
@@ -5357,11 +5379,10 @@ msgid ""
 "If the size is negative, you can use [method abs] to fix it."
 msgstr ""
 
-#: doc/classes/AABB.xml doc/classes/Vector2.xml doc/classes/Vector3.xml
-#: doc/classes/Vector4.xml
+#: doc/classes/AABB.xml
 #, fuzzy
 msgid ""
-"Returns [code]true[/code] if the vectors are not equal.\n"
+"Returns [code]true[/code] if the AABBs are not equal.\n"
 "[b]Note:[/b] Due to floating-point precision errors, consider using [method "
 "is_equal_approx] instead, which is more reliable."
 msgstr ""
@@ -13891,10 +13912,10 @@ msgstr ""
 
 #: doc/classes/BaseMaterial3D.xml
 msgid ""
-"If [code]true[/code], transparency is enabled on the body. Some transparency "
-"modes will disable shadow casting. Any transparency mode other than Disabled "
-"has a greater performance impact compared to opaque rendering. See also "
-"[member blend_mode]."
+"The material's transparency mode. Some transparency modes will disable "
+"shadow casting. Any transparency mode other than [constant "
+"TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque "
+"rendering. See also [member blend_mode]."
 msgstr ""
 
 #: doc/classes/BaseMaterial3D.xml
@@ -17512,17 +17533,25 @@ msgid ""
 msgstr ""
 
 #: doc/classes/CanvasItem.xml
-msgid "The material applied to textures on this [CanvasItem]."
-msgstr ""
-
-#: doc/classes/CanvasItem.xml
-msgid "The color applied to textures on this [CanvasItem]."
+msgid "The material applied to this [CanvasItem]."
 msgstr ""
 
 #: doc/classes/CanvasItem.xml
 msgid ""
-"The color applied to textures on this [CanvasItem]. This is not inherited by "
-"children [CanvasItem]s."
+"The color applied to this [CanvasItem]. This property does affect child "
+"[CanvasItem]s, unlike [member self_modulate] which only affects the node "
+"itself."
+msgstr ""
+
+#: doc/classes/CanvasItem.xml
+msgid ""
+"The color applied to this [CanvasItem]. This property does [b]not[/b] affect "
+"child [CanvasItem]s, unlike [member modulate] which affects both the node "
+"itself and its children.\n"
+"[b]Note:[/b] Internal children (e.g. sliders in [ColorPicker] or tab bar in "
+"[TabContainer]) are also not affected by this property (see "
+"[code]include_internal[/code] parameter of [method Node.get_child] and other "
+"similar methods)."
 msgstr ""
 
 #: doc/classes/CanvasItem.xml
@@ -18119,6 +18148,13 @@ msgstr ""
 msgid "2D Kinematic Character Demo"
 msgstr ""
 
+#: doc/classes/CharacterBody2D.xml doc/classes/CharacterBody3D.xml
+msgid ""
+"Allows to manually apply a snap to the floor regardless of the body's "
+"velocity. This function does nothing when [method is_on_floor] returns "
+"[code]true[/code]."
+msgstr ""
+
 #: doc/classes/CharacterBody2D.xml
 msgid ""
 "Returns the floor's collision angle at the last collision point according to "
@@ -18181,8 +18217,8 @@ msgid ""
 "[codeblocks]\n"
 "[gdscript]\n"
 "for i in get_slide_collision_count():\n"
-"var collision = get_slide_collision(i)\n"
-"print(\"Collided with: \", collision.collider.name)\n"
+"    var collision = get_slide_collision(i)\n"
+"    print(\"Collided with: \", collision.get_collider().name)\n"
 "[/gdscript]\n"
 "[csharp]\n"
 "for (int i = 0; i < GetSlideCollisionCount(); i++)\n"
@@ -18307,7 +18343,10 @@ msgid ""
 "As long as the snapping vector is in contact with the ground and the body "
 "moves against [member up_direction], the body will remain attached to the "
 "surface. Snapping is not applied if the body moves along [member "
-"up_direction], so it will be able to detach from the ground when jumping."
+"up_direction], meaning it contains vertical rising velocity, so it will be "
+"able to detach from the ground when jumping or when the body is pushed up by "
+"something. If you want to apply a snap without taking into account the "
+"velocity, use [method apply_floor_snap]."
 msgstr ""
 
 #: doc/classes/CharacterBody2D.xml doc/classes/CharacterBody3D.xml
@@ -20356,14 +20395,16 @@ msgid ""
 msgstr ""
 
 #: doc/classes/CollisionPolygon2D.xml
-msgid "Defines a 2D collision polygon."
+msgid "Node that represents a 2D collision polygon."
 msgstr ""
 
 #: doc/classes/CollisionPolygon2D.xml
 msgid ""
-"Provides a concave or convex 2D collision polygon to a [CollisionObject2D] "
-"parent. Polygons can be drawn in the editor or specified by a list of "
-"vertices. See also [ConvexPolygonShape2D].\n"
+"Provides a 2D collision polygon to a [CollisionObject2D] parent. Polygons "
+"can be drawn in the editor or specified by a list of vertices.\n"
+"Depending on the build mode, this node effectively provides several convex "
+"shapes (by convex decomposition of the polygon) or a single concave shape "
+"made of the polygon's segments.\n"
 "In the editor, a [CollisionPolygon2D] can be generated from a [Sprite2D]'s "
 "outline by selecting a [Sprite2D] node, going to the [b]Sprite2D[/b] menu at "
 "the top of the 2D editor viewport then choosing [b]Create CollisionPolygon2D "
@@ -20395,32 +20436,45 @@ msgstr ""
 
 #: doc/classes/CollisionPolygon2D.xml
 msgid ""
-"The polygon's list of vertices. The final point will be connected to the "
-"first. The returned value is a clone of the [PackedVector2Array], not a "
-"reference."
+"The polygon's list of vertices. Each point will be connected to the next, "
+"and the final point will be connected to the first.\n"
+"[b]Warning:[/b] The returned value is a clone of the [PackedVector2Array], "
+"not a reference."
 msgstr ""
 
 #: doc/classes/CollisionPolygon2D.xml
-msgid "Collisions will include the polygon and its contained area."
+msgid ""
+"Collisions will include the polygon and its contained area. In this mode the "
+"node has the same effect as several [ConvexPolygonShape2D] nodes, one for "
+"each convex shape in the convex decomposition of the polygon (but without "
+"the overhead of multiple nodes)."
 msgstr ""
 
 #: doc/classes/CollisionPolygon2D.xml
-msgid "Collisions will only include the polygon edges."
-msgstr ""
-
-#: doc/classes/CollisionPolygon3D.xml
-msgid "Editor-only node for defining a collision polygon in 3D space."
+msgid ""
+"Collisions will only include the polygon edges. In this mode the node has "
+"the same effect as a single [ConcavePolygonShape2D] made of segments, with "
+"the restriction that each segment (after the first one) starts where the "
+"previous one ends, and the last one ends where the first one starts (forming "
+"a closed but hollow polygon)."
 msgstr ""
 
 #: doc/classes/CollisionPolygon3D.xml
 msgid ""
-"Allows editing a concave or convex collision polygon's vertices on a "
-"selected plane. Can also set a depth perpendicular to that plane. This class "
-"is only available in the editor. It will not appear in the scene tree at run-"
-"time. Creates several [ConvexPolygonShape3D]s at run-time to represent the "
-"original polygon using convex decomposition.\n"
-"[b]Note:[/b] Since this is an editor-only helper, properties modified during "
-"gameplay will have no effect.\n"
+"Node that represents a 3D collision polygon, given by the thickening of a 2D "
+"polygon in the local XY plane along the local Z axis."
+msgstr ""
+
+#: doc/classes/CollisionPolygon3D.xml
+msgid ""
+"Provides a 3D collision polygon to a [CollisionObject3D] parent, by "
+"thickening a 2D (convex or concave) polygon in the local XY plane along the "
+"local Z axis. The 2D polygon in the local XY plane can be drawn in the "
+"editor or specified by a list of vertices. That 2D polygon is thickened "
+"evenly in the local Z and -Z directions.\n"
+"This node has the same effect as several [ConvexPolygonShape3D] nodes, "
+"created by thickening the 2D convex polygons in the convex decomposition of "
+"the given 2D polygon (but without the overhead of multiple nodes).\n"
 "[b]Warning:[/b] A non-uniformly scaled CollisionPolygon3D node will probably "
 "not function as expected. Please make sure to keep its scale uniform (i.e. "
 "the same on all axes), and change its [member polygon]'s vertices instead."
@@ -20429,7 +20483,7 @@ msgstr ""
 #: doc/classes/CollisionPolygon3D.xml
 msgid ""
 "Length that the resulting collision extends in either direction "
-"perpendicular to its polygon."
+"perpendicular to its 2D polygon."
 msgstr ""
 
 #: doc/classes/CollisionPolygon3D.xml
@@ -20444,7 +20498,7 @@ msgstr ""
 
 #: doc/classes/CollisionPolygon3D.xml
 msgid ""
-"Array of vertices which define the polygon.\n"
+"Array of vertices which define the 2D polygon in the local XY plane.\n"
 "[b]Note:[/b] The returned value is a copy of the original. Methods which "
 "mutate the size or properties of the return value will not impact the "
 "original polygon. To change properties of the polygon, assign it to a "
@@ -20459,9 +20513,7 @@ msgstr ""
 #: doc/classes/CollisionShape2D.xml
 msgid ""
 "Editor facility for creating and editing collision shapes in 2D space. Set "
-"the [member shape] property to configure the shape. [b]IMPORTANT[/b]: this "
-"is an Editor-only helper to create shapes, use [method CollisionObject2D."
-"shape_owner_get_shape] to get the actual shape.\n"
+"the [member shape] property to configure the shape.\n"
 "You can use this node to represent all sorts of collision shapes, for "
 "example, add this to an [Area2D] to give it a detection shape, or add it to "
 "a [PhysicsBody2D] to create a solid object."
@@ -20517,9 +20569,7 @@ msgstr ""
 #: doc/classes/CollisionShape3D.xml
 msgid ""
 "Editor facility for creating and editing collision shapes in 3D space. Set "
-"the [member shape] property to configure the shape. [b]IMPORTANT[/b]: this "
-"is an Editor-only helper to create shapes, use [method CollisionObject3D."
-"shape_owner_get_shape] to get the actual shape.\n"
+"the [member shape] property to configure the shape.\n"
 "You can use this node to represent all sorts of collision shapes, for "
 "example, add this to an [Area3D] to give it a detection shape, or add it to "
 "a [PhysicsBody3D] to create a solid object.\n"
@@ -21681,7 +21731,7 @@ msgstr ""
 msgid "Multiplies each component of the [Color] by the given [float]."
 msgstr ""
 
-#: doc/classes/Color.xml doc/classes/int.xml
+#: doc/classes/Color.xml
 msgid "Multiplies each component of the [Color] by the given [int]."
 msgstr ""
 
@@ -22294,16 +22344,33 @@ msgstr ""
 #: doc/classes/ConcavePolygonShape2D.xml
 msgid ""
 "2D concave polygon shape to be added as a [i]direct[/i] child of a "
-"[PhysicsBody2D] or [Area2D] using a [CollisionShape2D] node. It is made out "
-"of segments and is optimal for complex polygonal concave collisions. "
-"However, it is not advised to use for [RigidBody2D] nodes. A "
-"CollisionPolygon2D in convex decomposition mode (solids) or several convex "
-"objects are advised for that instead. Otherwise, a concave polygon 2D shape "
-"is better for static collisions.\n"
-"The main difference between a [ConvexPolygonShape2D] and a "
-"[ConcavePolygonShape2D] is that a concave polygon assumes it is concave and "
-"uses a more complex method of collision detection, and a convex one forces "
-"itself to be convex to speed up collision detection.\n"
+"[PhysicsBody2D] or [Area2D] using a [CollisionShape2D] node.\n"
+"The shape consists of a collection of line segments, and as such it does not "
+"include any \"inside\" that the segments might be enclosing. If the segments "
+"do enclose anything, then the shape is [i]hollow[/i], as opposed to a "
+"[ConvexPolygonShape2D] which is solid. See also [CollisionPolygon2D].\n"
+"Being made out of line segments, this shape is the most freely configurable "
+"single 2D shape. It can be used to form (hollow) polygons of any nature, "
+"convex or concave.\n"
+"[b]Note:[/b] When used for collision, [b]ConcavePolygonShape2D[/b] is "
+"intended to work with static [PhysicsBody2D] nodes like [StaticBody2D] and "
+"is not recommended to use with [RigidBody2D] nodes in a mode other than "
+"Static. A [CollisionPolygon2D] in convex decomposition mode (solids) or "
+"several convex objects are advised for that instead. Otherwise, a concave "
+"polygon 2D shape is better suited for static bodies.\n"
+"[b]Warning:[/b] The nature of this shape makes it extra prone to being "
+"tunneled through by (small) fast physics bodies. For example, consider a "
+"(small) rigid body [i]Ball[/i] traveling toward a static body [i]Box[/i] at "
+"high speed. If the box uses a [b]ConcavePolygonShape2D[/b] consisting of "
+"four segments, then the ball might end up inside the box or tunnel all the "
+"way through the box, if it goes fast enough. This is (partly) because the "
+"ball can only collide against the individual segments of the hollow box. In "
+"interactions with rigid bodies tunneling can be avoided by enabling "
+"continuous collision detection on the rigid body.\n"
+"[b]Warning:[/b] Using this shape for an [Area2D] (via a [CollisionShape2D] "
+"node) may give unexpected results: the area will only detect collisions with "
+"the segments in the [ConcavePolygonShape2D] (and not with any \"inside\" of "
+"the shape, for example).\n"
 "[b]Performance:[/b] Due to its complexity, [ConcavePolygonShape2D] is the "
 "slowest collision shape to check collisions against. Its use should "
 "generally be limited to level geometry. For convex geometry, using "
@@ -22312,16 +22379,15 @@ msgid ""
 "represent its collision by using convex decomposition; see "
 "[ConvexPolygonShape2D]'s documentation for instructions. However, consider "
 "using primitive collision shapes such as [CircleShape2D] or "
-"[RectangleShape2D] first.\n"
-"[b]Warning:[/b] Using this shape for an [Area2D] (via a [CollisionShape2D] "
-"node) may give unexpected results: the area will only detect collisions with "
-"the segments in the [ConcavePolygonShape2D] (and not with any \"inside\" of "
-"the shape, for example)."
+"[RectangleShape2D] first."
 msgstr ""
 
 #: doc/classes/ConcavePolygonShape2D.xml
 msgid ""
-"The array of points that make up the [ConcavePolygonShape2D]'s line segments."
+"The array of points that make up the [ConcavePolygonShape2D]'s line "
+"segments. The array (of length divisible by two) is naturally divided into "
+"pairs (one pair for each segment); each pair consists of the starting point "
+"of a segment and the endpoint of a segment."
 msgstr ""
 
 #: doc/classes/ConcavePolygonShape3D.xml
@@ -22333,14 +22399,36 @@ msgstr ""
 msgid ""
 "3D concave polygon shape resource (also called \"trimesh\") to be added as a "
 "[i]direct[/i] child of a [PhysicsBody3D] or [Area3D] using a "
-"[CollisionShape3D] node. This shape is created by feeding a list of "
-"triangles. Despite its name, [ConcavePolygonShape3D] can also store convex "
-"polygon shapes. However, unlike [ConvexPolygonShape3D], "
-"[ConcavePolygonShape3D] is [i]not[/i] limited to storing convex shapes "
-"exclusively.\n"
-"[b]Note:[/b] When used for collision, [ConcavePolygonShape3D] is intended to "
-"work with static [PhysicsBody3D] nodes like [StaticBody3D] and will not work "
-"with [CharacterBody3D] or [RigidBody3D] with a mode other than Static.\n"
+"[CollisionShape3D] node.\n"
+"The shape consists of a collection of triangle faces, and as such it does "
+"not include any \"inside\" that the faces might be enclosing. If the faces "
+"enclose anything, then the shape is [i]hollow[/i], as opposed to a "
+"[ConvexPolygonShape3D] which is solid. See also [CollisionPolygon3D].\n"
+"Being made out of triangle faces, this shape is the most freely configurable "
+"single 3D shape. Despite its name, it can be used to form (hollow) polyhedra "
+"of any nature, convex or concave.\n"
+"[b]Note:[/b] When used for collision, [b]ConcavePolygonShape3D[/b] is "
+"intended to work with static [PhysicsBody3D] nodes like [StaticBody3D] and "
+"will not work with [CharacterBody3D] or [RigidBody3D] in a mode other than "
+"Static.\n"
+"[b]Warning:[/b] The nature of this shape makes it extra prone to being "
+"tunneled through by (small) fast physics bodies. For example, consider a "
+"(small) rigid body [i]Ball[/i] traveling toward a static body [i]Box[/i] at "
+"high speed. If the box uses a [b]ConcavePolygonShape3D[/b] consisting of "
+"twelve triangle faces (two triangle faces for each of the six sides of the "
+"box), then the ball might end up inside the box or tunnel all the way "
+"through the box, if it goes fast enough. This is (partly) because the ball "
+"can only collide against the individual faces of the hollow box. In "
+"interactions with rigid bodies tunneling can be avoided by enabling "
+"continuous collision detection on the rigid body.\n"
+"[b]Warning:[/b] Using this shape for an [Area3D] (via a [CollisionShape3D] "
+"node, created e.g. by using the [i]Create Trimesh Collision Sibling[/i] "
+"option in the [i]Mesh[/i] menu that appears when selecting a "
+"[MeshInstance3D] node) may give unexpected results: the area will only "
+"detect collisions with the triangle faces in the [ConcavePolygonShape3D] "
+"(and not with any \"inside\" of the shape, for example); moreover it will "
+"only detect all such collisions if [member backface_collision] is "
+"[code]true[/code].\n"
 "[b]Performance:[/b] Due to its complexity, [ConcavePolygonShape3D] is the "
 "slowest collision shape to check collisions against. Its use should "
 "generally be limited to level geometry. For convex geometry, using "
@@ -22349,23 +22437,21 @@ msgid ""
 "represent its collision by using convex decomposition; see "
 "[ConvexPolygonShape3D]'s documentation for instructions. However, consider "
 "using primitive collision shapes such as [SphereShape3D] or [BoxShape3D] "
-"first.\n"
-"[b]Warning:[/b] Using this shape for an [Area3D] (via a [CollisionShape3D] "
-"node, created e.g. by using the [i]Create Trimesh Collision Sibling[/i] "
-"option in the [i]Mesh[/i] menu that appears when selecting a "
-"[MeshInstance3D] node) may give unexpected results: the area will only "
-"detect collisions with the triangle faces in the [ConcavePolygonShape3D] "
-"(and not with any \"inside\" of the shape, for example); moreover it will "
-"only detect all such collisions if [member backface_collision] is "
-"[code]true[/code]."
+"first."
 msgstr ""
 
 #: doc/classes/ConcavePolygonShape3D.xml
-msgid "Returns the faces (an array of triangles)."
+msgid ""
+"Returns the faces of the trimesh shape as an array of vertices. The array "
+"(of length divisible by three) is naturally divided into triples; each "
+"triple of vertices defines a triangle."
 msgstr ""
 
 #: doc/classes/ConcavePolygonShape3D.xml
-msgid "Sets the faces (an array of triangles)."
+msgid ""
+"Sets the faces of the trimesh shape from an array of vertices. The [param "
+"faces] array should be composed of triples such that each triple of vertices "
+"defines a triangle."
 msgstr ""
 
 #: doc/classes/ConcavePolygonShape3D.xml
@@ -22386,6 +22472,16 @@ msgid ""
 "Once the Bodies swing, the twist axis is calculated as the middle of the x-"
 "axes of the Joint3D in the local space of the two Bodies. See also "
 "[Generic6DOFJoint3D]."
+msgstr ""
+
+#: doc/classes/ConeTwistJoint3D.xml doc/classes/HingeJoint3D.xml
+#: doc/classes/PinJoint3D.xml
+msgid "Returns the value of the specified parameter."
+msgstr ""
+
+#: doc/classes/ConeTwistJoint3D.xml doc/classes/HingeJoint3D.xml
+#: doc/classes/PinJoint3D.xml
+msgid "Sets the value of the specified parameter."
 msgstr ""
 
 #: doc/classes/ConeTwistJoint3D.xml doc/classes/PhysicsServer3D.xml
@@ -23218,7 +23314,7 @@ msgstr ""
 
 #: doc/classes/Control.xml
 msgid ""
-"Returns the anchor for the specified [enum Side]. A getter method for "
+"Returns the offset for the specified [enum Side]. A getter method for "
 "[member offset_bottom], [member offset_left], [member offset_right] and "
 "[member offset_top]."
 msgstr ""
@@ -23641,10 +23737,10 @@ msgstr ""
 
 #: doc/classes/Control.xml
 msgid ""
-"Sets the anchor for the specified [enum Side] to the [Control] at [param "
-"neighbor] node path. A setter method for [member focus_neighbor_bottom], "
-"[member focus_neighbor_left], [member focus_neighbor_right] and [member "
-"focus_neighbor_top]."
+"Sets the focus neighbor for the specified [enum Side] to the [Control] at "
+"[param neighbor] node path. A setter method for [member "
+"focus_neighbor_bottom], [member focus_neighbor_left], [member "
+"focus_neighbor_right] and [member focus_neighbor_top]."
 msgstr ""
 
 #: doc/classes/Control.xml
@@ -24581,35 +24677,45 @@ msgstr ""
 #: doc/classes/ConvexPolygonShape2D.xml
 msgid ""
 "2D convex polygon shape to be added as a [i]direct[/i] child of a "
-"[PhysicsBody2D] or [Area2D] using a [CollisionShape2D] node. A convex "
-"polygon, whatever its shape, is internally decomposed into as many convex "
-"polygons as needed to ensure all collision checks against it are always done "
-"on convex polygons (which are faster to check). See also "
-"[CollisionPolygon2D].\n"
-"The main difference between a [ConvexPolygonShape2D] and a "
-"[ConcavePolygonShape2D] is that a concave polygon assumes it is concave and "
-"uses a more complex method of collision detection, and a convex one forces "
-"itself to be convex to speed up collision detection.\n"
+"[PhysicsBody2D] or [Area2D] using a [CollisionShape2D] node.\n"
+"The shape is a [i]solid[/i] that includes all the points that it encloses, "
+"as opposed to [ConcavePolygonShape2D] which is hollow if it encloses "
+"anything. See also [CollisionPolygon2D].\n"
+"The solid nature of the shape makes it well-suited for both detection and "
+"physics; in physics body interactions this allows depenetrating even those "
+"shapes which end up (e.g. due to high speed) fully inside the convex shape "
+"(similarly to primitive shapes, but unlike [ConcavePolygonShape2D]). The "
+"convexity limits the possible geometric shape of a single "
+"[ConvexPolygonShape2D]: it cannot be concave.\n"
+"[b]Convex decomposition:[/b] Concave objects' collisions can be represented "
+"accurately using [i]several[/i] convex shapes. This allows dynamic physics "
+"bodies to have complex concave collisions (at a performance cost). It can be "
+"achieved using several [ConvexPolygonShape2D] nodes or by using the "
+"[CollisionPolygon2D] node in Solids build mode. To generate a collision "
+"polygon from a sprite, select the [Sprite2D] node, go to the [b]Sprite2D[/b] "
+"menu that appears above the viewport, and choose [b]Create Polygon2D "
+"Sibling[/b].\n"
 "[b]Performance:[/b] [ConvexPolygonShape2D] is faster to check collisions "
 "against compared to [ConcavePolygonShape2D], but it is slower than primitive "
 "collision shapes such as [CircleShape2D] or [RectangleShape2D]. Its use "
 "should generally be limited to medium-sized objects that cannot have their "
-"collision accurately represented by a primitive shape."
+"collision accurately represented by primitive shapes."
 msgstr ""
 
 #: doc/classes/ConvexPolygonShape2D.xml
 msgid ""
-"Based on the set of points provided, this creates and assigns the [member "
-"points] property using the convex hull algorithm. Removing all unneeded "
-"points. See [method Geometry2D.convex_hull] for details."
+"Based on the set of points provided, this assigns the [member points] "
+"property using the convex hull algorithm, removing all unneeded points. See "
+"[method Geometry2D.convex_hull] for details."
 msgstr ""
 
 #: doc/classes/ConvexPolygonShape2D.xml
 msgid ""
-"The polygon's list of vertices. Can be in either clockwise or "
-"counterclockwise order. Only set this property with convex hull points, use "
-"[method set_point_cloud] to generate a convex hull shape from concave shape "
-"points."
+"The polygon's list of vertices that form a convex hull. Can be in either "
+"clockwise or counterclockwise order.\n"
+"[b]Warning:[/b] Only set this property to a list of points that actually "
+"form a convex hull. Use [method set_point_cloud] to generate the convex hull "
+"of an arbitrary set of points."
 msgstr ""
 
 #: doc/classes/ConvexPolygonShape3D.xml
@@ -24619,23 +24725,30 @@ msgstr ""
 #: doc/classes/ConvexPolygonShape3D.xml
 msgid ""
 "3D convex polygon shape resource to be added as a [i]direct[/i] child of a "
-"[PhysicsBody3D] or [Area3D] using a [CollisionShape3D] node. Unlike "
-"[ConcavePolygonShape3D], [ConvexPolygonShape3D] cannot store concave polygon "
-"shapes. [ConvexPolygonShape3D]s can be manually drawn in the editor using "
-"the [CollisionPolygon3D] node.\n"
+"[PhysicsBody3D] or [Area3D] using a [CollisionShape3D] node.\n"
+"The shape is a [i]solid[/i] that includes all the points that it encloses, "
+"as opposed to [ConcavePolygonShape3D] which is hollow if it encloses "
+"anything. See also [CollisionPolygon3D].\n"
+"The solid nature of the shape makes it well-suited for both detection and "
+"physics; in physics body interactions this allows depenetrating even those "
+"shapes which end up (e.g. due to high speed) fully inside the convex shape "
+"(similarly to primitive shapes, but unlike [ConcavePolygonShape3D] and "
+"[HeightMapShape3D]). The convexity restricts the possible geometric shape of "
+"a single [ConvexPolygonShape3D]: it cannot be concave.\n"
 "[b]Convex decomposition:[/b] Concave objects' collisions can be represented "
-"accurately using [i]several[/i] [ConvexPolygonShape3D]s. This allows dynamic "
-"physics bodies to have complex concave collisions (at a performance cost). "
-"This is available in the editor by selecting the [MeshInstance3D], going to "
-"the [b]Mesh[/b] menu and choosing [b]Create Multiple Convex Collision "
-"Siblings[/b]. Alternatively, [method MeshInstance3D."
-"create_multiple_convex_collisions] can be called in a script to perform this "
-"decomposition at run-time.\n"
+"accurately using [i]several[/i] convex shapes. This allows dynamic physics "
+"bodies to have complex concave collisions (at a performance cost). It can be "
+"achieved by using several [ConvexPolygonShape3D] nodes or by using the "
+"[CollisionPolygon3D] node. To generate a collision polygon from a mesh, "
+"select the [MeshInstance3D] node, go to the [b]Mesh[/b] menu that appears "
+"above the viewport and choose [b]Create Multiple Convex Collision Siblings[/"
+"b]. Alternatively, [method MeshInstance3D.create_multiple_convex_collisions] "
+"can be called in a script to perform this decomposition at run-time.\n"
 "[b]Performance:[/b] [ConvexPolygonShape3D] is faster to check collisions "
 "against compared to [ConcavePolygonShape3D], but it is slower than primitive "
 "collision shapes such as [SphereShape3D] or [BoxShape3D]. Its use should "
 "generally be limited to medium-sized objects that cannot have their "
-"collision accurately represented by a primitive shape."
+"collision accurately represented by primitive shapes."
 msgstr ""
 
 #: doc/classes/ConvexPolygonShape3D.xml
@@ -25453,8 +25566,8 @@ msgstr ""
 
 #: doc/classes/CPUParticles3D.xml
 msgid ""
-"If set to true, three different scale curves can be specified, one per scale "
-"axis."
+"If set to [code]true[/code], three different scale curves can be specified, "
+"one per scale axis."
 msgstr ""
 
 #: doc/classes/CPUParticles3D.xml
@@ -28899,9 +29012,9 @@ msgstr ""
 
 #: doc/classes/DisplayServer.xml
 msgid ""
-"Sets the window icon (usually displayed in the top-left corner) in the "
-"operating system's [i]native[/i] format. To use icons in the operating "
-"system's native format, use [method set_native_icon] instead."
+"Sets the window icon (usually displayed in the top-left corner) with an "
+"[Image]. To use icons in the operating system's native format, use [method "
+"set_native_icon] instead."
 msgstr ""
 
 #: doc/classes/DisplayServer.xml
@@ -29002,9 +29115,9 @@ msgid ""
 "canceled or reached a text boundary.\n"
 "- [constant TTS_UTTERANCE_STARTED], [constant TTS_UTTERANCE_ENDED], and "
 "[constant TTS_UTTERANCE_CANCELED] callable's method should take one [int] "
-"parameter, the utterance id.\n"
+"parameter, the utterance ID.\n"
 "- [constant TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] "
-"parameters, the index of the character and the utterance id.\n"
+"parameters, the index of the character and the utterance ID.\n"
 "[b]Note:[/b] The granularity of the boundary callbacks is engine dependent.\n"
 "[b]Note:[/b] This method is implemented on Android, iOS, Web, Linux (X11), "
 "macOS, and Windows."
@@ -32325,8 +32438,15 @@ msgid ""
 "ensures the Godot editor minimizes file writes outside its own folder. Self-"
 "contained mode is not available for exported projects.\n"
 "Self-contained mode can be enabled by creating a file named [code]._sc_[/"
-"code] or [code]_sc_[/code] in the same folder as the editor binary while the "
-"editor is not running. See also [method get_self_contained_file].\n"
+"code] or [code]_sc_[/code] in the same folder as the editor binary or macOS ."
+"app bundle while the editor is not running. See also [method "
+"get_self_contained_file].\n"
+"[b]Note:[/b] On macOS, quarantine flag should be manually removed before "
+"using self-contained mode, see [url=https://docs.godotengine.org/en/stable/"
+"tutorials/export/running_on_macos.html]Running on macOS[/url].\n"
+"[b]Note:[/b] On macOS, placing [code]_sc_[/code] or any other file inside ."
+"app bundle will break digital signature and make it non-portable, consider "
+"placing it in the same folder as the .app bundle instead.\n"
 "[b]Note:[/b] The Steam release of Godot uses self-contained mode by default."
 msgstr ""
 
@@ -36007,7 +36127,15 @@ msgid ""
 "- If the object is a built-in resource, use the scene from its path;\n"
 "- If the object is external resource or anything else, use global history.\n"
 "This guessing can sometimes yield false results, so you can provide a custom "
-"context object when creating an action."
+"context object when creating an action.\n"
+"[EditorUndoRedoManager] is intended to be used by Godot editor plugins. You "
+"can obtain it using [method EditorPlugin.get_undo_redo]. For non-editor uses "
+"or plugins that don't need to integrate with the editor's undo history, use "
+"[UndoRedo] instead.\n"
+"The manager's API is mostly the same as in [UndoRedo], so you can refer to "
+"its documentation for more examples. The main difference is that "
+"[EditorUndoRedoManager] uses object + method name for actions, instead of "
+"[Callable]."
 msgstr ""
 
 #: doc/classes/EditorUndoRedoManager.xml
@@ -36025,7 +36153,7 @@ msgid ""
 "target undo history."
 msgstr ""
 
-#: doc/classes/EditorUndoRedoManager.xml doc/classes/UndoRedo.xml
+#: doc/classes/EditorUndoRedoManager.xml
 msgid ""
 "Register a reference for \"do\" that will be erased if the \"do\" history is "
 "lost. This is useful mostly for new nodes created for the \"do\" call. Do "
@@ -36047,7 +36175,7 @@ msgid ""
 "target undo history."
 msgstr ""
 
-#: doc/classes/EditorUndoRedoManager.xml doc/classes/UndoRedo.xml
+#: doc/classes/EditorUndoRedoManager.xml
 msgid ""
 "Register a reference for \"undo\" that will be erased if the \"undo\" "
 "history is lost. This is useful mostly for nodes removed with the \"do\" "
@@ -36239,9 +36367,8 @@ msgstr ""
 
 #: doc/classes/EditorVCSInterface.xml
 msgid ""
-"Pushes changes to the [code]remote[/code]. Optionally, if [code]force[/code] "
-"is set to true, a force push will override the change history already "
-"present on the remote."
+"Pushes changes to the [param remote]. If [param force] is [code]true[/code], "
+"a force push will override the change history already present on the remote."
 msgstr ""
 
 #: doc/classes/EditorVCSInterface.xml
@@ -39503,6 +39630,63 @@ msgstr ""
 
 #: doc/classes/FileDialog.xml
 msgid "Custom icon for the toggle hidden button."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid "Editor dock for managing files in the project."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid ""
+"This class is available only in [EditorPlugin]s and can't be instantiated. "
+"You can access it using [method EditorInterface.get_file_system_dock].\n"
+"While FileSystemDock doesn't expose any methods for file manipulation, you "
+"can listen for various file-related signals."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid ""
+"Sets the given [param path] as currently selected, ensuring that the "
+"selected file/directory is visible."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+#, fuzzy
+msgid "Emitted when the user switches file display mode or split mode."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/FileSystemDock.xml
+msgid "Emitted when the given [param file] was removed."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid ""
+"Emitted when a file is moved from [param old_file] path to [param new_file] "
+"path."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid ""
+"Emitted when a folder is moved from [param old_folder] path to [param "
+"new_folder] path."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid "Emitted when the given [param folder] was removed."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid ""
+"Emitted when a new scene is created that inherits the scene at [param file] "
+"path."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid "Emitted when the given scenes are being instantiated in the editor."
+msgstr ""
+
+#: doc/classes/FileSystemDock.xml
+msgid "Emitted when an external [param resource] had its file removed."
 msgstr ""
 
 #: doc/classes/float.xml
@@ -44781,16 +44965,8 @@ msgstr ""
 msgid "Returns the value of the specified flag."
 msgstr ""
 
-#: doc/classes/HingeJoint3D.xml doc/classes/PinJoint3D.xml
-msgid "Returns the value of the specified parameter."
-msgstr ""
-
 #: doc/classes/HingeJoint3D.xml
 msgid "If [code]true[/code], enables the specified flag."
-msgstr ""
-
-#: doc/classes/HingeJoint3D.xml doc/classes/PinJoint3D.xml
-msgid "Sets the value of the specified parameter."
 msgstr ""
 
 #: doc/classes/HingeJoint3D.xml doc/classes/PhysicsServer3D.xml
@@ -48147,8 +48323,30 @@ msgid ""
 "pressed."
 msgstr ""
 
+#: doc/classes/InputEventFromWindow.xml
+msgid "Base class for [Viewport]-based input events."
+msgstr ""
+
+#: doc/classes/InputEventFromWindow.xml
+msgid ""
+"InputEventFromWindow represents events specifically received by windows. "
+"This includes mouse events, keyboard events in focused windows or touch "
+"screen actions."
+msgstr ""
+
+#: doc/classes/InputEventFromWindow.xml
+msgid "The ID of a [Window] that received this event."
+msgstr ""
+
 #: doc/classes/InputEventGesture.xml
 msgid "Base class for touch control gestures."
+msgstr ""
+
+#: doc/classes/InputEventGesture.xml
+msgid ""
+"InputEventGesture is sent when a user performs a supported gesture on a "
+"touch screen. Gestures can't be emulated using mouse, because they typically "
+"require multi-touch."
 msgstr ""
 
 #: doc/classes/InputEventGesture.xml
@@ -48331,6 +48529,22 @@ msgid ""
 "Unicode character codes for composite characters and complex scripts may not "
 "be available unless IME input mode is active. See [method Window."
 "set_ime_active] for more information."
+msgstr ""
+
+#: doc/classes/InputEventMagnifyGesture.xml
+msgid "[InputEvent] that represents a magnifying touch gesture."
+msgstr ""
+
+#: doc/classes/InputEventMagnifyGesture.xml
+msgid ""
+"Magnify gesture is performed when the user pinches the touch screen. It's "
+"typically used for zooming."
+msgstr ""
+
+#: doc/classes/InputEventMagnifyGesture.xml
+msgid ""
+"The amount (or delta) of the event. This value is higher the faster the "
+"gesture is performed."
 msgstr ""
 
 #: doc/classes/InputEventMIDI.xml
@@ -48600,6 +48814,20 @@ msgstr ""
 msgid "The mouse velocity in pixels per second."
 msgstr ""
 
+#: doc/classes/InputEventPanGesture.xml
+msgid "[InputEvent] that represents a panning touch gesture."
+msgstr ""
+
+#: doc/classes/InputEventPanGesture.xml
+msgid ""
+"Pan gesture is performed when the user swipes the touch screen with two "
+"fingers. It's typically used for panning/scrolling."
+msgstr ""
+
+#: doc/classes/InputEventPanGesture.xml
+msgid "Panning amount since last pan event."
+msgstr ""
+
 #: doc/classes/InputEventScreenDrag.xml
 msgid ""
 "Input event type for screen drag events. Only available on mobile devices."
@@ -48660,6 +48888,24 @@ msgstr ""
 msgid ""
 "If [code]true[/code], the touch's state is pressed. If [code]false[/code], "
 "the touch's state is released."
+msgstr ""
+
+#: doc/classes/InputEventShortcut.xml
+msgid "[InputEvent] that signifies a triggered keyboard [Shortcut]."
+msgstr ""
+
+#: doc/classes/InputEventShortcut.xml
+msgid ""
+"InputEventShortcut is a special event that can be received in [method Node."
+"_unhandled_key_input]. It's typically sent by the editor's Command Palette "
+"to trigger actions, but can also be sent manually using [method Viewport."
+"push_unhandled_input]."
+msgstr ""
+
+#: doc/classes/InputEventShortcut.xml
+msgid ""
+"The [Shortcut] represented by this event. Its [method Shortcut."
+"matches_event] method will always return [code]true[/code] for this event."
 msgstr ""
 
 #: doc/classes/InputEventWithModifiers.xml
@@ -48846,54 +49092,57 @@ msgid ""
 msgstr ""
 
 #: doc/classes/int.xml
-msgid "Integer built-in type."
+msgid "Built-in integer Variant type."
 msgstr ""
 
 #: doc/classes/int.xml
 msgid ""
-"Signed 64-bit integer type.\n"
-"It can take values in the interval [code][-2^63, 2^63 - 1][/code], i.e. "
-"[code][-9223372036854775808, 9223372036854775807][/code]. Exceeding those "
-"bounds will wrap around.\n"
-"[int] is a [Variant] type, and will thus be used when assigning an integer "
-"value to a [Variant]. It can also be enforced with the [code]: int[/code] "
-"type hint.\n"
+"Signed 64-bit integer type. This means that it can take values from "
+"[code]-2^63[/code] to [code]2^63 - 1[/code], i.e. from "
+"[code]-9223372036854775808[/code] to [code]9223372036854775807[/code]. When "
+"it exceeds these bounds, it will wrap around.\n"
+"[int]s can be automatically converted to [float]s when necessary, for "
+"example when passing them as arguments in functions. The [float] will be as "
+"close to the original integer as possible.\n"
+"Likewise, [float]s can be automatically converted into [int]s. This will "
+"truncate the [float], discarding anything after the floating point.\n"
+"[b]Note:[/b] In a boolean context, an [int] will evaluate to [code]false[/"
+"code] if it equals [code]0[/code], and to [code]true[/code] otherwise.\n"
 "[codeblocks]\n"
 "[gdscript]\n"
-"var my_variant = 0 # int, value 0.\n"
-"my_variant += 4.2 # float, value 4.2.\n"
-"var my_int: int = 1 # int, value 1.\n"
-"my_int = 4.2 # int, value 4, the right value is implicitly cast to int.\n"
-"my_int = int(\"6.7\") # int, value 6, the String is explicitly cast with "
-"int.\n"
-"var max_int = 9223372036854775807\n"
-"print(max_int) # 9223372036854775807, OK.\n"
-"max_int += 1\n"
-"print(max_int) # -9223372036854775808, we overflowed and wrapped around.\n"
+"var x: int = 1 # x is 1\n"
+"x = 4.2 # x is 4, because 4.2 gets truncated\n"
+"var max_int = 9223372036854775807 # Biggest value an int can store\n"
+"max_int += 1 # max_int is -9223372036854775808, because it wrapped around\n"
 "[/gdscript]\n"
 "[csharp]\n"
-"int myInt = (int)\"6.7\".ToFloat(); // int, value 6, the String is "
-"explicitly cast with int.\n"
-"// We have to use `long` here, because GDSript's `int`\n"
-"// is 64 bits long while C#'s `int` is only 32 bits.\n"
-"long maxInt = 9223372036854775807;\n"
-"GD.Print(maxInt); // 9223372036854775807, OK.\n"
-"maxInt++;\n"
-"GD.Print(maxInt); // -9223372036854775808, we overflowed and wrapped "
+"int x = 1; // x is 1\n"
+"x = 4.2; // x is 4, because 4.2 gets truncated\n"
+"// We use long below, because GDScript's int is 64-bit while C#'s int is 32-"
+"bit.\n"
+"long maxLong = 9223372036854775807; // Biggest value a long can store\n"
+"maxLong++; // maxLong is now -9223372036854775808, because it wrapped "
 "around.\n"
 "\n"
-"// Alternatively, if we used C#'s 32-bit `int` type, the maximum value is "
-"much smaller:\n"
-"int halfInt = 2147483647;\n"
-"GD.Print(halfInt); // 2147483647, OK.\n"
-"halfInt++;\n"
-"GD.Print(halfInt); // -2147483648, we overflowed and wrapped around.\n"
+"// Alternatively with C#'s 32-bit int type, which has a smaller maximum "
+"value.\n"
+"int maxInt = 2147483647; // Biggest value an int can store\n"
+"maxInt++; // maxInt is now -2147483648, because it wrapped around\n"
 "[/csharp]\n"
-"[/codeblocks]"
+"[/codeblocks]\n"
+"In GDScript, you can use the [code]0b[/code] literal for binary "
+"representation, the [code]0x[/code] literal for hexadecimal representation, "
+"and the [code]_[/code] symbol to separate long numbers and improve "
+"readability.\n"
+"[codeblock]\n"
+"var x = 0b1001 # x is 9\n"
+"var y = 0xF5 # y is 245\n"
+"var z = 10_000_000 # z is 10000000\n"
+"[/codeblock]"
 msgstr ""
 
 #: doc/classes/int.xml
-msgid "Constructs a default-initialized [int] set to [code]0[/code]."
+msgid "Constructs an [int] set to [code]0[/code]."
 msgstr ""
 
 #: doc/classes/int.xml
@@ -48902,156 +49151,119 @@ msgstr ""
 
 #: doc/classes/int.xml
 msgid ""
-"Converts a [String] to an [int], following the same rules as [method String."
-"to_int]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Cast a [bool] value to an integer value, [code]int(true)[/code] will be "
-"equals to 1 and [code]int(false)[/code] will be equals to 0."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Cast a float value to an integer value, this method simply removes the "
-"number fractions (i.e. rounds [param from] towards zero), so for example "
-"[code]int(2.7)[/code] will be equals to 2, [code]int(0.1)[/code] will be "
-"equals to 0 and [code]int(-2.7)[/code] will be equals to -2. This operation "
-"is also called truncation."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Returns [code]true[/code] if this [int] is not equivalent to the given "
-"[float]."
+"Constructs a new [int] from a [String], following the same rules as [method "
+"String.to_int]."
 msgstr ""
 
 #: doc/classes/int.xml
 #, fuzzy
-msgid "Returns [code]true[/code] if the integers are not equal."
+msgid ""
+"Constructs a new [int] from a [bool]. [code]true[/code] is converted to "
+"[code]1[/code] and [code]false[/code] is converted to [code]0[/code]."
 msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/int.xml
 msgid ""
-"Returns the remainder after dividing two integers. This operation uses "
-"truncated division, which is often not desired as it does not work well with "
-"negative numbers. Consider using [method @GlobalScope.posmod] instead if you "
-"want to handle negative numbers.\n"
-"[codeblock]\n"
-"print(5 % 2) # 1\n"
-"print(12 % 4) # 0\n"
-"print(-5 % 3) # -2\n"
-"[/codeblock]"
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Returns the result of bitwise [code]AND[/code] operation for two integers.\n"
-"[codeblock]\n"
-"print(3 & 1) # 1\n"
-"print(11 & 3) # 3\n"
-"[/codeblock]\n"
-"It's useful to retrieve binary flags from a variable.\n"
-"[codeblock]\n"
-"var flags = 5\n"
-"# Do something if the first bit is enabled.\n"
-"if flags & 1:\n"
-"    do_stuff()\n"
-"[/codeblock]"
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Multiplies each component of the [Quaternion] by the given [int]. This "
-"operation is not meaningful on its own, but it can be used as a part of a "
-"larger expression."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Multiplies each component of the [Vector2] by the given [int].\n"
-"[codeblock]\n"
-"print(2 * Vector2(1, 1)) # Vector2(2, 2)\n"
-"[/codeblock]"
-msgstr ""
-
-#: doc/classes/int.xml doc/classes/Vector2i.xml
-msgid "Multiplies each component of the [Vector2i] by the given [int]."
-msgstr ""
-
-#: doc/classes/int.xml doc/classes/Vector3.xml
-msgid "Multiplies each component of the [Vector3] by the given [int]."
-msgstr ""
-
-#: doc/classes/int.xml doc/classes/Vector3i.xml
-msgid "Multiplies each component of the [Vector3i] by the given [int]."
-msgstr ""
-
-#: doc/classes/int.xml doc/classes/Vector4.xml
-msgid "Multiplies each component of the [Vector4] by the given [int]."
-msgstr ""
-
-#: doc/classes/int.xml doc/classes/Vector4i.xml
-msgid "Multiplies each component of the [Vector4i] by the given [int]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Multiplies an [int] and a [float]. The result is a [float]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Multiplies two [int]s."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Raises an [int] to a power of a [float]. The result is a [float].\n"
-"[codeblock]\n"
-"print(8**0.25) # 1.68179283050743\n"
-"[/codeblock]"
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Raises an [int] to a power of a [int].\n"
-"[codeblock]\n"
-"print(5**5) # 3125\n"
-"[/codeblock]"
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Adds an [int] and a [float]. The result is a [float]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Adds two integers."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Subtracts a [float] from an [int]. The result is a [float]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid "Subtracts two integers."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Divides an [int] by a [float]. The result is a [float].\n"
-"[codeblock]\n"
-"print(10 / 3.0) # 3.333...\n"
-"[/codeblock]"
+"Constructs a new [int] from a [float]. This will truncate the [float], "
+"discarding anything after the floating point."
 msgstr ""
 
 #: doc/classes/int.xml
 #, fuzzy
 msgid ""
-"Divides two integers. The decimal part of the result is discarded "
-"(truncated).\n"
+"Returns [code]true[/code] if the [int] is not equivalent to the [float]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid "Returns [code]true[/code] if the [int]s are not equal."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+msgid ""
+"Returns the remainder after dividing two [int]s. Uses truncated division, "
+"which returns a negative number if the dividend is negative. If this is not "
+"desired, consider using [method @GlobalScope.posmod].\n"
 "[codeblock]\n"
-"print(10 / 2) # 5\n"
-"print(10 / 3) # 3\n"
+"print(6 % 2) # Prints 0\n"
+"print(11 % 4) # Prints 3\n"
+"print(-5 % 3) # Prints -2\n"
+"[/codeblock]"
+msgstr ""
+
+#: doc/classes/int.xml
+msgid ""
+"Performs the bitwise [code]AND[/code] operation.\n"
+"[codeblock]\n"
+"print(0b1100 & 0b1010) # Prints 8 (binary 1000)\n"
+"[/codeblock]\n"
+"This is useful for retrieving binary flags from a variable.\n"
+"[codeblock]\n"
+"var flags = 0b101\n"
+"# Check if the first or second bit are enabled.\n"
+"if flags & 0b011:\n"
+"    do_stuff() # This line will run.\n"
+"[/codeblock]"
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Color] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid ""
+"Multiplies each component of the [Quaternion] by the [int]. This operation "
+"is not meaningful on its own, but it can be used as a part of a larger "
+"expression."
+msgstr ""
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Multiplies each component of the [Vector2] by the [int].\n"
+"[codeblock]\n"
+"print(2 * Vector2(1, 4)) # Prints (2, 8)\n"
+"[/codeblock]"
+msgstr ""
+"Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
+"[codeblock]\n"
+"print(hash(\"a\")) # menghasilkan 177670\n"
+"[/codeblock]"
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Vector2i] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Vector3] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Vector3i] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Vector4] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies each component of the [Vector4i] by the [int]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies the [float] by the [int]. The result is a [float]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Multiplies the two [int]s."
+msgstr ""
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Raises an [int] to a power of a [float]. The result is a [float].\n"
+"[codeblock]\n"
+"print(2 ** 0.5) # Prints 1.4142135623731\n"
 "[/codeblock]"
 msgstr ""
 "Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
@@ -49061,86 +49273,146 @@ msgstr ""
 
 #: doc/classes/int.xml
 #, fuzzy
-msgid "Returns [code]true[/code] if this [int] is less than the given [float]."
+msgid ""
+"Raises the left [int] to a power of the right [int].\n"
+"[codeblock]\n"
+"print(3 ** 4) # Prints 81\n"
+"[/codeblock]"
+msgstr ""
+"Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
+"[codeblock]\n"
+"print(hash(\"a\")) # menghasilkan 177670\n"
+"[/codeblock]"
+
+#: doc/classes/int.xml
+msgid "Adds the [int] and the [float]. The result is a [float]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Adds the two [int]s."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Subtracts the [float] from the [int]. The result is a [float]."
+msgstr ""
+
+#: doc/classes/int.xml
+msgid "Subtracts the two [int]s."
+msgstr ""
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Divides the [int] by the [float]. The result is a [float].\n"
+"[codeblock]\n"
+"print(10 / 3.0) # Prints 3.33333333333333\n"
+"[/codeblock]"
+msgstr ""
+"Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
+"[codeblock]\n"
+"print(hash(\"a\")) # menghasilkan 177670\n"
+"[/codeblock]"
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Divides the two [int]s. The result is an [int]. This will truncate the "
+"[float], discarding anything after the floating point.\n"
+"[codeblock]\n"
+"print(6 / 2) # Prints 3\n"
+"print(5 / 3) # Prints 1\n"
+"[/codeblock]"
+msgstr ""
+"Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
+"[codeblock]\n"
+"print(hash(\"a\")) # menghasilkan 177670\n"
+"[/codeblock]"
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid "Returns [code]true[/code] if the [int] is less than the [float]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Returns [code]true[/code] if the left [int] is less than the right [int]."
 msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/int.xml
 msgid ""
-"Returns [code]true[/code] if the left integer is less than the right one."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Performs bitwise shift left operation on the integer. Effectively the same "
-"as multiplying by a power of 2.\n"
+"Performs the bitwise shift left operation. Effectively the same as "
+"multiplying by a power of 2.\n"
 "[codeblock]\n"
-"print(10 << 1) # 20\n"
-"print(10 << 4) # 160\n"
+"print(0b1010 << 1) # Prints 20 (binary 10100)\n"
+"print(0b1010 << 3) # Prints 80 (binary 1010000)\n"
 "[/codeblock]"
 msgstr ""
 
 #: doc/classes/int.xml
+#, fuzzy
 msgid ""
-"Returns [code]true[/code] if this [int] is less than or equal to the given "
+"Returns [code]true[/code] if the [int] is less than or equal to the [float]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Returns [code]true[/code] if the left [int] is less than or equal to the "
+"right [int]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid "Returns [code]true[/code] if the [int] is equal to the [float]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid "Returns [code]true[/code] if the two [int]s are equal."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid "Returns [code]true[/code] if the [int] is greater than the [float]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Returns [code]true[/code] if the left [int] is greater than the right [int]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/int.xml
+#, fuzzy
+msgid ""
+"Returns [code]true[/code] if the [int] is greater than or equal to the "
 "[float]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Returns [code]true[/code] if the left integer is less than or equal to the "
-"right one."
-msgstr ""
-
-#: doc/classes/int.xml
-#, fuzzy
-msgid "Returns [code]true[/code] if the integer is equal to the given [float]."
-msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
-
-#: doc/classes/int.xml
-#, fuzzy
-msgid "Returns [code]true[/code] if both integers are equal."
 msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/int.xml
 #, fuzzy
 msgid ""
-"Returns [code]true[/code] if this [int] is greater than the given [float]."
+"Returns [code]true[/code] if the left [int] is greater than or equal to the "
+"right [int]."
 msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/int.xml
 msgid ""
-"Returns [code]true[/code] if the left integer is greater than the right one."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Returns [code]true[/code] if this [int] is greater than or equal to the "
-"given [float]."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Returns [code]true[/code] if the left integer is greater than or equal to "
-"the right one."
-msgstr ""
-
-#: doc/classes/int.xml
-msgid ""
-"Performs bitwise shift right operation on the integer. Effectively the same "
-"as dividing by a power of 2.\n"
+"Performs the bitwise shift right operation. Effectively the same as dividing "
+"by a power of 2.\n"
 "[codeblock]\n"
-"print(10 >> 1) # 5\n"
-"print(10 >> 2) # 2\n"
+"print(0b1010 >> 1) # Prints 5 (binary 101)\n"
+"print(0b1010 >> 2) # Prints 2 (binary 10)\n"
 "[/codeblock]"
 msgstr ""
 
 #: doc/classes/int.xml
 #, fuzzy
 msgid ""
-"Returns the result of bitwise [code]XOR[/code] operation for two integers.\n"
+"Performs the bitwise [code]XOR[/code] operation.\n"
 "[codeblock]\n"
-"print(5 ^ 1) # 4\n"
-"print(4 ^ 7) # 3\n"
+"print(0b1100 ^ 0b1010) # Prints 6 (binary 110)\n"
 "[/codeblock]"
 msgstr ""
 "Memberikan bilangan asli dari sebuah hashing variabel yang diberikan.\n"
@@ -49156,28 +49428,26 @@ msgstr ""
 
 #: doc/classes/int.xml
 msgid ""
-"Returns the result of bitwise [code]OR[/code] operation for two integers.\n"
+"Performs the bitwise [code]OR[/code] operation.\n"
 "[codeblock]\n"
-"print(2 | 4) # 6\n"
-"print(1 | 3) # 3\n"
+"print(0b1100 | 0b1010) # Prints 14 (binary 1110)\n"
 "[/codeblock]\n"
-"It's useful to store binary flags in a variable.\n"
+"This is useful for storing binary flags in a variable.\n"
 "[codeblock]\n"
 "var flags = 0\n"
-"# Turn first and third bit on.\n"
-"flags |= 1\n"
-"flags |= 4\n"
+"flags |= 0b101 # Turn the first and third bits on.\n"
 "[/codeblock]"
 msgstr ""
 
 #: doc/classes/int.xml
 #, fuzzy
 msgid ""
-"Returns the result of bitwise [code]NOT[/code] operation for the integer. "
-"It's effectively equal to [code]-int + 1[/code].\n"
+"Performs the bitwise [code]NOT[/code] operation on the [int]. Due to "
+"[url=https://en.wikipedia.org/wiki/Two%27s_complement/]2's complement[/url], "
+"it's effectively equal to [code]-(int + 1)[/code].\n"
 "[codeblock]\n"
-"print(~4) # -3\n"
-"print(~7) # -6\n"
+"print(~4) # Prints -5\n"
+"print(~(-7)) # Prints 6\n"
 "[/codeblock]"
 msgstr ""
 "Menghasilkan [code]value[/code] yang dikurangi oleh [code]step[/code] "
@@ -55617,11 +55887,11 @@ msgstr ""
 #: doc/classes/NavigationAgent2D.xml
 msgid ""
 "If [code]true[/code] the agent is registered for an RVO avoidance callback "
-"on the [NavigationServer2D]. When [method NavigationAgent2D.set_velocity] is "
-"used and the processing is completed a [code]safe_velocity[/code] Vector2 is "
-"received with a signal connection to [signal velocity_computed]. Avoidance "
-"processing with many registered agents has a significant performance cost "
-"and should only be enabled on agents that currently require it."
+"on the [NavigationServer2D]. When [method set_velocity] is used and the "
+"processing is completed a [code]safe_velocity[/code] Vector2 is received "
+"with a signal connection to [signal velocity_computed]. Avoidance processing "
+"with many registered agents has a significant performance cost and should "
+"only be enabled on agents that currently require it."
 msgstr ""
 
 #: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
@@ -55661,7 +55931,7 @@ msgstr ""
 msgid "The maximum speed that an agent can move."
 msgstr ""
 
-#: doc/classes/NavigationAgent2D.xml
+#: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
 msgid ""
 "A bitfield determining what navigation layers of navigation regions this "
 "agent will use to calculate path. Changing it runtime will clear current "
@@ -55762,8 +56032,9 @@ msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
 msgid ""
-"Notifies when the collision avoidance velocity is calculated. Emitted by "
-"[method set_velocity]. Only emitted when [member avoidance_enabled] is true."
+"Notifies when the collision avoidance velocity is calculated. Emitted at the "
+"end of the physics frame in which [method set_velocity] is called. Only "
+"emitted when [member avoidance_enabled] is true."
 msgstr ""
 
 #: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
@@ -55821,24 +56092,16 @@ msgstr ""
 #: doc/classes/NavigationAgent3D.xml
 msgid ""
 "If [code]true[/code] the agent is registered for an RVO avoidance callback "
-"on the [NavigationServer3D]. When [method NavigationAgent3D.set_velocity] is "
-"used and the processing is completed a [code]safe_velocity[/code] Vector3 is "
-"received with a signal connection to [signal velocity_computed]. Avoidance "
-"processing with many registered agents has a significant performance cost "
-"and should only be enabled on agents that currently require it."
+"on the [NavigationServer3D]. When [method set_velocity] is used and the "
+"processing is completed a [code]safe_velocity[/code] Vector3 is received "
+"with a signal connection to [signal velocity_computed]. Avoidance processing "
+"with many registered agents has a significant performance cost and should "
+"only be enabled on agents that currently require it."
 msgstr ""
 
 #: doc/classes/NavigationAgent3D.xml
 msgid ""
 "Ignores collisions on the Y axis. Must be true to move on a horizontal plane."
-msgstr ""
-
-#: doc/classes/NavigationAgent3D.xml
-msgid ""
-"A bitfield determining what navigation layers of navigation regions this "
-"NavigationAgent will use to calculate path. Changing it runtime will clear "
-"current navigation path and generate new one, according to new navigation "
-"layers."
 msgstr ""
 
 #: doc/classes/NavigationAgent3D.xml
@@ -57696,7 +57959,19 @@ msgid ""
 "code] script.\n"
 "Returning an empty array produces no warnings.\n"
 "Call [method update_configuration_warnings] when the warnings need to be "
-"updated for this node."
+"updated for this node.\n"
+"[codeblock]\n"
+"@export var energy = 0:\n"
+"    set(value):\n"
+"        energy = value\n"
+"        update_configuration_warnings()\n"
+"\n"
+"func _get_configuration_warnings():\n"
+"    if energy < 0:\n"
+"        return [\"Energy must be 0 or greater.\"]\n"
+"    else:\n"
+"        return []\n"
+"[/codeblock]"
 msgstr ""
 
 #: doc/classes/Node.xml
@@ -57830,7 +58105,7 @@ msgid ""
 "If [param internal] is different than [constant INTERNAL_MODE_DISABLED], the "
 "child will be added as internal node. Such nodes are ignored by methods like "
 "[method get_children], unless their parameter [code]include_internal[/code] "
-"is [code]true[/code].The intended usage is to hide the internal nodes from "
+"is [code]true[/code]. The intended usage is to hide the internal nodes from "
 "the user, so the user won't accidentally delete or modify them. Used by some "
 "GUI nodes, e.g. [ColorPicker]. See [enum InternalMode] for available modes.\n"
 "[b]Note:[/b] If the child node already has a parent, the function will fail. "
@@ -57931,7 +58206,8 @@ msgstr ""
 #: doc/classes/Node.xml
 msgid ""
 "Finds the first descendant of this node whose name matches [param pattern] "
-"as in [method String.match].\n"
+"as in [method String.match]. Internal children are also searched over (see "
+"[code]internal[/code] parameter in [method add_child]).\n"
 "[param pattern] does not match against the full path, just against "
 "individual node names. It is case-sensitive, with [code]\"*\"[/code] "
 "matching zero or more characters and [code]\"?\"[/code] matching any single "
@@ -57957,7 +58233,8 @@ msgstr ""
 msgid ""
 "Finds descendants of this node whose name matches [param pattern] as in "
 "[method String.match], and/or type matches [param type] as in [method Object."
-"is_class].\n"
+"is_class]. Internal children are also searched over (see [code]internal[/"
+"code] parameter in [method add_child]).\n"
 "[param pattern] does not match against the full path, just against "
 "individual node names. It is case-sensitive, with [code]\"*\"[/code] "
 "matching zero or more characters and [code]\"?\"[/code] matching any single "
@@ -58872,6 +59149,16 @@ msgid ""
 msgstr ""
 
 #: doc/classes/Node.xml
+msgid "Notification received from the OS when the window is resized."
+msgstr ""
+
+#: doc/classes/Node.xml
+msgid ""
+"Notification received from the OS when the screen's DPI has been changed. "
+"Only implemented on macOS."
+msgstr ""
+
+#: doc/classes/Node.xml
 msgid "Notification received when the mouse enters the viewport."
 msgstr ""
 
@@ -59469,6 +59756,20 @@ msgid ""
 "first need to ask for it, with [method set_notify_local_transform]."
 msgstr ""
 
+#: doc/classes/Node3D.xml
+msgid "The rotation is edited using [Vector3] Euler angles."
+msgstr ""
+
+#: doc/classes/Node3D.xml
+msgid "The rotation is edited using a [Quaternion]."
+msgstr ""
+
+#: doc/classes/Node3D.xml
+msgid ""
+"The rotation is edited using a [Basis]. In this mode, [member scale] can't "
+"be edited separately."
+msgstr ""
+
 #: doc/classes/NodePath.xml
 msgid "Pre-parsed scene tree path."
 msgstr ""
@@ -59635,7 +59936,7 @@ msgstr ""
 #: doc/classes/NodePath.xml
 msgid ""
 "Gets the resource or property name indicated by [param idx] (0 to [method "
-"get_subname_count]).\n"
+"get_subname_count] - 1).\n"
 "[codeblocks]\n"
 "[gdscript]\n"
 "var node_path = NodePath(\"Path2D/PathFollow2D/Sprite2D:texture:"
@@ -61950,9 +62251,8 @@ msgstr ""
 #: doc/classes/OS.xml
 msgid ""
 "Operating System functions. [OS] wraps the most common functionality to "
-"communicate with the host operating system, such as the clipboard, video "
-"driver, delays, environment variables, execution of binaries, command line, "
-"etc.\n"
+"communicate with the host operating system, such as the video driver, "
+"delays, environment variables, execution of binaries, command line, etc.\n"
 "[b]Note:[/b] In Godot 4, [OS] functions related to window management were "
 "moved to the [DisplayServer] singleton."
 msgstr ""
@@ -66858,7 +67158,7 @@ msgid ""
 "decreased by one."
 msgstr ""
 
-#: doc/classes/PhysicsServer2D.xml
+#: doc/classes/PhysicsServer2D.xml doc/classes/PhysicsServer3D.xml
 msgid ""
 "Sets the area's area monitor callback. This callback will be called when any "
 "other (shape of an) area enters or exits (a shape of) the given area, and "
@@ -66887,7 +67187,7 @@ msgstr ""
 msgid "Sets which physics layers the area will monitor, via a bitmask."
 msgstr ""
 
-#: doc/classes/PhysicsServer2D.xml
+#: doc/classes/PhysicsServer2D.xml doc/classes/PhysicsServer3D.xml
 msgid ""
 "Sets the area's body monitor callback. This callback will be called when any "
 "other (shape of a) body enters or exits (a shape of) the given area, and "
@@ -68196,19 +68496,6 @@ msgstr ""
 
 #: doc/classes/PhysicsServer3D.xml
 msgid "Sets which physics layers the area will monitor."
-msgstr ""
-
-#: doc/classes/PhysicsServer3D.xml
-msgid ""
-"Sets the function to call when any body/area enters or exits the area. This "
-"callback will be called for any object interacting with the area, and takes "
-"five parameters:\n"
-"1: [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED], depending on "
-"whether the object entered or exited the area.\n"
-"2: [RID] of the object that entered/exited the area.\n"
-"3: Instance ID of the object that entered/exited the area.\n"
-"4: The shape index of the object that entered/exited the area.\n"
-"5: The shape index of the area where the object entered/exited."
 msgstr ""
 
 #: doc/classes/PhysicsServer3D.xml
@@ -70032,9 +70319,19 @@ msgstr ""
 
 #: doc/classes/Polygon2D.xml
 msgid ""
+"Internal list of [Bone2D] nodes used by the assigned [member skeleton]. "
+"Edited using the Polygon2D editor (\"UV\" button on the top toolbar)."
+msgstr ""
+
+#: doc/classes/Polygon2D.xml
+msgid ""
 "The polygon's fill color. If [code]texture[/code] is defined, it will be "
 "multiplied by this color. It will also be the default color for vertices not "
 "set in [code]vertex_colors[/code]."
+msgstr ""
+
+#: doc/classes/Polygon2D.xml
+msgid "Number of internal vertices, used for UV mapping."
 msgstr ""
 
 #: doc/classes/Polygon2D.xml
@@ -70069,6 +70366,12 @@ msgid ""
 "index to a point in [member polygon]. If empty, this property will be "
 "ignored, and the resulting single polygon will be composed of all points in "
 "[member polygon], using the order they are stored in."
+msgstr ""
+
+#: doc/classes/Polygon2D.xml
+msgid ""
+"Path to a [Skeleton2D] node used for skeleton-based deformations of this "
+"polygon. If empty or invalid, skeletal deformations will not be used."
 msgstr ""
 
 #: doc/classes/Polygon2D.xml
@@ -71686,6 +71989,12 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
+"If [code]true[/code], the application automatically accepts quitting "
+"requests."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
 "This user directory is used for storing persistent data ([code]user://[/"
 "code] filesystem). If a custom directory name is defined, this name will be "
 "appended to the system-specific user data directory (same parent folder as "
@@ -71699,12 +72008,6 @@ msgstr ""
 msgid ""
 "The project's description, displayed as a tooltip in the Project Manager "
 "when hovering the project."
-msgstr ""
-
-#: doc/classes/ProjectSettings.xml
-msgid ""
-"List of internal features associated with the project, like [code]Double "
-"Precision[/code] or [code]C#[/code]. Not to be confused with feature tags."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -71747,6 +72050,12 @@ msgid ""
 "class description at the top for more information.\n"
 "[b]Note:[/b] Regardless of this setting's value, [code]res://override.cfg[/"
 "code] will still be read to override the project settings."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code], the application quits automatically when navigating "
+"back (e.g. using the system \"Back\" button on Android)."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -71841,6 +72150,10 @@ msgstr ""
 msgid ""
 "Amount of sleeping between frames when the low-processor usage mode is "
 "enabled (in microseconds). Higher values will result in lower CPU usage."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid "The name of the type implementing the engine's main loop."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -72708,6 +73021,11 @@ msgid ""
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
+#, fuzzy
+msgid "If [code]true[/code] subwindows are embedded in the main window."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/ProjectSettings.xml
 msgid ""
 "Sets the V-Sync mode for the main game window.\n"
 "See [enum DisplayServer.VSyncMode] for possible values and how they affect "
@@ -72739,6 +73057,15 @@ msgid ""
 "considered one of the C# projects in the workspace and it's root directory "
 "should contain the [code]project.godot[/code] and [code].csproj[/code] next "
 "to each other."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code] text resources are converted to binary format on export."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid "If [code]true[/code] importing of resources is run on multiple threads."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -73700,18 +74027,6 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
-"Locale-dependent resource remaps. Edit them in the \"Localization\" tab of "
-"Project Settings editor."
-msgstr ""
-
-#: doc/classes/ProjectSettings.xml
-msgid ""
-"List of translation files available in the project. Edit them in the "
-"\"Localization\" tab of Project Settings editor."
-msgstr ""
-
-#: doc/classes/ProjectSettings.xml
-msgid ""
 "Double vowels in strings during pseudolocalization to simulate the "
 "lengthening of text due to localization."
 msgstr ""
@@ -73771,7 +74086,11 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
-"Force layout direction and text writing direction to RTL for all locales."
+"Force layout direction and text writing direction to RTL for all controls."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid "Root node default layout direction."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -75252,6 +75571,19 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
+"If [code]true[/code], [CanvasItem] nodes will internally snap to full "
+"pixels. Their position can still be sub-pixel, but the decimals will not "
+"have effect."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code], vertices of [CanvasItem] nodes will snap to full "
+"pixels. Only affects the final vertex positions, not the transforms."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
 "Sets the number of MSAA samples to use for 2D/Canvas rendering (as a power "
 "of two). MSAA is used to reduce aliasing around the edges of polygons. A "
 "higher MSAA value results in smoother edges but can be significantly slower "
@@ -76076,6 +76408,14 @@ msgid ""
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
+msgid "The default texture filtering mode to use on [CanvasItem]s."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid "The default texture repeating mode to use on [CanvasItem]s."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
 msgid ""
 "The filtering quality to use for [Decal] nodes. When using one of the "
 "anisotropic filtering modes, the anisotropic filtering level is controlled "
@@ -76236,6 +76576,12 @@ msgid ""
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
+msgid ""
+"Maximum number of threads to be used by [WorkerThreadPool]. Value of "
+"[code]-1[/code] means no limit."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
 msgid "Action map configuration to load by default."
 msgstr ""
 
@@ -76250,6 +76596,12 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid "Specify the default reference space."
+msgstr ""
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code], Godot will display an alert modal when OpenXR "
+"initialization fails on startup."
 msgstr ""
 
 #: doc/classes/ProjectSettings.xml
@@ -76387,6 +76739,12 @@ msgstr ""
 
 #: doc/classes/Quaternion.xml
 msgid "Constructs a [Quaternion] as a copy of the given [Quaternion]."
+msgstr ""
+
+#: doc/classes/Quaternion.xml
+msgid ""
+"Constructs a quaternion representing the shortest arc between two points on "
+"the surface of a sphere with a radius of [code]1.0[/code]."
 msgstr ""
 
 #: doc/classes/Quaternion.xml
@@ -78218,7 +78576,8 @@ msgid ""
 "can be accessed with the RID that is returned. This RID will be used in all "
 "[code]camera_attributes_[/code] RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
-"RenderingServer's [method free_rid] static method."
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [CameraAttributes] resource."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78274,7 +78633,8 @@ msgid ""
 "the RID that is returned. This RID will be used in all [code]camera_*[/code] "
 "RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
-"RenderingServer's [method free_rid] static method."
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [Camera3D] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78333,7 +78693,8 @@ msgid ""
 "RID that is returned. This RID will be used in all [code]canvas_*[/code] "
 "RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
-"RenderingServer's [method free_rid] static method."
+"RenderingServer's [method free_rid] static method.\n"
+"Canvas has no [Resource] or [Node] equivalent."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78417,11 +78778,31 @@ msgid ""
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
+msgid ""
+"Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [param "
+"item] [RID]. See also [method CanvasItem.draw_texture_rect] and [method "
+"Texture2D.draw_rect]."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid ""
+"Draws the specified region of a 2D textured rectangle on the [CanvasItem] "
+"pointed to by the [param item] [RID]. See also [method CanvasItem."
+"draw_texture_rect_region] and [method Texture2D.draw_rect_region]."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
 msgid "Clears the [CanvasItem] and removes all commands in it."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
-msgid "Creates a new [CanvasItem] instance and returns its [RID]."
+msgid ""
+"Creates a canvas item and returns the assigned [RID]. It can be accessed "
+"with the RID that is returned. This RID will be used in all "
+"[code]canvas_item_*[/code] RenderingServer functions.\n"
+"Once finished with your RID, you will want to free the RID using the "
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [CanvasItem] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78437,6 +78818,36 @@ msgid "Sets a new material to the [CanvasItem]."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
+msgid ""
+"Sets a color modulation to the [CanvasItem]. This also affects child canvas "
+"items."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid ""
+"Sets a parent [CanvasItem] to the [CanvasItem]. The item will inherit "
+"transform, modulation and visibility from its parent, like [CanvasItem] "
+"nodes in the scene tree."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid ""
+"Sets a color self-modulation to the [CanvasItem]. It does not affect the "
+"child canvas items."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid "Enables or disables Y-sorting of a [CanvasItem]."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid ""
+"Sets the transform of the [CanvasItem]. It affects where and how the item "
+"will be drawn. Child canvas items' transforms are multiplied by their "
+"parent's transform."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
 msgid "Sets if the [CanvasItem] uses its parent's material."
 msgstr ""
 
@@ -78446,6 +78857,21 @@ msgid ""
 "[Viewport] nodes with a matching rendering mask will render this "
 "[CanvasItem]."
 msgstr ""
+
+#: doc/classes/RenderingServer.xml
+msgid ""
+"Sets the given [CanvasItem] as visibility notifier. [param area] defines the "
+"area of detecting visibility. [param enter_callable] is called when the "
+"[CanvasItem] enters the screen, [param exit_callable] is called when the "
+"[CanvasItem] exits the screen. If [param enable] is [code]false[/code], the "
+"item will no longer function as notifier.\n"
+"This method can be used to manually mimic [VisibleOnScreenNotifier2D]."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the visibility of the [CanvasItem]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/RenderingServer.xml
 msgid ""
@@ -78482,7 +78908,7 @@ msgstr ""
 msgid ""
 "Creates a light occluder and adds it to the RenderingServer. It can be "
 "accessed with the RID that is returned. This RID will be used in all "
-"[code]canvas_light_ocluder_*[/code] RenderingServer functions.\n"
+"[code]canvas_light_occluder_*[/code] RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
 "RenderingServer's [method free_rid] static method."
 msgstr ""
@@ -78617,6 +79043,26 @@ msgstr ""
 
 #: doc/classes/RenderingServer.xml
 msgid ""
+"Creates a canvas texture and adds it to the RenderingServer. It can be "
+"accessed with the RID that is returned. This RID will be used in all "
+"[code]canvas_texture_*[/code] RenderingServer functions.\n"
+"Once finished with your RID, you will want to free the RID using the "
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [CanvasTexture] resource."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the texture filter used by the [CanvasTexture]."
+msgstr "Mengembalikan nilai sinus hiperbolik invers dari parameter."
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the texture repeat used by the [CanvasTexture]."
+msgstr "Mengembalikan nilai sinus hiperbolik invers dari parameter."
+
+#: doc/classes/RenderingServer.xml
+msgid ""
 "Creates a RenderingDevice that can be used to do draw and compute operations "
 "on a separate thread. Cannot draw to the screen nor share data with the "
 "global RenderingDevice.\n"
@@ -78626,13 +79072,39 @@ msgstr ""
 
 #: doc/classes/RenderingServer.xml
 msgid ""
+"Creates a decal and adds it to the RenderingServer. It can be accessed with "
+"the RID that is returned. This RID will be used in all [code]decal_*[/code] "
+"RenderingServer functions.\n"
+"Once finished with your RID, you will want to free the RID using the "
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [Decal] node."
+msgstr ""
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the color modulation of the [Decal]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the size of the [Decal]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/RenderingServer.xml
+#, fuzzy
+msgid "Sets the texture of the [Decal]."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
+
+#: doc/classes/RenderingServer.xml
+msgid ""
 "Creates a directional light and adds it to the RenderingServer. It can be "
 "accessed with the RID that is returned. This RID can be used in most "
 "[code]light_*[/code] RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
 "RenderingServer's [method free_rid] static method.\n"
 "To place in a scene, attach this directional light to an instance using "
-"[method instance_set_base] using the returned RID."
+"[method instance_set_base] using the returned RID.\n"
+"This is the internal equivalent of the [DirectionalLight3D] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78641,7 +79113,8 @@ msgid ""
 "accessed with the RID that is returned. This RID will be used in all "
 "[code]environment_*[/code] RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
-"RenderingServer's [method free_rid] static method."
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [Environment] resource."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78734,7 +79207,13 @@ msgid ""
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
-msgid "Creates a new fog volume and allocates an RID."
+msgid ""
+"Creates a fog volume and adds it to the RenderingServer. It can be accessed "
+"with the RID that is returned. This RID will be used in all "
+"[code]fog_volume_*[/code] RenderingServer functions.\n"
+"Once finished with your RID, you will want to free the RID using the "
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [FogVolume] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -78882,7 +79361,8 @@ msgid ""
 "RenderingServer's [method free_rid] static method.\n"
 "An instance is a way of placing a 3D object in the scenario. Objects like "
 "particles, meshes, and reflection probes need to be associated with an "
-"instance to be visible in the scenario using [method instance_set_base]."
+"instance to be visible in the scenario using [method instance_set_base].\n"
+"This is the internal equivalent of the [VisualInstance3D] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -79129,7 +79609,13 @@ msgid ""
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
-msgid "Creates a new [LightmapGI] instance."
+msgid ""
+"Creates a lightmap GI and adds it to the RenderingServer. It can be accessed "
+"with the RID that is returned. This RID will be used in all "
+"[code]instance_*[/code] RenderingServer functions.\n"
+"Once finished with your RID, you will want to free the RID using the "
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [LightmapGI] node."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -79153,7 +79639,8 @@ msgid ""
 "accessed with the RID that is returned. This RID will be used in all "
 "[code]material_*[/code] RenderingServer functions.\n"
 "Once finished with your RID, you will want to free the RID using the "
-"RenderingServer's [method free_rid] static method."
+"RenderingServer's [method free_rid] static method.\n"
+"This is the internal equivalent of the [Material] resource."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -79188,7 +79675,8 @@ msgid ""
 "Once finished with your RID, you will want to free the RID using the "
 "RenderingServer's [method free_rid] static method.\n"
 "To place in a scene, attach this mesh to an instance using [method "
-"instance_set_base] using the returned RID."
+"instance_set_base] using the returned RID.\n"
+"This is the internal equivalent of the [Mesh] resource."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -79239,7 +79727,8 @@ msgid ""
 "Once finished with your RID, you will want to free the RID using the "
 "RenderingServer's [method free_rid] static method.\n"
 "To place in a scene, attach this multimesh to an instance using [method "
-"instance_set_base] using the returned RID."
+"instance_set_base] using the returned RID.\n"
+"This is the internal equivalent of the [MultiMesh] resource."
 msgstr ""
 
 #: doc/classes/RenderingServer.xml
@@ -83787,7 +84276,8 @@ msgstr ""
 
 #: doc/classes/SceneTree.xml
 msgid ""
-"If [code]true[/code], the application automatically accepts quitting.\n"
+"If [code]true[/code], the application automatically accepts quitting "
+"requests.\n"
 "For mobile platforms, see [member quit_on_go_back]."
 msgstr ""
 
@@ -83848,8 +84338,8 @@ msgstr ""
 
 #: doc/classes/SceneTree.xml
 msgid ""
-"If [code]true[/code], the application quits automatically on going back (e."
-"g. on Android).\n"
+"If [code]true[/code], the application quits automatically when navigating "
+"back (e.g. using the system \"Back\" button on Android).\n"
 "To handle 'Go Back' button when this option is disabled, use [constant "
 "DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST]."
 msgstr ""
@@ -84694,7 +85184,7 @@ msgstr ""
 
 #: doc/classes/Shape3D.xml
 msgid ""
-"The collision margin for the shape. Used in Bullet Physics only.\n"
+"The collision margin for the shape. This is not used in Godot Physics.\n"
 "Collision margins allow collision detection to be more efficient by adding "
 "an extra shell around shapes. Collision algorithms are more expensive when "
 "objects overlap by more than their margin, so a higher value for margins is "
@@ -86092,7 +86582,7 @@ msgid "The [Bone2D] node that the modification will operate on."
 msgstr ""
 
 #: doc/classes/SkeletonModification2DLookAt.xml
-msgid "The index of the [Bone2D] node that the modification will oeprate on."
+msgid "The index of the [Bone2D] node that the modification will operate on."
 msgstr ""
 
 #: doc/classes/SkeletonModification2DLookAt.xml
@@ -93132,7 +93622,7 @@ msgid ""
 msgstr ""
 
 #: doc/classes/TextServer.xml
-msgid "Adjusts text with to fit to specified width, returns new text width."
+msgid "Adjusts text width to fit to specified width, returns new text width."
 msgstr ""
 
 #: doc/classes/TextServer.xml
@@ -96163,10 +96653,11 @@ msgid ""
 msgstr ""
 
 #: doc/classes/TileSet.xml
+#, fuzzy
 msgid ""
-"Returns the navigation layers (as in the Navigation server) of the gives "
+"Returns the navigation layers (as in the Navigation server) of the given "
 "TileSet navigation layer."
-msgstr ""
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/TileSet.xml
 #, fuzzy
@@ -96442,7 +96933,7 @@ msgstr ""
 #: doc/classes/TileSet.xml
 msgid ""
 "Sets the navigation layers (as in the navigation server) for navigation "
-"regions is the given TileSet navigation layer."
+"regions in the given TileSet navigation layer."
 msgstr ""
 
 #: doc/classes/TileSet.xml
@@ -96452,10 +96943,11 @@ msgid ""
 msgstr ""
 
 #: doc/classes/TileSet.xml
+#, fuzzy
 msgid ""
-"Enables or disables sdf collision for occluders in the given TileSet "
+"Enables or disables SDF collision for occluders in the given TileSet "
 "occlusion layer."
-msgstr ""
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/TileSet.xml
 msgid ""
@@ -97671,9 +98163,8 @@ msgid ""
 "Returns a copy of the transform rotated by the given [param angle] (in "
 "radians).\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding rotation transform [code]R[/code] from the left, i.e., "
-"[code]R * X[/code].\n"
+"[code]X[/code] with a corresponding rotation transform [code]R[/code] from "
+"the left, i.e., [code]R * X[/code].\n"
 "This can be seen as transforming with respect to the global/parent frame."
 msgstr ""
 
@@ -97682,9 +98173,8 @@ msgid ""
 "Returns a copy of the transform rotated by the given [param angle] (in "
 "radians).\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding rotation transform [code]R[/code] from the right, i.e., "
-"[code]X * R[/code].\n"
+"[code]X[/code] with a corresponding rotation transform [code]R[/code] from "
+"the right, i.e., [code]X * R[/code].\n"
 "This can be seen as transforming with respect to the local frame."
 msgstr ""
 
@@ -97692,9 +98182,8 @@ msgstr ""
 msgid ""
 "Returns a copy of the transform scaled by the given [param scale] factor.\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding scaling transform [code]S[/code] from the left, i.e., "
-"[code]S * X[/code].\n"
+"[code]X[/code] with a corresponding scaling transform [code]S[/code] from "
+"the left, i.e., [code]S * X[/code].\n"
 "This can be seen as transforming with respect to the global/parent frame."
 msgstr ""
 
@@ -97702,9 +98191,8 @@ msgstr ""
 msgid ""
 "Returns a copy of the transform scaled by the given [param scale] factor.\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding scaling transform [code]S[/code] from the right, i.e., "
-"[code]X * S[/code].\n"
+"[code]X[/code] with a corresponding scaling transform [code]S[/code] from "
+"the right, i.e., [code]X * S[/code].\n"
 "This can be seen as transforming with respect to the local frame."
 msgstr ""
 
@@ -97712,9 +98200,8 @@ msgstr ""
 msgid ""
 "Returns a copy of the transform translated by the given [param offset].\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding translation transform [code]T[/code] from the left, i."
-"e., [code]T * X[/code].\n"
+"[code]X[/code] with a corresponding translation transform [code]T[/code] "
+"from the left, i.e., [code]T * X[/code].\n"
 "This can be seen as transforming with respect to the global/parent frame."
 msgstr ""
 
@@ -97722,9 +98209,8 @@ msgstr ""
 msgid ""
 "Returns a copy of the transform translated by the given [param offset].\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding translation transform [code]T[/code] from the right, i."
-"e., [code]X * T[/code].\n"
+"[code]X[/code] with a corresponding translation transform [code]T[/code] "
+"from the right, i.e., [code]X * T[/code].\n"
 "This can be seen as transforming with respect to the local frame."
 msgstr ""
 
@@ -97856,9 +98342,8 @@ msgid ""
 "given [param angle] (in radians).\n"
 "The [param axis] must be a normalized vector.\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding rotation transform [code]R[/code] from the left, i.e., "
-"[code]R * X[/code].\n"
+"[code]X[/code] with a corresponding rotation transform [code]R[/code] from "
+"the left, i.e., [code]R * X[/code].\n"
 "This can be seen as transforming with respect to the global/parent frame."
 msgstr ""
 
@@ -97868,9 +98353,8 @@ msgid ""
 "given [param angle] (in radians).\n"
 "The [param axis] must be a normalized vector.\n"
 "This method is an optimized version of multiplying the given transform "
-"[code]X[/code]\n"
-"with a corresponding rotation transform [code]R[/code] from the right, i.e., "
-"[code]X * R[/code].\n"
+"[code]X[/code] with a corresponding rotation transform [code]R[/code] from "
+"the right, i.e., [code]X * R[/code].\n"
 "This can be seen as transforming with respect to the local frame."
 msgstr ""
 
@@ -98122,8 +98606,8 @@ msgstr ""
 
 #: doc/classes/TranslationServer.xml
 msgid ""
-"Returns the current locale's translation for the given message (key), "
-"plural_message and context.\n"
+"Returns the current locale's translation for the given message (key), plural "
+"message and context.\n"
 "The number [param n] is the number or quantity of the plural object. It will "
 "be used to guide the translation system to fetch the correct plural form for "
 "the selected language."
@@ -100141,20 +100625,19 @@ msgid ""
 msgstr ""
 
 #: doc/classes/UndoRedo.xml
-msgid "Helper to manage undo/redo operations in the editor or custom tools."
+msgid "General-purpose helper to manage undo/redo operations."
 msgstr ""
 
 #: doc/classes/UndoRedo.xml
 msgid ""
-"Helper to manage undo/redo operations in the editor or custom tools. It "
-"works by registering methods and property changes inside \"actions\".\n"
+"UndoRedo works by registering methods and property changes inside "
+"\"actions\".\n"
 "Common behavior is to create an action, then add do/undo calls to functions "
 "or property changes, then committing the action.\n"
-"Here's an example on how to add an action to the Godot editor's own "
-"[UndoRedo], from a plugin:\n"
+"Here's an example on how to add an UndoRedo action:\n"
 "[codeblocks]\n"
 "[gdscript]\n"
-"var undo_redo = get_undo_redo() # Method of EditorPlugin.\n"
+"var undo_redo = UndoRedo.new()\n"
 "\n"
 "func do_something():\n"
 "    pass # Put your code here.\n"
@@ -100166,8 +100649,8 @@ msgid ""
 "func _on_my_button_pressed():\n"
 "    var node = get_node(\"MyNode2D\")\n"
 "    undo_redo.create_action(\"Move the node\")\n"
-"    undo_redo.add_do_method(self, \"do_something\")\n"
-"    undo_redo.add_undo_method(self, \"undo_something\")\n"
+"    undo_redo.add_do_method(do_something)\n"
+"    undo_redo.add_undo_method(undo_something)\n"
 "    undo_redo.add_do_property(node, \"position\", Vector2(100,100))\n"
 "    undo_redo.add_undo_property(node, \"position\", node.position)\n"
 "    undo_redo.commit_action()\n"
@@ -100177,7 +100660,7 @@ msgid ""
 "\n"
 "public override void _Ready()\n"
 "{\n"
-"    _undoRedo = GetUndoRedo(); // Method of EditorPlugin.\n"
+"    _undoRedo = new UndoRedo();\n"
 "}\n"
 "\n"
 "public void DoSomething()\n"
@@ -100208,7 +100691,9 @@ msgid ""
 "Not doing so could lead to crashes.\n"
 "If you don't need to register a method, you can leave [method add_do_method] "
 "and [method add_undo_method] out; the same goes for properties. You can also "
-"register more than one method/property."
+"register more than one method/property.\n"
+"If you are making an [EditorPlugin] and want to integrate into the editor's "
+"undo history, use [EditorUndoRedoManager] instead."
 msgstr ""
 
 #: doc/classes/UndoRedo.xml
@@ -100222,6 +100707,21 @@ msgid ""
 msgstr ""
 
 #: doc/classes/UndoRedo.xml
+msgid ""
+"Register a reference for \"do\" that will be erased if the \"do\" history is "
+"lost. This is useful mostly for new nodes created for the \"do\" call. Do "
+"not use for resources.\n"
+"[codeblock]\n"
+"var node = Node2D.new()\n"
+"undo_redo.create_action(\"Add node\")\n"
+"undo_redo.add_do_method(add_child.bind(node))\n"
+"undo_redo.add_do_reference(node)\n"
+"undo_redo.add_undo_method(remove_child.bind(node))\n"
+"undo_redo.commit_action()\n"
+"[/codeblock]"
+msgstr ""
+
+#: doc/classes/UndoRedo.xml
 msgid "Register a [Callable] that will be called when the action is undone."
 msgstr ""
 
@@ -100229,6 +100729,21 @@ msgstr ""
 msgid ""
 "Register a [param property] that would change its value to [param value] "
 "when the action is undone."
+msgstr ""
+
+#: doc/classes/UndoRedo.xml
+msgid ""
+"Register a reference for \"undo\" that will be erased if the \"undo\" "
+"history is lost. This is useful mostly for nodes removed with the \"do\" "
+"call (not the \"undo\" call!).\n"
+"[codeblock]\n"
+"var node = $Node2D\n"
+"undo_redo.create_action(\"Remove node\")\n"
+"undo_redo.add_do_method(remove_child.bind(node))\n"
+"undo_redo.add_undo_method(add_child.bind(node))\n"
+"undo_redo.add_undo_reference(node)\n"
+"undo_redo.commit_action()\n"
+"[/codeblock]"
 msgstr ""
 
 #: doc/classes/UndoRedo.xml
@@ -101041,20 +101556,20 @@ msgid ""
 "product's Z component as the analog."
 msgstr ""
 
-#: doc/classes/Vector2.xml
+#: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
 msgid ""
-"Cubically interpolates between this vector and [param b] using [param pre_a] "
-"and [param post_b] as handles, and returns the result at position [param "
-"weight]. [param weight] is on the range of 0.0 to 1.0, representing the "
-"amount of interpolation."
+"Performs a cubic interpolation between this vector and [param b] using "
+"[param pre_a] and [param post_b] as handles, and returns the result at "
+"position [param weight]. [param weight] is on the range of 0.0 to 1.0, "
+"representing the amount of interpolation."
 msgstr ""
 
-#: doc/classes/Vector2.xml
+#: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
 msgid ""
-"Cubically interpolates between this vector and [param b] using [param pre_a] "
-"and [param post_b] as handles, and returns the result at position [param "
-"weight]. [param weight] is on the range of 0.0 to 1.0, representing the "
-"amount of interpolation.\n"
+"Performs a cubic interpolation between this vector and [param b] using "
+"[param pre_a] and [param post_b] as handles, and returns the result at "
+"position [param weight]. [param weight] is on the range of 0.0 to 1.0, "
+"representing the amount of interpolation.\n"
 "It can perform smoother interpolation than [code]cubic_interpolate()[/code] "
 "by the time values."
 msgstr ""
@@ -101127,11 +101642,12 @@ msgid ""
 "@GlobalScope.is_finite] on each component."
 msgstr ""
 
-#: doc/classes/Vector2.xml
+#: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
+#, fuzzy
 msgid ""
-"Returns [code]true[/code] if the vector is normalized, [code]false[/code] "
-"otherwise."
-msgstr ""
+"Returns [code]true[/code] if the vector is normalized, i.e. its length is "
+"approximately equal to 1."
+msgstr "Mengembalikan nilai hiperbolik tangen dari parameter."
 
 #: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
 #, fuzzy
@@ -101159,11 +101675,12 @@ msgid ""
 "compare vectors or need the squared distance for some formula."
 msgstr ""
 
-#: doc/classes/Vector2.xml doc/classes/Vector3.xml
+#: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
 msgid ""
 "Returns the result of the linear interpolation between this vector and "
-"[param to] by amount [param weight]. [param weight] is on the range of 0.0 "
-"to 1.0, representing the amount of interpolation."
+"[param to] by amount [param weight]. [param weight] is on the range of "
+"[code]0.0[/code] to [code]1.0[/code], representing the amount of "
+"interpolation."
 msgstr ""
 
 #: doc/classes/Vector2.xml doc/classes/Vector3.xml
@@ -101195,8 +101712,10 @@ msgstr ""
 
 #: doc/classes/Vector2.xml
 msgid ""
-"Returns a new vector scaled to unit length. Equivalent to [code]v / v."
-"length()[/code]."
+"Returns the result of scaling the vector to unit length. Equivalent to "
+"[code]v / v.length()[/code]. See also [method is_normalized].\n"
+"[b]Note:[/b] This function may return incorrect values if the initial vector "
+"length is near zero."
 msgstr ""
 
 #: doc/classes/Vector2.xml
@@ -101330,6 +101849,18 @@ msgstr ""
 #: doc/classes/Vector2.xml doc/classes/Vector2i.xml
 msgid "Down unit vector. Y is down in 2D, so this vector points +Y."
 msgstr ""
+
+#: doc/classes/Vector2.xml doc/classes/Vector3.xml doc/classes/Vector4.xml
+#, fuzzy
+msgid ""
+"Returns [code]true[/code] if the vectors are not equal.\n"
+"[b]Note:[/b] Due to floating-point precision errors, consider using [method "
+"is_equal_approx] instead, which is more reliable."
+msgstr ""
+"Mengembalikan [code]true[/code] jika [code]s[/code] bernilai nol atau hampir "
+"nol.\n"
+"Metode ini lebih cepat daripada menggunakan [metode is_equal_approx] dengan "
+"satu nilai sebagai nol."
 
 #: doc/classes/Vector2.xml
 msgid ""
@@ -101541,6 +102072,10 @@ msgid ""
 msgstr ""
 
 #: doc/classes/Vector2i.xml
+msgid "Multiplies each component of the [Vector2i] by the given [int]."
+msgstr ""
+
+#: doc/classes/Vector2i.xml
 msgid ""
 "Adds each component of the [Vector2i] by the components of the given "
 "[Vector2i].\n"
@@ -101674,24 +102209,6 @@ msgstr ""
 msgid "Returns the cross product of this vector and [param with]."
 msgstr "Mengembalikan nilai sinus hiperbolik invers dari parameter."
 
-#: doc/classes/Vector3.xml doc/classes/Vector4.xml
-msgid ""
-"Performs a cubic interpolation between this vector and [param b] using "
-"[param pre_a] and [param post_b] as handles, and returns the result at "
-"position [param weight]. [param weight] is on the range of 0.0 to 1.0, "
-"representing the amount of interpolation."
-msgstr ""
-
-#: doc/classes/Vector3.xml doc/classes/Vector4.xml
-msgid ""
-"Performs a cubic interpolation between this vector and [param b] using "
-"[param pre_a] and [param post_b] as handles, and returns the result at "
-"position [param weight]. [param weight] is on the range of 0.0 to 1.0, "
-"representing the amount of interpolation.\n"
-"It can perform smoother interpolation than [code]cubic_interpolate()[/code] "
-"by the time values."
-msgstr ""
-
 #: doc/classes/Vector3.xml
 msgid ""
 "Returns the inverse of the vector. This is the same as [code]Vector3(1.0 / v."
@@ -101704,12 +102221,6 @@ msgid ""
 "equal, by running [method @GlobalScope.is_equal_approx] on each component."
 msgstr ""
 
-#: doc/classes/Vector3.xml
-msgid ""
-"Returns [code]true[/code] if the vector is [method normalized], [code]false[/"
-"code] otherwise."
-msgstr ""
-
 #: doc/classes/Vector3.xml doc/classes/Vector3i.xml
 msgid ""
 "Returns the axis of the vector's lowest value. See [code]AXIS_*[/code] "
@@ -101717,10 +102228,12 @@ msgid ""
 "AXIS_Z]."
 msgstr ""
 
-#: doc/classes/Vector3.xml
+#: doc/classes/Vector3.xml doc/classes/Vector4.xml
 msgid ""
-"Returns the vector scaled to unit length. Equivalent to [code]v / v.length()"
-"[/code]. See also [method is_normalized]."
+"Returns the result of scaling the vector to unit length. Equivalent to "
+"[code]v / v.length()[/code]. See also [method is_normalized].\n"
+"[b]Note:[/b] This function may return incorrect values if the input vector "
+"length is near zero."
 msgstr ""
 
 #: doc/classes/Vector3.xml
@@ -101842,6 +102355,10 @@ msgid ""
 "[codeblock]\n"
 "print(Vector3(10, 20, 30) * Vector3(3, 4, 5)) # Prints \"(30, 80, 150)\"\n"
 "[/codeblock]"
+msgstr ""
+
+#: doc/classes/Vector3.xml
+msgid "Multiplies each component of the [Vector3] by the given [int]."
 msgstr ""
 
 #: doc/classes/Vector3.xml
@@ -102009,6 +102526,10 @@ msgid ""
 msgstr ""
 
 #: doc/classes/Vector3i.xml
+msgid "Multiplies each component of the [Vector3i] by the given [int]."
+msgstr ""
+
+#: doc/classes/Vector3i.xml
 msgid ""
 "Adds each component of the [Vector3i] by the components of the given "
 "[Vector3i].\n"
@@ -102144,24 +102665,10 @@ msgid ""
 "equal, by running [method @GlobalScope.is_equal_approx] on each component."
 msgstr ""
 
-#: doc/classes/Vector4.xml
-msgid ""
-"Returns [code]true[/code] if the vector is normalized, i.e. its length is "
-"equal to 1."
-msgstr ""
-
 #: doc/classes/Vector4.xml doc/classes/Vector4i.xml
 msgid ""
 "Returns the squared length (squared magnitude) of this vector. This method "
 "runs faster than [method length]."
-msgstr ""
-
-#: doc/classes/Vector4.xml
-msgid ""
-"Returns the result of the linear interpolation between this vector and "
-"[param to] by amount [param weight]. [param weight] is on the range of "
-"[code]0.0[/code] to [code]1.0[/code], representing the amount of "
-"interpolation."
 msgstr ""
 
 #: doc/classes/Vector4.xml doc/classes/Vector4i.xml
@@ -102169,12 +102676,6 @@ msgid ""
 "Returns the axis of the vector's lowest value. See [code]AXIS_*[/code] "
 "constants. If all components are equal, this method returns [constant "
 "AXIS_W]."
-msgstr ""
-
-#: doc/classes/Vector4.xml
-msgid ""
-"Returns the result of scaling the vector to unit length. Equivalent to "
-"[code]v / v.length()[/code]."
 msgstr ""
 
 #: doc/classes/Vector4.xml
@@ -102223,6 +102724,10 @@ msgid ""
 "[codeblock]\n"
 "print(Vector4(10, 20, 30, 40) * 2) # Prints \"(20, 40, 60, 80)\"\n"
 "[/codeblock]"
+msgstr ""
+
+#: doc/classes/Vector4.xml
+msgid "Multiplies each component of the [Vector4] by the given [int]."
 msgstr ""
 
 #: doc/classes/Vector4.xml
@@ -102392,6 +102897,10 @@ msgid ""
 "[codeblock]\n"
 "print(Vector4i(10, 20, 30, 40) * 2) # Prints \"(20, 40, 60, 80)\"\n"
 "[/codeblock]"
+msgstr ""
+
+#: doc/classes/Vector4i.xml
+msgid "Multiplies each component of the [Vector4i] by the given [int]."
 msgstr ""
 
 #: doc/classes/Vector4i.xml
@@ -102993,6 +103502,12 @@ msgstr ""
 
 #: doc/classes/Viewport.xml
 msgid ""
+"Returns rendering statistics of the given type. See [enum RenderInfoType] "
+"and [enum RenderInfo] for options."
+msgstr ""
+
+#: doc/classes/Viewport.xml
+msgid ""
 "Returns the transform from the Viewport's coordinates to the screen "
 "coordinates of the containing window manager window."
 msgstr ""
@@ -103082,6 +103597,13 @@ msgid ""
 "- [method Control._gui_input] for [Control] nodes\n"
 "If an earlier method marks the input as handled via [method "
 "set_input_as_handled], any later method in this list will not be called."
+msgstr ""
+
+#: doc/classes/Viewport.xml
+msgid ""
+"Helper method which calls the [code]set_text()[/code] method on the "
+"currently focused [Control], provided that it is defined (e.g. if the "
+"focused Control is [Button] or [LineEdit])."
 msgstr ""
 
 #: doc/classes/Viewport.xml
@@ -108031,7 +108553,7 @@ msgstr ""
 #: modules/websocket/doc_classes/WebSocketMultiplayerPeer.xml
 msgid ""
 "Starts a new multiplayer server listening on the given [param port]. You can "
-"optionally specify a [param bind_address], and provide valiid [param "
+"optionally specify a [param bind_address], and provide valid [param "
 "tls_server_options] to use TLS. See [method TLSOptions.server]."
 msgstr ""
 
@@ -110764,6 +111286,14 @@ msgstr ""
 
 #: doc/classes/XRServer.xml
 msgid "The primary [XRInterface] currently bound to the [XRServer]."
+msgstr ""
+
+#: doc/classes/XRServer.xml
+msgid ""
+"The current origin of our tracking space in the virtual world. This is used "
+"by the renderer to properly position the camera with new tracking data.\n"
+"[b]Note:[/b] This property is managed by the current [XROrigin3D] node. It "
+"is exposed for access from GDExtensions."
 msgstr ""
 
 #: doc/classes/XRServer.xml
