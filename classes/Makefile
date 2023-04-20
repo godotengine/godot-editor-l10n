@@ -4,13 +4,14 @@ TEMPLATE = classes.pot
 MIN_COMPLETION = 0.10
 POFILES = $(wildcard *.po)
 LANGS = $(POFILES:%.po=%)
+SOURCES = doc/classes `ls -d modules/*/doc_classes 2> /dev/null` `ls -d platform/*/doc_classes 2> /dev/null`
 
 all: update merge
 
 update:
 	@cd ../godot; \
 	python3 ../scripts/extract_classes.py \
-	  --path doc/classes modules/*/doc_classes platform/*/doc_classes \
+	  --path $(SOURCES) \
 	  --output ../classes/$(TEMPLATE)
 
 merge:
