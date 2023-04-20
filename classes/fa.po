@@ -22157,10 +22157,12 @@ msgid ""
 "A cubemap that is loaded from a [code].ccube[/code] file. This file format "
 "is internal to Godot; it is created by importing other image formats with "
 "the import system. [CompressedCubemap] can use one of 4 compresson methods:\n"
-"- Uncompressed (uncompressed on the GPU)\n"
 "- Lossless (WebP or PNG, uncompressed on the GPU)\n"
 "- Lossy (WebP, uncompressed on the GPU)\n"
 "- VRAM Compressed (compressed on the GPU)\n"
+"- VRAM Uncompressed (uncompressed on the GPU)\n"
+"- Basis Universal (compressed on the GPU. Lower file sizes than VRAM "
+"Compressed, but slower to compress and lower quality than VRAM Compressed)\n"
 "Only [b]VRAM Compressed[/b] actually reduces the memory usage on the GPU. "
 "The [b]Lossless[/b] and [b]Lossy[/b] compression methods will reduce the "
 "required storage on disk, but they will not reduce memory usage on the GPU "
@@ -22184,10 +22186,12 @@ msgid ""
 "file format is internal to Godot; it is created by importing other image "
 "formats with the import system. [CompressedCubemapArray] can use one of 4 "
 "compresson methods:\n"
-"- Uncompressed (uncompressed on the GPU)\n"
 "- Lossless (WebP or PNG, uncompressed on the GPU)\n"
 "- Lossy (WebP, uncompressed on the GPU)\n"
 "- VRAM Compressed (compressed on the GPU)\n"
+"- VRAM Uncompressed (uncompressed on the GPU)\n"
+"- Basis Universal (compressed on the GPU. Lower file sizes than VRAM "
+"Compressed, but slower to compress and lower quality than VRAM Compressed)\n"
 "Only [b]VRAM Compressed[/b] actually reduces the memory usage on the GPU. "
 "The [b]Lossless[/b] and [b]Lossy[/b] compression methods will reduce the "
 "required storage on disk, but they will not reduce memory usage on the GPU "
@@ -22209,10 +22213,12 @@ msgid ""
 "internal to Godot; it is created by importing other image formats with the "
 "import system. [CompressedTexture2D] can use one of 4 compression methods "
 "(including a lack of any compression):\n"
-"- Uncompressed (uncompressed on the GPU)\n"
 "- Lossless (WebP or PNG, uncompressed on the GPU)\n"
 "- Lossy (WebP, uncompressed on the GPU)\n"
 "- VRAM Compressed (compressed on the GPU)\n"
+"- VRAM Uncompressed (uncompressed on the GPU)\n"
+"- Basis Universal (compressed on the GPU. Lower file sizes than VRAM "
+"Compressed, but slower to compress and lower quality than VRAM Compressed)\n"
 "Only [b]VRAM Compressed[/b] actually reduces the memory usage on the GPU. "
 "The [b]Lossless[/b] and [b]Lossy[/b] compression methods will reduce the "
 "required storage on disk, but they will not reduce memory usage on the GPU "
@@ -22241,10 +22247,12 @@ msgid ""
 "file format is internal to Godot; it is created by importing other image "
 "formats with the import system. [CompressedTexture2DArray] can use one of 4 "
 "compresson methods:\n"
-"- Uncompressed (uncompressed on the GPU)\n"
 "- Lossless (WebP or PNG, uncompressed on the GPU)\n"
 "- Lossy (WebP, uncompressed on the GPU)\n"
 "- VRAM Compressed (compressed on the GPU)\n"
+"- VRAM Uncompressed (uncompressed on the GPU)\n"
+"- Basis Universal (compressed on the GPU. Lower file sizes than VRAM "
+"Compressed, but slower to compress and lower quality than VRAM Compressed)\n"
 "Only [b]VRAM Compressed[/b] actually reduces the memory usage on the GPU. "
 "The [b]Lossless[/b] and [b]Lossy[/b] compression methods will reduce the "
 "required storage on disk, but they will not reduce memory usage on the GPU "
@@ -22284,22 +22292,9 @@ msgstr ""
 
 #: doc/classes/CompressedTextureLayered.xml
 msgid ""
-"A texture array that is loaded from a [code].ctexarray[/code] file. This "
-"file format is internal to Godot; it is created by importing other image "
-"formats with the import system. [CompressedTexture2D] can use one of 4 "
-"compresson methods:\n"
-"- Uncompressed (uncompressed on the GPU)\n"
-"- Lossless (WebP or PNG, uncompressed on the GPU)\n"
-"- Lossy (WebP, uncompressed on the GPU)\n"
-"- VRAM Compressed (compressed on the GPU)\n"
-"Only [b]VRAM Compressed[/b] actually reduces the memory usage on the GPU. "
-"The [b]Lossless[/b] and [b]Lossy[/b] compression methods will reduce the "
-"required storage on disk, but they will not reduce memory usage on the GPU "
-"as the texture is sent to the GPU uncompressed.\n"
-"Using [b]VRAM Compressed[/b] also improves loading times, as VRAM-compressed "
-"textures are faster to load compared to textures using lossless or lossy "
-"compression. VRAM compression can exhibit noticeable artifacts and is "
-"intended to be used for 3D rendering, not 2D."
+"Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot "
+"be used directly, but contains all the functions necessary for accessing the "
+"derived resource types. See also [TextureLayered]."
 msgstr ""
 
 #: doc/classes/CompressedTextureLayered.xml
@@ -55815,6 +55810,20 @@ msgid "Additional information to return with the navigation path."
 msgstr ""
 
 #: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
+#: doc/classes/NavigationPathQueryParameters2D.xml
+#: doc/classes/NavigationPathQueryParameters3D.xml
+msgid ""
+"The path postprocessing applied to the raw path corridor found by the "
+"[member pathfinding_algorithm]."
+msgstr ""
+
+#: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
+#: doc/classes/NavigationPathQueryParameters2D.xml
+#: doc/classes/NavigationPathQueryParameters3D.xml
+msgid "The pathfinding algorithm used in the path query."
+msgstr ""
+
+#: doc/classes/NavigationAgent2D.xml doc/classes/NavigationAgent3D.xml
 msgid ""
 "The radius of the avoidance agent. This is the \"body\" of the avoidance "
 "agent and not the avoidance maneuver starting radius (which is controlled by "
@@ -56565,18 +56574,6 @@ msgstr ""
 #: doc/classes/NavigationPathQueryParameters2D.xml
 #: doc/classes/NavigationPathQueryParameters3D.xml
 msgid "The navigation layers the query will use (as a bitmask)."
-msgstr ""
-
-#: doc/classes/NavigationPathQueryParameters2D.xml
-#: doc/classes/NavigationPathQueryParameters3D.xml
-msgid ""
-"The path postprocessing applied to the raw path corridor found by the "
-"[member pathfinding_algorithm]."
-msgstr ""
-
-#: doc/classes/NavigationPathQueryParameters2D.xml
-#: doc/classes/NavigationPathQueryParameters3D.xml
-msgid "The pathfinding algorithm used in the path query."
 msgstr ""
 
 #: doc/classes/NavigationPathQueryParameters2D.xml
@@ -94382,9 +94379,9 @@ msgstr ""
 
 #: doc/classes/TextureLayered.xml
 msgid ""
-"Base class for [ImageTextureLayered]. Cannot be used directly, but contains "
-"all the functions necessary for accessing the derived resource types. See "
-"also [Texture3D].\n"
+"Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot "
+"be used directly, but contains all the functions necessary for accessing the "
+"derived resource types. See also [Texture3D].\n"
 "Data is set on a per-layer basis. For [Texture2DArray]s, the layer specifies "
 "the array layer.\n"
 "All images need to have the same width, height and number of mipmap levels.\n"
@@ -101534,8 +101531,10 @@ msgstr ""
 
 #: doc/classes/Vector2i.xml
 msgid ""
-"Constructs a new [Vector2i] from [Vector2]. The floating point coordinates "
-"will be truncated."
+"Constructs a new [Vector2i] from the given [Vector2] by truncating "
+"components' fractional parts (rounding towards zero). For a different "
+"behavior consider passing the result of [method Vector2.ceil], [method "
+"Vector2.floor] or [method Vector2.round] to this constructor instead."
 msgstr ""
 
 #: doc/classes/Vector2i.xml
@@ -102007,8 +102006,10 @@ msgstr ""
 
 #: doc/classes/Vector3i.xml
 msgid ""
-"Constructs a new [Vector3i] from [Vector3]. The floating point coordinates "
-"will be truncated."
+"Constructs a new [Vector3i] from the given [Vector3] by truncating "
+"components' fractional parts (rounding towards zero). For a different "
+"behavior consider passing the result of [method Vector3.ceil], [method "
+"Vector3.floor] or [method Vector3.round] to this constructor instead."
 msgstr ""
 
 #: doc/classes/Vector3i.xml
@@ -102383,7 +102384,11 @@ msgid "Constructs a [Vector4i] as a copy of the given [Vector4i]."
 msgstr ""
 
 #: doc/classes/Vector4i.xml
-msgid "Constructs a new [Vector4i] from the given [Vector4]."
+msgid ""
+"Constructs a new [Vector4i] from the given [Vector4] by truncating "
+"components' fractional parts (rounding towards zero). For a different "
+"behavior consider passing the result of [method Vector4.ceil], [method "
+"Vector4.floor] or [method Vector4.round] to this constructor instead."
 msgstr ""
 
 #: doc/classes/Vector4i.xml
