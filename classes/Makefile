@@ -10,7 +10,7 @@ all: update merge
 update:
 	@cd ../godot; \
 	python3 ../scripts/extract_classes.py \
-	  --path doc/classes modules/*/doc_classes \
+	  --path doc/classes modules/*/doc_classes platform/*/doc_classes \
 	  --output ../classes/$(TEMPLATE)
 
 merge:
