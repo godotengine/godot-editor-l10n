@@ -3773,14 +3773,17 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
-"MIDI note OFF message. See the documentation of [InputEventMIDI] for "
-"information of how to use MIDI inputs."
+"MIDI note OFF message. Not all MIDI devices send this event; some send "
+"[constant MIDI_MESSAGE_NOTE_ON] with zero velocity instead. See the "
+"documentation of [InputEventMIDI] for information of how to use MIDI inputs."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
-"MIDI note ON message. See the documentation of [InputEventMIDI] for "
-"information of how to use MIDI inputs."
+"MIDI note ON message. Some MIDI devices send this event with velocity zero "
+"instead of [constant MIDI_MESSAGE_NOTE_OFF], but implementations vary. See "
+"the documentation of [InputEventMIDI] for information of how to use MIDI "
+"inputs."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
@@ -4388,13 +4391,11 @@ msgid "The property is read-only in the [EditorInspector]."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
-msgid "Default usage (storage, editor and network)."
+msgid "Default usage (storage and editor)."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
-msgid ""
-"Default usage but without showing the property in the editor (storage, "
-"network)."
+msgid "Default usage but without showing the property in the editor (storage)."
 msgstr ""
 
 #: doc/classes/@GlobalScope.xml
@@ -40371,9 +40372,11 @@ msgstr ""
 msgid ""
 "A script implemented in the GDScript programming language. The script "
 "extends the functionality of all objects that instantiate it.\n"
-"[method new] creates a new instance of the script. [method Object."
+"Calling [method new] creates a new instance of the script. [method Object."
 "set_script] extends an existing object, if that object's class matches one "
-"of the script's base classes."
+"of the script's base classes.\n"
+"If you are looking for GDScript's built-in functions, see [@GDScript] "
+"instead."
 msgstr ""
 
 #: modules/gdscript/doc_classes/GDScript.xml
@@ -48108,8 +48111,10 @@ msgid ""
 "might not always return [constant MIDI_MESSAGE_NOTE_OFF] when deactivated, "
 "therefore your code should treat the input as stopped if some period of time "
 "has passed.\n"
-"For more information, see the MIDI message status byte list chart linked "
-"above."
+"Some MIDI devices may send [constant MIDI_MESSAGE_NOTE_ON] with zero "
+"velocity instead of [constant MIDI_MESSAGE_NOTE_OFF].\n"
+"For more information, see the note in [member velocity] and the MIDI message "
+"status byte list chart linked above."
 msgstr ""
 
 #: doc/classes/InputEventMIDI.xml
@@ -48129,10 +48134,14 @@ msgstr ""
 msgid ""
 "The velocity of the MIDI signal. This value ranges from 0 to 127. For a "
 "piano, this corresponds to how quickly the key was pressed, and is rarely "
-"above about 110 in practice. Note that some MIDI devices may send a "
-"[constant MIDI_MESSAGE_NOTE_ON] message with zero velocity and expect this "
-"to be treated the same as a [constant MIDI_MESSAGE_NOTE_OFF] message, but "
-"device implementations vary so Godot reports event data exactly as received."
+"above about 110 in practice.\n"
+"[b]Note:[/b] Some MIDI devices may send a [constant MIDI_MESSAGE_NOTE_ON] "
+"message with zero velocity and expect this to be treated the same as a "
+"[constant MIDI_MESSAGE_NOTE_OFF] message, but device implementations vary so "
+"Godot reports event data exactly as received. Depending on the hardware and "
+"the needs of the game/app, this MIDI quirk can be handled robustly with a "
+"couple lines of script (check for [constant MIDI_MESSAGE_NOTE_ON] with "
+"velocity zero)."
 msgstr ""
 
 #: doc/classes/InputEventMouse.xml
@@ -55099,6 +55108,7 @@ msgid ""
 msgstr ""
 
 #: doc/classes/Mutex.xml doc/classes/Semaphore.xml doc/classes/Thread.xml
+#: doc/classes/WorkerThreadPool.xml
 msgid "Using multiple threads"
 msgstr ""
 
@@ -69127,7 +69137,10 @@ msgid ""
 "purposes or positioning of other elements). This allows reducing the "
 "exported PCK's size significantly.\n"
 "- When this subclass is missing due to using a different engine version or "
-"build (e.g. modules disabled)."
+"build (e.g. modules disabled).\n"
+"[b]Note:[/b] This is not intended to be used as an actual texture for "
+"rendering. It is not guaranteed to work like one in shaders or materials "
+"(for example when calculating UV)."
 msgstr ""
 
 #: doc/classes/PlaceholderCubemapArray.xml
@@ -69143,7 +69156,10 @@ msgid ""
 "purposes or positioning of other elements). This allows reducing the "
 "exported PCK's size significantly.\n"
 "- When this subclass is missing due to using a different engine version or "
-"build (e.g. modules disabled)."
+"build (e.g. modules disabled).\n"
+"[b]Note:[/b] This is not intended to be used as an actual texture for "
+"rendering. It is not guaranteed to work like one in shaders or materials "
+"(for example when calculating UV)."
 msgstr ""
 
 #: doc/classes/PlaceholderMaterial.xml
@@ -69196,7 +69212,10 @@ msgid ""
 "purposes or positioning of other elements). This allows reducing the "
 "exported PCK's size significantly.\n"
 "- When this subclass is missing due to using a different engine version or "
-"build (e.g. modules disabled)."
+"build (e.g. modules disabled).\n"
+"[b]Note:[/b] This is not intended to be used as an actual texture for "
+"rendering. It is not guaranteed to work like one in shaders or materials "
+"(for example when calculating UV)."
 msgstr ""
 
 #: doc/classes/PlaceholderTexture2D.xml doc/classes/PlaceholderTexture3D.xml
@@ -69221,7 +69240,10 @@ msgid ""
 "purposes or positioning of other elements). This allows reducing the "
 "exported PCK's size significantly.\n"
 "- When this subclass is missing due to using a different engine version or "
-"build (e.g. modules disabled)."
+"build (e.g. modules disabled).\n"
+"[b]Note:[/b] This is not intended to be used as an actual texture for "
+"rendering. It is not guaranteed to work like one in shaders or materials "
+"(for example when calculating UV)."
 msgstr ""
 
 #: doc/classes/PlaceholderTextureLayered.xml
@@ -69233,7 +69255,10 @@ msgid ""
 "purposes or positioning of other elements). This allows reducing the "
 "exported PCK's size significantly.\n"
 "- When this subclass is missing due to using a different engine version or "
-"build (e.g. modules disabled)."
+"build (e.g. modules disabled).\n"
+"[b]Note:[/b] This is not intended to be used as an actual texture for "
+"rendering. It is not guaranteed to work like one in shaders or materials "
+"(for example when calculating UV)."
 msgstr ""
 
 #: doc/classes/PlaceholderTextureLayered.xml
@@ -101060,7 +101085,7 @@ msgid ""
 "This is a current limitation of the GDScript debugger."
 msgstr ""
 
-#: doc/classes/Thread.xml
+#: doc/classes/Thread.xml doc/classes/WorkerThreadPool.xml
 msgid "Thread-safe APIs"
 msgstr ""
 
@@ -109352,11 +109377,7 @@ msgstr ""
 #: doc/classes/ViewportTexture.xml
 msgid ""
 "The path to the [Viewport] node to display. This is relative to the scene "
-"root, not to the node which uses the texture.\n"
-"[b]Note:[/b] In the editor, it is automatically updated when the target "
-"viewport's node path changes due to renaming or moving the viewport or its "
-"ancestors. At runtime, it may not be able to automatically update due to the "
-"inability to determine the scene root."
+"root, not to the node which uses the texture."
 msgstr ""
 
 #: doc/classes/VisibleOnScreenEnabler2D.xml
@@ -115148,6 +115169,118 @@ msgid ""
 "properties of [StyleBoxFlat].\n"
 "[b]Note:[/b] The content background will not be visible unless [member "
 "transparent] is enabled."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"A singleton that allocates some [Thread]s on startup, used to offload tasks "
+"to these threads."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"The [WorkerThreadPool] singleton allocates a set of [Thread]s (called worker "
+"threads) on project startup and provides methods for offloading tasks to "
+"them. This can be used for simple multithreading without having to create "
+"[Thread]s.\n"
+"Tasks hold the [Callable] to be run by the threads. [WorkerThreadPool] can "
+"be used to create regular tasks, which will be taken by one worker thread, "
+"or group tasks, which can be distributed between multiple worker threads. "
+"Group tasks execute the [Callable] multiple times, which makes them useful "
+"for iterating over a lot of elements, such as the enemies in an arena.\n"
+"Here's a sample on how to offload an expensive function to worker threads:\n"
+"[codeblocks]\n"
+"[gdscript]\n"
+"var enemies = [] # An array to be filled with enemies.\n"
+"\n"
+"func process_enemy_ai(enemy_index):\n"
+"    var processed_enemy = enemies[enemy_index]\n"
+"    # Expensive logic...\n"
+"\n"
+"func _process(delta):\n"
+"    var task_id = WorkerThreadPool.add_group_task(process_enemy_ai, enemies."
+"size())\n"
+"    # Other code...\n"
+"    WorkerThreadPool.wait_for_group_task_completion(task_id)\n"
+"    # Other code that depends on the enemy AI already being processed.\n"
+"[/gdscript]\n"
+"[csharp]\n"
+"private List<Node> _enemies = new List<Node>(); // A list to be filled with "
+"enemies.\n"
+"\n"
+"private void ProcessEnemyAI(int enemyIndex)\n"
+"{\n"
+"    Node processedEnemy = _enemies[enemyIndex];\n"
+"    // Expensive logic here.\n"
+"}\n"
+"\n"
+"public override void _Process(double delta)\n"
+"{\n"
+"    long taskId = WorkerThreadPool.AddGroupTask(Callable."
+"From<int>(ProcessEnemyAI), _enemies.Count);\n"
+"    // Other code...\n"
+"    WorkerThreadPool.WaitForGroupTaskCompletion(taskId);\n"
+"    // Other code that depends on the enemy AI already being processed.\n"
+"}\n"
+"[/csharp]\n"
+"[/codeblocks]\n"
+"The above code relies on the number of elements in the [code]enemies[/code] "
+"array remaining constant during the multithreaded part.\n"
+"[b]Note:[/b] Using this singleton could affect performance negatively if the "
+"task being distributed between threads is not computationally expensive."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Adds [param action] as a group task to be executed by the worker threads. "
+"The [Callable] will be called a number of times based on [param elements], "
+"with the first thread calling it with the value [code]0[/code] as a "
+"parameter, and each consecutive execution incrementing this value by 1 until "
+"it reaches [code]element - 1[/code].\n"
+"The number of threads the task is distributed to is defined by [param "
+"tasks_needed], where the default value [code]-1[/code] means it is "
+"distributed to all worker threads. [param high_priority] determines if the "
+"task has a high priority or a low priority (default). You can optionally "
+"provide a [param description] to help with debugging.\n"
+"Returns a group task ID that can be used by other methods."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Adds [param action] as a task to be executed by a worker thread. [param "
+"high_priority] determines if the task has a high priority or a low priority "
+"(default). You can optionally provide a [param description] to help with "
+"debugging.\n"
+"Returns a task ID that can be used by other methods."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Returns how many times the [Callable] of the group task with the given ID "
+"has already been executed by the worker threads.\n"
+"[b]Note:[/b] If a thread has started executing the [Callable] but is yet to "
+"finish, it won't be counted."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Returns [code]true[/code] if the group task with the given ID is completed."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid "Returns [code]true[/code] if the task with the given ID is completed."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Pauses the thread that calls this method until the group task with the given "
+"ID is completed."
+msgstr ""
+
+#: doc/classes/WorkerThreadPool.xml
+msgid ""
+"Pauses the thread that calls this method until the task with the given ID is "
+"completed."
 msgstr ""
 
 #: doc/classes/World2D.xml
