@@ -20,7 +20,7 @@ msgstr ""
 "|| n % 10 == 6 || n % 10 == 9);\n"
 "X-Generator: Weblate 4.14-dev\n"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -53,12 +53,12 @@ msgstr "Simulan"
 msgid "Description"
 msgstr "Paglalarawan"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
-#: editor/editor_settings.cpp editor/register_editor_types.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/gui/editor_run_bar.cpp editor/register_editor_types.cpp main/main.cpp
 msgid "Run"
 msgstr "Patakbuhin"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp
 msgid "Main Scene"
 msgstr ""
 
@@ -114,6 +114,7 @@ msgstr ""
 #: core/config/project_settings.cpp core/math/a_star_grid_2d.cpp
 #: editor/editor_settings.cpp editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gridmap/grid_map.cpp scene/3d/camera_3d.cpp scene/3d/decal.cpp
 #: scene/3d/fog_volume.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/3d/light_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -149,7 +150,8 @@ msgstr "1 Tinginan"
 #: scene/animation/animation_node_state_machine.cpp scene/gui/control.cpp
 #: scene/main/node.cpp scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/main/window.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/gradient.cpp scene/resources/material.cpp
+#: scene/resources/mesh.cpp scene/resources/particle_process_material.cpp
 #: scene/resources/visual_shader.cpp
 #: scene/resources/visual_shader_particle_nodes.cpp
 #: servers/audio/effects/audio_effect_distortion.cpp
@@ -241,6 +243,11 @@ msgstr "Pangkalahatan"
 
 #: core/config/project_settings.cpp
 #, fuzzy
+msgid "Text to Speech"
+msgstr "Alisin ang Nakapili"
+
+#: core/config/project_settings.cpp
+#, fuzzy
 msgid "2D Panning Strength"
 msgstr "Paraang Interpolasyon"
 
@@ -327,14 +334,14 @@ msgid "Scale"
 msgstr "Iskala"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: editor/export/editor_export_platform_pc.cpp
-#: editor/plugins/text_shader_editor.cpp main/main.cpp
+#: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp platform/web/export/export_plugin.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: servers/rendering_server.cpp
 msgid "Debug"
 msgstr "Debug"
 
@@ -504,7 +511,7 @@ msgstr ""
 msgid "Block Size (KB)"
 msgstr ""
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp core/object/message_queue.cpp
 #, fuzzy
 msgid "Max Size (MB)"
 msgstr "Pangunahing Skrip:"
@@ -512,6 +519,15 @@ msgstr "Pangunahing Skrip:"
 #: core/config/project_settings.cpp
 msgid "Texture Upload Region Size Px"
 msgstr ""
+
+#: core/config/project_settings.cpp
+msgid "Pipeline Cache"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Save Chunk Size (MB)"
+msgstr "Pangunahing Skrip:"
 
 #: core/config/project_settings.cpp
 msgid "Vulkan"
@@ -552,6 +568,11 @@ msgstr "Gumalaw"
 msgid "Low Processor Usage Mode Sleep (µsec)"
 msgstr ""
 
+#: core/core_bind.cpp main/main.cpp
+#, fuzzy
+msgid "Delta Smoothing"
+msgstr "Mag-ikot"
+
 #: core/core_bind.cpp
 msgid "Print Error Messages"
 msgstr ""
@@ -587,6 +608,19 @@ msgstr "Gumalaw"
 #, fuzzy
 msgid "Use Accumulated Input"
 msgstr "Alisin ang Input"
+
+#: core/input/input.cpp main/main.cpp
+msgid "Input Devices"
+msgstr ""
+
+#: core/input/input.cpp
+#, fuzzy
+msgid "Compatibility"
+msgstr "Kopyahin ang mga Node"
+
+#: core/input/input.cpp
+msgid "Legacy Just Pressed Behavior"
+msgstr ""
 
 #: core/input/input_event.cpp
 msgid "Device"
@@ -677,6 +711,10 @@ msgstr ""
 #, fuzzy
 msgid "Button Index"
 msgstr "Index ng Z"
+
+#: core/input/input_event.cpp
+msgid "Canceled"
+msgstr ""
 
 #: core/input/input_event.cpp
 msgid "Double Click"
@@ -783,28 +821,6 @@ msgstr "Tignan ang Grid"
 msgid "Big Endian"
 msgstr ""
 
-#: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/debugger/debug_adapter/debug_adapter_server.cpp
-#: editor/editor_settings.cpp main/main.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-#: modules/webrtc/webrtc_data_channel.h
-msgid "Network"
-msgstr ""
-
-#: core/io/file_access_network.cpp
-#, fuzzy
-msgid "Remote FS"
-msgstr "Magalis ng Punto"
-
-#: core/io/file_access_network.cpp editor/import/resource_importer_scene.cpp
-#, fuzzy
-msgid "Page Size"
-msgstr "Pahina: "
-
-#: core/io/file_access_network.cpp
-msgid "Page Read Ahead"
-msgstr ""
-
 #: core/io/http_client.cpp
 msgid "Blocking Mode Enabled"
 msgstr ""
@@ -813,8 +829,8 @@ msgstr ""
 msgid "Read Chunk Size"
 msgstr ""
 
-#: core/io/json.cpp core/io/packed_data_container.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/lightmap_gi.cpp scene/3d/voxel_gi.cpp
+#: core/io/json.cpp scene/2d/polygon_2d.cpp scene/3d/lightmap_gi.cpp
+#: scene/3d/voxel_gi.cpp
 msgid "Data"
 msgstr ""
 
@@ -858,6 +874,11 @@ msgstr ""
 #, fuzzy
 msgid "Max Pending Connections"
 msgstr "Ayusin Ang Pagkakabit:"
+
+#: core/math/a_star_grid_2d.cpp scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp
+#: scene/resources/texture.cpp
+msgid "Region"
+msgstr "Saklaw"
 
 #: core/math/a_star_grid_2d.cpp modules/noise/fastnoise_lite.cpp
 #: scene/2d/animated_sprite_2d.cpp scene/2d/camera_2d.cpp scene/2d/light_2d.cpp
@@ -910,10 +931,13 @@ msgstr "Kalagayan"
 msgid "Message Queue"
 msgstr "Mensahe"
 
-#: core/object/message_queue.cpp
-#, fuzzy
-msgid "Max Size (KB)"
-msgstr "Pangunahing Skrip:"
+#: core/register_core_types.cpp
+#: editor/debugger/debug_adapter/debug_adapter_server.cpp
+#: editor/editor_settings.cpp main/main.cpp
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+#: modules/webrtc/webrtc_data_channel.h
+msgid "Network"
+msgstr ""
 
 #: core/register_core_types.cpp
 msgid "TCP"
@@ -1013,7 +1037,7 @@ msgstr "Ekspresyon"
 msgid "Prefix"
 msgstr ""
 
-#: core/string/translation.cpp editor/editor_spin_slider.cpp
+#: core/string/translation.cpp editor/gui/editor_spin_slider.cpp
 #: scene/gui/spin_box.cpp
 msgid "Suffix"
 msgstr ""
@@ -1135,6 +1159,28 @@ msgstr ""
 msgid "Remote Inspect Refresh Interval"
 msgstr ""
 
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: modules/gltf/register_types.cpp
+msgid "FileSystem"
+msgstr "FileSystem"
+
+#: editor/debugger/editor_file_server.cpp
+msgid "File Server"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Port"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp platform/uwp/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid "Password"
+msgstr ""
+
 #: editor/debugger/editor_profiler.cpp
 #, fuzzy
 msgid "Profiler Frame Max Functions"
@@ -1145,34 +1191,13 @@ msgstr "Ibahin ang Pangalan ng Punsyon"
 msgid "Default Feature Profile"
 msgstr "Gumawa ng Profile"
 
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: editor/editor_help.cpp
 #, fuzzy
-msgid "Access"
-msgstr "Tagumpay!"
+msgid "Version Hash"
+msgstr "Bersyon"
 
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
-#, fuzzy
-msgid "Display Mode"
-msgstr "Paraan sa Pagpapalabas:"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "File Mode"
-msgstr "Salain ang mga node"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp
-msgid "Filters"
-msgstr "Mga Pansala"
-
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
-#: scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "Show Hidden Files"
-msgstr "Ipakita sa FileSystem"
-
-#: editor/editor_file_dialog.cpp
-msgid "Disable Overwrite Warning"
+#: editor/editor_help.cpp
+msgid "Classes"
 msgstr ""
 
 #: editor/editor_help.cpp editor/editor_settings.cpp
@@ -1190,11 +1215,11 @@ msgstr "Tulong"
 msgid "Sort Functions Alphabetically"
 msgstr ""
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 msgid "Label"
 msgstr ""
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
 msgid "Read Only"
@@ -1223,6 +1248,15 @@ msgstr "Patakbuhin"
 #, fuzzy
 msgid "Deletable"
 msgstr "Alisin"
+
+#: editor/editor_interface.cpp
+msgid "Distraction Free Mode"
+msgstr ""
+
+#: editor/editor_interface.cpp
+#, fuzzy
+msgid "Movie Maker Enabled"
+msgstr "Salain ang mga hudyat"
 
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/xr/xr_interface.cpp
@@ -1302,10 +1336,6 @@ msgstr ""
 msgid "Default Color Picker Shape"
 msgstr "Alisin Ang Kaayusan"
 
-#: editor/editor_plugin.cpp
-msgid "Distraction Free Mode"
-msgstr ""
-
 #: editor/editor_resource_picker.cpp
 #, fuzzy
 msgid "Base Type"
@@ -1330,6 +1360,15 @@ msgstr "Kaayusan ng Editor"
 #, fuzzy
 msgid "Display Scale"
 msgstr "Ipakita Lahat"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Editor Screen"
+msgstr "Editor"
+
+#: editor/editor_settings.cpp
+msgid "Project Manager Screen"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
@@ -1443,6 +1482,11 @@ msgstr ""
 msgid "Show Low Level OpenType Features"
 msgstr ""
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Float Drag Speed"
+msgstr "Constant"
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1519,6 +1563,10 @@ msgid "Enable Pan and Scale Gestures"
 msgstr ""
 
 #: editor/editor_settings.cpp
+msgid "Scale Gizmo Handles"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Display Close Button"
 msgstr "Parating Ipakita ang Grid"
@@ -1536,10 +1584,28 @@ msgstr "Ipakita Lahat"
 msgid "Show Script Button"
 msgstr ""
 
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: modules/gltf/register_types.cpp
-msgid "FileSystem"
-msgstr "FileSystem"
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Multi Window"
+msgstr "Bagong Tabing"
+
+#: editor/editor_settings.cpp
+#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
+#: servers/rendering_server.cpp
+msgid "Enable"
+msgstr "Paganahin"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Windows on Load"
+msgstr "Panibagong Eksena"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Maximize Window"
+msgstr "Ipakita Lahat"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1599,15 +1665,26 @@ msgstr ""
 msgid "File Dialog"
 msgstr ""
 
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Show Hidden Files"
+msgstr "Ipakita sa FileSystem"
+
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#, fuzzy
+msgid "Display Mode"
+msgstr "Paraan sa Pagpapalabas:"
+
 #: editor/editor_settings.cpp
 msgid "Thumbnail Size"
 msgstr ""
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 msgid "Docks"
 msgstr ""
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #, fuzzy
 msgid "Scene Tree"
 msgstr "Panibagong Eksena"
@@ -1628,7 +1705,7 @@ msgstr "Parating Ipakita ang Grid"
 
 #: editor/editor_settings.cpp
 #, fuzzy
-msgid "Textfile Extensions"
+msgid "TextFile Extensions"
 msgstr "Mga Direksyon"
 
 #: editor/editor_settings.cpp
@@ -1706,10 +1783,6 @@ msgstr "Bilang ng Linya:"
 
 #: editor/editor_settings.cpp
 msgid "Highlight Type Safe Lines"
-msgstr ""
-
-#: editor/editor_settings.cpp
-msgid "Show Bookmark Gutter"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -1902,7 +1975,19 @@ msgid "Class Reference Examples"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/bone_map_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/node_3d_editor_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp editor/scene_tree_dock.cpp
@@ -1934,7 +2019,20 @@ msgstr ""
 msgid "Selection Box Color"
 msgstr "Napili lang"
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
@@ -1942,7 +2040,20 @@ msgstr "Napili lang"
 msgid "3D Gizmos"
 msgstr "Mga Gizmo"
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
@@ -2166,10 +2277,6 @@ msgid "Viewport Border Color"
 msgstr ""
 
 #: editor/editor_settings.cpp
-msgid "Constrain Editor View"
-msgstr ""
-
-#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Panning"
 msgstr "Mga Babala"
@@ -2248,6 +2355,16 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Shader Editor"
+msgstr "Buksan ang Editor"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Shaders on Load"
+msgstr "Panibagong Eksena"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Visual Editors"
 msgstr "3D Editor"
 
@@ -2289,6 +2406,11 @@ msgstr "Idaong Ang Posisyon"
 #: editor/editor_settings.cpp platform/android/export/export_plugin.cpp
 msgid "Screen"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Android Window"
+msgstr "Bagong Tabing"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2348,14 +2470,6 @@ msgstr ""
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Host"
-msgstr ""
-
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/resources/default_theme/default_theme.cpp
-msgid "Port"
 msgstr ""
 
 #. TRANSLATORS: Project Manager here refers to the tool used to create/manage Godot projects.
@@ -2539,22 +2653,6 @@ msgstr "Bunga ng Paghahanap"
 msgid "Search Result Border Color"
 msgstr "Bunga ng Paghahanap"
 
-#: editor/editor_spin_slider.cpp scene/gui/button.cpp scene/gui/line_edit.cpp
-#: scene/gui/menu_bar.cpp
-msgid "Flat"
-msgstr ""
-
-#: editor/editor_spin_slider.cpp
-#, fuzzy
-msgid "Hide Slider"
-msgstr "Nakikitang Collision Shapes"
-
-#: editor/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
-#: scene/gui/graph_edit.cpp
-#, fuzzy
-msgid "Zoom"
-msgstr "Palakihin Ang Tanaw"
-
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
@@ -2613,8 +2711,8 @@ msgstr ""
 
 #: editor/export/editor_export_plugin.cpp editor/register_editor_types.cpp
 #: platform/android/export/export.cpp platform/macos/export/export.cpp
-#: platform/uwp/export/export.cpp platform/web/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/macos/export/export_plugin.cpp platform/uwp/export/export.cpp
+#: platform/web/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr "Magluwas"
 
@@ -2630,15 +2728,40 @@ msgstr ""
 msgid "Export Path"
 msgstr ""
 
-#: editor/fileserver/editor_file_server.cpp
-msgid "File Server"
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Access"
+msgstr "Tagumpay!"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "File Mode"
+msgstr "Salain ang mga node"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Filters"
+msgstr "Mga Pansala"
+
+#: editor/gui/editor_file_dialog.cpp
+msgid "Disable Overwrite Warning"
 msgstr ""
 
-#: editor/fileserver/editor_file_server.cpp
-#: platform/uwp/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-msgid "Password"
+#: editor/gui/editor_spin_slider.cpp scene/gui/button.cpp
+#: scene/gui/line_edit.cpp scene/gui/menu_bar.cpp
+msgid "Flat"
 msgstr ""
+
+#: editor/gui/editor_spin_slider.cpp
+#, fuzzy
+msgid "Hide Slider"
+msgstr "Nakikitang Collision Shapes"
+
+#: editor/gui/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Zoom"
+msgstr "Palakihin Ang Tanaw"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp
@@ -2842,14 +2965,6 @@ msgid "Fix Silhouette"
 msgstr ""
 
 #: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-#: platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
-#: servers/rendering_server.cpp
-msgid "Enable"
-msgstr "Paganahin"
-
-#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
 #: scene/2d/light_2d.cpp scene/gui/control.cpp scene/main/canvas_item.cpp
 #: scene/resources/material.cpp scene/resources/sky_material.cpp
 #: servers/rendering_server.cpp
@@ -3038,11 +3153,13 @@ msgid "NavMesh"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
 #, fuzzy
 msgid "Body Type"
 msgstr "Magdagdag ng Uri"
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #, fuzzy
 msgid "Shape Type"
 msgstr "Ibahin ang Punong-Uri"
@@ -3062,34 +3179,34 @@ msgstr ""
 msgid "Precision"
 msgstr "Ekspresyon"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Max Concavity"
 msgstr "Constant"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Symmetry Planes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Revolution Axes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Min Volume per Convex Hull"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Resolution"
 msgstr "Gumawa ng Punsyon"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Max Num Vertices per Convex Hull"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Plane Downsampling"
 msgstr ""
 
@@ -3097,7 +3214,7 @@ msgstr ""
 msgid "Convexhull Downsampling"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Normalize Mesh"
 msgstr "Ibahin ang Punong-Uri"
@@ -3107,11 +3224,11 @@ msgstr "Ibahin ang Punong-Uri"
 msgid "Convexhull Approximation"
 msgstr "Alisin ang Animation"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Max Convex Hulls"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Project Hull Vertices"
 msgstr "Mga Tagapagtatag ng Proyekto"
@@ -3121,16 +3238,19 @@ msgid "Primitive"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
-#: scene/2d/light_2d.cpp scene/resources/capsule_shape_2d.cpp
-#: scene/resources/capsule_shape_3d.cpp scene/resources/cylinder_shape_3d.cpp
-#: scene/resources/environment.cpp scene/resources/material.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/primitive_meshes.cpp
-#: scene/resources/texture.cpp
+#: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/resources/capsule_shape_2d.cpp scene/resources/capsule_shape_3d.cpp
+#: scene/resources/cylinder_shape_3d.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/texture.cpp
 msgid "Height"
 msgstr "Taas"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -3143,8 +3263,8 @@ msgid "Radius"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp scene/2d/light_occluder_2d.cpp
-#: scene/3d/occluder_instance_3d.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: scene/2d/light_occluder_2d.cpp scene/3d/occluder_instance_3d.cpp
 msgid "Occluder"
 msgstr ""
 
@@ -3247,6 +3367,11 @@ msgstr "Nabigo"
 #, fuzzy
 msgid "Max Precision Error"
 msgstr "Nabigo"
+
+#: editor/import/resource_importer_scene.cpp
+#, fuzzy
+msgid "Page Size"
+msgstr "Pahina: "
 
 #: editor/import/resource_importer_scene.cpp
 #, fuzzy
@@ -3457,6 +3582,7 @@ msgid "Trim"
 msgstr ""
 
 #: editor/import/resource_importer_wav.cpp modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_3d.cpp
 #, fuzzy
 msgid "Normalize"
 msgstr "Ibahin ang Punong-Uri"
@@ -3522,69 +3648,69 @@ msgstr "Alisin ang Nawawala"
 msgid "Error"
 msgstr "Nabigo"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
 msgid "Stream Player 3D"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
 #: modules/gltf/structures/gltf_node.cpp
 #: platform/macos/export/export_plugin.cpp
 #: scene/resources/default_theme/default_theme.cpp servers/rendering_server.cpp
 msgid "Camera"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Visibility Notifier"
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+msgid "Decal"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#, fuzzy
+msgid "Fog Volume"
+msgstr "I-balik sa dati ang Volume"
+
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
 msgid "Particles"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Attractor"
 msgstr "Pabilisin ang takbo ng Animation"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Collision"
 msgstr "Nakikitang Collision Shapes"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-#, fuzzy
-msgid "Reflection Probe"
-msgstr "Napili lang"
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Decal"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body A"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp servers/rendering_server.cpp
-msgid "Voxel GI"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body B"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
 #, fuzzy
 msgid "Lightmap Lines"
 msgstr "Paguurong na Pa-pixel"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
 msgid "Lightprobe Lines"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body A"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body B"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
 #, fuzzy
-msgid "Fog Volume"
-msgstr "I-balik sa dati ang Volume"
+msgid "Reflection Probe"
+msgstr "Napili lang"
+
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+msgid "Visibility Notifier"
+msgstr ""
+
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp servers/rendering_server.cpp
+msgid "Voxel GI"
+msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Manipulator Gizmo Size"
@@ -3675,19 +3801,6 @@ msgstr "Karaniwan"
 #, fuzzy
 msgid "Bone Shape"
 msgstr "Pangalan ng Node:"
-
-#: editor/plugins/text_shader_editor.cpp
-#, fuzzy
-msgid "Shader Language"
-msgstr "Kaayusan ng Editor"
-
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-msgid "Warnings"
-msgstr "Mga Babala"
-
-#: editor/plugins/text_shader_editor.cpp
-msgid "Treat Warnings as Errors"
-msgstr ""
 
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: editor/plugins/tiles/tile_set_scenes_collection_source_editor.cpp
@@ -3835,6 +3948,11 @@ msgid "Derive Script Globals by Name"
 msgstr ""
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Ask Before Deleting Related Animation Tracks"
+msgstr "Palitan ang Pangalan ng Animation"
+
+#: editor/scene_tree_dock.cpp
 msgid "Use Favorites Root Selection"
 msgstr ""
 
@@ -3920,7 +4038,7 @@ msgstr ""
 msgid "Threads"
 msgstr ""
 
-#: main/main.cpp
+#: main/main.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Thread Model"
 msgstr "Paraan ng Pag-pan"
@@ -4040,10 +4158,6 @@ msgstr ""
 #, fuzzy
 msgid "BG Color"
 msgstr "Mga Kulay"
-
-#: main/main.cpp
-msgid "Input Devices"
-msgstr ""
 
 #: main/main.cpp
 #, fuzzy
@@ -4269,8 +4383,9 @@ msgstr ""
 msgid "Polygon"
 msgstr "Bagong Polygon"
 
-#: modules/csg/csg_shape.cpp scene/3d/collision_polygon_3d.cpp
-#: scene/resources/material.cpp scene/resources/primitive_meshes.cpp
+#: modules/csg/csg_shape.cpp modules/noise/noise_texture_3d.cpp
+#: scene/3d/collision_polygon_3d.cpp scene/resources/material.cpp
+#: scene/resources/primitive_meshes.cpp
 #: servers/audio/effects/audio_effect_phaser.cpp
 msgid "Depth"
 msgstr "Lalim"
@@ -4366,6 +4481,10 @@ msgstr "Inimpok ang File:"
 msgid "Max Call Stack"
 msgstr ""
 
+#: modules/gdscript/gdscript.cpp servers/rendering_server.cpp
+msgid "Warnings"
+msgstr "Mga Babala"
+
 #: modules/gdscript/gdscript.cpp
 msgid "Exclude Addons"
 msgstr ""
@@ -4451,6 +4570,46 @@ msgstr ""
 
 #: modules/gltf/extensions/gltf_spec_gloss.cpp
 msgid "Spec Gloss Img"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+msgid "Is Trigger"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Mesh Index"
+msgstr "Index ng Z"
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Importer Mesh"
+msgstr "Umangkat ng Daungan"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
+#: scene/resources/skeleton_modification_2d_jiggle.cpp
+msgid "Mass"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
+#: servers/xr/xr_pose.cpp
+#, fuzzy
+msgid "Linear Velocity"
+msgstr "Simulan"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
+#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
+msgid "Angular Velocity"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+msgid "Inertia Tensor"
 msgstr ""
 
 #: modules/gltf/gltf_state.cpp
@@ -5011,6 +5170,11 @@ msgstr "Mayroon ng Transisyon!"
 
 #: modules/multiplayer/multiplayer_synchronizer.cpp
 #, fuzzy
+msgid "Delta Interval"
+msgstr "Mayroon ng Transisyon!"
+
+#: modules/multiplayer/multiplayer_synchronizer.cpp
+#, fuzzy
 msgid "Visibility Update Mode"
 msgstr "Mag-ikot"
 
@@ -5039,6 +5203,16 @@ msgstr "Ikabit"
 #: modules/multiplayer/scene_multiplayer.cpp
 msgid "Server Relay"
 msgstr ""
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Sync Packet Size"
+msgstr "Pahina: "
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Delta Packet Size"
+msgstr "Ipagsama galing sa Eksena"
 
 #: modules/noise/fastnoise_lite.cpp
 #, fuzzy
@@ -5122,14 +5296,15 @@ msgstr ""
 msgid "Fractal Gain"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/line_2d.cpp
-#: scene/3d/label_3d.cpp scene/gui/text_edit.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/line_2d.cpp scene/3d/label_3d.cpp scene/gui/text_edit.cpp
 #: scene/resources/primitive_meshes.cpp scene/resources/text_line.cpp
 #: scene/resources/text_paragraph.cpp scene/resources/texture.cpp
 msgid "Width"
 msgstr "Lapad"
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/polygon_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/polygon_2d.cpp
 msgid "Invert"
 msgstr ""
 
@@ -5137,11 +5312,11 @@ msgstr ""
 msgid "In 3D Space"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless Blend Skirt"
 msgstr ""
 
@@ -5153,13 +5328,14 @@ msgstr ""
 msgid "Bump Strength"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/cpu_particles_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/resources/particle_process_material.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Color Ramp"
 msgstr "Mga Kulay"
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Noise"
 msgstr ""
 
@@ -5194,6 +5370,11 @@ msgstr "Paraang Interpolasyon"
 #, fuzzy
 msgid "Display Refresh Rate"
 msgstr "Ipakita Lahat"
+
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Render Target Size Multiplier"
+msgstr "Magtakda ng Marami:"
 
 #: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 msgid "Hand"
@@ -5903,6 +6084,11 @@ msgid "rcodesign"
 msgstr "Node"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Distribution Type"
+msgstr "Ibahin ang Punong-Uri"
+
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Copyright"
@@ -5914,14 +6100,62 @@ msgid "Copyright Localized"
 msgstr "Simulan"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min macOS Version"
+msgstr "Bersyon"
+
+#: platform/macos/export/export_plugin.cpp
 msgid "High Res"
 msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Xcode"
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Platform Build"
+msgstr "Kopyahin ang mga Node"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Version"
+msgstr "Bersyon"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Build"
+msgstr "Paraan ng Pag-sukat"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Name"
+msgstr "Kinalalagyan ng Eksena:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Version"
+msgstr "Bersyon"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Build"
+msgstr "Paraan ng Pag-sukat"
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Codesign"
 msgstr "Node"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Installer Identity"
+msgstr "I-urong Pakaliwa"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Apple Team ID"
+msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp
@@ -5939,6 +6173,11 @@ msgstr "Mga Katangian"
 #, fuzzy
 msgid "Certificate Password"
 msgstr "Mga Katibayan"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Provisioning Profile"
+msgstr "Nakatutok na Profile:"
 
 #: platform/macos/export/export_plugin.cpp
 #, fuzzy
@@ -6061,10 +6300,6 @@ msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Apple ID Password"
-msgstr ""
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Apple Team ID"
 msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
@@ -6952,13 +7187,6 @@ msgid "Velocity Max"
 msgstr "Bilis"
 
 #: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
-#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
-#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
-msgid "Angular Velocity"
-msgstr ""
-
-#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Velocity Curve"
@@ -7411,7 +7639,9 @@ msgstr ""
 msgid "Path Metadata Flags"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Avoidance"
 msgstr "Paganahin"
@@ -7431,13 +7661,35 @@ msgid "Max Neighbors"
 msgstr ""
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-msgid "Time Horizon"
+#, fuzzy
+msgid "Time Horizon Agents"
+msgstr "Salain ang mga hudyat"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+msgid "Time Horizon Obstacles"
 msgstr ""
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Max Speed"
 msgstr "Bilis:"
+
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Avoidance Layers"
+msgstr "Paganahin"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Mask"
+msgstr "Paganahin"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Priority"
+msgstr "Nakikitang Collision Shapes"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
@@ -7488,13 +7740,25 @@ msgid "Travel Cost"
 msgstr ""
 
 #: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
-msgid "Estimate Radius"
-msgstr ""
+#, fuzzy
+msgid "Vertices"
+msgstr "Salain ang mga hudyat"
 
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
 msgstr "Nabigasyon"
+
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Use Edge Connections"
+msgstr "Ayusin Ang Pagkakabit:"
+
+#: scene/2d/navigation_region_2d.cpp
+#, fuzzy
+msgid "Constrain Avoidance"
+msgstr "Mga Konstant"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box.cpp
 msgid "Skew"
@@ -7574,10 +7838,6 @@ msgstr "Mag-ikot"
 msgid "Cubic Interp"
 msgstr ""
 
-#: scene/2d/path_2d.cpp
-msgid "Lookahead"
-msgstr ""
-
 #: scene/2d/physical_bone_2d.cpp
 msgid "Bone 2D Nodepath"
 msgstr ""
@@ -7618,11 +7878,6 @@ msgstr "Simulan"
 #, fuzzy
 msgid "Sync to Physics"
 msgstr "Pisika"
-
-#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
-#: scene/resources/skeleton_modification_2d_jiggle.cpp
-msgid "Mass"
-msgstr ""
 
 #: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
 msgid "Inertia"
@@ -7898,10 +8153,6 @@ msgstr ""
 #, fuzzy
 msgid "Frame Coords"
 msgstr "Susunod na tab"
-
-#: scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp scene/resources/texture.cpp
-msgid "Region"
-msgstr "Saklaw"
 
 #: scene/2d/sprite_2d.cpp
 #, fuzzy
@@ -8542,6 +8793,12 @@ msgstr ""
 msgid "Autowrap Mode"
 msgstr "I-toggle ang Kusang Pagpapalabas"
 
+#: scene/3d/label_3d.cpp scene/gui/label.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/text_paragraph.cpp
+#, fuzzy
+msgid "Justification Flags"
+msgstr "Constant"
+
 #: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/graph_node.cpp
 #: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
 #: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
@@ -8771,12 +9028,14 @@ msgid "Surface Material Override"
 msgstr "Ipagpalit"
 
 #: scene/3d/navigation_agent_3d.cpp
-msgid "Agent Height Offset"
-msgstr ""
+#, fuzzy
+msgid "Path Height Offset"
+msgstr "Usog:"
 
-#: scene/3d/navigation_agent_3d.cpp
-msgid "Ignore Y"
-msgstr ""
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Use 3D Avoidance"
+msgstr "Paganahin"
 
 #: scene/3d/navigation_region_3d.cpp scene/resources/mesh_library.cpp
 #, fuzzy
@@ -8828,6 +9087,10 @@ msgstr "Mag-ikot"
 #, fuzzy
 msgid "Rotation Mode"
 msgstr "Mag-ikot"
+
+#: scene/3d/path_3d.cpp
+msgid "Use Model Front"
+msgstr ""
 
 #: scene/3d/path_3d.cpp
 #, fuzzy
@@ -9023,13 +9286,6 @@ msgstr "Pahanay"
 msgid "Angular Damp Mode"
 msgstr "Animasyon"
 
-#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
-#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
-#: servers/xr/xr_pose.cpp
-#, fuzzy
-msgid "Linear Velocity"
-msgstr "Simulan"
-
 #: scene/3d/ray_cast_3d.cpp scene/3d/shape_cast_3d.cpp
 #, fuzzy
 msgid "Debug Shape"
@@ -9092,7 +9348,7 @@ msgstr "Ilipat Ang Node"
 msgid "Tip Bone"
 msgstr ""
 
-#: scene/3d/skeleton_ik_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
 #, fuzzy
 msgid "Interpolation"
 msgstr "Paraang Interpolasyon"
@@ -9373,8 +9629,18 @@ msgid "Fadein Time"
 msgstr "Oras ng Frame (ms)"
 
 #: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Fadein Curve"
+msgstr "Magpalaki"
+
+#: scene/animation/animation_blend_tree.cpp
 msgid "Fadeout Time"
 msgstr ""
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Fadeout Curve"
+msgstr "Magpalaki"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -9428,12 +9694,22 @@ msgstr "Aktibahin na ngayon?"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
+msgid "Internal Active"
+msgstr "Sensitibo sa Case"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
 msgid "Add Amount"
 msgstr "Bilang:"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
 msgid "Blend Amount"
+msgstr "Bilang:"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
+msgid "Sub Amount"
 msgstr "Bilang:"
 
 #: scene/animation/animation_blend_tree.h
@@ -9483,6 +9759,16 @@ msgstr "Kondisyon"
 #: scene/resources/visual_shader.cpp
 msgid "Expression"
 msgstr "Ekspresyon"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "State Machine Type"
+msgstr "Ibahin ang Punong-Uri"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Reset Ends"
+msgstr "I-balik sa dati ang Volume"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -9620,6 +9906,10 @@ msgstr ""
 msgid "Button Shortcut Feedback Highlight Time"
 msgstr "Magpadala ng Puna Ukol sa Docs"
 
+#: scene/gui/base_button.cpp
+msgid "Allow Unpress"
+msgstr ""
+
 #: scene/gui/button.cpp
 #, fuzzy
 msgid "Text Behavior"
@@ -9643,6 +9933,11 @@ msgstr "Animasyon"
 #: scene/gui/button.cpp
 #, fuzzy
 msgid "Icon Alignment"
+msgstr "Salain ang mga hudyat"
+
+#: scene/gui/button.cpp
+#, fuzzy
+msgid "Vertical Icon Alignment"
 msgstr "Salain ang mga hudyat"
 
 #: scene/gui/button.cpp
@@ -10083,7 +10378,7 @@ msgstr ""
 msgid "Select Mode"
 msgstr "Paraan ng Pagpili"
 
-#: scene/gui/item_list.cpp scene/gui/tree.cpp
+#: scene/gui/item_list.cpp scene/gui/option_button.cpp scene/gui/tree.cpp
 #, fuzzy
 msgid "Allow Reselect"
 msgstr "I-apply ang Reset"
@@ -10091,6 +10386,11 @@ msgstr "I-apply ang Reset"
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Allow RMB Select"
 msgstr ""
+
+#: scene/gui/item_list.cpp scene/gui/popup_menu.cpp scene/gui/tree.cpp
+#, fuzzy
+msgid "Allow Search"
+msgstr "Maghanap"
 
 #: scene/gui/item_list.cpp
 msgid "Max Text Lines"
@@ -10136,6 +10436,10 @@ msgstr "Paguurong na Pa-pixel"
 #, fuzzy
 msgid "Label Settings"
 msgstr "Kaayusan ng Grid"
+
+#: scene/gui/label.cpp
+msgid "Tab Stops"
+msgstr ""
 
 #: scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #, fuzzy
@@ -10326,11 +10630,6 @@ msgstr "Alisin ang Nakapili"
 msgid "Submenu Popup Delay"
 msgstr ""
 
-#: scene/gui/popup_menu.cpp
-#, fuzzy
-msgid "Allow Search"
-msgstr "Maghanap"
-
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
 #, fuzzy
 msgid "Fill Mode"
@@ -10493,6 +10792,16 @@ msgstr ""
 
 #: scene/gui/scroll_container.cpp
 #, fuzzy
+msgid "Horizontal Custom Step"
+msgstr "Pahalang:"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
+msgid "Vertical Custom Step"
+msgstr "Kopyahin ang mga Node"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
 msgid "Horizontal Scroll Mode"
 msgstr "Salain ang mga hudyat"
 
@@ -10650,6 +10959,11 @@ msgstr "Sinusubukan"
 #, fuzzy
 msgid "Draw"
 msgstr "Gumuhit ng Linya"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Draw When Editable Disabled"
+msgstr "(Hindi Pinapagana Ang Editor)"
 
 #: scene/gui/text_edit.cpp
 msgid "Move on Right Click"
@@ -10902,6 +11216,31 @@ msgstr ""
 #: scene/main/node.cpp
 msgid "Node Name Casing"
 msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Physics Priority"
+msgstr "Pagpapahalaga"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Thread Group"
+msgstr "Paraan ng Pag-pan"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group"
+msgstr "Nakapangkat"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group Order"
+msgstr "Paguurong na Pa-grid"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Messages"
+msgstr "Mensahe"
 
 #: scene/main/node.cpp
 #, fuzzy
@@ -11580,6 +11919,11 @@ msgstr "Animasyon"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Icon Max Width"
+msgstr "Kopyahin Ang Pinagpipilian"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Underline Spacing"
 msgstr "Paguulit ng Animation"
 
@@ -11863,6 +12207,11 @@ msgstr "(Hindi Pinapagana Ang Editor)"
 #: scene/resources/default_theme/default_theme.cpp
 msgid "Tick"
 msgstr ""
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Center Grabber"
+msgstr "Gitna"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -12252,6 +12601,36 @@ msgstr "Usog:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Scrollbar Margin Left"
+msgstr "Paraan ng Pagpili"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Top"
+msgstr "Paraan ng Pagpili"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Right"
+msgstr "I-urong Pakanan"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Bottom"
+msgstr "Paraan ng Pagpili"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar H Separation"
+msgstr "Animasyon"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar V Separation"
+msgstr "Mga Enumerasyon"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Icon Margin"
 msgstr "Laman:"
 
@@ -12262,7 +12641,22 @@ msgstr "Simulan"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Font Hovered Color"
+msgstr "Pumili ng Kulay"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered"
+msgstr "Preset"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Tab Selected"
+msgstr "Magpili"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Tab Hovered"
 msgstr "Magpili"
 
 #: scene/resources/default_theme/default_theme.cpp
@@ -12343,6 +12737,10 @@ msgstr "Ipakita Lahat"
 #, fuzzy
 msgid "Label Width"
 msgstr "Ipakita Lahat"
+
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Center Slider Grabbers"
+msgstr ""
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -12949,8 +13347,9 @@ msgid "Font Stretch"
 msgstr "Paraang Interpolasyon"
 
 #: scene/resources/gradient.cpp
-msgid "Interpolation Mode"
-msgstr "Paraang Interpolasyon"
+#, fuzzy
+msgid "Color Space"
+msgstr "Iangkat ang Tema"
 
 #: scene/resources/gradient.cpp
 #, fuzzy
@@ -13232,6 +13631,15 @@ msgstr ""
 #, fuzzy
 msgid "Pixel Range"
 msgstr "Paguurong na Pa-pixel"
+
+#: scene/resources/mesh.cpp
+msgid "Convex Hull Downsampling"
+msgstr ""
+
+#: scene/resources/mesh.cpp
+#, fuzzy
+msgid "Convex Hull Approximation"
+msgstr "Alisin ang Animation"
 
 #: scene/resources/mesh.cpp
 msgid "Lightmap Size Hint"
@@ -13867,11 +14275,6 @@ msgstr "Kopyahin ang mga Node"
 #, fuzzy
 msgid "Break Flags"
 msgstr "Laki: "
-
-#: scene/resources/text_paragraph.cpp
-#, fuzzy
-msgid "Justification Flags"
-msgstr "Constant"
 
 #: scene/resources/texture.cpp
 #, fuzzy
@@ -14585,6 +14988,15 @@ msgstr "Ayusin Ang Pagkakabit:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
+msgid "Avoidance Use Multiple Threads"
+msgstr "Magtakda ng Marami:"
+
+#: servers/navigation_server_3d.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
 msgid "Edge Connection Color"
 msgstr "Ayusin Ang Pagkakabit:"
 
@@ -14670,6 +15082,44 @@ msgstr "Ayusin Ang Pagkakabit:"
 #, fuzzy
 msgid "Agent Path Point Size"
 msgstr "Pangunahing Skrip:"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agents Radius Color"
+msgstr "Pumili ng Kulay"
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agents Radius"
+msgstr "Mga Babala"
+
+#: servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Radius"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr ""
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -14951,6 +15401,11 @@ msgstr ""
 #: servers/rendering/shader_types.cpp
 msgid "Alpha to Coverage and One"
 msgstr ""
+
+#: servers/rendering/shader_types.cpp
+#, fuzzy
+msgid "Debug Shadow Splits"
+msgstr "Debug"
 
 #: servers/rendering/shader_types.cpp
 #, fuzzy
@@ -15343,6 +15798,15 @@ msgstr ""
 
 #: servers/rendering_server.cpp
 msgid "Shaders"
+msgstr ""
+
+#: servers/rendering_server.cpp
+#, fuzzy
+msgid "Shader Language"
+msgstr "Kaayusan ng Editor"
+
+#: servers/rendering_server.cpp
+msgid "Treat Warnings as Errors"
 msgstr ""
 
 #: servers/xr/xr_interface.cpp

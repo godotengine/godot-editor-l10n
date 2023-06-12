@@ -46,7 +46,7 @@ msgstr ""
 "n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.18-dev\n"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -78,12 +78,12 @@ msgstr "תבנית"
 msgid "Description"
 msgstr "תיאור"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
-#: editor/editor_settings.cpp editor/register_editor_types.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/gui/editor_run_bar.cpp editor/register_editor_types.cpp main/main.cpp
 msgid "Run"
 msgstr "הרצה"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp
 msgid "Main Scene"
 msgstr "סצנה ראשית"
 
@@ -136,6 +136,7 @@ msgstr "חלון"
 #: core/config/project_settings.cpp core/math/a_star_grid_2d.cpp
 #: editor/editor_settings.cpp editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gridmap/grid_map.cpp scene/3d/camera_3d.cpp scene/3d/decal.cpp
 #: scene/3d/fog_volume.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/3d/light_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -169,7 +170,8 @@ msgstr "גובה אשנב"
 #: scene/animation/animation_node_state_machine.cpp scene/gui/control.cpp
 #: scene/main/node.cpp scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/main/window.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/gradient.cpp scene/resources/material.cpp
+#: scene/resources/mesh.cpp scene/resources/particle_process_material.cpp
 #: scene/resources/visual_shader.cpp
 #: scene/resources/visual_shader_particle_nodes.cpp
 #: servers/audio/effects/audio_effect_distortion.cpp
@@ -261,6 +263,11 @@ msgstr "כללי"
 
 #: core/config/project_settings.cpp
 #, fuzzy
+msgid "Text to Speech"
+msgstr "בחירת מיקוד"
+
+#: core/config/project_settings.cpp
+#, fuzzy
 msgid "2D Panning Strength"
 msgstr "כח"
 
@@ -347,14 +354,14 @@ msgid "Scale"
 msgstr "קנה מידה"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: editor/export/editor_export_platform_pc.cpp
-#: editor/plugins/text_shader_editor.cpp main/main.cpp
+#: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp platform/web/export/export_plugin.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: servers/rendering_server.cpp
 msgid "Debug"
 msgstr "ניפוי שגיאות"
 
@@ -529,7 +536,7 @@ msgstr "מבט אחורי"
 msgid "Block Size (KB)"
 msgstr "גודל מקסימלי (KB)"
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp core/object/message_queue.cpp
 #, fuzzy
 msgid "Max Size (MB)"
 msgstr "גודל מקסימלי (KB)"
@@ -537,6 +544,15 @@ msgstr "גודל מקסימלי (KB)"
 #: core/config/project_settings.cpp
 msgid "Texture Upload Region Size Px"
 msgstr ""
+
+#: core/config/project_settings.cpp
+msgid "Pipeline Cache"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Save Chunk Size (MB)"
+msgstr "גודל קריאת נתח"
 
 #: core/config/project_settings.cpp
 msgid "Vulkan"
@@ -576,6 +592,11 @@ msgstr "מצב שימוש נמוך של מעבד"
 msgid "Low Processor Usage Mode Sleep (µsec)"
 msgstr "מצב שינה שימוש נמוך במעבד (מיקרו שניות)"
 
+#: core/core_bind.cpp main/main.cpp
+#, fuzzy
+msgid "Delta Smoothing"
+msgstr "החלקת דלטא"
+
 #: core/core_bind.cpp
 msgid "Print Error Messages"
 msgstr "תדפיס הודעות שגיאה"
@@ -611,6 +632,20 @@ msgstr "מצב שינוי קנה מידה (R)"
 #, fuzzy
 msgid "Use Accumulated Input"
 msgstr "מחיקת קלט"
+
+#: core/input/input.cpp main/main.cpp
+#, fuzzy
+msgid "Input Devices"
+msgstr "התקן"
+
+#: core/input/input.cpp
+#, fuzzy
+msgid "Compatibility"
+msgstr "ייצוא מיזם"
+
+#: core/input/input.cpp
+msgid "Legacy Just Pressed Behavior"
+msgstr ""
 
 #: core/input/input_event.cpp
 msgid "Device"
@@ -698,6 +733,11 @@ msgstr "פקטור"
 #: core/input/input_event.cpp
 msgid "Button Index"
 msgstr "אינדקס הכפתורים"
+
+#: core/input/input_event.cpp
+#, fuzzy
+msgid "Canceled"
+msgstr "מתקדם"
 
 #: core/input/input_event.cpp
 msgid "Double Click"
@@ -800,27 +840,6 @@ msgstr "הצג/הסתר קבצים מוסתרים"
 msgid "Big Endian"
 msgstr "אנדיאן גדול"
 
-#: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/debugger/debug_adapter/debug_adapter_server.cpp
-#: editor/editor_settings.cpp main/main.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-#: modules/webrtc/webrtc_data_channel.h
-msgid "Network"
-msgstr "רשת"
-
-#: core/io/file_access_network.cpp
-#, fuzzy
-msgid "Remote FS"
-msgstr "הסרת נקודה בנתיב"
-
-#: core/io/file_access_network.cpp editor/import/resource_importer_scene.cpp
-msgid "Page Size"
-msgstr "גודל דף"
-
-#: core/io/file_access_network.cpp
-msgid "Page Read Ahead"
-msgstr ""
-
 #: core/io/http_client.cpp
 msgid "Blocking Mode Enabled"
 msgstr "מצב חסימה מאופשר"
@@ -829,8 +848,8 @@ msgstr "מצב חסימה מאופשר"
 msgid "Read Chunk Size"
 msgstr "גודל קריאת נתח"
 
-#: core/io/json.cpp core/io/packed_data_container.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/lightmap_gi.cpp scene/3d/voxel_gi.cpp
+#: core/io/json.cpp scene/2d/polygon_2d.cpp scene/3d/lightmap_gi.cpp
+#: scene/3d/voxel_gi.cpp
 msgid "Data"
 msgstr "מידע"
 
@@ -874,6 +893,12 @@ msgstr "מערך מידע"
 #: core/io/udp_server.cpp
 msgid "Max Pending Connections"
 msgstr "מקסימום חיבורים ממתינים"
+
+#: core/math/a_star_grid_2d.cpp scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp
+#: scene/resources/texture.cpp
+#, fuzzy
+msgid "Region"
+msgstr "מצב גולמי"
 
 #: core/math/a_star_grid_2d.cpp modules/noise/fastnoise_lite.cpp
 #: scene/2d/animated_sprite_2d.cpp scene/2d/camera_2d.cpp scene/2d/light_2d.cpp
@@ -925,10 +950,13 @@ msgstr "מצב"
 msgid "Message Queue"
 msgstr "מסר"
 
-#: core/object/message_queue.cpp
-#, fuzzy
-msgid "Max Size (KB)"
-msgstr "גודל מקסימלי (KB)"
+#: core/register_core_types.cpp
+#: editor/debugger/debug_adapter/debug_adapter_server.cpp
+#: editor/editor_settings.cpp main/main.cpp
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+#: modules/webrtc/webrtc_data_channel.h
+msgid "Network"
+msgstr "רשת"
 
 #: core/register_core_types.cpp
 #, fuzzy
@@ -1029,7 +1057,7 @@ msgstr "גרסה נוכחית:"
 msgid "Prefix"
 msgstr ""
 
-#: core/string/translation.cpp editor/editor_spin_slider.cpp
+#: core/string/translation.cpp editor/gui/editor_spin_slider.cpp
 #: scene/gui/spin_box.cpp
 msgid "Suffix"
 msgstr ""
@@ -1151,6 +1179,28 @@ msgstr ""
 msgid "Remote Inspect Refresh Interval"
 msgstr ""
 
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: modules/gltf/register_types.cpp
+msgid "FileSystem"
+msgstr "מערכת קבצים"
+
+#: editor/debugger/editor_file_server.cpp
+msgid "File Server"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Port"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp platform/uwp/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid "Password"
+msgstr ""
+
 #: editor/debugger/editor_profiler.cpp
 #, fuzzy
 msgid "Profiler Frame Max Functions"
@@ -1161,35 +1211,15 @@ msgstr "שינוי שם פונקציה"
 msgid "Default Feature Profile"
 msgstr "פרופיל התכונות של Godot"
 
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: editor/editor_help.cpp
 #, fuzzy
-msgid "Access"
-msgstr "הצלחה!"
+msgid "Version Hash"
+msgstr "גרסה:"
 
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
+#: editor/editor_help.cpp
 #, fuzzy
-msgid "Display Mode"
-msgstr "מצב ניגון:"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "File Mode"
-msgstr "מצב שינוי קנה מידה (R)"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp
-msgid "Filters"
-msgstr "מסננים"
-
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
-#: scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "Show Hidden Files"
-msgstr "הצג/הסתר קבצים מוסתרים"
-
-#: editor/editor_file_dialog.cpp
-msgid "Disable Overwrite Warning"
-msgstr "השבת את אזהרת החלפה"
+msgid "Classes"
+msgstr "קריאות"
 
 #: editor/editor_help.cpp editor/editor_settings.cpp
 #: editor/plugins/script_editor_plugin.cpp
@@ -1206,12 +1236,12 @@ msgstr "עזרה"
 msgid "Sort Functions Alphabetically"
 msgstr "מיון פונקציות בסדר אלפביתי"
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 #, fuzzy
 msgid "Label"
 msgstr "ערך"
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
 msgid "Read Only"
@@ -1240,6 +1270,15 @@ msgstr "הרצה"
 #, fuzzy
 msgid "Deletable"
 msgstr "מחיקה"
+
+#: editor/editor_interface.cpp
+msgid "Distraction Free Mode"
+msgstr "מצב ללא הסחות דעת"
+
+#: editor/editor_interface.cpp
+#, fuzzy
+msgid "Movie Maker Enabled"
+msgstr "סנן אותות"
 
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/xr/xr_interface.cpp
@@ -1325,10 +1364,6 @@ msgstr "מצב ברירת מחדל לבחירת צבעים"
 msgid "Default Color Picker Shape"
 msgstr "מצב ברירת מחדל לבחירת צבעים"
 
-#: editor/editor_plugin.cpp
-msgid "Distraction Free Mode"
-msgstr "מצב ללא הסחות דעת"
-
 #: editor/editor_resource_picker.cpp
 #, fuzzy
 msgid "Base Type"
@@ -1353,6 +1388,16 @@ msgstr "פריסת עורך"
 #, fuzzy
 msgid "Display Scale"
 msgstr "הצג הכל"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Editor Screen"
+msgstr "עורך"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Project Manager Screen"
+msgstr "מנהל המיזמים"
 
 #: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
@@ -1467,6 +1512,11 @@ msgstr ""
 msgid "Show Low Level OpenType Features"
 msgstr ""
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Float Drag Speed"
+msgstr "קבוע"
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1544,6 +1594,10 @@ msgid "Enable Pan and Scale Gestures"
 msgstr ""
 
 #: editor/editor_settings.cpp
+msgid "Scale Gizmo Handles"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Display Close Button"
 msgstr "כפתור אמצעי"
@@ -1563,10 +1617,28 @@ msgstr "מקסימלי"
 msgid "Show Script Button"
 msgstr "כפתור ימני"
 
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: modules/gltf/register_types.cpp
-msgid "FileSystem"
-msgstr "מערכת קבצים"
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Multi Window"
+msgstr "חלון"
+
+#: editor/editor_settings.cpp
+#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
+#: servers/rendering_server.cpp
+msgid "Enable"
+msgstr "הפעלה"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Windows on Load"
+msgstr "שיחזור סצנה כשמבוצע טעינה"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Maximize Window"
+msgstr "מקסימלי"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1626,16 +1698,27 @@ msgstr ""
 msgid "File Dialog"
 msgstr ""
 
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Show Hidden Files"
+msgstr "הצג/הסתר קבצים מוסתרים"
+
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#, fuzzy
+msgid "Display Mode"
+msgstr "מצב ניגון:"
+
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Thumbnail Size"
 msgstr "תמונה ממוזערת…"
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 msgid "Docks"
 msgstr "רציפים"
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #, fuzzy
 msgid "Scene Tree"
 msgstr "עריכת עץ הסצנות"
@@ -1655,7 +1738,7 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
-msgid "Textfile Extensions"
+msgid "TextFile Extensions"
 msgstr "חיפוש בסיומות קבצים"
 
 #: editor/editor_settings.cpp
@@ -1734,10 +1817,6 @@ msgstr "שורה מספר:"
 
 #: editor/editor_settings.cpp
 msgid "Highlight Type Safe Lines"
-msgstr ""
-
-#: editor/editor_settings.cpp
-msgid "Show Bookmark Gutter"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -1935,7 +2014,19 @@ msgid "Class Reference Examples"
 msgstr "הדבקת משאב"
 
 #: editor/editor_settings.cpp editor/plugins/bone_map_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/node_3d_editor_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp editor/scene_tree_dock.cpp
@@ -1966,14 +2057,40 @@ msgstr ""
 msgid "Selection Box Color"
 msgstr "בחירה בלבד"
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
 msgid "3D Gizmos"
 msgstr ""
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
@@ -2201,10 +2318,6 @@ msgid "Viewport Border Color"
 msgstr ""
 
 #: editor/editor_settings.cpp
-msgid "Constrain Editor View"
-msgstr ""
-
-#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Panning"
 msgstr "אזהרות"
@@ -2284,6 +2397,16 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Shader Editor"
+msgstr "פתיחת עורך דו־ממד"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Shaders on Load"
+msgstr "שיחזור סצנה כשמבוצע טעינה"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Visual Editors"
 msgstr "פתיחת עורך סקריפטים"
 
@@ -2324,6 +2447,11 @@ msgstr "הסרת מצולע ונקודה"
 #: editor/editor_settings.cpp platform/android/export/export_plugin.cpp
 msgid "Screen"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Android Window"
+msgstr "Android"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2383,14 +2511,6 @@ msgstr ""
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Host"
-msgstr ""
-
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/resources/default_theme/default_theme.cpp
-msgid "Port"
 msgstr ""
 
 #. TRANSLATORS: Project Manager here refers to the tool used to create/manage Godot projects.
@@ -2579,22 +2699,6 @@ msgstr "חיפוש בעזרה"
 msgid "Search Result Border Color"
 msgstr "חיפוש בעזרה"
 
-#: editor/editor_spin_slider.cpp scene/gui/button.cpp scene/gui/line_edit.cpp
-#: scene/gui/menu_bar.cpp
-msgid "Flat"
-msgstr ""
-
-#: editor/editor_spin_slider.cpp
-#, fuzzy
-msgid "Hide Slider"
-msgstr "עריכת מצולע"
-
-#: editor/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
-#: scene/gui/graph_edit.cpp
-#, fuzzy
-msgid "Zoom"
-msgstr "התקרבות"
-
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
@@ -2653,8 +2757,8 @@ msgstr "ETC2"
 
 #: editor/export/editor_export_plugin.cpp editor/register_editor_types.cpp
 #: platform/android/export/export.cpp platform/macos/export/export.cpp
-#: platform/uwp/export/export.cpp platform/web/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/macos/export/export_plugin.cpp platform/uwp/export/export.cpp
+#: platform/web/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr "ייצוא"
 
@@ -2673,15 +2777,40 @@ msgstr "TCP"
 msgid "Export Path"
 msgstr "ייצוא מיזם"
 
-#: editor/fileserver/editor_file_server.cpp
-msgid "File Server"
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Access"
+msgstr "הצלחה!"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "File Mode"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Filters"
+msgstr "מסננים"
+
+#: editor/gui/editor_file_dialog.cpp
+msgid "Disable Overwrite Warning"
+msgstr "השבת את אזהרת החלפה"
+
+#: editor/gui/editor_spin_slider.cpp scene/gui/button.cpp
+#: scene/gui/line_edit.cpp scene/gui/menu_bar.cpp
+msgid "Flat"
 msgstr ""
 
-#: editor/fileserver/editor_file_server.cpp
-#: platform/uwp/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-msgid "Password"
-msgstr ""
+#: editor/gui/editor_spin_slider.cpp
+#, fuzzy
+msgid "Hide Slider"
+msgstr "עריכת מצולע"
+
+#: editor/gui/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Zoom"
+msgstr "התקרבות"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp
@@ -2887,14 +3016,6 @@ msgid "Fix Silhouette"
 msgstr ""
 
 #: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-#: platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
-#: servers/rendering_server.cpp
-msgid "Enable"
-msgstr "הפעלה"
-
-#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
 #: scene/2d/light_2d.cpp scene/gui/control.cpp scene/main/canvas_item.cpp
 #: scene/resources/material.cpp scene/resources/sky_material.cpp
 #: servers/rendering_server.cpp
@@ -3087,11 +3208,13 @@ msgid "NavMesh"
 msgstr "אפיית NavMesh"
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
 #, fuzzy
 msgid "Body Type"
 msgstr "סוג"
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #, fuzzy
 msgid "Shape Type"
 msgstr "שינוי סוג"
@@ -3111,34 +3234,34 @@ msgstr "מתקדם"
 msgid "Precision"
 msgstr "גרסה נוכחית:"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Max Concavity"
 msgstr "הזזת מצולע"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Symmetry Planes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Revolution Axes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Min Volume per Convex Hull"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Resolution"
 msgstr "חצי רזולוציה"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Max Num Vertices per Convex Hull"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Plane Downsampling"
 msgstr ""
 
@@ -3146,7 +3269,7 @@ msgstr ""
 msgid "Convexhull Downsampling"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Normalize Mesh"
 msgstr "תבנית"
@@ -3156,12 +3279,12 @@ msgstr "תבנית"
 msgid "Convexhull Approximation"
 msgstr "הסרת הנפשה"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Max Convex Hulls"
 msgstr "הזזת מצולע"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Project Hull Vertices"
 msgstr "מקימי המיזם"
@@ -3172,16 +3295,19 @@ msgid "Primitive"
 msgstr "ייצוא מיזם"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
-#: scene/2d/light_2d.cpp scene/resources/capsule_shape_2d.cpp
-#: scene/resources/capsule_shape_3d.cpp scene/resources/cylinder_shape_3d.cpp
-#: scene/resources/environment.cpp scene/resources/material.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/primitive_meshes.cpp
-#: scene/resources/texture.cpp
+#: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/resources/capsule_shape_2d.cpp scene/resources/capsule_shape_3d.cpp
+#: scene/resources/cylinder_shape_3d.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/texture.cpp
 msgid "Height"
 msgstr "גבה"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -3194,8 +3320,8 @@ msgid "Radius"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp scene/2d/light_occluder_2d.cpp
-#: scene/3d/occluder_instance_3d.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: scene/2d/light_occluder_2d.cpp scene/3d/occluder_instance_3d.cpp
 #, fuzzy
 msgid "Occluder"
 msgstr "עריכת מצולע"
@@ -3300,6 +3426,10 @@ msgstr "שגיאת זווית מקסימלית:"
 #, fuzzy
 msgid "Max Precision Error"
 msgstr "שגיאה ליניארית מקסימלית:"
+
+#: editor/import/resource_importer_scene.cpp
+msgid "Page Size"
+msgstr "גודל דף"
 
 #: editor/import/resource_importer_scene.cpp
 #, fuzzy
@@ -3513,6 +3643,7 @@ msgid "Trim"
 msgstr ""
 
 #: editor/import/resource_importer_wav.cpp modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_3d.cpp
 #, fuzzy
 msgid "Normalize"
 msgstr "תבנית"
@@ -3578,70 +3709,70 @@ msgstr "הסרת תבנית"
 msgid "Error"
 msgstr "שגיאה"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
 msgid "Stream Player 3D"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
 #: modules/gltf/structures/gltf_node.cpp
 #: platform/macos/export/export_plugin.cpp
 #: scene/resources/default_theme/default_theme.cpp servers/rendering_server.cpp
 msgid "Camera"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Visibility Notifier"
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+msgid "Decal"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#, fuzzy
+msgid "Fog Volume"
+msgstr "איפוס עצמת השמע"
+
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
 msgid "Particles"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Attractor"
 msgstr "קודקודים"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Collision"
 msgstr "כפתור אמצעי"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-#, fuzzy
-msgid "Reflection Probe"
-msgstr "בחירה בלבד"
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Decal"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body A"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp servers/rendering_server.cpp
-msgid "Voxel GI"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body B"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
 #, fuzzy
 msgid "Lightmap Lines"
 msgstr "מיפוי אורות"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
 #, fuzzy
 msgid "Lightprobe Lines"
 msgstr "מבט ימני"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body A"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body B"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
 #, fuzzy
-msgid "Fog Volume"
-msgstr "איפוס עצמת השמע"
+msgid "Reflection Probe"
+msgstr "בחירה בלבד"
+
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+msgid "Visibility Notifier"
+msgstr ""
+
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp servers/rendering_server.cpp
+msgid "Voxel GI"
+msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Manipulator Gizmo Size"
@@ -3736,19 +3867,6 @@ msgstr "בחירת מחדל"
 #, fuzzy
 msgid "Bone Shape"
 msgstr "שם מפרק"
-
-#: editor/plugins/text_shader_editor.cpp
-#, fuzzy
-msgid "Shader Language"
-msgstr "פריסת עורך"
-
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-msgid "Warnings"
-msgstr "אזהרות"
-
-#: editor/plugins/text_shader_editor.cpp
-msgid "Treat Warnings as Errors"
-msgstr ""
 
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: editor/plugins/tiles/tile_set_scenes_collection_source_editor.cpp
@@ -3897,6 +4015,11 @@ msgstr ""
 
 #: editor/scene_tree_dock.cpp
 #, fuzzy
+msgid "Ask Before Deleting Related Animation Tracks"
+msgstr "שינוי שם הנפשה"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid "Use Favorites Root Selection"
 msgstr "בחירת מיקוד"
 
@@ -3983,7 +4106,7 @@ msgstr ""
 msgid "Threads"
 msgstr ""
 
-#: main/main.cpp
+#: main/main.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Thread Model"
 msgstr "שינוי מצב"
@@ -4104,11 +4227,6 @@ msgstr ""
 #, fuzzy
 msgid "BG Color"
 msgstr "בחירת צבע"
-
-#: main/main.cpp
-#, fuzzy
-msgid "Input Devices"
-msgstr "התקן"
 
 #: main/main.cpp
 #, fuzzy
@@ -4341,8 +4459,9 @@ msgstr ""
 msgid "Polygon"
 msgstr "עריכת מצולע"
 
-#: modules/csg/csg_shape.cpp scene/3d/collision_polygon_3d.cpp
-#: scene/resources/material.cpp scene/resources/primitive_meshes.cpp
+#: modules/csg/csg_shape.cpp modules/noise/noise_texture_3d.cpp
+#: scene/3d/collision_polygon_3d.cpp scene/resources/material.cpp
+#: scene/resources/primitive_meshes.cpp
 #: servers/audio/effects/audio_effect_phaser.cpp
 msgid "Depth"
 msgstr "עומק"
@@ -4440,6 +4559,10 @@ msgstr "קובץ אחסון:"
 msgid "Max Call Stack"
 msgstr ""
 
+#: modules/gdscript/gdscript.cpp servers/rendering_server.cpp
+msgid "Warnings"
+msgstr "אזהרות"
+
 #: modules/gdscript/gdscript.cpp
 msgid "Exclude Addons"
 msgstr ""
@@ -4526,6 +4649,47 @@ msgstr "שינוי קנה מידה (יחס):"
 #: modules/gltf/extensions/gltf_spec_gloss.cpp
 msgid "Spec Gloss Img"
 msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+msgid "Is Trigger"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Mesh Index"
+msgstr "הזחה אוטומטית"
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Importer Mesh"
+msgstr "חלון ייבוא"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
+#: scene/resources/skeleton_modification_2d_jiggle.cpp
+msgid "Mass"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
+#: servers/xr/xr_pose.cpp
+#, fuzzy
+msgid "Linear Velocity"
+msgstr "הגדלת אות ראשונה"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
+#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
+msgid "Angular Velocity"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#, fuzzy
+msgid "Inertia Tensor"
+msgstr "קודקודים"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -5097,6 +5261,11 @@ msgstr "המעברון קיים!"
 
 #: modules/multiplayer/multiplayer_synchronizer.cpp
 #, fuzzy
+msgid "Delta Interval"
+msgstr "זמן בין אפייה"
+
+#: modules/multiplayer/multiplayer_synchronizer.cpp
+#, fuzzy
 msgid "Visibility Update Mode"
 msgstr "ייצוא מיזם"
 
@@ -5126,6 +5295,16 @@ msgstr "דחה חיבורים חדשים"
 #: modules/multiplayer/scene_multiplayer.cpp
 msgid "Server Relay"
 msgstr ""
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Sync Packet Size"
+msgstr "גודל דף"
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Delta Packet Size"
+msgstr "מיזוג מסצנה"
 
 #: modules/noise/fastnoise_lite.cpp
 #, fuzzy
@@ -5210,14 +5389,15 @@ msgstr ""
 msgid "Fractal Gain"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/line_2d.cpp
-#: scene/3d/label_3d.cpp scene/gui/text_edit.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/line_2d.cpp scene/3d/label_3d.cpp scene/gui/text_edit.cpp
 #: scene/resources/primitive_meshes.cpp scene/resources/text_line.cpp
 #: scene/resources/text_paragraph.cpp scene/resources/texture.cpp
 msgid "Width"
 msgstr "רחב"
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/polygon_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/polygon_2d.cpp
 msgid "Invert"
 msgstr ""
 
@@ -5226,11 +5406,11 @@ msgstr ""
 msgid "In 3D Space"
 msgstr "קריאות"
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless Blend Skirt"
 msgstr ""
 
@@ -5243,13 +5423,14 @@ msgstr "תבנית"
 msgid "Bump Strength"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/cpu_particles_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/resources/particle_process_material.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Color Ramp"
 msgstr "בחירת צבע"
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Noise"
 msgstr ""
 
@@ -5284,6 +5465,11 @@ msgstr "מצב אינטרפולציה"
 #, fuzzy
 msgid "Display Refresh Rate"
 msgstr "הצגת מסגרת קווים"
+
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Render Target Size Multiplier"
+msgstr "קביעה מרובה:"
 
 #: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 msgid "Hand"
@@ -6003,6 +6189,11 @@ msgid "rcodesign"
 msgstr "מפרק"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Distribution Type"
+msgstr "קביעת סוג משתנה"
+
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Copyright"
@@ -6014,14 +6205,63 @@ msgid "Copyright Localized"
 msgstr "הגדלת אות ראשונה"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min macOS Version"
+msgstr "גרסה:"
+
+#: platform/macos/export/export_plugin.cpp
 msgid "High Res"
 msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode"
+msgstr "יוניקוד"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Platform Build"
+msgstr "גזירת מפרקים"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Version"
+msgstr "גרסה:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Build"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Name"
+msgstr "נתיב סצנות:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Version"
+msgstr "גרסה:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Build"
+msgstr "מצב שינוי קנה מידה (R)"
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Codesign"
 msgstr "מפרק"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Installer Identity"
+msgstr "הזחה משמאל"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Apple Team ID"
+msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp
@@ -6039,6 +6279,11 @@ msgstr "תעודה"
 #, fuzzy
 msgid "Certificate Password"
 msgstr "תעודות"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Provisioning Profile"
+msgstr "פרופיל נוכחי:"
 
 #: platform/macos/export/export_plugin.cpp
 #, fuzzy
@@ -6164,10 +6409,6 @@ msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Apple ID Password"
-msgstr ""
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Apple Team ID"
 msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
@@ -7066,13 +7307,6 @@ msgid "Velocity Max"
 msgstr "מְהִירוּת"
 
 #: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
-#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
-#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
-msgid "Angular Velocity"
-msgstr ""
-
-#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Velocity Curve"
@@ -7529,7 +7763,9 @@ msgstr "גרסה נוכחית:"
 msgid "Path Metadata Flags"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Avoidance"
 msgstr "מתקדם"
@@ -7549,13 +7785,36 @@ msgid "Max Neighbors"
 msgstr ""
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-msgid "Time Horizon"
-msgstr ""
+#, fuzzy
+msgid "Time Horizon Agents"
+msgstr "סנן אותות"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Time Horizon Obstacles"
+msgstr "יצירת תיקייה"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Max Speed"
 msgstr "מהירות (FPS):"
+
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Avoidance Layers"
+msgstr "הפעלה"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Mask"
+msgstr "מתקדם"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Priority"
+msgstr "עריכת מצולע"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
@@ -7608,13 +7867,24 @@ msgstr "טיול"
 
 #: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
 #, fuzzy
-msgid "Estimate Radius"
-msgstr "שינוי רדיוס חיצוני של טבעת"
+msgid "Vertices"
+msgstr "קודקודים"
 
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
 msgstr "עריכת מצולע"
+
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Use Edge Connections"
+msgstr "מקסימום חיבורים ממתינים"
+
+#: scene/2d/navigation_region_2d.cpp
+#, fuzzy
+msgid "Constrain Avoidance"
+msgstr "קבועים"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box.cpp
 msgid "Skew"
@@ -7693,10 +7963,6 @@ msgstr "הטיית מצולע"
 msgid "Cubic Interp"
 msgstr ""
 
-#: scene/2d/path_2d.cpp
-msgid "Lookahead"
-msgstr ""
-
 #: scene/2d/physical_bone_2d.cpp
 #, fuzzy
 msgid "Bone 2D Nodepath"
@@ -7739,11 +8005,6 @@ msgstr "הגדלת אות ראשונה"
 #, fuzzy
 msgid "Sync to Physics"
 msgstr "שקופית פיזיקלית %"
-
-#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
-#: scene/resources/skeleton_modification_2d_jiggle.cpp
-msgid "Mass"
-msgstr ""
 
 #: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
 #, fuzzy
@@ -8025,11 +8286,6 @@ msgstr "שקופיות אנכיות"
 #, fuzzy
 msgid "Frame Coords"
 msgstr "שקופית %"
-
-#: scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp scene/resources/texture.cpp
-#, fuzzy
-msgid "Region"
-msgstr "מצב גולמי"
 
 #: scene/2d/sprite_2d.cpp
 #, fuzzy
@@ -8687,6 +8943,12 @@ msgstr "אותיות גדולות"
 msgid "Autowrap Mode"
 msgstr "הפעלת/ביטול הפעלה אוטומטית"
 
+#: scene/3d/label_3d.cpp scene/gui/label.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/text_paragraph.cpp
+#, fuzzy
+msgid "Justification Flags"
+msgstr "הדבקת הנפשה"
+
 #: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/graph_node.cpp
 #: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
 #: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
@@ -8916,12 +9178,14 @@ msgid "Surface Material Override"
 msgstr "דריסה"
 
 #: scene/3d/navigation_agent_3d.cpp
-msgid "Agent Height Offset"
-msgstr ""
+#, fuzzy
+msgid "Path Height Offset"
+msgstr "היסט רשת:"
 
-#: scene/3d/navigation_agent_3d.cpp
-msgid "Ignore Y"
-msgstr ""
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Use 3D Avoidance"
+msgstr "מתקדם"
 
 #: scene/3d/navigation_region_3d.cpp scene/resources/mesh_library.cpp
 #, fuzzy
@@ -8976,6 +9240,10 @@ msgstr "מצב גולמי"
 #, fuzzy
 msgid "Rotation Mode"
 msgstr "מצב גולמי"
+
+#: scene/3d/path_3d.cpp
+msgid "Use Model Front"
+msgstr ""
 
 #: scene/3d/path_3d.cpp
 #, fuzzy
@@ -9171,13 +9439,6 @@ msgstr "ליניארי"
 msgid "Angular Damp Mode"
 msgstr "הנפשה"
 
-#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
-#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
-#: servers/xr/xr_pose.cpp
-#, fuzzy
-msgid "Linear Velocity"
-msgstr "הגדלת אות ראשונה"
-
 #: scene/3d/ray_cast_3d.cpp scene/3d/shape_cast_3d.cpp
 #, fuzzy
 msgid "Debug Shape"
@@ -9240,7 +9501,7 @@ msgstr "שינוי שם מפרק השורש"
 msgid "Tip Bone"
 msgstr ""
 
-#: scene/3d/skeleton_ik_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
 #, fuzzy
 msgid "Interpolation"
 msgstr "מצב אינטרפולציה"
@@ -9535,8 +9796,18 @@ msgstr "זמן עמעום/ים (X-Fade):"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
+msgid "Fadein Curve"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
 msgid "Fadeout Time"
 msgstr "זמן עמעום/ים (X-Fade):"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Fadeout Curve"
+msgstr "מצב שינוי קנה מידה (R)"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -9592,12 +9863,22 @@ msgstr "כל הבחירה"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
+msgid "Internal Active"
+msgstr "ממשק משתמש"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
 msgid "Add Amount"
 msgstr "כמות:"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
 msgid "Blend Amount"
+msgstr "כמות:"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
+msgid "Sub Amount"
 msgstr "כמות:"
 
 #: scene/animation/animation_blend_tree.h
@@ -9651,6 +9932,16 @@ msgstr "הנפשה"
 #, fuzzy
 msgid "Expression"
 msgstr "גרסה נוכחית:"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "State Machine Type"
+msgstr "קביעת סוג משתנה"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Reset Ends"
+msgstr "איפוס התקריב"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -9787,6 +10078,10 @@ msgstr ""
 msgid "Button Shortcut Feedback Highlight Time"
 msgstr "שליחת משוב על התיעוד"
 
+#: scene/gui/base_button.cpp
+msgid "Allow Unpress"
+msgstr ""
+
 #: scene/gui/button.cpp
 #, fuzzy
 msgid "Text Behavior"
@@ -9810,6 +10105,11 @@ msgstr "מונים:"
 #: scene/gui/button.cpp
 #, fuzzy
 msgid "Icon Alignment"
+msgstr "סנן אותות"
+
+#: scene/gui/button.cpp
+#, fuzzy
+msgid "Vertical Icon Alignment"
 msgstr "סנן אותות"
 
 #: scene/gui/button.cpp
@@ -10262,7 +10562,7 @@ msgstr ""
 msgid "Select Mode"
 msgstr "בחר מצב"
 
-#: scene/gui/item_list.cpp scene/gui/tree.cpp
+#: scene/gui/item_list.cpp scene/gui/option_button.cpp scene/gui/tree.cpp
 #, fuzzy
 msgid "Allow Reselect"
 msgstr "החל איפוס"
@@ -10271,6 +10571,11 @@ msgstr "החל איפוס"
 #, fuzzy
 msgid "Allow RMB Select"
 msgstr "מילוי הבחירה"
+
+#: scene/gui/item_list.cpp scene/gui/popup_menu.cpp scene/gui/tree.cpp
+#, fuzzy
+msgid "Allow Search"
+msgstr "חיפוש"
 
 #: scene/gui/item_list.cpp
 msgid "Max Text Lines"
@@ -10317,6 +10622,10 @@ msgstr "מבט קדמי"
 #, fuzzy
 msgid "Label Settings"
 msgstr "הגדרות"
+
+#: scene/gui/label.cpp
+msgid "Tab Stops"
+msgstr ""
 
 #: scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #, fuzzy
@@ -10510,11 +10819,6 @@ msgstr "מחיקת הבחירה"
 msgid "Submenu Popup Delay"
 msgstr ""
 
-#: scene/gui/popup_menu.cpp
-#, fuzzy
-msgid "Allow Search"
-msgstr "חיפוש"
-
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
 #, fuzzy
 msgid "Fill Mode"
@@ -10678,6 +10982,16 @@ msgstr ""
 
 #: scene/gui/scroll_container.cpp
 #, fuzzy
+msgid "Horizontal Custom Step"
+msgstr "יצירת תיקייה"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
+msgid "Vertical Custom Step"
+msgstr "גזירת מפרקים"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
 msgid "Horizontal Scroll Mode"
 msgstr "סנן אותות"
 
@@ -10837,6 +11151,11 @@ msgstr "בבדיקה"
 #, fuzzy
 msgid "Draw"
 msgstr "קריאות"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Draw When Editable Disabled"
+msgstr "מושבת"
 
 #: scene/gui/text_edit.cpp
 msgid "Move on Right Click"
@@ -11094,6 +11413,31 @@ msgstr ""
 #: scene/main/node.cpp
 msgid "Node Name Casing"
 msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Physics Priority"
+msgstr "ייצוא מיזם"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Thread Group"
+msgstr "שינוי מצב"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group"
+msgstr "קבוצות"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group Order"
+msgstr "שלב רשת:"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Messages"
+msgstr "מסר"
 
 #: scene/main/node.cpp
 #, fuzzy
@@ -11789,6 +12133,11 @@ msgstr "מונים:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Icon Max Width"
+msgstr "העתקת בחירה"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Underline Spacing"
 msgstr "לולאת הנפשה"
 
@@ -12077,6 +12426,11 @@ msgstr "מושבת"
 #: scene/resources/default_theme/default_theme.cpp
 msgid "Tick"
 msgstr ""
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Center Grabber"
+msgstr "הזחה משמאל"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -12470,6 +12824,36 @@ msgstr "היסט רשת:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Scrollbar Margin Left"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Top"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Right"
+msgstr "הזחה מימין"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Bottom"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar H Separation"
+msgstr "מונים:"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar V Separation"
+msgstr "מונים:"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Icon Margin"
 msgstr "תוכן:"
 
@@ -12480,7 +12864,22 @@ msgstr "מונים:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Font Hovered Color"
+msgstr "בחירת צבע"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered"
+msgstr "ערכה מוגדרת…"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Tab Selected"
+msgstr "בחירה"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Tab Hovered"
 msgstr "בחירה"
 
 #: scene/resources/default_theme/default_theme.cpp
@@ -12560,6 +12959,10 @@ msgstr "מבט שמאלי"
 #, fuzzy
 msgid "Label Width"
 msgstr "מבט שמאלי"
+
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Center Slider Grabbers"
+msgstr ""
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -13175,8 +13578,9 @@ msgid "Font Stretch"
 msgstr "מצב אינטרפולציה"
 
 #: scene/resources/gradient.cpp
-msgid "Interpolation Mode"
-msgstr "מצב אינטרפולציה"
+#, fuzzy
+msgid "Color Space"
+msgstr "חברים"
 
 #: scene/resources/gradient.cpp
 #, fuzzy
@@ -13462,6 +13866,16 @@ msgstr "MSDF"
 #, fuzzy
 msgid "Pixel Range"
 msgstr "עומק"
+
+#: scene/resources/mesh.cpp
+#, fuzzy
+msgid "Convex Hull Downsampling"
+msgstr "הזזת מצולע"
+
+#: scene/resources/mesh.cpp
+#, fuzzy
+msgid "Convex Hull Approximation"
+msgstr "הסרת הנפשה"
 
 #: scene/resources/mesh.cpp
 #, fuzzy
@@ -14107,11 +14521,6 @@ msgstr "גזירת מפרקים"
 #, fuzzy
 msgid "Break Flags"
 msgstr "עצירה"
-
-#: scene/resources/text_paragraph.cpp
-#, fuzzy
-msgid "Justification Flags"
-msgstr "הדבקת הנפשה"
 
 #: scene/resources/texture.cpp
 #, fuzzy
@@ -14828,6 +15237,15 @@ msgstr "עריכת חיבור:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
+msgid "Avoidance Use Multiple Threads"
+msgstr "קביעה מרובה:"
+
+#: servers/navigation_server_3d.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
 msgid "Edge Connection Color"
 msgstr "עריכת חיבור:"
 
@@ -14914,6 +15332,45 @@ msgstr "עריכת חיבור:"
 #, fuzzy
 msgid "Agent Path Point Size"
 msgstr "מבט קדמי"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agents Radius Color"
+msgstr "העתקת נתיב המפרק"
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agents Radius"
+msgstr "איפשור סינון"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Obstacles Radius"
+msgstr "שינוי רדיוס חיצוני של טבעת"
+
+#: servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr ""
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -15203,6 +15660,11 @@ msgstr ""
 #: servers/rendering/shader_types.cpp
 msgid "Alpha to Coverage and One"
 msgstr ""
+
+#: servers/rendering/shader_types.cpp
+#, fuzzy
+msgid "Debug Shadow Splits"
+msgstr "ניפוי שגיאות"
 
 #: servers/rendering/shader_types.cpp
 #, fuzzy
@@ -15602,6 +16064,15 @@ msgstr ""
 #, fuzzy
 msgid "Shaders"
 msgstr "שינויי חומרים"
+
+#: servers/rendering_server.cpp
+#, fuzzy
+msgid "Shader Language"
+msgstr "פריסת עורך"
+
+#: servers/rendering_server.cpp
+msgid "Treat Warnings as Errors"
+msgstr ""
 
 #: servers/xr/xr_interface.cpp
 msgid "Is Primary"

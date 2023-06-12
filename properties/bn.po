@@ -30,7 +30,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 4.15.1-dev\n"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -65,12 +65,12 @@ msgstr "ফরম্যাট"
 msgid "Description"
 msgstr "বর্ণনা:"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
-#: editor/editor_settings.cpp editor/register_editor_types.cpp main/main.cpp
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/gui/editor_run_bar.cpp editor/register_editor_types.cpp main/main.cpp
 msgid "Run"
 msgstr "চালান"
 
-#: core/config/project_settings.cpp editor/editor_node.cpp
+#: core/config/project_settings.cpp editor/gui/editor_run_bar.cpp
 msgid "Main Scene"
 msgstr "প্রধান দৃশ্য"
 
@@ -129,6 +129,7 @@ msgstr "উইন্ডো"
 #: core/config/project_settings.cpp core/math/a_star_grid_2d.cpp
 #: editor/editor_settings.cpp editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gridmap/grid_map.cpp scene/3d/camera_3d.cpp scene/3d/decal.cpp
 #: scene/3d/fog_volume.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/3d/light_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -163,7 +164,8 @@ msgstr "এক্সপোর্টের প্রিসেট:"
 #: scene/animation/animation_node_state_machine.cpp scene/gui/control.cpp
 #: scene/main/node.cpp scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/main/window.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/gradient.cpp scene/resources/material.cpp
+#: scene/resources/mesh.cpp scene/resources/particle_process_material.cpp
 #: scene/resources/visual_shader.cpp
 #: scene/resources/visual_shader_particle_nodes.cpp
 #: servers/audio/effects/audio_effect_distortion.cpp
@@ -252,6 +254,11 @@ msgstr "এক্সপোর্ট টেমপ্লেটসমূহ লো�
 #, fuzzy
 msgid "General"
 msgstr "সাধারণ"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Text to Speech"
+msgstr "নির্বাচনকে কেন্দ্রীভূত করুন"
 
 #: core/config/project_settings.cpp
 #, fuzzy
@@ -344,14 +351,14 @@ msgid "Scale"
 msgstr "স্কেল/মাপ:"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: editor/export/editor_export_platform_pc.cpp
-#: editor/plugins/text_shader_editor.cpp main/main.cpp
+#: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp platform/web/export/export_plugin.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: servers/rendering_server.cpp
 msgid "Debug"
 msgstr "ডিবাগ"
 
@@ -529,7 +536,7 @@ msgstr "পশ্চাৎ দর্শন"
 msgid "Block Size (KB)"
 msgstr ""
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp core/object/message_queue.cpp
 #, fuzzy
 msgid "Max Size (MB)"
 msgstr "সেল (Cell)-এর আকার:"
@@ -538,6 +545,15 @@ msgstr "সেল (Cell)-এর আকার:"
 #, fuzzy
 msgid "Texture Upload Region Size Px"
 msgstr "গঠনবিন্যাসের এলাকা"
+
+#: core/config/project_settings.cpp
+msgid "Pipeline Cache"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Save Chunk Size (MB)"
+msgstr "সেল (Cell)-এর আকার:"
 
 #: core/config/project_settings.cpp
 msgid "Vulkan"
@@ -578,6 +594,11 @@ msgstr "প্রসেসর এর কম ব্যাবহার Mode"
 msgid "Low Processor Usage Mode Sleep (µsec)"
 msgstr "কম প্রসেসর ব্যাবহার মোড বিরতি (sec)"
 
+#: core/core_bind.cpp main/main.cpp
+#, fuzzy
+msgid "Delta Smoothing"
+msgstr "ডেল্টা মসৃণ"
+
 #: core/core_bind.cpp
 msgid "Print Error Messages"
 msgstr "ত্রুটি বার্তাগুলো ছাপান"
@@ -614,6 +635,20 @@ msgstr "মোড (Mode) সরান"
 #, fuzzy
 msgid "Use Accumulated Input"
 msgstr "ইনপুট অপসারণ করুন"
+
+#: core/input/input.cpp main/main.cpp
+#, fuzzy
+msgid "Input Devices"
+msgstr "ডিভাইস/যন্ত্র"
+
+#: core/input/input.cpp
+#, fuzzy
+msgid "Compatibility"
+msgstr "এক্সপোর্ট মোড:"
+
+#: core/input/input.cpp
+msgid "Legacy Just Pressed Behavior"
+msgstr ""
 
 #: core/input/input_event.cpp
 msgid "Device"
@@ -706,6 +741,11 @@ msgstr "পরিদর্শক/পরীক্ষক"
 #, fuzzy
 msgid "Button Index"
 msgstr "মাউসের বোতাম ইন্ডেক্স:"
+
+#: core/input/input_event.cpp
+#, fuzzy
+msgid "Canceled"
+msgstr "অ্যানিমেশনের সিদ্ধান্তসমূহ"
 
 #: core/input/input_event.cpp
 msgid "Double Click"
@@ -816,28 +856,6 @@ msgstr "অদৃশ্য ফাইলসমূহ অদলবদল/টগল
 msgid "Big Endian"
 msgstr ""
 
-#: core/io/file_access_network.cpp core/register_core_types.cpp
-#: editor/debugger/debug_adapter/debug_adapter_server.cpp
-#: editor/editor_settings.cpp main/main.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-#: modules/webrtc/webrtc_data_channel.h
-#, fuzzy
-msgid "Network"
-msgstr "প্রকল্প এক্সপোর্ট করুন"
-
-#: core/io/file_access_network.cpp
-#, fuzzy
-msgid "Remote FS"
-msgstr "পথের বিন্দু অপসারণ করুন"
-
-#: core/io/file_access_network.cpp editor/import/resource_importer_scene.cpp
-msgid "Page Size"
-msgstr "পাতা"
-
-#: core/io/file_access_network.cpp
-msgid "Page Read Ahead"
-msgstr ""
-
 #: core/io/http_client.cpp
 msgid "Blocking Mode Enabled"
 msgstr ""
@@ -846,8 +864,8 @@ msgstr ""
 msgid "Read Chunk Size"
 msgstr ""
 
-#: core/io/json.cpp core/io/packed_data_container.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/lightmap_gi.cpp scene/3d/voxel_gi.cpp
+#: core/io/json.cpp scene/2d/polygon_2d.cpp scene/3d/lightmap_gi.cpp
+#: scene/3d/voxel_gi.cpp
 msgid "Data"
 msgstr "তথ্য"
 
@@ -892,6 +910,12 @@ msgstr ""
 #, fuzzy
 msgid "Max Pending Connections"
 msgstr "সংযোগসমূহ সম্পাদন করুন"
+
+#: core/math/a_star_grid_2d.cpp scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp
+#: scene/resources/texture.cpp
+#, fuzzy
+msgid "Region"
+msgstr "চালানোর মোড:"
 
 #: core/math/a_star_grid_2d.cpp modules/noise/fastnoise_lite.cpp
 #: scene/2d/animated_sprite_2d.cpp scene/2d/camera_2d.cpp scene/2d/light_2d.cpp
@@ -944,10 +968,14 @@ msgstr "অবস্থা:"
 msgid "Message Queue"
 msgstr "স্ক্রিপ্টের পরিবর্তনসমূহ সুসংগত/সমন্বয় করুন"
 
-#: core/object/message_queue.cpp
+#: core/register_core_types.cpp
+#: editor/debugger/debug_adapter/debug_adapter_server.cpp
+#: editor/editor_settings.cpp main/main.cpp
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+#: modules/webrtc/webrtc_data_channel.h
 #, fuzzy
-msgid "Max Size (KB)"
-msgstr "সেল (Cell)-এর আকার:"
+msgid "Network"
+msgstr "প্রকল্প এক্সপোর্ট করুন"
 
 #: core/register_core_types.cpp
 msgid "TCP"
@@ -1047,7 +1075,7 @@ msgstr "অভিব্যক্তি (Expression) পরিবর্তন ক
 msgid "Prefix"
 msgstr ""
 
-#: core/string/translation.cpp editor/editor_spin_slider.cpp
+#: core/string/translation.cpp editor/gui/editor_spin_slider.cpp
 #: scene/gui/spin_box.cpp
 msgid "Suffix"
 msgstr ""
@@ -1173,6 +1201,28 @@ msgstr ""
 msgid "Remote Inspect Refresh Interval"
 msgstr ""
 
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: modules/gltf/register_types.cpp
+msgid "FileSystem"
+msgstr "ফাইলসিস্টেম"
+
+#: editor/debugger/editor_file_server.cpp
+msgid "File Server"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Port"
+msgstr ""
+
+#: editor/debugger/editor_file_server.cpp platform/uwp/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid "Password"
+msgstr ""
+
 #: editor/debugger/editor_profiler.cpp
 #, fuzzy
 msgid "Profiler Frame Max Functions"
@@ -1183,36 +1233,15 @@ msgstr "ফাংশনের (Function) নতুন নামকরণ কর�
 msgid "Default Feature Profile"
 msgstr "এক্সপোর্ট টেমপ্লেটসমূহ লোড হচ্ছে"
 
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: editor/editor_help.cpp
 #, fuzzy
-msgid "Access"
-msgstr "সম্পন্ন হয়েছে!"
+msgid "Version Hash"
+msgstr "সংস্করণ:"
 
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
+#: editor/editor_help.cpp
 #, fuzzy
-msgid "Display Mode"
-msgstr "প্যান মোড"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "File Mode"
-msgstr "ফিল্টারসমূহ"
-
-#: editor/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp
-#, fuzzy
-msgid "Filters"
-msgstr "ফিল্টারসমূহ"
-
-#: editor/editor_file_dialog.cpp editor/editor_settings.cpp
-#: scene/gui/file_dialog.cpp
-#, fuzzy
-msgid "Show Hidden Files"
-msgstr "অদৃশ্য ফাইলসমূহ অদলবদল/টগল করুন"
-
-#: editor/editor_file_dialog.cpp
-msgid "Disable Overwrite Warning"
-msgstr ""
+msgid "Classes"
+msgstr "ড্র কলস"
 
 #: editor/editor_help.cpp editor/editor_settings.cpp
 #: editor/plugins/script_editor_plugin.cpp
@@ -1229,12 +1258,12 @@ msgstr "হেল্প"
 msgid "Sort Functions Alphabetically"
 msgstr ""
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 #, fuzzy
 msgid "Label"
 msgstr "মান"
 
-#: editor/editor_inspector.cpp editor/editor_spin_slider.cpp
+#: editor/editor_inspector.cpp editor/gui/editor_spin_slider.cpp
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
 msgid "Read Only"
@@ -1264,6 +1293,15 @@ msgstr "চালান"
 #, fuzzy
 msgid "Deletable"
 msgstr "অপসারণ করুন"
+
+#: editor/editor_interface.cpp
+msgid "Distraction Free Mode"
+msgstr "বিক্ষেপ-হীন মোড"
+
+#: editor/editor_interface.cpp
+#, fuzzy
+msgid "Movie Maker Enabled"
+msgstr "সক্রিয় করুন"
 
 #: editor/editor_node.cpp editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #: servers/xr/xr_interface.cpp
@@ -1349,10 +1387,6 @@ msgstr ""
 msgid "Default Color Picker Shape"
 msgstr "ডিফল্ট বাস লেআউট লোড করুন।"
 
-#: editor/editor_plugin.cpp
-msgid "Distraction Free Mode"
-msgstr "বিক্ষেপ-হীন মোড"
-
 #: editor/editor_resource_picker.cpp
 #, fuzzy
 msgid "Base Type"
@@ -1377,6 +1411,16 @@ msgstr "এডিটরের লেআউট/নকশা"
 #, fuzzy
 msgid "Display Scale"
 msgstr "Normal প্রদর্শন"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Editor Screen"
+msgstr "সম্পাদন করুন (Edit)"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Project Manager Screen"
+msgstr "প্রজেক্ট ম্যানেজার"
 
 #: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
@@ -1491,6 +1535,11 @@ msgstr ""
 msgid "Show Low Level OpenType Features"
 msgstr ""
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Float Drag Speed"
+msgstr "ফ্রি লুক স্পিড মডিফায়ার"
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1569,6 +1618,10 @@ msgid "Enable Pan and Scale Gestures"
 msgstr ""
 
 #: editor/editor_settings.cpp
+msgid "Scale Gizmo Handles"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Display Close Button"
 msgstr "মধ্য বোতাম"
@@ -1587,10 +1640,28 @@ msgstr "সর্বোচ্চকৃত"
 msgid "Show Script Button"
 msgstr "ডান বোতাম"
 
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: modules/gltf/register_types.cpp
-msgid "FileSystem"
-msgstr "ফাইলসিস্টেম"
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Multi Window"
+msgstr "উইন্ডো"
+
+#: editor/editor_settings.cpp
+#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
+#: servers/rendering_server.cpp
+msgid "Enable"
+msgstr "সক্রিয় করুন"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Windows on Load"
+msgstr "টাইম-সীক্‌ নোড"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Maximize Window"
+msgstr "সর্বোচ্চকৃত"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1651,16 +1722,27 @@ msgstr ""
 msgid "File Dialog"
 msgstr "XForm এর সংলাপ"
 
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Show Hidden Files"
+msgstr "অদৃশ্য ফাইলসমূহ অদলবদল/টগল করুন"
+
+#: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#, fuzzy
+msgid "Display Mode"
+msgstr "প্যান মোড"
+
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Thumbnail Size"
 msgstr "থাম্বনেইল..."
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 msgid "Docks"
 msgstr ""
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp editor/scene_tree_dock.cpp
 #, fuzzy
 msgid "Scene Tree"
 msgstr "দৃশ্যের শাখা (নোডসমূহ):"
@@ -1681,7 +1763,7 @@ msgstr "গ্রিড দেখান"
 
 #: editor/editor_settings.cpp
 #, fuzzy
-msgid "Textfile Extensions"
+msgid "TextFile Extensions"
 msgstr "অংশাদি:"
 
 #: editor/editor_settings.cpp
@@ -1760,10 +1842,6 @@ msgstr "লাইন নাম্বার:"
 
 #: editor/editor_settings.cpp
 msgid "Highlight Type Safe Lines"
-msgstr ""
-
-#: editor/editor_settings.cpp
-msgid "Show Bookmark Gutter"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -1961,7 +2039,19 @@ msgid "Class Reference Examples"
 msgstr " ক্লাস রেফারেন্স"
 
 #: editor/editor_settings.cpp editor/plugins/bone_map_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/node_3d_editor_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp editor/scene_tree_dock.cpp
@@ -1994,7 +2084,20 @@ msgstr ""
 msgid "Selection Box Color"
 msgstr "শুধুমাত্র নির্বাচিতসমূহ"
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
@@ -2002,7 +2105,20 @@ msgstr "শুধুমাত্র নির্বাচিতসমূহ"
 msgid "3D Gizmos"
 msgstr "গিজমোস"
 
-#: editor/editor_settings.cpp editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/editor_settings.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #: modules/csg/editor/csg_gizmos.cpp
@@ -2239,10 +2355,6 @@ msgid "Viewport Border Color"
 msgstr ""
 
 #: editor/editor_settings.cpp
-msgid "Constrain Editor View"
-msgstr ""
-
-#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Panning"
 msgstr "সতর্কতা"
@@ -2322,6 +2434,16 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Shader Editor"
+msgstr "এডিটরে খুলুন"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Restore Shaders on Load"
+msgstr "টাইম-সীক্‌ নোড"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Visual Editors"
 msgstr "এডিটরে খুলুন"
 
@@ -2363,6 +2485,11 @@ msgstr "বহিঃ-বক্ররেখার স্থান নির্ধ
 #: editor/editor_settings.cpp platform/android/export/export_plugin.cpp
 msgid "Screen"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Android Window"
+msgstr "উইন্ডো"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2422,14 +2549,6 @@ msgstr ""
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Host"
-msgstr ""
-
-#: editor/editor_settings.cpp editor/fileserver/editor_file_server.cpp
-#: platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/resources/default_theme/default_theme.cpp
-msgid "Port"
 msgstr ""
 
 #. TRANSLATORS: Project Manager here refers to the tool used to create/manage Godot projects.
@@ -2618,23 +2737,6 @@ msgstr "সাহায্য অনুসন্ধান করুন"
 msgid "Search Result Border Color"
 msgstr "সাহায্য অনুসন্ধান করুন"
 
-#: editor/editor_spin_slider.cpp scene/gui/button.cpp scene/gui/line_edit.cpp
-#: scene/gui/menu_bar.cpp
-#, fuzzy
-msgid "Flat"
-msgstr "ফ্ল্যাট0"
-
-#: editor/editor_spin_slider.cpp
-#, fuzzy
-msgid "Hide Slider"
-msgstr "অ্যানিমেশনের নোড"
-
-#: editor/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
-#: scene/gui/graph_edit.cpp
-#, fuzzy
-msgid "Zoom"
-msgstr "সম্প্রসারিত করুন (জুম্ ইন)"
-
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
@@ -2694,8 +2796,8 @@ msgstr ""
 
 #: editor/export/editor_export_plugin.cpp editor/register_editor_types.cpp
 #: platform/android/export/export.cpp platform/macos/export/export.cpp
-#: platform/uwp/export/export.cpp platform/web/export/export.cpp
-#: platform/windows/export/export.cpp
+#: platform/macos/export/export_plugin.cpp platform/uwp/export/export.cpp
+#: platform/web/export/export.cpp platform/windows/export/export.cpp
 msgid "Export"
 msgstr "এক্সপোর্ট"
 
@@ -2712,15 +2814,42 @@ msgstr ""
 msgid "Export Path"
 msgstr "এক্সপোর্টের প্রিসেট:"
 
-#: editor/fileserver/editor_file_server.cpp
-msgid "File Server"
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Access"
+msgstr "সম্পন্ন হয়েছে!"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "File Mode"
+msgstr "ফিল্টারসমূহ"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Filters"
+msgstr "ফিল্টারসমূহ"
+
+#: editor/gui/editor_file_dialog.cpp
+msgid "Disable Overwrite Warning"
 msgstr ""
 
-#: editor/fileserver/editor_file_server.cpp
-#: platform/uwp/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-msgid "Password"
-msgstr ""
+#: editor/gui/editor_spin_slider.cpp scene/gui/button.cpp
+#: scene/gui/line_edit.cpp scene/gui/menu_bar.cpp
+#, fuzzy
+msgid "Flat"
+msgstr "ফ্ল্যাট0"
+
+#: editor/gui/editor_spin_slider.cpp
+#, fuzzy
+msgid "Hide Slider"
+msgstr "অ্যানিমেশনের নোড"
+
+#: editor/gui/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Zoom"
+msgstr "সম্প্রসারিত করুন (জুম্ ইন)"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp
@@ -2927,14 +3056,6 @@ msgid "Fix Silhouette"
 msgstr ""
 
 #: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-#: platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/3d/joint_3d.cpp
-#: servers/rendering_server.cpp
-msgid "Enable"
-msgstr "সক্রিয় করুন"
-
-#: editor/import/post_import_plugin_skeleton_rest_fixer.cpp
 #: scene/2d/light_2d.cpp scene/gui/control.cpp scene/main/canvas_item.cpp
 #: scene/resources/material.cpp scene/resources/sky_material.cpp
 #: servers/rendering_server.cpp
@@ -3129,11 +3250,13 @@ msgid "NavMesh"
 msgstr "মেস"
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
 #, fuzzy
 msgid "Body Type"
 msgstr "ধরণ"
 
 #: editor/import/resource_importer_scene.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #, fuzzy
 msgid "Shape Type"
 msgstr "ধরণ পরিবর্তন করুন"
@@ -3154,34 +3277,34 @@ msgstr "অ্যানিমেশনের সিদ্ধান্তসম�
 msgid "Precision"
 msgstr "অভিব্যক্তি (Expression) পরিবর্তন করুন"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Max Concavity"
 msgstr "পলিগন সরান"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Symmetry Planes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Revolution Axes Clipping Bias"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Min Volume per Convex Hull"
 msgstr ""
 
 #: editor/import/resource_importer_scene.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Resolution"
 msgstr "নির্বাচিত সমূহের আকার পরিবর্তন করুন"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Max Num Vertices per Convex Hull"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 msgid "Plane Downsampling"
 msgstr ""
 
@@ -3189,7 +3312,7 @@ msgstr ""
 msgid "Convexhull Downsampling"
 msgstr ""
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Normalize Mesh"
 msgstr "ফরম্যাট"
@@ -3199,12 +3322,12 @@ msgstr "ফরম্যাট"
 msgid "Convexhull Approximation"
 msgstr "অ্যানিমেশন অপসারণ করুন"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Max Convex Hulls"
 msgstr "পলিগন সরান"
 
-#: editor/import/resource_importer_scene.cpp
+#: editor/import/resource_importer_scene.cpp scene/resources/mesh.cpp
 #, fuzzy
 msgid "Project Hull Vertices"
 msgstr "প্রজেক্ট ফাউন্ডার"
@@ -3215,17 +3338,20 @@ msgid "Primitive"
 msgstr "এক্সপোর্ট মোড:"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
-#: scene/2d/light_2d.cpp scene/resources/capsule_shape_2d.cpp
-#: scene/resources/capsule_shape_3d.cpp scene/resources/cylinder_shape_3d.cpp
-#: scene/resources/environment.cpp scene/resources/material.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/primitive_meshes.cpp
-#: scene/resources/texture.cpp
+#: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/resources/capsule_shape_2d.cpp scene/resources/capsule_shape_3d.cpp
+#: scene/resources/cylinder_shape_3d.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/navigation_mesh.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/texture.cpp
 #, fuzzy
 msgid "Height"
 msgstr "ডান"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/extensions/physics/gltf_collider.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -3239,8 +3365,8 @@ msgid "Radius"
 msgstr "ব্যাসার্ধ:"
 
 #: editor/import/resource_importer_scene.cpp
-#: editor/plugins/node_3d_editor_gizmos.cpp scene/2d/light_occluder_2d.cpp
-#: scene/3d/occluder_instance_3d.cpp
+#: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
+#: scene/2d/light_occluder_2d.cpp scene/3d/occluder_instance_3d.cpp
 #, fuzzy
 msgid "Occluder"
 msgstr "Poly সম্পাদন করুন"
@@ -3344,6 +3470,10 @@ msgstr "সর্বোচ্চ কৌণিক ভুল/সমস্যা
 #, fuzzy
 msgid "Max Precision Error"
 msgstr "সর্বোচ্চ রৈখিক ভুল/সমস্যা:"
+
+#: editor/import/resource_importer_scene.cpp
+msgid "Page Size"
+msgstr "পাতা"
 
 #: editor/import/resource_importer_scene.cpp
 #, fuzzy
@@ -3558,6 +3688,7 @@ msgid "Trim"
 msgstr ""
 
 #: editor/import/resource_importer_wav.cpp modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_3d.cpp
 #, fuzzy
 msgid "Normalize"
 msgstr "ফরম্যাট"
@@ -3624,71 +3755,71 @@ msgstr "পথের বিন্দু অপসারণ করুন"
 msgid "Error"
 msgstr "সমস্যা/ভুল"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
 msgid "Stream Player 3D"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/camera_3d_gizmo_plugin.cpp
 #: modules/gltf/structures/gltf_node.cpp
 #: platform/macos/export/export_plugin.cpp
 #: scene/resources/default_theme/default_theme.cpp servers/rendering_server.cpp
 msgid "Camera"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Visibility Notifier"
+#: editor/plugins/gizmos/decal_gizmo_plugin.cpp
+msgid "Decal"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/fog_volume_gizmo_plugin.cpp
+#, fuzzy
+msgid "Fog Volume"
+msgstr "আয়তন"
+
+#: editor/plugins/gizmos/gpu_particles_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particles"
 msgstr "ভারটেক্স"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Attractor"
 msgstr "ভারটেক্স"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/gpu_particles_collision_3d_gizmo_plugin.cpp
 #, fuzzy
 msgid "Particle Collision"
 msgstr "মধ্য বোতাম"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-#, fuzzy
-msgid "Reflection Probe"
-msgstr "গুণাগুণ/বৈশিষ্ট্য বাছাই করুন"
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Decal"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body A"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp servers/rendering_server.cpp
-msgid "Voxel GI"
+#: editor/plugins/gizmos/joint_3d_gizmo_plugin.cpp
+msgid "Joint Body B"
 msgstr ""
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_gi_gizmo_plugin.cpp
 #, fuzzy
 msgid "Lightmap Lines"
 msgstr "লাইট্ম্যাপে হস্তান্তর করুন:"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/lightmap_probe_gizmo_plugin.cpp
 #, fuzzy
 msgid "Lightprobe Lines"
 msgstr "ডান দর্শন"
 
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body A"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
-msgid "Joint Body B"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_gizmos.cpp
+#: editor/plugins/gizmos/reflection_probe_gizmo_plugin.cpp
 #, fuzzy
-msgid "Fog Volume"
-msgstr "আয়তন"
+msgid "Reflection Probe"
+msgstr "গুণাগুণ/বৈশিষ্ট্য বাছাই করুন"
+
+#: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
+msgid "Visibility Notifier"
+msgstr ""
+
+#: editor/plugins/gizmos/voxel_gi_gizmo_plugin.cpp servers/rendering_server.cpp
+msgid "Voxel GI"
+msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Manipulator Gizmo Size"
@@ -3784,19 +3915,6 @@ msgstr "সাধারণ/ডিফল্ট"
 #, fuzzy
 msgid "Bone Shape"
 msgstr "নোডের নাম:"
-
-#: editor/plugins/text_shader_editor.cpp
-#, fuzzy
-msgid "Shader Language"
-msgstr "এডিটরের লেআউট/নকশা"
-
-#: editor/plugins/text_shader_editor.cpp modules/gdscript/gdscript.cpp
-msgid "Warnings"
-msgstr "সতর্কতা"
-
-#: editor/plugins/text_shader_editor.cpp
-msgid "Treat Warnings as Errors"
-msgstr ""
 
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: editor/plugins/tiles/tile_set_scenes_collection_source_editor.cpp
@@ -3947,6 +4065,11 @@ msgstr ""
 
 #: editor/scene_tree_dock.cpp
 #, fuzzy
+msgid "Ask Before Deleting Related Animation Tracks"
+msgstr "অ্যানিমেশন পুনঃনামকরণ করুন"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid "Use Favorites Root Selection"
 msgstr "নির্বাচনকে ফ্রেমভূক্ত করুন"
 
@@ -4033,7 +4156,7 @@ msgstr ""
 msgid "Threads"
 msgstr ""
 
-#: main/main.cpp
+#: main/main.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Thread Model"
 msgstr "মোড অদলবদল/টগল করুন"
@@ -4155,11 +4278,6 @@ msgstr ""
 #, fuzzy
 msgid "BG Color"
 msgstr "রঙ"
-
-#: main/main.cpp
-#, fuzzy
-msgid "Input Devices"
-msgstr "ডিভাইস/যন্ত্র"
 
 #: main/main.cpp
 #, fuzzy
@@ -4396,8 +4514,9 @@ msgstr ""
 msgid "Polygon"
 msgstr "পলিগন->UV"
 
-#: modules/csg/csg_shape.cpp scene/3d/collision_polygon_3d.cpp
-#: scene/resources/material.cpp scene/resources/primitive_meshes.cpp
+#: modules/csg/csg_shape.cpp modules/noise/noise_texture_3d.cpp
+#: scene/3d/collision_polygon_3d.cpp scene/resources/material.cpp
+#: scene/resources/primitive_meshes.cpp
 #: servers/audio/effects/audio_effect_phaser.cpp
 msgid "Depth"
 msgstr "গভীরতা"
@@ -4496,6 +4615,10 @@ msgstr "সংরক্ষিত ফাইল:"
 msgid "Max Call Stack"
 msgstr ""
 
+#: modules/gdscript/gdscript.cpp servers/rendering_server.cpp
+msgid "Warnings"
+msgstr "সতর্কতা"
+
 #: modules/gdscript/gdscript.cpp
 msgid "Exclude Addons"
 msgstr ""
@@ -4583,6 +4706,47 @@ msgstr "স্কেলার অপারেটর পরিবর্তন ক
 #: modules/gltf/extensions/gltf_spec_gloss.cpp
 msgid "Spec Gloss Img"
 msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+msgid "Is Trigger"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Mesh Index"
+msgstr "ইন্ডেক্স:"
+
+#: modules/gltf/extensions/physics/gltf_collider.cpp
+#, fuzzy
+msgid "Importer Mesh"
+msgstr "এক্সপোর্ট মোড:"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
+#: scene/resources/skeleton_modification_2d_jiggle.cpp
+msgid "Mass"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
+#: servers/xr/xr_pose.cpp
+#, fuzzy
+msgid "Linear Velocity"
+msgstr "বড় হাতের অক্ষরে পরিবর্তনে করুন"
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
+#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
+msgid "Angular Velocity"
+msgstr ""
+
+#: modules/gltf/extensions/physics/gltf_physics_body.cpp
+#, fuzzy
+msgid "Inertia Tensor"
+msgstr "বাম দিকে ফ্রিলুক করুন"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -5159,6 +5323,11 @@ msgstr "অনুবাদসমূহ"
 
 #: modules/multiplayer/multiplayer_synchronizer.cpp
 #, fuzzy
+msgid "Delta Interval"
+msgstr "অনুবাদসমূহ"
+
+#: modules/multiplayer/multiplayer_synchronizer.cpp
+#, fuzzy
 msgid "Visibility Update Mode"
 msgstr "এক্সপোর্ট মোড:"
 
@@ -5188,6 +5357,16 @@ msgstr "সংযোগ"
 #: modules/multiplayer/scene_multiplayer.cpp
 msgid "Server Relay"
 msgstr ""
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Sync Packet Size"
+msgstr "পাতা"
+
+#: modules/multiplayer/scene_multiplayer.cpp
+#, fuzzy
+msgid "Max Delta Packet Size"
+msgstr "দৃশ্য হতে একত্রিত করবেন"
 
 #: modules/noise/fastnoise_lite.cpp
 #, fuzzy
@@ -5273,14 +5452,15 @@ msgstr ""
 msgid "Fractal Gain"
 msgstr "হ্যান্ডেল স্থাপন করুন"
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/line_2d.cpp
-#: scene/3d/label_3d.cpp scene/gui/text_edit.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/line_2d.cpp scene/3d/label_3d.cpp scene/gui/text_edit.cpp
 #: scene/resources/primitive_meshes.cpp scene/resources/text_line.cpp
 #: scene/resources/text_paragraph.cpp scene/resources/texture.cpp
 msgid "Width"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/polygon_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/polygon_2d.cpp
 msgid "Invert"
 msgstr ""
 
@@ -5289,11 +5469,11 @@ msgstr ""
 msgid "In 3D Space"
 msgstr "ড্র কলস"
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Seamless Blend Skirt"
 msgstr ""
 
@@ -5306,13 +5486,14 @@ msgstr "যথেচ্ছ মাপ:"
 msgid "Bump Strength"
 msgstr ""
 
-#: modules/noise/noise_texture_2d.cpp scene/2d/cpu_particles_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/resources/particle_process_material.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Color Ramp"
 msgstr "রঙ"
 
-#: modules/noise/noise_texture_2d.cpp
+#: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
 msgid "Noise"
 msgstr ""
 
@@ -5347,6 +5528,11 @@ msgstr "ইন্টারপোলেশন মোড"
 #, fuzzy
 msgid "Display Refresh Rate"
 msgstr "Wireframe প্রদর্শন"
+
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Render Target Size Multiplier"
+msgstr "টার্গেট"
 
 #: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 #, fuzzy
@@ -6070,6 +6256,11 @@ msgid "rcodesign"
 msgstr "শাখা"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Distribution Type"
+msgstr "চলক/ভেরিয়েবল সম্পাদন করুন:"
+
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Copyright"
@@ -6081,14 +6272,62 @@ msgid "Copyright Localized"
 msgstr "বড় হাতের অক্ষরে পরিবর্তনে করুন"
 
 #: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min macOS Version"
+msgstr "সংস্করণ:"
+
+#: platform/macos/export/export_plugin.cpp
 msgid "High Res"
 msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Xcode"
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Platform Build"
+msgstr "নোড-সমূহ কর্তন/কাট করুন"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Version"
+msgstr "সংস্করণ:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Build"
+msgstr "চালানোর মোড:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "SDK Name"
+msgstr "দৃশ্যের পথ:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Version"
+msgstr "সংস্করণ:"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Xcode Build"
+msgstr "চালানোর মোড:"
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Codesign"
 msgstr "শাখা"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Installer Identity"
+msgstr "বামে মাত্রা দিন"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Apple Team ID"
+msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 #: platform/uwp/export/export_plugin.cpp
@@ -6106,6 +6345,11 @@ msgstr "ভারটেক্স"
 #, fuzzy
 msgid "Certificate Password"
 msgstr "ভারটেক্স"
+
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Provisioning Profile"
+msgstr "বর্তমান দৃশ্য"
 
 #: platform/macos/export/export_plugin.cpp
 #, fuzzy
@@ -6231,10 +6475,6 @@ msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Apple ID Password"
-msgstr ""
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Apple Team ID"
 msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
@@ -7146,13 +7386,6 @@ msgid "Velocity Max"
 msgstr "বড় হাতের অক্ষরে পরিবর্তনে করুন"
 
 #: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
-#: scene/3d/physics_body_3d.cpp scene/resources/particle_process_material.cpp
-#: scene/resources/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp servers/xr/xr_pose.cpp
-msgid "Angular Velocity"
-msgstr ""
-
-#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
 msgid "Velocity Curve"
@@ -7616,7 +7849,9 @@ msgstr "প্রক্রিয়া-পরবর্তী স্ক্রি�
 msgid "Path Metadata Flags"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Avoidance"
 msgstr "অ্যানিমেশনের সিদ্ধান্তসমূহ"
@@ -7636,13 +7871,36 @@ msgid "Max Neighbors"
 msgstr ""
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-msgid "Time Horizon"
-msgstr ""
+#, fuzzy
+msgid "Time Horizon Agents"
+msgstr "সমকোণীয় (Orthogonal)"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Time Horizon Obstacles"
+msgstr "বক্ররেখায় বিন্দু সরান"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Max Speed"
 msgstr "গতি (FPS):"
+
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Avoidance Layers"
+msgstr "সক্রিয় করুন"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Mask"
+msgstr "অ্যানিমেশনের সিদ্ধান্তসমূহ"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Avoidance Priority"
+msgstr "অ্যানিমেশনের নোড"
 
 #: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
 #, fuzzy
@@ -7695,13 +7953,24 @@ msgstr "ভ্রমণ"
 
 #: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
 #, fuzzy
-msgid "Estimate Radius"
-msgstr "Light এর ব্যাসার্ধ পরিবর্তন করুন"
+msgid "Vertices"
+msgstr "ভারটেক্স"
 
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
 msgstr "Navigation Polygon তৈরি করুন"
+
+#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Use Edge Connections"
+msgstr "সংযোগসমূহ সম্পাদন করুন"
+
+#: scene/2d/navigation_region_2d.cpp
+#, fuzzy
+msgid "Constrain Avoidance"
+msgstr "ধ্রুবকসমূহ:"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box.cpp
 msgid "Skew"
@@ -7781,10 +8050,6 @@ msgstr "প্রদেশ/রাজ্য"
 msgid "Cubic Interp"
 msgstr ""
 
-#: scene/2d/path_2d.cpp
-msgid "Lookahead"
-msgstr ""
-
 #: scene/2d/physical_bone_2d.cpp
 #, fuzzy
 msgid "Bone 2D Nodepath"
@@ -7827,11 +8092,6 @@ msgstr "বড় হাতের অক্ষরে পরিবর্তনে �
 #, fuzzy
 msgid "Sync to Physics"
 msgstr "স্থির/বদ্ধ ফ্রেম %"
-
-#: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
-#: scene/resources/skeleton_modification_2d_jiggle.cpp
-msgid "Mass"
-msgstr ""
 
 #: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
 #, fuzzy
@@ -8116,11 +8376,6 @@ msgstr ""
 #, fuzzy
 msgid "Frame Coords"
 msgstr "ফ্রেম %"
-
-#: scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp scene/resources/texture.cpp
-#, fuzzy
-msgid "Region"
-msgstr "চালানোর মোড:"
 
 #: scene/2d/sprite_2d.cpp
 #, fuzzy
@@ -8786,6 +9041,12 @@ msgstr "বড় হাতের অক্ষর"
 msgid "Autowrap Mode"
 msgstr "স্বয়ংক্রিয়-লোড"
 
+#: scene/3d/label_3d.cpp scene/gui/label.cpp
+#: scene/resources/primitive_meshes.cpp scene/resources/text_paragraph.cpp
+#, fuzzy
+msgid "Justification Flags"
+msgstr "যথেচ্ছ ঘূর্ণায়ন:"
+
 #: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/graph_node.cpp
 #: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
 #: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
@@ -9015,12 +9276,14 @@ msgid "Surface Material Override"
 msgstr "ওভাররাইড..."
 
 #: scene/3d/navigation_agent_3d.cpp
-msgid "Agent Height Offset"
-msgstr ""
+#, fuzzy
+msgid "Path Height Offset"
+msgstr "গ্রিডের অফসেট/ভারসাম্য:"
 
-#: scene/3d/navigation_agent_3d.cpp
-msgid "Ignore Y"
-msgstr ""
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Use 3D Avoidance"
+msgstr "অ্যানিমেশনের সিদ্ধান্তসমূহ"
 
 #: scene/3d/navigation_region_3d.cpp scene/resources/mesh_library.cpp
 #, fuzzy
@@ -9075,6 +9338,10 @@ msgstr "ঘূর্ণায়ন মোড"
 #, fuzzy
 msgid "Rotation Mode"
 msgstr "ঘূর্ণায়ন মোড"
+
+#: scene/3d/path_3d.cpp
+msgid "Use Model Front"
+msgstr ""
 
 #: scene/3d/path_3d.cpp
 #, fuzzy
@@ -9271,13 +9538,6 @@ msgstr "রৈখিক/লিনিয়ার"
 msgid "Angular Damp Mode"
 msgstr "অ্যানিমেশন"
 
-#: scene/3d/physics_body_3d.cpp scene/resources/tile_set.cpp
-#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
-#: servers/xr/xr_pose.cpp
-#, fuzzy
-msgid "Linear Velocity"
-msgstr "বড় হাতের অক্ষরে পরিবর্তনে করুন"
-
 #: scene/3d/ray_cast_3d.cpp scene/3d/shape_cast_3d.cpp
 #, fuzzy
 msgid "Debug Shape"
@@ -9342,7 +9602,7 @@ msgstr "মূল নোডের নাম:"
 msgid "Tip Bone"
 msgstr "বোন্‌/হাড় তৈরি করুন"
 
-#: scene/3d/skeleton_ik_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
 #, fuzzy
 msgid "Interpolation"
 msgstr "ইন্টারপোলেশন মোড"
@@ -9639,8 +9899,18 @@ msgstr "X-ফেড/বিলীন সময় (সেঃ):"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
+msgid "Fadein Curve"
+msgstr "বক্ররেখা বন্ধ করুন"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
 msgid "Fadeout Time"
 msgstr "X-ফেড/বিলীন সময় (সেঃ):"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Fadeout Curve"
+msgstr "বক্ররেখা বন্ধ করুন"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -9696,12 +9966,22 @@ msgstr "প্রক্রিয়া/অ্যাকশন"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
+msgid "Internal Active"
+msgstr "পরিপ্রেক্ষিত (Perspective)"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
 msgid "Add Amount"
 msgstr "পরিমাণ:"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
 msgid "Blend Amount"
+msgstr "পরিমাণ:"
+
+#: scene/animation/animation_blend_tree.h
+#, fuzzy
+msgid "Sub Amount"
 msgstr "পরিমাণ:"
 
 #: scene/animation/animation_blend_tree.h
@@ -9756,6 +10036,16 @@ msgstr "অ্যানিমেশন"
 #, fuzzy
 msgid "Expression"
 msgstr "অভিব্যক্তি (Expression) পরিবর্তন করুন"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "State Machine Type"
+msgstr "চলক/ভেরিয়েবল সম্পাদন করুন:"
+
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Reset Ends"
+msgstr "সম্প্রসারন/সংকোচন অপসারণ করুন (রিসেট জুম্)"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -9897,6 +10187,10 @@ msgstr "অরিজিন দেখুন"
 msgid "Button Shortcut Feedback Highlight Time"
 msgstr "শর্টকাটসমূহ"
 
+#: scene/gui/base_button.cpp
+msgid "Allow Unpress"
+msgstr ""
+
 #: scene/gui/button.cpp
 #, fuzzy
 msgid "Text Behavior"
@@ -9921,6 +10215,11 @@ msgstr "বিচ্ছেদ:"
 #, fuzzy
 msgid "Icon Alignment"
 msgstr "সমকোণীয় (Orthogonal)"
+
+#: scene/gui/button.cpp
+#, fuzzy
+msgid "Vertical Icon Alignment"
+msgstr "দ্রুত ফাইলসমূহ ফিল্টার করুন..."
 
 #: scene/gui/button.cpp
 #, fuzzy
@@ -10378,7 +10677,7 @@ msgstr ""
 msgid "Select Mode"
 msgstr "মোড (Mode) বাছাই করুন"
 
-#: scene/gui/item_list.cpp scene/gui/tree.cpp
+#: scene/gui/item_list.cpp scene/gui/option_button.cpp scene/gui/tree.cpp
 #, fuzzy
 msgid "Allow Reselect"
 msgstr "সম্প্রসারন/সংকোচন অপসারণ করুন (রিসেট জুম্)"
@@ -10387,6 +10686,11 @@ msgstr "সম্প্রসারন/সংকোচন অপসারণ ক
 #, fuzzy
 msgid "Allow RMB Select"
 msgstr "সব সিলেক্ট করুন"
+
+#: scene/gui/item_list.cpp scene/gui/popup_menu.cpp scene/gui/tree.cpp
+#, fuzzy
+msgid "Allow Search"
+msgstr "অনুসন্ধান করুন"
 
 #: scene/gui/item_list.cpp
 msgid "Max Text Lines"
@@ -10433,6 +10737,10 @@ msgstr "সন্মুখ দর্শন"
 #, fuzzy
 msgid "Label Settings"
 msgstr "স্থানীয়করণ"
+
+#: scene/gui/label.cpp
+msgid "Tab Stops"
+msgstr ""
 
 #: scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #, fuzzy
@@ -10627,11 +10935,6 @@ msgstr "নির্বাচিত সমূহ Delete করুন"
 msgid "Submenu Popup Delay"
 msgstr ""
 
-#: scene/gui/popup_menu.cpp
-#, fuzzy
-msgid "Allow Search"
-msgstr "অনুসন্ধান করুন"
-
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
 #, fuzzy
 msgid "Fill Mode"
@@ -10797,6 +11100,16 @@ msgstr "পৃষ্ঠতল পপুলেট করুন"
 
 #: scene/gui/scroll_container.cpp
 #, fuzzy
+msgid "Horizontal Custom Step"
+msgstr "বক্ররেখায় বিন্দু সরান"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
+msgid "Vertical Custom Step"
+msgstr "নোড-সমূহ কর্তন/কাট করুন"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
 msgid "Horizontal Scroll Mode"
 msgstr "সমকোণীয় (Orthogonal)"
 
@@ -10957,6 +11270,11 @@ msgstr "পরীক্ষামূলক উৎস"
 #, fuzzy
 msgid "Draw"
 msgstr "ড্র কলস"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Draw When Editable Disabled"
+msgstr "অসমর্থ"
 
 #: scene/gui/text_edit.cpp
 msgid "Move on Right Click"
@@ -11215,6 +11533,31 @@ msgstr ""
 #: scene/main/node.cpp
 msgid "Node Name Casing"
 msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Physics Priority"
+msgstr "এক্সপোর্ট মোড:"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Thread Group"
+msgstr "মোড অদলবদল/টগল করুন"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group"
+msgstr "গ্রুপ"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Group Order"
+msgstr "গ্রিডের পদক্ষেপ:"
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Messages"
+msgstr "স্ক্রিপ্টের পরিবর্তনসমূহ সুসংগত/সমন্বয় করুন"
 
 #: scene/main/node.cpp
 #, fuzzy
@@ -11912,6 +12255,11 @@ msgstr "বিচ্ছেদ:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Icon Max Width"
+msgstr "নির্বাচিত সমূহ অপসারণ করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Underline Spacing"
 msgstr "অ্যানিমেশন (Animation) লুপিং"
 
@@ -12201,6 +12549,11 @@ msgstr "অসমর্থ"
 #: scene/resources/default_theme/default_theme.cpp
 msgid "Tick"
 msgstr ""
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Center Grabber"
+msgstr "নির্বাচনকে কেন্দ্রীভূত করুন"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -12597,6 +12950,36 @@ msgstr "গ্রিডের অফসেট/ভারসাম্য:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Scrollbar Margin Left"
+msgstr "হ্যান্ডেল স্থাপন করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Top"
+msgstr "হ্যান্ডেল স্থাপন করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Right"
+msgstr "ডানে মাত্রা দিন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Bottom"
+msgstr "মোড (Mode) বাছাই করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar H Separation"
+msgstr "বিচ্ছেদ:"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar V Separation"
+msgstr "বিচ্ছেদ:"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Icon Margin"
 msgstr "হ্যান্ডেল স্থাপন করুন"
 
@@ -12607,7 +12990,22 @@ msgstr "বিচ্ছেদ:"
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
+msgid "Font Hovered Color"
+msgstr "রঙ  পছন্দ করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered"
+msgstr "প্রিসেট..."
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
 msgid "Tab Selected"
+msgstr "নির্বাচন করুন"
+
+#: scene/resources/default_theme/default_theme.cpp
+#, fuzzy
+msgid "Tab Hovered"
 msgstr "নির্বাচন করুন"
 
 #: scene/resources/default_theme/default_theme.cpp
@@ -12688,6 +13086,10 @@ msgstr "বাম দর্শন"
 #, fuzzy
 msgid "Label Width"
 msgstr "বাম দর্শন"
+
+#: scene/resources/default_theme/default_theme.cpp
+msgid "Center Slider Grabbers"
+msgstr ""
 
 #: scene/resources/default_theme/default_theme.cpp
 #, fuzzy
@@ -13301,8 +13703,9 @@ msgid "Font Stretch"
 msgstr "ইন্টারপোলেশন মোড"
 
 #: scene/resources/gradient.cpp
-msgid "Interpolation Mode"
-msgstr "ইন্টারপোলেশন মোড"
+#, fuzzy
+msgid "Color Space"
+msgstr "থিম এডিট করুন..."
 
 #: scene/resources/gradient.cpp
 #, fuzzy
@@ -13593,6 +13996,16 @@ msgstr ""
 #, fuzzy
 msgid "Pixel Range"
 msgstr "পিক্সেল স্ন্যাপ"
+
+#: scene/resources/mesh.cpp
+#, fuzzy
+msgid "Convex Hull Downsampling"
+msgstr "পলিগন সরান"
+
+#: scene/resources/mesh.cpp
+#, fuzzy
+msgid "Convex Hull Approximation"
+msgstr "অ্যানিমেশন অপসারণ করুন"
 
 #: scene/resources/mesh.cpp
 #, fuzzy
@@ -14240,11 +14653,6 @@ msgstr "নোড-সমূহ কর্তন/কাট করুন"
 #, fuzzy
 msgid "Break Flags"
 msgstr "সেল (Cell)-এর আকার:"
-
-#: scene/resources/text_paragraph.cpp
-#, fuzzy
-msgid "Justification Flags"
-msgstr "যথেচ্ছ ঘূর্ণায়ন:"
 
 #: scene/resources/texture.cpp
 #, fuzzy
@@ -14965,6 +15373,14 @@ msgid "Default Link Connection Radius"
 msgstr "সংযোগসমূহ সম্পাদন করুন"
 
 #: servers/navigation_server_3d.cpp
+msgid "Avoidance Use Multiple Threads"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Edge Connection Color"
 msgstr "সংযোগসমূহ সম্পাদন করুন"
@@ -15052,6 +15468,45 @@ msgstr "সংযোগসমূহ সম্পাদন করুন"
 #, fuzzy
 msgid "Agent Path Point Size"
 msgstr "সন্মুখ দর্শন"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agents Radius Color"
+msgstr "পথ প্রতিলিপি/কপি করুন"
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agents Radius"
+msgstr "সম্পাদনযোগ্য অংশীদারীসমূহ"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Obstacles Radius"
+msgstr "Light এর ব্যাসার্ধ পরিবর্তন করুন"
+
+#: servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr ""
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -15342,6 +15797,11 @@ msgstr ""
 #: servers/rendering/shader_types.cpp
 msgid "Alpha to Coverage and One"
 msgstr ""
+
+#: servers/rendering/shader_types.cpp
+#, fuzzy
+msgid "Debug Shadow Splits"
+msgstr "ডিবাগার"
 
 #: servers/rendering/shader_types.cpp
 #, fuzzy
@@ -15741,6 +16201,15 @@ msgstr ""
 #, fuzzy
 msgid "Shaders"
 msgstr "শেডার"
+
+#: servers/rendering_server.cpp
+#, fuzzy
+msgid "Shader Language"
+msgstr "এডিটরের লেআউট/নকশা"
+
+#: servers/rendering_server.cpp
+msgid "Treat Warnings as Errors"
+msgstr ""
 
 #: servers/xr/xr_interface.cpp
 msgid "Is Primary"
