@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\\n"
 
 """
-# Some strings used by make_rst.py are normally part of the editor translations,
+# Some strings used by `doc/tools/make_rst.py` (godotengine/godot repo) are normally part of the editor translations,
 # so we need to include them manually here for the online docs.
 BASE_STRINGS = [
     "Description",
@@ -55,6 +55,7 @@ BASE_STRINGS = [
     "This method is used to construct a type.",
     "This method doesn't need an instance to be called, so it can be called directly using the class name.",
     "This method describes a valid operator to use with this type as left-hand operand.",
+    "This value is an integer composed as a bitmask of the following flags.",
 ]
 
 ## <xml-line-number-hack from="https://stackoverflow.com/a/36430270/10846399">
