@@ -193,7 +193,7 @@ msgstr "窗口"
 #: core/config/project_settings.cpp core/math/a_star_grid_2d.cpp
 #: editor/editor_settings.cpp editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
-#: modules/gltf/extensions/physics/gltf_collider.cpp
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/gridmap/grid_map.cpp scene/3d/camera_3d.cpp scene/3d/decal.cpp
 #: scene/3d/fog_volume.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/3d/light_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -902,6 +902,7 @@ msgid "Offset"
 msgstr "偏移"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
+#: scene/resources/navigation_polygon.cpp
 msgid "Cell Size"
 msgstr "单元格大小"
 
@@ -1125,23 +1126,6 @@ msgstr "请求超时"
 msgid "Sync Breakpoints"
 msgstr "同步断点"
 
-#: editor/debugger/editor_debugger_node.cpp editor/debugger/editor_profiler.cpp
-#: editor/editor_settings.cpp main/main.cpp
-msgid "Debugger"
-msgstr "调试器"
-
-#: editor/debugger/editor_debugger_node.cpp
-msgid "Auto Switch to Remote Scene Tree"
-msgstr "自动切换到远程场景树"
-
-#: editor/debugger/editor_debugger_node.cpp
-msgid "Remote Scene Tree Refresh Interval"
-msgstr "远程场景树刷新间隔"
-
-#: editor/debugger/editor_debugger_node.cpp
-msgid "Remote Inspect Refresh Interval"
-msgstr "远程检查器刷新间隔"
-
 #: editor/debugger/editor_file_server.cpp editor/editor_settings.cpp
 #: modules/gltf/register_types.cpp
 msgid "FileSystem"
@@ -1163,10 +1147,6 @@ msgstr "端口"
 #: platform/windows/export/export_plugin.cpp
 msgid "Password"
 msgstr "密码"
-
-#: editor/debugger/editor_profiler.cpp
-msgid "Profiler Frame Max Functions"
-msgstr "性能分析器帧最大函数数"
 
 #: editor/editor_feature_profile.cpp
 msgid "Default Feature Profile"
@@ -1735,6 +1715,12 @@ msgstr "代码折叠"
 #: editor/editor_settings.cpp
 msgid "Word Wrap"
 msgstr "自动换行"
+
+#: editor/editor_settings.cpp scene/3d/label_3d.cpp scene/gui/label.cpp
+#: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
+#: scene/resources/primitive_meshes.cpp
+msgid "Autowrap Mode"
+msgstr "自动换行模式"
 
 #: editor/editor_settings.cpp
 msgid "Whitespace"
@@ -2318,9 +2304,29 @@ msgstr "远程主机"
 msgid "Editor TLS Certificates"
 msgstr "编辑器 TLS 证书"
 
+#: editor/editor_settings.cpp main/main.cpp
+msgid "Debugger"
+msgstr "调试器"
+
+#: editor/editor_settings.cpp
+msgid "Auto Switch to Remote Scene Tree"
+msgstr "自动切换到远程场景树"
+
 #: editor/editor_settings.cpp
 msgid "Profiler Frame History Size"
 msgstr "性能分析器帧历史大小"
+
+#: editor/editor_settings.cpp
+msgid "Profiler Frame Max Functions"
+msgstr "性能分析器帧最大函数数"
+
+#: editor/editor_settings.cpp
+msgid "Remote Scene Tree Refresh Interval"
+msgstr "远程场景树刷新间隔"
+
+#: editor/editor_settings.cpp
+msgid "Remote Inspect Refresh Interval"
+msgstr "远程检查器刷新间隔"
 
 #: editor/editor_settings.cpp
 msgid "HTTP Proxy"
@@ -2514,7 +2520,8 @@ msgstr "发布"
 
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/macos/export/export_plugin.cpp
-msgid "Export Console Script"
+#, fuzzy
+msgid "Export Console Wrapper"
 msgstr "导出命令行脚本"
 
 #: editor/export/editor_export_platform_pc.cpp
@@ -2951,7 +2958,7 @@ msgid "Body Type"
 msgstr "实体类型"
 
 #: editor/import/resource_importer_scene.cpp
-#: modules/gltf/extensions/physics/gltf_collider.cpp
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 msgid "Shape Type"
 msgstr "形状类型"
 
@@ -3022,7 +3029,7 @@ msgid "Primitive"
 msgstr "图元"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
-#: modules/gltf/extensions/physics/gltf_collider.cpp
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
 #: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
@@ -3034,7 +3041,7 @@ msgid "Height"
 msgstr "高度"
 
 #: editor/import/resource_importer_scene.cpp modules/csg/csg_shape.cpp
-#: modules/gltf/extensions/physics/gltf_collider.cpp
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
@@ -3705,6 +3712,10 @@ msgid "GL Compatibility"
 msgstr "GL 兼容性"
 
 #: main/main.cpp
+msgid "Nvidia Disable Threaded Optimization"
+msgstr ""
+
+#: main/main.cpp
 msgid "Renderer"
 msgstr "渲染器"
 
@@ -3953,6 +3964,10 @@ msgstr "程序集名称"
 #: main/main.cpp modules/mono/csharp_script.cpp
 msgid "Solution Directory"
 msgstr "解决方案目录"
+
+#: main/main.cpp modules/mono/csharp_script.cpp
+msgid "Assembly Reload Attempts"
+msgstr ""
 
 #: modules/csg/csg_shape.cpp
 msgid "Operation"
@@ -4227,18 +4242,6 @@ msgstr "镜面反射系数"
 msgid "Spec Gloss Img"
 msgstr "高光光泽图像"
 
-#: modules/gltf/extensions/physics/gltf_collider.cpp
-msgid "Is Trigger"
-msgstr "是否为触发器"
-
-#: modules/gltf/extensions/physics/gltf_collider.cpp
-msgid "Mesh Index"
-msgstr "网格索引"
-
-#: modules/gltf/extensions/physics/gltf_collider.cpp
-msgid "Importer Mesh"
-msgstr "导入器网格"
-
 #: modules/gltf/extensions/physics/gltf_physics_body.cpp
 #: scene/2d/physics_body_2d.cpp scene/3d/physics_body_3d.cpp
 #: scene/resources/skeleton_modification_2d_jiggle.cpp
@@ -4263,6 +4266,18 @@ msgstr "角速度"
 #: modules/gltf/extensions/physics/gltf_physics_body.cpp
 msgid "Inertia Tensor"
 msgstr "惯性张量"
+
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+msgid "Is Trigger"
+msgstr "是否为触发器"
+
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+msgid "Mesh Index"
+msgstr "网格索引"
+
+#: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+msgid "Importer Mesh"
+msgstr "导入器网格"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -6977,7 +6992,8 @@ msgstr "路径元数据标志"
 msgid "Avoidance"
 msgstr "避障"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 msgid "Avoidance Enabled"
 msgstr "启用避障"
 
@@ -7982,11 +7998,6 @@ msgstr "垂直对齐"
 #: scene/resources/primitive_meshes.cpp
 msgid "Uppercase"
 msgstr "大写"
-
-#: scene/3d/label_3d.cpp scene/gui/label.cpp scene/gui/rich_text_label.cpp
-#: scene/resources/primitive_meshes.cpp
-msgid "Autowrap Mode"
-msgstr "自动换行模式"
 
 #: scene/3d/label_3d.cpp scene/gui/label.cpp
 #: scene/resources/primitive_meshes.cpp scene/resources/text_paragraph.cpp
@@ -13361,6 +13372,11 @@ msgstr "默认边界连接边距"
 #: servers/navigation_server_3d.cpp
 msgid "Default Link Connection Radius"
 msgstr "默认链接连接半径"
+
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Default Cell Height"
+msgstr "默认单元格大小"
 
 #: servers/navigation_server_3d.cpp
 msgid "Avoidance Use Multiple Threads"
