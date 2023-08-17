@@ -17,7 +17,7 @@ update:
 merge:
 	@for po in $(POFILES); do \
 	  echo -e "\nMerging $$po..."; \
-	  msgmerge -w 79 -C $$po $$po $(TEMPLATE) > "$$po".new; \
+	  msgmerge -w 80 -C $$po $$po $(TEMPLATE) > "$$po".new; \
 	  mv -f "$$po".new $$po; \
 	  msgattrib --output-file=$$po --no-obsolete $$po; \
 	done
@@ -42,6 +42,6 @@ export:
 	  incomplete=`expr $$fuzzy_or_untranslated + $$untranslated_maybe`; \
 	  if `awk "BEGIN {exit !($$complete / ($$complete + $$incomplete) > $(MIN_COMPLETION))}"`; then \
 	    echo $$po; \
-	    msgattrib -w 79 --translated --no-fuzzy --no-location $$po | sed -e "/^#\. .*/d" > $$dest/$$po; \
+	    msgattrib -w 80 --translated --no-fuzzy --no-location $$po | sed -e "/^#\. .*/d" > $$dest/$$po; \
 	  fi; \
 	done;
