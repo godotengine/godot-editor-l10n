@@ -207,8 +207,8 @@ with open("editor.pot", "w") as f:
     f.write(main_po)
 
 if os.name == "posix":
-    print("Wrapping template at 79 characters for compatibility with Weblate.")
-    os.system("msgmerge -w79 editor.pot editor.pot > editor.pot.wrap")
+    print("Wrapping template at 80 characters for compatibility with Weblate.")
+    os.system("msgmerge -w80 editor.pot editor.pot > editor.pot.wrap")
     shutil.move("editor.pot.wrap", "editor.pot")
 
 shutil.move("editor.pot", "../editor/editor.pot")

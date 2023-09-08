@@ -281,8 +281,8 @@ def _generate_translation_catalog_file(unique_msgs, output, location_line=False)
 
     ## TODO: what if 'nt'?
     if os.name == "posix":
-        print("Wrapping template at 79 characters for compatibility with Weblate.")
-        os.system("msgmerge -w79 {0} {0} > {0}.wrap".format(output))
+        print("Wrapping template at 80 characters for compatibility with Weblate.")
+        os.system("msgmerge -w80 {0} {0} > {0}.wrap".format(output))
         shutil.move("{}.wrap".format(output), output)
 
 

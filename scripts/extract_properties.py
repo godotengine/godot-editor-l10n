@@ -231,8 +231,8 @@ with open("properties.pot", "w") as f:
     f.write(main_po)
 
 if os.name == "posix":
-    print("Wrapping template at 79 characters for compatibility with Weblate.")
-    os.system("msgmerge -w79 properties.pot properties.pot > properties.pot.wrap")
+    print("Wrapping template at 80 characters for compatibility with Weblate.")
+    os.system("msgmerge -w80 properties.pot properties.pot > properties.pot.wrap")
     shutil.move("properties.pot.wrap", "properties.pot")
 
 shutil.move("properties.pot", "../properties/properties.pot")
