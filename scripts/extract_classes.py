@@ -150,9 +150,6 @@ def _collect_classes_file(path, classes):
     doc = tree.getroot()
 
     if "name" in doc.attrib:
-        if "version" not in doc.attrib:
-            print_error("Version missing from 'doc', file: {}".format(path))
-
         name = doc.attrib["name"]
         if name in classes:
             print_error("Duplicate class {} at path {}".format(name, path))
