@@ -58,7 +58,6 @@ message_patterns = {
         r'RTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
 }
-theme_property_patterns: Dict[re.Pattern[str], ExtractType] = {}
 
 
 def _is_block_translator_comment(translator_line):
@@ -104,12 +103,7 @@ def process_file(f, fname):
     reading_translator_comment = False
     is_block_translator_comment = False
     translator_comment = ""
-    current_group = ""
-    current_subgroup = ""
-
     patterns = message_patterns
-    if os.path.basename(fname) == "default_theme.cpp":
-        patterns = {**message_patterns, **theme_property_patterns}
 
     while l:
 
@@ -141,37 +135,6 @@ def process_file(f, fname):
 
                     if extract_type == ExtractType.TEXT:
                         _add_message(msg, msg_plural, msgctx, location, translator_comment)
-                    elif extract_type == ExtractType.PROPERTY_PATH:
-                        if captures.get("usage") == "PROPERTY_USAGE_NO_EDITOR":
-                            continue
-
-                        if current_subgroup:
-                            if msg.startswith(current_subgroup):
-                                msg = msg[len(current_subgroup) :]
-                            elif current_subgroup.startswith(msg):
-                                pass  # Keep this as-is. See EditorInspector::update_tree().
-                            else:
-                                current_subgroup = ""
-                        elif current_group:
-                            if msg.startswith(current_group):
-                                msg = msg[len(current_group) :]
-                            elif current_group.startswith(msg):
-                                pass  # Keep this as-is. See EditorInspector::update_tree().
-                            else:
-                                current_group = ""
-                                current_subgroup = ""
-
-                        if "." in msg:  # Strip feature tag.
-                            msg = msg.split(".", 1)[0]
-                        for part in msg.split("/"):
-                            _add_message(processor.process_name(part), msg_plural, msgctx, location, translator_comment)
-                    elif extract_type == ExtractType.GROUP:
-                        _add_message(msg, msg_plural, msgctx, location, translator_comment)
-                        current_group = captures["prefix"]
-                        current_subgroup = ""
-                    elif extract_type == ExtractType.SUBGROUP:
-                        _add_message(msg, msg_plural, msgctx, location, translator_comment)
-                        current_subgroup = captures["prefix"]
             translator_comment = ""
 
         l = f.readline()
