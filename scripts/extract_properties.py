@@ -69,8 +69,9 @@ message_patterns = {
     re.compile(r'PNAME\("(?P<message>[^"]+)"\)'): ExtractType.PROPERTY_PATH,
 }
 theme_property_patterns = {
-    re.compile(r'set_(constant|font|font_size|stylebox|color|icon)\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
+    re.compile(r'set_(?P<theme_item>constant|font|font_size|stylebox|color|icon)\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
 }
+class_name_pattern = re.compile(r"^\w+ (?P<class_name>\w+)::\w+\(")
 
 
 def _is_block_translator_comment(translator_line):
@@ -118,12 +119,17 @@ def process_file(f, fname):
     translator_comment = ""
     current_group = ""
     current_subgroup = ""
+    current_class = ""
 
     patterns = message_patterns
     if os.path.basename(fname) == "default_theme.cpp":
         patterns = {**message_patterns, **theme_property_patterns}
 
     while l:
+        # Detect class name.
+        m = class_name_pattern.match(l)
+        if m:
+            current_class = m.group("class_name")
 
         # Detect translator comments.
         if not reading_translator_comment and l.find("TRANSLATORS:") != -1:
@@ -169,6 +175,13 @@ def process_file(f, fname):
                         if "PROPERTY_USAGE_DEFAULT" not in usages and "PROPERTY_USAGE_EDITOR" not in usages:
                             continue
 
+                        property_path = msg
+                        theme_item = captures.get("theme_item")
+                        if theme_item:
+                            if theme_item == "stylebox":
+                                theme_item = "style"
+                            property_path = "theme_overrides_" + theme_item + "/" + property_path
+
                         if current_subgroup:
                             if msg.startswith(current_subgroup):
                                 msg = msg[len(current_subgroup) :]
@@ -188,6 +201,7 @@ def process_file(f, fname):
                         if "." in msg:  # Strip feature tag.
                             msg = msg.split(".", 1)[0]
                         for part in msg.split("/"):
+                            msgctx = processor.get_context(part, property_path, current_class)
                             _add_message(processor.process_name(part), msg_plural, msgctx, location, translator_comment)
                     elif extract_type == ExtractType.GROUP:
                         _add_message(msg, msg_plural, msgctx, location, translator_comment)

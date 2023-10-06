@@ -47,29 +47,32 @@ class ExtractType(enum.IntEnum):
 class PropertyNameProcessor:
     remaps: Dict[str, str] = {}
     stop_words: Set[str] = set()
+    contexts: Dict[str, Dict[str, str]] = {}
 
     # See String::_camelcase_to_underscore().
     capitalize_re = re.compile(r"(?<=\D)(?=\d)|(?<=\d)(?=\D([a-z]|\d))")
 
     def __init__(self):
-        remap_re = re.compile(r'^\t*capitalize_string_remaps\["(?P<from>.+)"\] = (String::utf8\()?"(?P<to>.+)"')
+        remap_re = re.compile(r'^\t*capitalize_string_remaps\["(?P<from>.+)"\] = (String::utf8\(|U)?"(?P<to>.+)"')
         stop_words_re = re.compile(r'^\t*"(?P<word>.+)",')
-        is_inside_stop_words = False
+        contexts_re = re.compile(r'^\t*translation_contexts\["(?P<message>.+)"\]\["(?P<condition>.+)"\] = (String::utf8\(|U)?"(?P<context>.+)"')
         with open("editor/editor_property_name_processor.cpp") as f:
             for line in f:
-                if is_inside_stop_words:
-                    m = stop_words_re.search(line)
-                    if m:
-                        self.stop_words.add(m.group("word"))
-                    else:
-                        is_inside_stop_words = False
-                else:
-                    m = remap_re.search(line)
-                    if m:
-                        self.remaps[m.group("from")] = m.group("to")
+                m = remap_re.search(line)
+                if m:
+                    self.remaps[m.group("from")] = m.group("to")
+                    continue
 
-                if not is_inside_stop_words and not self.stop_words:
-                    is_inside_stop_words = "stop_words = " in line
+                m = stop_words_re.search(line)
+                if m:
+                    self.stop_words.add(m.group("word"))
+                    continue
+
+                m = contexts_re.search(line)
+                if m:
+                    context_map = self.contexts.setdefault(m.group("message"), {})
+                    context_map[m.group("condition")] = m.group("context")
+                    continue
 
     def process_name(self, name: str) -> str:
         # See EditorPropertyNameProcessor::process_name().
@@ -93,6 +96,18 @@ class PropertyNameProcessor:
                 # fmt: on
 
         return " ".join(capitalized_parts)
+
+    def get_context(self, name: str, property: str, klass: str) -> str:
+        # See EditorPropertyNameProcessor::_get_context().
+        if not property and not klass:
+            return ""
+        context_map = self.contexts.get(name)
+        if not context_map:
+            return ""
+        context = context_map.get(property)
+        if not context and klass:
+            context = context_map.get(klass + "::" + property)
+        return context or ""
 
 
 def get_source_files() -> List[str]:
