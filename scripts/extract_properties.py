@@ -180,7 +180,7 @@ def process_file(f, fname):
                         if theme_item:
                             if theme_item == "stylebox":
                                 theme_item = "style"
-                            property_path = "theme_overrides_" + theme_item + "/" + property_path
+                            property_path = "theme_override_" + theme_item + "s/" + property_path
 
                         if current_subgroup:
                             if msg.startswith(current_subgroup):
