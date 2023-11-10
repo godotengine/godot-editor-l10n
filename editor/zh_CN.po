@@ -1437,7 +1437,7 @@ msgid "FPS"
 msgstr "FPS"
 
 #: editor/animation_track_editor.cpp editor/editor_plugin_settings.cpp
-#: editor/editor_resource_picker.cpp
+#: editor/editor_properties.cpp editor/editor_resource_picker.cpp
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #: editor/plugins/script_text_editor.cpp editor/plugins/text_editor.cpp
 #: editor/plugins/text_shader_editor.cpp
@@ -1921,19 +1921,6 @@ msgstr "关闭"
 msgid "Connect"
 msgstr "连接"
 
-#: editor/connections_dialog.cpp editor/editor_help.cpp
-#: editor/editor_inspector.cpp
-msgid "Class:"
-msgstr "类："
-
-#: editor/connections_dialog.cpp
-msgid "Signal:"
-msgstr "信号："
-
-#: editor/connections_dialog.cpp editor/editor_inspector.cpp
-msgid "No description."
-msgstr "无描述。"
-
 #: editor/connections_dialog.cpp
 msgid "Connect '%s' to '%s'"
 msgstr "将 “%s” 连接到 “%s”"
@@ -2023,7 +2010,8 @@ msgstr "这个类被标记为已废弃。"
 msgid "This class is marked as experimental."
 msgstr "这个类被标记为实验性。"
 
-#: editor/create_dialog.cpp editor/property_selector.cpp
+#: editor/create_dialog.cpp editor/editor_build_profile.cpp
+#: editor/editor_feature_profile.cpp editor/property_selector.cpp
 msgid "No description available for %s."
 msgstr "没有针对 %s 的描述。"
 
@@ -2165,8 +2153,9 @@ msgstr "开始"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
-#: editor/debugger/script_editor_debugger.cpp editor/editor_resource_picker.cpp
-#: editor/plugins/tiles/tile_data_editors.cpp editor/scene_tree_dock.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
+#: editor/editor_resource_picker.cpp editor/plugins/tiles/tile_data_editors.cpp
+#: editor/scene_tree_dock.cpp
 #: modules/multiplayer/editor/editor_network_profiler.cpp
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Clear"
@@ -2557,7 +2546,7 @@ msgstr ""
 "仍然要移除吗？（无法撤销。）\n"
 "根据你的文件系统设置，文件可能会被移动至系统回收站，也可能被永久删除。"
 
-#: editor/dependency_editor.cpp
+#: editor/dependency_editor.cpp editor/surface_upgrade_tool.cpp
 msgid "Cannot remove:"
 msgstr "无法移除："
 
@@ -3658,26 +3647,33 @@ msgstr "这个运算符目前没有描述。"
 msgid ""
 "There is currently no description for this method. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "这个方法目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/color]"
-"！"
+msgstr ""
+"这个方法目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/"
+"color]！"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this constructor. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "这个构造函数目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/col"
-"or]！"
+msgstr ""
+"这个构造函数目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/"
+"color]！"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this operator. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "这个运算符目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/color"
-"]！"
+msgstr ""
+"这个运算符目前没有描述。请帮我们[color=$color][url=$url]贡献一个[/url][/"
+"color]！"
 
 #: editor/editor_help.cpp
 msgid "Top"
 msgstr "顶部"
+
+#: editor/editor_help.cpp
+msgid "Class:"
+msgstr "类："
 
 #: editor/editor_help.cpp editor/gui/scene_tree_editor.cpp
 #: editor/script_create_dialog.cpp
@@ -3725,7 +3721,8 @@ msgstr "注意："
 msgid ""
 "There are notable differences when using this API with C#. See [url=%s]C# "
 "API differences to GDScript[/url] for more information."
-msgstr "将此 API 与 C# 一起使用时存在显著差异。有关详细信息，请参阅 [url=%s]C# API "
+msgstr ""
+"将此 API 与 C# 一起使用时存在显著差异。有关详细信息，请参阅 [url=%s]C# API "
 "与 GDScript[/url] 的差异。"
 
 #: editor/editor_help.cpp
@@ -3837,6 +3834,34 @@ msgid "Operator Descriptions"
 msgstr "运算符说明"
 
 #: editor/editor_help.cpp
+#, fuzzy
+msgid "Metadata:"
+msgstr "添加元数据"
+
+#: editor/editor_help.cpp
+msgid "Property:"
+msgstr "属性："
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Method:"
+msgstr "方法"
+
+#: editor/editor_help.cpp
+msgid "Signal:"
+msgstr "信号："
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Theme Item:"
+msgstr "添加主题项目"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "No description available."
+msgstr "没有针对 %s 的描述。"
+
+#: editor/editor_help.cpp
 msgid "%d match."
 msgstr "%d 个匹配。"
 
@@ -3940,10 +3965,6 @@ msgstr "这个成员被标记为已废弃。"
 #: editor/editor_help_search.cpp
 msgid "This member is marked as experimental."
 msgstr "这个成员被标记为实验性。"
-
-#: editor/editor_inspector.cpp
-msgid "Property:"
-msgstr "属性："
 
 #: editor/editor_inspector.cpp
 msgid "Pin Value"
@@ -5273,6 +5294,16 @@ msgid "Assign..."
 msgstr "指定..."
 
 #: editor/editor_properties.cpp
+#, fuzzy
+msgid "Copy as Text"
+msgstr "复制文本"
+
+#: editor/editor_properties.cpp
+#, fuzzy
+msgid "Show Node in Tree"
+msgstr "在父节点中移动"
+
+#: editor/editor_properties.cpp
 msgid "Invalid RID"
 msgstr "无效的 RID"
 
@@ -6000,16 +6031,21 @@ msgid "All presets must have an export path defined for Export All to work."
 msgstr "所有预设必须都定义导出路径，才能进行“全部导出”。"
 
 #: editor/export/project_export.cpp
+msgid "Delete preset '%s'?"
+msgstr "是否删除预设 “%s”？"
+
+#: editor/export/project_export.cpp
 msgid "Resources to exclude:"
 msgstr "排除的资源："
 
 #: editor/export/project_export.cpp
-msgid "Resources to export:"
+#, fuzzy
+msgid "Resources to override export behavior:"
 msgstr "导出的资源："
 
 #: editor/export/project_export.cpp
-msgid "Delete preset '%s'?"
-msgstr "是否删除预设 “%s”？"
+msgid "Resources to export:"
+msgstr "导出的资源："
 
 #: editor/export/project_export.cpp
 msgid "(Inherited)"
@@ -6386,7 +6422,8 @@ msgid "New Inherited Scene"
 msgstr "新建继承场景"
 
 #: editor/filesystem_dock.cpp
-msgid "Set As Main Scene"
+#, fuzzy
+msgid "Set as Main Scene"
 msgstr "设为主场景"
 
 #: editor/filesystem_dock.cpp
@@ -6542,6 +6579,44 @@ msgid "Open in External Program"
 msgstr "在外部程序中打开"
 
 #: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Red"
+msgstr "重做"
+
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Orange"
+msgstr "更改"
+
+#: editor/filesystem_dock.cpp
+msgid "Yellow"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Green"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Teal"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Purple"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Pink"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Gray"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
 msgid "Go to previous selected folder/file."
 msgstr "转到之前选定的文件夹/文件。"
 
@@ -6554,7 +6629,8 @@ msgid "Re-Scan Filesystem"
 msgstr "重新扫描文件系统"
 
 #: editor/filesystem_dock.cpp
-msgid "Toggle Split Mode"
+#, fuzzy
+msgid "Change Split Mode"
 msgstr "切换拆分模式"
 
 #: editor/filesystem_dock.cpp
@@ -8615,6 +8691,11 @@ msgid "Duplicated Animation Name:"
 msgstr "副本动画名称："
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Onion skinning requires a RESET animation."
+msgstr "公证时，代码签名是必选项。"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Play selected animation backwards from current pos. (A)"
 msgstr "从当前位置倒放选中动画（A）"
@@ -8723,10 +8804,6 @@ msgid "Include Gizmos (3D)"
 msgstr "包括小工具（3D）"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Onion Skinning temporarily disabled due to rendering bug."
-msgstr "洋葱皮由于渲染错误而暂时禁用。"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Pin AnimationPlayer"
 msgstr "固定 AnimationPlayer"
 
@@ -8739,16 +8816,16 @@ msgid "Error!"
 msgstr "错误！"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Cross-Animation Blend Times"
+msgstr "跨动画混合时间"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Blend Times:"
 msgstr "混合时间："
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Next (Auto Queue):"
 msgstr "接下来（自动队列）："
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Cross-Animation Blend Times"
-msgstr "跨动画混合时间"
 
 #: editor/plugins/animation_state_machine_editor.cpp
 msgid "Move Node"
@@ -10135,6 +10212,19 @@ msgid ""
 msgstr "启用该选项时，避障对象的形状、半径、速度都将在项目运行时可见。"
 
 #: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid "Debug CanvasItem Redraws"
+msgstr "移动 %d 个 CanvasItem"
+
+#: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid ""
+"When this option is enabled, redraw requests of 2D objects will become "
+"visible (as a short flash) in the running project.\n"
+"This is useful to troubleshoot low processor mode."
+msgstr "启用该选项时，路径节点的曲线资源将在项目运行时可见。"
+
+#: editor/plugins/debugger_editor_plugin.cpp
 msgid "Synchronize Scene Changes"
 msgstr "同步场景修改"
 
@@ -10615,8 +10705,9 @@ msgid "Create Debug Tangents"
 msgstr "创建调试切线"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "Contained Mesh is not of type ArrayMesh."
-msgstr "包含的 Mesh 不是 ArrayMesh 类型。"
+#, fuzzy
+msgid "No mesh to unwrap."
+msgstr "没有可调试的网格。"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid ""
@@ -10638,12 +10729,29 @@ msgid ""
 msgstr "网格无法展开 UV，因为它是从其他文件类型导入的。请先将其唯一化。"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "UV Unwrap failed, mesh may not be manifold?"
-msgstr "UV 展开失败，可能该网格并非流形？"
-
-#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Unwrap UV2"
 msgstr "展开 UV2"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Contained Mesh is not of type ArrayMesh."
+msgstr "包含的 Mesh 不是 ArrayMesh 类型。"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Can't unwrap mesh with blend shapes."
+msgstr "没有打开的场景无法放置节点。"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Only triangles are supported for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Normals are required for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "UV Unwrap failed, mesh may not be manifold?"
+msgstr "UV 展开失败，可能该网格并非流形？"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "No mesh to debug."
@@ -10957,8 +11065,9 @@ msgstr "烘焙导航多边形"
 msgid ""
 "Bakes the NavigationPolygon by first parsing the scene for source geometry "
 "and then creating the navigation polygon vertices and polygons."
-msgstr "烘焙导航多边形，首先解析场景中的来源几何体，然后创建导航多边形的顶点和多边形"
-"。"
+msgstr ""
+"烘焙导航多边形，首先解析场景中的来源几何体，然后创建导航多边形的顶点和多边"
+"形。"
 
 #: editor/plugins/navigation_polygon_editor_plugin.cpp
 msgid "Clear NavigationPolygon"
@@ -12904,12 +13013,14 @@ msgid "LightOccluder2D Preview"
 msgstr "LightOccluder2D 预览"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Can't convert a Sprite2D from a foreign scene."
+#, fuzzy
+msgid "Can't convert a sprite from a foreign scene."
 msgstr "无法从外部场景转换 Sprite2D。"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Sprite2D is empty!"
-msgstr "Sprite2D 为空！"
+#, fuzzy
+msgid "Can't convert an empty sprite to mesh."
+msgstr "无法将使用动画帧的精灵转换为网格。"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
 msgid "Can't convert a sprite using animation frames to mesh."
@@ -14733,8 +14844,9 @@ msgid ""
 "Warning: Modifying a source ID will result in all TileMaps using that source "
 "to reference an invalid source instead. This may result in unexpected data "
 "loss. Change this ID carefully."
-msgstr "警告：修改源 ID 会导致所有使用该源的 TileMap "
-"引用无效的源。可能导致意料之外的数据丢失。请谨慎修改 ID。"
+msgstr ""
+"警告：修改源 ID 会导致所有使用该源的 TileMap 引用无效的源。可能导致意料之外的"
+"数据丢失。请谨慎修改 ID。"
 
 #: editor/plugins/tiles/tile_set_editor.cpp
 msgid "ID: %d"
@@ -17361,7 +17473,8 @@ msgstr "根名称："
 msgid ""
 "When empty, the root node name is derived from the scene name based on the "
 "\"editor/naming/node_name_casing\" project setting."
-msgstr "留空时，根节点名称从场景名称推导，使用项目设置“editor/naming/"
+msgstr ""
+"留空时，根节点名称从场景名称推导，使用项目设置“editor/naming/"
 "node_name_casing”的大小写规则。"
 
 #: editor/scene_create_dialog.cpp
@@ -17529,8 +17642,9 @@ msgid ""
 msgstr "禁用 “editable_instance” 将导致节点的所有属性恢复为其默认值。"
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid ""
-"Enabling \"Load As Placeholder\" will disable \"Editable Children\" and "
+"Enabling \"Load as Placeholder\" will disable \"Editable Children\" and "
 "cause all properties of the node to be reverted to their default."
 msgstr ""
 "开启 “加载为占位符” 将禁用 “子节点可编辑” 并重置该节点的所有属性恢复为其默认"
@@ -17539,6 +17653,11 @@ msgstr ""
 #: editor/scene_tree_dock.cpp
 msgid "Make Local"
 msgstr "转为本地"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Can't toggle unique name for nodes in subscene!"
+msgstr "无法操作外部场景的节点！"
 
 #: editor/scene_tree_dock.cpp
 msgid "Enable Scene Unique Name(s)"
@@ -17661,7 +17780,8 @@ msgid "Editable Children"
 msgstr "子节点可编辑"
 
 #: editor/scene_tree_dock.cpp
-msgid "Load As Placeholder"
+#, fuzzy
+msgid "Load as Placeholder"
 msgstr "加载为占位符"
 
 #: editor/scene_tree_dock.cpp
@@ -18040,6 +18160,40 @@ msgstr "名称“%s”是为着色器语言保留的关键字。"
 msgid "Add Shader Global Parameter"
 msgstr "添加着色器全局参数"
 
+#: editor/surface_upgrade_tool.cpp
+msgid ""
+"This project uses meshes with an outdated mesh format from previous Godot "
+"versions. The engine needs to update the format in order to use those "
+"meshes.\n"
+"\n"
+"Press 'Restart & Upgrade' to run the surface upgrade tool which will update "
+"and re-save all meshes and scenes. This update will restart the editor and "
+"may take several minutes. Upgrading will make the meshes incompatible with "
+"previous versions of Godot.\n"
+"\n"
+"Press 'Upgrade Only' to continue opening the scene as normal. The engine "
+"will update each mesh in memory, but the update will not be saved. Choosing "
+"this option will lead to slower load times every time this project is loaded."
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Restart & Upgrade"
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrade Only"
+msgstr "仅运算符"
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrading All Meshes in Project"
+msgstr "导出项目中的所有资源"
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Attempting to re-save "
+msgstr ""
+
 #: editor/window_wrapper.cpp
 msgid "Make this panel floating in the screen %d."
 msgstr "让这个面板在屏幕 %d 中浮动。"
@@ -18077,6 +18231,11 @@ msgid "Invalid type argument to convert(), use TYPE_* constants."
 msgstr "convert() 的参数类型无效，请使用 TYPE_* 常量。"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot resize array."
+msgstr "调整数组大小..."
+
+#: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Step argument is zero!"
 msgstr "Step 参数为 0！"
 
@@ -18107,6 +18266,11 @@ msgstr "实例字典格式不正确（@path 的脚本无效）"
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Invalid instance dictionary (invalid subclasses)"
 msgstr "实例字典无效（派生类无效）"
+
+#: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot instantiate GDScript class."
+msgstr "实例化脚本"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Value of type '%s' can't provide a length."
@@ -18198,14 +18362,16 @@ msgstr "禁用“.blend”文件导入需要重启编辑器。"
 msgid ""
 "Blend file import is enabled in the project settings, but no Blender path is "
 "configured in the editor settings. Blend files will not be imported."
-msgstr "项目设置中启用了 blend 文件的导入，但是编辑器设置中没有配置 Blender 的路径。"
+msgstr ""
+"项目设置中启用了 blend 文件的导入，但是编辑器设置中没有配置 Blender 的路径。"
 "不会导入 blend 文件。"
 
 #: modules/gltf/register_types.cpp
 msgid ""
 "Blend file import is enabled, but the Blender path doesn't point to an "
 "accessible directory. Blend files will not be imported."
-msgstr "启用了 blend 文件的导入，但是 Blender 路径所指向的目录不可访问。不会导入 "
+msgstr ""
+"启用了 blend 文件的导入，但是 Blender 路径所指向的目录不可访问。不会导入 "
 "blend 文件。"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
@@ -18345,6 +18511,20 @@ msgid "Optimizing acceleration structure"
 msgstr "正在优化加速结构"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid "OIDN denoiser failed, return code: %d"
+msgstr "请求失败，返回代码："
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid ""
+"OIDN denoiser is selected in the project settings, but no or invalid OIDN "
+"executable path is configured in the editor settings."
+msgstr ""
+"项目设置中启用了 blend 文件的导入，但是编辑器设置中没有配置 Blender 的路径。"
+"不会导入 blend 文件。"
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Begin Bake"
 msgstr "开始烘焙"
 
@@ -18365,8 +18545,9 @@ msgid "Integrate indirect lighting"
 msgstr "集成间接光照"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
-msgid "Bounce %d/%d: Integrate indirect lighting %d%%"
-msgstr "反弹 %d/%d：集成间接照明 %d%%"
+#, fuzzy
+msgid "Integrate indirect lighting %d%%"
+msgstr "集成间接光照"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Baking lightprobes"
@@ -18620,7 +18801,8 @@ msgstr "烘焙导航网格"
 msgid ""
 "Bakes the NavigationMesh by first parsing the scene for source geometry and "
 "then creating the navigation mesh vertices and polygons."
-msgstr "烘焙导航网格，首先解析场景中的来源几何体，然后创建导航网格顶点和多边形。"
+msgstr ""
+"烘焙导航网格，首先解析场景中的来源几何体，然后创建导航网格顶点和多边形。"
 
 #: modules/navigation/editor/navigation_mesh_editor_plugin.cpp
 msgid "Clear NavigationMesh"
@@ -18878,6 +19060,11 @@ msgstr "无法在设备上运行。"
 #: platform/android/export/export_plugin.cpp
 msgid "Exporting to Android when using C#/.NET is experimental."
 msgstr "使用 C#/.NET 时导出到 Android 是实验性的。"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Android architecture %s not supported in C# projects."
+msgstr "“%s”着色器尚未支持“hint_depth_texture”。"
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
@@ -19174,18 +19361,14 @@ msgid ""
 msgstr ".ipa 只能在 macOS 上构建。正在离开 Xcode 项目，未构建包。"
 
 #: platform/ios/export/export_plugin.cpp
-msgid ""
-"Exporting to iOS is currently not supported in Godot 4 when using C#/.NET. "
-"Use Godot 3 to target iOS with C#/Mono instead."
-msgstr ""
-"Godot 4 中目前尚不支持使用 C#/.NET 导出到 iOS。要在 iOS 目标上使用 C#/Mono，"
-"请改用 Godot 3。"
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental and requires macOS."
+msgstr "使用 C#/.NET 时导出到 Android 是实验性的。"
 
-#: platform/ios/export/export_plugin.cpp platform/web/export/export_plugin.cpp
-msgid ""
-"If this project does not use C#, use a non-C# editor build to export the "
-"project."
-msgstr "如果这个项目不使用 C#，请使用非 C# 版本的编辑器来导出项目。"
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental."
+msgstr "使用 C#/.NET 时导出到 Android 是实验性的。"
 
 #: platform/ios/export/export_plugin.cpp platform/macos/export/export_plugin.h
 msgid "Identifier is missing."
@@ -19315,6 +19498,17 @@ msgstr "正在上传脚本..."
 msgid "Starting project..."
 msgstr "正在启动项目..."
 
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp scene/gui/file_dialog.cpp
+msgid "All Files"
+msgstr "所有文件"
+
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp
+#, fuzzy
+msgid "Failed to execute file dialogs callback: %s."
+msgstr "打开可执行文件“%s”失败。"
+
 #: platform/macos/export/codesign.cpp
 msgid "Can't get filesystem access."
 msgstr "无法访问文件系统。"
@@ -19420,6 +19614,12 @@ msgid "App sandbox is required for App Store distribution."
 msgstr "App Store 分发时，App 沙盒是必选项。"
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries (GDExtension or .NET)."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Code signing is required for App Store distribution."
 msgstr "App Store 分发时，代码签名是必选项。"
 
@@ -19480,15 +19680,6 @@ msgid ""
 msgstr "已启用照片库访问，但未指定用途描述。"
 
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-msgid "Icon Creation"
-msgstr "图标创建"
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Could not open icon file \"%s\"."
-msgstr "无法打开图标文件“%s”。"
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Notarization"
 msgstr "公证"
 
@@ -19535,12 +19726,6 @@ msgstr "未安装 Xcode 命令行工具。"
 #: platform/macos/export/export_plugin.cpp
 msgid "Could not start xcrun executable."
 msgstr "无法启动 xcrun 可执行文件。"
-
-#: platform/macos/export/export_plugin.cpp
-msgid ""
-"The notarization process generally takes less than an hour. When the process "
-"is completed, you'll receive an email."
-msgstr "公证过程通常少于一个小时。过程结束后，你会收到一封邮件。"
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Built-in CodeSign failed with error \"%s\"."
@@ -19659,6 +19844,12 @@ msgid ""
 msgstr "Ad-hoc 签名的应用需要“Disable Library Validation”授权才能加载动态库。"
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Could not create entitlements file."
 msgstr "无法创建授权文件。"
 
@@ -19763,6 +19954,10 @@ msgid "Could not write file: \"%s\"."
 msgstr "无法写入文件：“%s”。"
 
 #: platform/web/export/export_plugin.cpp
+msgid "Icon Creation"
+msgstr "图标创建"
+
+#: platform/web/export/export_plugin.cpp
 msgid "Could not read file: \"%s\"."
 msgstr "无法读取文件：“%s”。"
 
@@ -19777,6 +19972,12 @@ msgid ""
 msgstr ""
 "Godot 4 中目前尚不支持使用 C#/.NET 导出到 Web。要在 Web 目标上使用 C#/Mono，"
 "请改用 Godot 3。"
+
+#: platform/web/export/export_plugin.cpp
+msgid ""
+"If this project does not use C#, use a non-C# editor build to export the "
+"project."
+msgstr "如果这个项目不使用 C#，请使用非 C# 版本的编辑器来导出项目。"
 
 #: platform/web/export/export_plugin.cpp
 msgid "Could not read HTML shell: \"%s\"."
@@ -20163,6 +20364,18 @@ msgid ""
 "A TileMap layer is set as Y-sorted, but Y-sort is not enabled on the TileMap "
 "node itself."
 msgstr "TileMap 图层设置为 Y 排序，但 TileMap 节点本身未启用 Y 排序。"
+
+#: scene/2d/tile_map.cpp
+#, fuzzy
+msgid ""
+"The TileMap node is set as Y-sorted, but Y-sort is not enabled on any of the "
+"TileMap's layers.\n"
+"This may lead to unwanted behaviors, as a layer that is not Y-sorted will be "
+"Y-sorted as a whole."
+msgstr ""
+"Y 排序图层与非 Y 排序图层具有相同的 Z 索引值。\n"
+"这可能会导致不需要的行为，因为未按 Y 排序的层将作为一个整体，与来自 Y 排序层"
+"的图块一起进行 Y 排序。"
 
 #: scene/2d/tile_map.cpp
 msgid ""
@@ -20814,10 +21027,6 @@ msgid "You don't have permission to access contents of this folder."
 msgstr "你无权访问此文件夹的内容。"
 
 #: scene/gui/file_dialog.cpp
-msgid "All Files"
-msgstr "所有文件"
-
-#: scene/gui/file_dialog.cpp
 msgid "Invalid extension, or empty filename."
 msgstr "扩展名无效或文件名为空。"
 
@@ -20849,6 +21058,12 @@ msgstr "开关小地图。"
 #: scene/gui/graph_edit.cpp
 msgid "Automatically arrange selected nodes."
 msgstr "自动排列所选节点。"
+
+#: scene/gui/label.cpp
+msgid ""
+"Labels with autowrapping enabled must have a custom minimum size configured "
+"to work correctly inside a container."
+msgstr ""
 
 #: scene/gui/label.cpp
 msgid ""
@@ -21372,10 +21587,6 @@ msgstr "Varying“%s”必须先在“vertex”或“fragment”函数中赋值�
 #: servers/rendering/shader_language.cpp
 msgid "Varying '%s' cannot be passed for the '%s' parameter in that context."
 msgstr "Varying“%s”在该上下文中无法作为“%s”参数传递。"
-
-#: servers/rendering/shader_language.cpp
-msgid "A constant value cannot be passed for '%s' parameter."
-msgstr "常量值不能作为“%s”参数传递。"
 
 #: servers/rendering/shader_language.cpp
 msgid ""

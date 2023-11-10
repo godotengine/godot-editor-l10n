@@ -1443,7 +1443,7 @@ msgid "FPS"
 msgstr "FPS"
 
 #: editor/animation_track_editor.cpp editor/editor_plugin_settings.cpp
-#: editor/editor_resource_picker.cpp
+#: editor/editor_properties.cpp editor/editor_resource_picker.cpp
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #: editor/plugins/script_text_editor.cpp editor/plugins/text_editor.cpp
 #: editor/plugins/text_shader_editor.cpp
@@ -1934,19 +1934,6 @@ msgstr "Zamknij"
 msgid "Connect"
 msgstr "Połącz"
 
-#: editor/connections_dialog.cpp editor/editor_help.cpp
-#: editor/editor_inspector.cpp
-msgid "Class:"
-msgstr "Klasa:"
-
-#: editor/connections_dialog.cpp
-msgid "Signal:"
-msgstr "Sygnał:"
-
-#: editor/connections_dialog.cpp editor/editor_inspector.cpp
-msgid "No description."
-msgstr "Brak opisu."
-
 #: editor/connections_dialog.cpp
 msgid "Connect '%s' to '%s'"
 msgstr "Połącz '%s' z '%s'"
@@ -2036,7 +2023,8 @@ msgstr "Ta klasa jest oznaczona jako przestarzała."
 msgid "This class is marked as experimental."
 msgstr "Ta klasa jest oznaczona jako eksperymentalna."
 
-#: editor/create_dialog.cpp editor/property_selector.cpp
+#: editor/create_dialog.cpp editor/editor_build_profile.cpp
+#: editor/editor_feature_profile.cpp editor/property_selector.cpp
 msgid "No description available for %s."
 msgstr "Brak dostępnego opisu dla %s."
 
@@ -2178,8 +2166,9 @@ msgstr "Start"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
-#: editor/debugger/script_editor_debugger.cpp editor/editor_resource_picker.cpp
-#: editor/plugins/tiles/tile_data_editors.cpp editor/scene_tree_dock.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
+#: editor/editor_resource_picker.cpp editor/plugins/tiles/tile_data_editors.cpp
+#: editor/scene_tree_dock.cpp
 #: modules/multiplayer/editor/editor_network_profiler.cpp
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Clear"
@@ -2575,7 +2564,7 @@ msgstr ""
 "W zależności od konfiguracji systemu plików, te pliki zostaną przeniesione "
 "do kosza albo usunięte na stałe."
 
-#: editor/dependency_editor.cpp
+#: editor/dependency_editor.cpp editor/surface_upgrade_tool.cpp
 msgid "Cannot remove:"
 msgstr "Nie można usunąć:"
 
@@ -3697,28 +3686,32 @@ msgid ""
 "There is currently no description for this method. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"Obecnie nie ma opisu dla tej metody. Proszę pomóż nam "
-"[color=$color][url=$url]wysyłając go[/url][/color]!"
+"Obecnie nie ma opisu dla tej metody. Proszę pomóż nam [color=$color]"
+"[url=$url]wysyłając go[/url][/color]!"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this constructor. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"Obecnie nie ma opisu dla tego konstruktora. Proszę pomóż nam "
-"[color=$color][url=$url]wysyłając go[/url][/color]!"
+"Obecnie nie ma opisu dla tego konstruktora. Proszę pomóż nam [color=$color]"
+"[url=$url]wysyłając go[/url][/color]!"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this operator. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"Obecnie nie ma opisu dla tego operatora. Pomóż nam, [color=$color][url=$url]"
-"wysyłając go[/url][/color]!"
+"Obecnie nie ma opisu dla tego operatora. Pomóż nam, [color=$color]"
+"[url=$url]wysyłając go[/url][/color]!"
 
 #: editor/editor_help.cpp
 msgid "Top"
 msgstr "Góra"
+
+#: editor/editor_help.cpp
+msgid "Class:"
+msgstr "Klasa:"
 
 #: editor/editor_help.cpp editor/gui/scene_tree_editor.cpp
 #: editor/script_create_dialog.cpp
@@ -3770,8 +3763,8 @@ msgid ""
 "There are notable differences when using this API with C#. See [url=%s]C# "
 "API differences to GDScript[/url] for more information."
 msgstr ""
-"Istnieją wyraźne różnice kiedy używa się tego API w C#. Zobacz [url=%s]"
-"Różnice API C# i GDScript[/url] po więcej informacji."
+"Istnieją wyraźne różnice kiedy używa się tego API w C#. Zobacz "
+"[url=%s]Różnice API C# i GDScript[/url] po więcej informacji."
 
 #: editor/editor_help.cpp
 msgid "Online Tutorials"
@@ -3882,6 +3875,34 @@ msgid "Operator Descriptions"
 msgstr "Opisy operatorów"
 
 #: editor/editor_help.cpp
+#, fuzzy
+msgid "Metadata:"
+msgstr "Dodaj metadane"
+
+#: editor/editor_help.cpp
+msgid "Property:"
+msgstr "Właściwość:"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Method:"
+msgstr "Metoda"
+
+#: editor/editor_help.cpp
+msgid "Signal:"
+msgstr "Sygnał:"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Theme Item:"
+msgstr "Dodaj element motywu"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "No description available."
+msgstr "Brak dostępnego opisu dla %s."
+
+#: editor/editor_help.cpp
 msgid "%d match."
 msgstr "%d dopasowanie."
 
@@ -3985,10 +4006,6 @@ msgstr "Ten członek jest oznaczony jako przestarzały."
 #: editor/editor_help_search.cpp
 msgid "This member is marked as experimental."
 msgstr "Ten członek jest oznaczony jako eksperymentalny."
-
-#: editor/editor_inspector.cpp
-msgid "Property:"
-msgstr "Właściwość:"
 
 #: editor/editor_inspector.cpp
 msgid "Pin Value"
@@ -5367,6 +5384,16 @@ msgid "Assign..."
 msgstr "Przypisz..."
 
 #: editor/editor_properties.cpp
+#, fuzzy
+msgid "Copy as Text"
+msgstr "Skopiuj tekst"
+
+#: editor/editor_properties.cpp
+#, fuzzy
+msgid "Show Node in Tree"
+msgstr "Przenieś węzeł w nadrzędnym"
+
+#: editor/editor_properties.cpp
 msgid "Invalid RID"
 msgstr "Nieprawidłowy RID"
 
@@ -6111,16 +6138,21 @@ msgstr ""
 "fukcja Eksportuj wszystko działała."
 
 #: editor/export/project_export.cpp
+msgid "Delete preset '%s'?"
+msgstr "Usunąć profil \"%s\"?"
+
+#: editor/export/project_export.cpp
 msgid "Resources to exclude:"
 msgstr "Zasoby do wykluczenia:"
 
 #: editor/export/project_export.cpp
-msgid "Resources to export:"
+#, fuzzy
+msgid "Resources to override export behavior:"
 msgstr "Zasoby do eksportu:"
 
 #: editor/export/project_export.cpp
-msgid "Delete preset '%s'?"
-msgstr "Usunąć profil \"%s\"?"
+msgid "Resources to export:"
+msgstr "Zasoby do eksportu:"
 
 #: editor/export/project_export.cpp
 msgid "(Inherited)"
@@ -6510,7 +6542,8 @@ msgid "New Inherited Scene"
 msgstr "Nowa scena dziedzicząca"
 
 #: editor/filesystem_dock.cpp
-msgid "Set As Main Scene"
+#, fuzzy
+msgid "Set as Main Scene"
 msgstr "Ustaw jako główną scenę"
 
 #: editor/filesystem_dock.cpp
@@ -6666,6 +6699,44 @@ msgid "Open in External Program"
 msgstr "Otwórz w programie zewnętrznym"
 
 #: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Red"
+msgstr "Ponów"
+
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Orange"
+msgstr "Zmień"
+
+#: editor/filesystem_dock.cpp
+msgid "Yellow"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Green"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Teal"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Purple"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Pink"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Gray"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
 msgid "Go to previous selected folder/file."
 msgstr "Przejdź do poprzednio zaznaczonego folderu/pliku."
 
@@ -6678,7 +6749,8 @@ msgid "Re-Scan Filesystem"
 msgstr "Przeskanuj system plików ponownie"
 
 #: editor/filesystem_dock.cpp
-msgid "Toggle Split Mode"
+#, fuzzy
+msgid "Change Split Mode"
 msgstr "Przełącz tryb podziału"
 
 #: editor/filesystem_dock.cpp
@@ -8149,8 +8221,8 @@ msgid ""
 "If left empty, the folder will be named after the plugin name converted to "
 "`snake_case`."
 msgstr ""
-"Opcjonalne. Nazwa folderu powinna generalnie używać nazewnictwa \"snake_case"
-"\" (unikaj spacji i znaków specjalnych).\n"
+"Opcjonalne. Nazwa folderu powinna generalnie używać nazewnictwa "
+"\"snake_case\" (unikaj spacji i znaków specjalnych).\n"
 "Jeśli pozostawiono puste, folder zostanie nazwany po nazwie wtyczki "
 "przekonwertowanej do \"snake_case\"."
 
@@ -8169,7 +8241,8 @@ msgstr "Autor:"
 
 #: editor/plugin_config_dialog.cpp
 msgid "Optional. The author's username, full name, or organization name."
-msgstr "Opcjonalne. Nazwa użytkownika autora, pełne imię lub nazwa organizacji."
+msgstr ""
+"Opcjonalne. Nazwa użytkownika autora, pełne imię lub nazwa organizacji."
 
 #: editor/plugin_config_dialog.cpp
 #: editor/plugins/asset_library_editor_plugin.cpp
@@ -8819,6 +8892,11 @@ msgid "Duplicated Animation Name:"
 msgstr "Nazwa duplikowanej animacji:"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Onion skinning requires a RESET animation."
+msgstr "Podpisywanie kodu jest wymagane dla poświadczenia."
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Play selected animation backwards from current pos. (A)"
 msgstr "Odtwórz zaznaczoną animację od tyłu z aktualnej pozycji. (A)"
@@ -8927,10 +9005,6 @@ msgid "Include Gizmos (3D)"
 msgstr "Dołącz uchwyty (3D)"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Onion Skinning temporarily disabled due to rendering bug."
-msgstr "Tryb warstw cebuli tymczasowo wyłączony z powodu błędu renderowania."
-
-#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Pin AnimationPlayer"
 msgstr "Przypnij AnimationPlayer"
 
@@ -8943,16 +9017,16 @@ msgid "Error!"
 msgstr "Błąd!"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Cross-Animation Blend Times"
+msgstr "Czasy Blendowania Pomiędzy Animacjami"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Blend Times:"
 msgstr "Czasy Blendowania:"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Next (Auto Queue):"
 msgstr "Następny (automatyczna kolejka):"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Cross-Animation Blend Times"
-msgstr "Czasy Blendowania Pomiędzy Animacjami"
 
 #: editor/plugins/animation_state_machine_editor.cpp
 msgid "Move Node"
@@ -10373,6 +10447,21 @@ msgstr ""
 "prędkości będą widoczne w uruchomionym projekcie."
 
 #: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid "Debug CanvasItem Redraws"
+msgstr "Przesuń %d węzłów CanvasItem"
+
+#: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid ""
+"When this option is enabled, redraw requests of 2D objects will become "
+"visible (as a short flash) in the running project.\n"
+"This is useful to troubleshoot low processor mode."
+msgstr ""
+"Jeśli ta opcja jest zaznaczona, zasoby krzywych używane przez węzły ścieżek "
+"będą widoczne w uruchomionym projekcie."
+
+#: editor/plugins/debugger_editor_plugin.cpp
 msgid "Synchronize Scene Changes"
 msgstr "Synchronizuj zmiany na scenie"
 
@@ -10868,8 +10957,9 @@ msgid "Create Debug Tangents"
 msgstr "Utwórz debugowe styczne"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "Contained Mesh is not of type ArrayMesh."
-msgstr "Zawarta siatka nie jest typu ArrayMesh."
+#, fuzzy
+msgid "No mesh to unwrap."
+msgstr "Brak siatki do debugowania."
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid ""
@@ -10896,12 +10986,29 @@ msgstr ""
 "pliku. Uczyń ją najpierw unikalną."
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "UV Unwrap failed, mesh may not be manifold?"
-msgstr "Rozwijanie UV nie powiodło się, siatka modelu może być nieróżnorodna?"
-
-#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Unwrap UV2"
 msgstr "Rozwiń UV2"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Contained Mesh is not of type ArrayMesh."
+msgstr "Zawarta siatka nie jest typu ArrayMesh."
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Can't unwrap mesh with blend shapes."
+msgstr "Nie można upuścić węzłów bez otwartej sceny."
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Only triangles are supported for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Normals are required for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "UV Unwrap failed, mesh may not be manifold?"
+msgstr "Rozwijanie UV nie powiodło się, siatka modelu może być nieróżnorodna?"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "No mesh to debug."
@@ -13197,12 +13304,15 @@ msgid "LightOccluder2D Preview"
 msgstr "Podgląd LightOccluder2D"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Can't convert a Sprite2D from a foreign scene."
+#, fuzzy
+msgid "Can't convert a sprite from a foreign scene."
 msgstr "Nie można przekonwertować Sprite2D z innej sceny."
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Sprite2D is empty!"
-msgstr "Sprite2D jest pusty!"
+#, fuzzy
+msgid "Can't convert an empty sprite to mesh."
+msgstr ""
+"Nie można przekonwertować sprite'a używającego klatek animacji na siatkę."
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
 msgid "Can't convert a sprite using animation frames to mesh."
@@ -17993,8 +18103,9 @@ msgstr ""
 "zostaną przywrócone do domyślnych."
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid ""
-"Enabling \"Load As Placeholder\" will disable \"Editable Children\" and "
+"Enabling \"Load as Placeholder\" will disable \"Editable Children\" and "
 "cause all properties of the node to be reverted to their default."
 msgstr ""
 "Włączenie \"edytowalnej instancji\" sprawi, że wszystkie właściwości węzła "
@@ -18003,6 +18114,11 @@ msgstr ""
 #: editor/scene_tree_dock.cpp
 msgid "Make Local"
 msgstr "Uczyń lokalnym"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Can't toggle unique name for nodes in subscene!"
+msgstr "Nie można operować węzłami z innej sceny!"
 
 #: editor/scene_tree_dock.cpp
 msgid "Enable Scene Unique Name(s)"
@@ -18129,7 +18245,8 @@ msgid "Editable Children"
 msgstr "Edytowalne dzieci"
 
 #: editor/scene_tree_dock.cpp
-msgid "Load As Placeholder"
+#, fuzzy
+msgid "Load as Placeholder"
 msgstr "Wczytaj jako zastępczy"
 
 #: editor/scene_tree_dock.cpp
@@ -18520,6 +18637,40 @@ msgstr "Nazwa \"%s\" jest zarezerwowanym słowem kluczowym języka shaderów."
 msgid "Add Shader Global Parameter"
 msgstr "Dodaj parametr globalny shadera"
 
+#: editor/surface_upgrade_tool.cpp
+msgid ""
+"This project uses meshes with an outdated mesh format from previous Godot "
+"versions. The engine needs to update the format in order to use those "
+"meshes.\n"
+"\n"
+"Press 'Restart & Upgrade' to run the surface upgrade tool which will update "
+"and re-save all meshes and scenes. This update will restart the editor and "
+"may take several minutes. Upgrading will make the meshes incompatible with "
+"previous versions of Godot.\n"
+"\n"
+"Press 'Upgrade Only' to continue opening the scene as normal. The engine "
+"will update each mesh in memory, but the update will not be saved. Choosing "
+"this option will lead to slower load times every time this project is loaded."
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Restart & Upgrade"
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrade Only"
+msgstr "Tylko operatory"
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrading All Meshes in Project"
+msgstr "Eksportuj wszystkie zasoby w projekcie"
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Attempting to re-save "
+msgstr ""
+
 #: editor/window_wrapper.cpp
 msgid "Make this panel floating in the screen %d."
 msgstr "Uczyń ten panel pływającym na ekranie %d."
@@ -18557,6 +18708,11 @@ msgid "Invalid type argument to convert(), use TYPE_* constants."
 msgstr "Niepoprawny typ argumentu funkcji convert(), użyj stałych TYPE_*."
 
 #: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot resize array."
+msgstr "Zmień rozmiar tablicy..."
+
+#: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Step argument is zero!"
 msgstr "Argument kroku wynosi zero!"
 
@@ -18588,6 +18744,11 @@ msgstr "Niepoprawna instancja formatu słownika (niepoprawny skrypt w @path)"
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Invalid instance dictionary (invalid subclasses)"
 msgstr "Niepoprawny słownik instancji (niepoprawne podklasy)"
+
+#: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot instantiate GDScript class."
+msgstr "Instancjonuj skrypt"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Value of type '%s' can't provide a length."
@@ -18838,6 +18999,21 @@ msgid "Optimizing acceleration structure"
 msgstr "Optymalizacja struktury przyspieszenia"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid "OIDN denoiser failed, return code: %d"
+msgstr "Żądanie nie powiodło się, zwracany kod:"
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid ""
+"OIDN denoiser is selected in the project settings, but no or invalid OIDN "
+"executable path is configured in the editor settings."
+msgstr ""
+"Importowanie plików blend jest włączone w ustawieniach projektu, ale nie "
+"skonfigurowano ścieżki Blendera w ustawieniach edytora. Pliki blend nie będą "
+"importowane."
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Begin Bake"
 msgstr "Zacznij wypalanie"
 
@@ -18858,8 +19034,9 @@ msgid "Integrate indirect lighting"
 msgstr "Integruj pośrednie oświetlenie"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
-msgid "Bounce %d/%d: Integrate indirect lighting %d%%"
-msgstr "Odbicie %d/%d: Integrowanie oświetlenia pośredniego %d%%"
+#, fuzzy
+msgid "Integrate indirect lighting %d%%"
+msgstr "Integruj pośrednie oświetlenie"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Baking lightprobes"
@@ -19406,6 +19583,11 @@ msgid "Exporting to Android when using C#/.NET is experimental."
 msgstr "Eksportowanie na Androida z użyciem C#/.NET jest eksperymentalne."
 
 #: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Android architecture %s not supported in C# projects."
+msgstr "'hint_depth_texture' nie jest obsługiwane w shaderach '%s'."
+
+#: platform/android/export/export_plugin.cpp
 msgid ""
 "Android build template not installed in the project. Install it from the "
 "Project menu."
@@ -19729,20 +19911,14 @@ msgstr ""
 "budowania pakietu."
 
 #: platform/ios/export/export_plugin.cpp
-msgid ""
-"Exporting to iOS is currently not supported in Godot 4 when using C#/.NET. "
-"Use Godot 3 to target iOS with C#/Mono instead."
-msgstr ""
-"Eksportowanie na iOS nie jest aktualnie wspierane w Godocie 4 z użyciem C#/."
-"NET. Zamiast tego użyj Godota 3, by celować w iOS z C#/Mono."
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental and requires macOS."
+msgstr "Eksportowanie na Androida z użyciem C#/.NET jest eksperymentalne."
 
-#: platform/ios/export/export_plugin.cpp platform/web/export/export_plugin.cpp
-msgid ""
-"If this project does not use C#, use a non-C# editor build to export the "
-"project."
-msgstr ""
-"Jeśli ten projekt nie używa C#, użyj edytora bez C#, by wyeksportować "
-"projekt."
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental."
+msgstr "Eksportowanie na Androida z użyciem C#/.NET jest eksperymentalne."
 
 #: platform/ios/export/export_plugin.cpp platform/macos/export/export_plugin.h
 msgid "Identifier is missing."
@@ -19878,6 +20054,17 @@ msgstr "Wgrywanie skryptów..."
 msgid "Starting project..."
 msgstr "Uruchamianie projektu..."
 
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp scene/gui/file_dialog.cpp
+msgid "All Files"
+msgstr "Wszystkie pliki"
+
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp
+#, fuzzy
+msgid "Failed to execute file dialogs callback: %s."
+msgstr "Nie udało się otworzyć pliku wykonywalnego \"%s\"."
+
 #: platform/macos/export/codesign.cpp
 msgid "Can't get filesystem access."
 msgstr "Nie można uzyskać dostępu do systemu plików."
@@ -19985,6 +20172,12 @@ msgid "App sandbox is required for App Store distribution."
 msgstr "Piaskownica aplikacji jest wymagana do dystrybucji w App Store."
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries (GDExtension or .NET)."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Code signing is required for App Store distribution."
 msgstr "Podpisanie kodu jest wymagane do dystrybucji w App Store."
 
@@ -20054,15 +20247,6 @@ msgstr ""
 "określony."
 
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-msgid "Icon Creation"
-msgstr "Tworzenie ikon"
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Could not open icon file \"%s\"."
-msgstr "Nie można otworzyć pliku ikony \"%s\"."
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Notarization"
 msgstr "Poświadczenie notarialne"
 
@@ -20115,14 +20299,6 @@ msgstr "Narzędzia wiersza poleceń Xcode nie są zainstalowane."
 #: platform/macos/export/export_plugin.cpp
 msgid "Could not start xcrun executable."
 msgstr "Nie można było uruchomić podprocesu xcrun."
-
-#: platform/macos/export/export_plugin.cpp
-msgid ""
-"The notarization process generally takes less than an hour. When the process "
-"is completed, you'll receive an email."
-msgstr ""
-"Proces poświadczania trwa zazwyczaj mniej niż godzinę. Gdy proces zostanie "
-"zakończony, otrzymasz wiadomość e-mail."
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Built-in CodeSign failed with error \"%s\"."
@@ -20251,6 +20427,12 @@ msgstr ""
 "biblioteki\" do ładowania bibliotek dynamicznych."
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Could not create entitlements file."
 msgstr "Nie można utworzyć pliku uprawnień."
 
@@ -20361,6 +20543,10 @@ msgid "Could not write file: \"%s\"."
 msgstr "Nie można zapisać pliku: \"%s\"."
 
 #: platform/web/export/export_plugin.cpp
+msgid "Icon Creation"
+msgstr "Tworzenie ikon"
+
+#: platform/web/export/export_plugin.cpp
 msgid "Could not read file: \"%s\"."
 msgstr "Nie można odczytać pliku: \"%s\"."
 
@@ -20376,6 +20562,14 @@ msgstr ""
 "Eksportowanie na przeglądarki nie jest aktualnie wspierane w Godocie 4 z "
 "użyciem C#/.NET. Zamiast tego użyj Godota 3, by celować w przeglądarki z C#/"
 "Mono."
+
+#: platform/web/export/export_plugin.cpp
+msgid ""
+"If this project does not use C#, use a non-C# editor build to export the "
+"project."
+msgstr ""
+"Jeśli ten projekt nie używa C#, użyj edytora bez C#, by wyeksportować "
+"projekt."
 
 #: platform/web/export/export_plugin.cpp
 msgid "Could not read HTML shell: \"%s\"."
@@ -20805,6 +20999,20 @@ msgid ""
 msgstr ""
 "Warstwa TileMap jest ustawiona jako posortowana Y, ale sortowanie Y nie jest "
 "włączone w samym węźle TileMap."
+
+#: scene/2d/tile_map.cpp
+#, fuzzy
+msgid ""
+"The TileMap node is set as Y-sorted, but Y-sort is not enabled on any of the "
+"TileMap's layers.\n"
+"This may lead to unwanted behaviors, as a layer that is not Y-sorted will be "
+"Y-sorted as a whole."
+msgstr ""
+"Warstwa z sortowaniem Y ma taką samą wartość indeksu Z jak warstwa bez "
+"sortowania Y.\n"
+"Może to prowadzić do niepożądanych zachowań, ponieważ warstwa, która nie "
+"jest posortowana Y, zostanie posortowana Y jako całość z kafelkami z warstw "
+"posortowanych Y."
 
 #: scene/2d/tile_map.cpp
 msgid ""
@@ -21532,10 +21740,6 @@ msgid "You don't have permission to access contents of this folder."
 msgstr "Nie masz uprawnień, by uzyskać dostęp do tego folderu."
 
 #: scene/gui/file_dialog.cpp
-msgid "All Files"
-msgstr "Wszystkie pliki"
-
-#: scene/gui/file_dialog.cpp
 msgid "Invalid extension, or empty filename."
 msgstr "Niepoprawne rozszerzenie lub pusta nazwa pliku."
 
@@ -21567,6 +21771,12 @@ msgstr "Przełącz minimapę grafu."
 #: scene/gui/graph_edit.cpp
 msgid "Automatically arrange selected nodes."
 msgstr "Automatycznie ułóż zaznaczone węzły."
+
+#: scene/gui/label.cpp
+msgid ""
+"Labels with autowrapping enabled must have a custom minimum size configured "
+"to work correctly inside a container."
+msgstr ""
 
 #: scene/gui/label.cpp
 msgid ""
@@ -22137,10 +22347,6 @@ msgid "Varying '%s' cannot be passed for the '%s' parameter in that context."
 msgstr ""
 "Zmienna varying \"%s\" nie może być przekazana do parametru \"%s\" w tym "
 "kontekście."
-
-#: servers/rendering/shader_language.cpp
-msgid "A constant value cannot be passed for '%s' parameter."
-msgstr "Nie można przekazać stałej wartości dla parametru \"%s\"."
 
 #: servers/rendering/shader_language.cpp
 msgid ""

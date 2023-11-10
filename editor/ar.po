@@ -1450,7 +1450,7 @@ msgid "FPS"
 msgstr "ط/ث"
 
 #: editor/animation_track_editor.cpp editor/editor_plugin_settings.cpp
-#: editor/editor_resource_picker.cpp
+#: editor/editor_properties.cpp editor/editor_resource_picker.cpp
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #: editor/plugins/script_text_editor.cpp editor/plugins/text_editor.cpp
 #: editor/plugins/text_shader_editor.cpp
@@ -1946,19 +1946,6 @@ msgstr "إغلاق"
 msgid "Connect"
 msgstr "وصل"
 
-#: editor/connections_dialog.cpp editor/editor_help.cpp
-#: editor/editor_inspector.cpp
-msgid "Class:"
-msgstr "صنف:"
-
-#: editor/connections_dialog.cpp
-msgid "Signal:"
-msgstr "إشارة:"
-
-#: editor/connections_dialog.cpp editor/editor_inspector.cpp
-msgid "No description."
-msgstr "بدون وصف."
-
 #: editor/connections_dialog.cpp
 msgid "Connect '%s' to '%s'"
 msgstr "وصل '%s' إلي '%s'"
@@ -2048,7 +2035,8 @@ msgstr "تم وضع علامة على هذه الفئة على أنها مهمل
 msgid "This class is marked as experimental."
 msgstr "تم وضع علامة على هذه الفئة على أنها تجريبية."
 
-#: editor/create_dialog.cpp editor/property_selector.cpp
+#: editor/create_dialog.cpp editor/editor_build_profile.cpp
+#: editor/editor_feature_profile.cpp editor/property_selector.cpp
 msgid "No description available for %s."
 msgstr "ليس هناك وصف مناسب لأجل %s."
 
@@ -2190,8 +2178,9 @@ msgstr "بدء"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
-#: editor/debugger/script_editor_debugger.cpp editor/editor_resource_picker.cpp
-#: editor/plugins/tiles/tile_data_editors.cpp editor/scene_tree_dock.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
+#: editor/editor_resource_picker.cpp editor/plugins/tiles/tile_data_editors.cpp
+#: editor/scene_tree_dock.cpp
 #: modules/multiplayer/editor/editor_network_profiler.cpp
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Clear"
@@ -2588,7 +2577,7 @@ msgstr ""
 "هل تريد إزالتها على أي حال؟ (لا يمكن التراجع).\n"
 "اعتماداً على إِعدادات نظامك, سيتم نقلها إِلى سلة المُهملات أَو ستُحذف نهائياً."
 
-#: editor/dependency_editor.cpp
+#: editor/dependency_editor.cpp editor/surface_upgrade_tool.cpp
 msgid "Cannot remove:"
 msgstr "لا يمكن المسح:"
 
@@ -3726,12 +3715,16 @@ msgid ""
 "There is currently no description for this operator. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"لا يوجد حاليا وصف لهذه الخاصية. الرجاء مساعدتنا عن طريق "
-"[color=$color][url=$url]المساهمة فيها [/url][/color]!"
+"لا يوجد حاليا وصف لهذه الخاصية. الرجاء مساعدتنا عن طريق [color=$color]"
+"[url=$url]المساهمة فيها [/url][/color]!"
 
 #: editor/editor_help.cpp
 msgid "Top"
 msgstr "فوق"
+
+#: editor/editor_help.cpp
+msgid "Class:"
+msgstr "صنف:"
 
 #: editor/editor_help.cpp editor/gui/scene_tree_editor.cpp
 #: editor/script_create_dialog.cpp
@@ -3769,8 +3762,8 @@ msgid ""
 "There is currently no description for this class. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"لا يوجد حاليا وصف لهذه الطريقة. الرجاء المساعدة من خلال "
-"[color=$color][url=$url]المساهمة واحد[/url][/color] !"
+"لا يوجد حاليا وصف لهذه الطريقة. الرجاء المساعدة من خلال [color=$color]"
+"[url=$url]المساهمة واحد[/url][/color] !"
 
 #: editor/editor_help.cpp
 msgid "Note:"
@@ -3857,8 +3850,8 @@ msgid ""
 "There is currently no description for this annotation. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
 msgstr ""
-"لا يوجد حاليا وصف لهذه التأشيرة. الرجاء المساعدة من خلال "
-"[color=$color][url=$url]المساهمة واحد[/url][/color] !"
+"لا يوجد حاليا وصف لهذه التأشيرة. الرجاء المساعدة من خلال [color=$color]"
+"[url=$url]المساهمة واحد[/url][/color] !"
 
 #: editor/editor_help.cpp
 msgid "Property Descriptions"
@@ -3891,6 +3884,34 @@ msgstr "أوصاف الدوال"
 #: editor/editor_help.cpp
 msgid "Operator Descriptions"
 msgstr "أوصاف العمليات"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Metadata:"
+msgstr "أضف البيانات الوصفية"
+
+#: editor/editor_help.cpp
+msgid "Property:"
+msgstr "خاصية:"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Method:"
+msgstr "دالة"
+
+#: editor/editor_help.cpp
+msgid "Signal:"
+msgstr "إشارة:"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Theme Item:"
+msgstr "إضافة عنصر مظهر واجهة المستخدم"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "No description available."
+msgstr "ليس هناك وصف مناسب لأجل %s."
 
 #: editor/editor_help.cpp
 msgid "%d match."
@@ -3996,10 +4017,6 @@ msgstr "تم وسم هذا العنصر بأنه مُهمل."
 #: editor/editor_help_search.cpp
 msgid "This member is marked as experimental."
 msgstr "تم وسم هذا العنصر على أنه تجريبي."
-
-#: editor/editor_inspector.cpp
-msgid "Property:"
-msgstr "خاصية:"
 
 #: editor/editor_inspector.cpp
 msgid "Pin Value"
@@ -5157,11 +5174,10 @@ msgstr ""
 "بهذه الطريقة سيتم إعداد المشروع الخاص بك لأجل بناء تطبيق أندرويد مخصص عن "
 "طريق تثبيت قوالب المصدر البرمجي في \"res://android/build\".\n"
 "يمكنك تطبيق تعديلات الخاصة بك على نسخة البناء للحصول على حزمة تطبيق أندرويد "
-"APK معدّلة عند التصدير (زيادة مُلحقات، تعديل ملف AndroidManifest.xml إلخ..)."
-"\n"
+"APK معدّلة عند التصدير (زيادة مُلحقات، تعديل ملف AndroidManifest.xml إلخ..).\n"
 "ملاحظ, من أجل إنشاء نسخ بناء مخصوصة بدلاً من الحزم APKs المبنية سلفاً، ينبغي "
-"أن يكون إعداد \"استخدام بناء مخصص\" ممكناً في إعدادات تصدير الأندرويد "
-"Android export preset."
+"أن يكون إعداد \"استخدام بناء مخصص\" ممكناً في إعدادات تصدير الأندرويد Android "
+"export preset."
 
 #: editor/editor_node.cpp
 msgid ""
@@ -5372,6 +5388,16 @@ msgstr ""
 #: editor/editor_properties.cpp editor/plugins/root_motion_editor_plugin.cpp
 msgid "Assign..."
 msgstr "إلحاق..."
+
+#: editor/editor_properties.cpp
+#, fuzzy
+msgid "Copy as Text"
+msgstr "نسخ النص"
+
+#: editor/editor_properties.cpp
+#, fuzzy
+msgid "Show Node in Tree"
+msgstr "نقل العُقدة عند الأصل"
 
 #: editor/editor_properties.cpp
 msgid "Invalid RID"
@@ -6112,16 +6138,21 @@ msgstr ""
 "يجب أن تحتوي جميع الإعدادات المسبقة على مسار تصدير محدد لكي يعمل تصدير الكل."
 
 #: editor/export/project_export.cpp
+msgid "Delete preset '%s'?"
+msgstr "حذف المُعد مُسبقاً '%s'؟"
+
+#: editor/export/project_export.cpp
 msgid "Resources to exclude:"
 msgstr "الموارد المستثناة:"
 
 #: editor/export/project_export.cpp
-msgid "Resources to export:"
+#, fuzzy
+msgid "Resources to override export behavior:"
 msgstr "الموارد المُعدّة للتصدير:"
 
 #: editor/export/project_export.cpp
-msgid "Delete preset '%s'?"
-msgstr "حذف المُعد مُسبقاً '%s'؟"
+msgid "Resources to export:"
+msgstr "الموارد المُعدّة للتصدير:"
 
 #: editor/export/project_export.cpp
 msgid "(Inherited)"
@@ -6501,7 +6532,8 @@ msgid "New Inherited Scene"
 msgstr "مشهد مُوّرَث جديد"
 
 #: editor/filesystem_dock.cpp
-msgid "Set As Main Scene"
+#, fuzzy
+msgid "Set as Main Scene"
 msgstr "تعيين كمشهد أساسي"
 
 #: editor/filesystem_dock.cpp
@@ -6657,6 +6689,44 @@ msgid "Open in External Program"
 msgstr "افتح في برنامج خارجي"
 
 #: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Red"
+msgstr "إلغاء التراجع"
+
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Orange"
+msgstr "تغير"
+
+#: editor/filesystem_dock.cpp
+msgid "Yellow"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Green"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Teal"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Purple"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Pink"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Gray"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
 msgid "Go to previous selected folder/file."
 msgstr "ارجع إلى المجلد/الملف السابق."
 
@@ -6669,7 +6739,8 @@ msgid "Re-Scan Filesystem"
 msgstr "إعادة فحص نظام الملفات"
 
 #: editor/filesystem_dock.cpp
-msgid "Toggle Split Mode"
+#, fuzzy
+msgid "Change Split Mode"
 msgstr "تعيين وضعية الإنقسام"
 
 #: editor/filesystem_dock.cpp
@@ -6968,8 +7039,8 @@ msgid ""
 "Depending on your filesystem configuration, the files will either be moved "
 "to the system trash or deleted permanently."
 msgstr ""
-"هل تريد إزالة الملفات المحددة؟ للسلامة فقط يمكن حذف الملفات الفارغة من هنا. ("
-"لا يمكن التراجع عنه.)\n"
+"هل تريد إزالة الملفات المحددة؟ للسلامة فقط يمكن حذف الملفات الفارغة من هنا. "
+"(لا يمكن التراجع عنه.)\n"
 "حسب إِعدادات مُدير ملفات نظام تشغيلك, سيتم نقلها إلى سلة المهملات أو ستحذف "
 "نهائيًا."
 
@@ -7370,8 +7441,8 @@ msgid ""
 "Note: Subpixel positioning is selected, each of the glyphs might be pre-"
 "rendered for multiple subpixel offsets (up to 4x)."
 msgstr ""
-"ملاحظة: تم تحديد موضع البكسل الفرعي، وقد يتم عرض كل من الحروف الرسومية مسبقً"
-"ا لإزاحات البكسل الفرعي المتعددة (حتى 4x)."
+"ملاحظة: تم تحديد موضع البكسل الفرعي، وقد يتم عرض كل من الحروف الرسومية مسبقًا "
+"لإزاحات البكسل الفرعي المتعددة (حتى 4x)."
 
 #: editor/import/dynamic_font_import_settings.cpp
 msgid "Advanced Import Settings for '%s'"
@@ -7392,7 +7463,8 @@ msgstr "تهيئات قبل-التكوين"
 #: editor/import/dynamic_font_import_settings.cpp
 msgid ""
 "Add font size, and variation coordinates, and select glyphs to pre-render:"
-msgstr "أضف حجم الخط وإحداثيات التباين وحدد الحروف الرسومية لتحميلها بشكل مسبق:"
+msgstr ""
+"أضف حجم الخط وإحداثيات التباين وحدد الحروف الرسومية لتحميلها بشكل مسبق:"
 
 #: editor/import/dynamic_font_import_settings.cpp
 msgid "Configuration:"
@@ -8782,6 +8854,11 @@ msgid "Duplicated Animation Name:"
 msgstr "أسماء التحريك المتكرر:"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Onion skinning requires a RESET animation."
+msgstr "توقيع الرمز مطلوب للتوثيق."
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Play selected animation backwards from current pos. (A)"
 msgstr "تشغيل الرسم المتحرك المختار بشكل عكسي من الموقع الحالي. (زر A)"
@@ -8890,10 +8967,6 @@ msgid "Include Gizmos (3D)"
 msgstr "تضمين الأدوات (3D)"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Onion Skinning temporarily disabled due to rendering bug."
-msgstr "تم تعطيل Onion Skinning مؤقتًا بسبب خطأ في العرض."
-
-#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Pin AnimationPlayer"
 msgstr "تثبيت مُشغّل الرسوميات المتحركة"
 
@@ -8906,16 +8979,16 @@ msgid "Error!"
 msgstr "خطأ!"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Cross-Animation Blend Times"
+msgstr "وقت الدمج عبر الحركة"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Blend Times:"
 msgstr "أوقات الدمج:"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Next (Auto Queue):"
 msgstr "التالي (مزامنة تلقائية):"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Cross-Animation Blend Times"
-msgstr "وقت الدمج عبر الحركة"
 
 #: editor/plugins/animation_state_machine_editor.cpp
 msgid "Move Node"
@@ -10318,6 +10391,21 @@ msgstr ""
 "في المشروع المشغل."
 
 #: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid "Debug CanvasItem Redraws"
+msgstr "تحريك %d من عناصر-اللوحات"
+
+#: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid ""
+"When this option is enabled, redraw requests of 2D objects will become "
+"visible (as a short flash) in the running project.\n"
+"This is useful to troubleshoot low processor mode."
+msgstr ""
+"عند تفعيل هذا الخيار، فإن مجسمات التنقل والأشكال المضلعة سوف تكون ظاهرة في "
+"المشروع المشغل."
+
+#: editor/plugins/debugger_editor_plugin.cpp
 msgid "Synchronize Scene Changes"
 msgstr "مزامنة تغييرات المشهد"
 
@@ -10720,8 +10808,8 @@ msgid ""
 "No meshes to bake. Make sure they contain an UV2 channel and that the 'Bake "
 "Light' flag is on."
 msgstr ""
-"لا يوجد مجسم ليتم تجهيزهُ. تأكد أنهُ يحتوي على منفذ UV2 و أن علامتا "
-"'الاستخدام في الضوء المدموج' و 'أنتج خريطة ضوئية' مفعلتان."
+"لا يوجد مجسم ليتم تجهيزهُ. تأكد أنهُ يحتوي على منفذ UV2 و أن علامتا 'الاستخدام "
+"في الضوء المدموج' و 'أنتج خريطة ضوئية' مفعلتان."
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
 msgid "Failed creating lightmap images, make sure path is writable."
@@ -10808,8 +10896,9 @@ msgid "Create Debug Tangents"
 msgstr "إنشاء ملامِسات التنقيح"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "Contained Mesh is not of type ArrayMesh."
-msgstr "السطح المتضمن ليس نوعاً من مصفوفة السطوح ArrayMesh."
+#, fuzzy
+msgid "No mesh to unwrap."
+msgstr "لا ميش لتصحيحة."
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid ""
@@ -10834,12 +10923,29 @@ msgid ""
 msgstr "المجسم لا يمكن نشر جوانبه؛ لأنه مستورد بنوع مختلف. اجعلْه فريدا أولا."
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "UV Unwrap failed, mesh may not be manifold?"
-msgstr "نشر Unwrap فشل، الميش ربما لا يكون متعدد؟"
-
-#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Unwrap UV2"
 msgstr "نشر نقشة الطبقة الثانية (الطول والعرض)"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Contained Mesh is not of type ArrayMesh."
+msgstr "السطح المتضمن ليس نوعاً من مصفوفة السطوح ArrayMesh."
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Can't unwrap mesh with blend shapes."
+msgstr "لا يمكن إسقاط العقد بدون مشهد مفتوح."
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Only triangles are supported for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Normals are required for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "UV Unwrap failed, mesh may not be manifold?"
+msgstr "نشر Unwrap فشل، الميش ربما لا يكون متعدد؟"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "No mesh to debug."
@@ -11157,8 +11263,8 @@ msgid ""
 "Bakes the NavigationPolygon by first parsing the scene for source geometry "
 "and then creating the navigation polygon vertices and polygons."
 msgstr ""
-"يقوم بإنشاء مضلع التنقل عن طريق تحليل المشهد أولاً لهندسة المصدر ثم إنشاء "
-"قمم ومضلعات مضلع التنقل."
+"يقوم بإنشاء مضلع التنقل عن طريق تحليل المشهد أولاً لهندسة المصدر ثم إنشاء قمم "
+"ومضلعات مضلع التنقل."
 
 #: editor/plugins/navigation_polygon_editor_plugin.cpp
 msgid "Clear NavigationPolygon"
@@ -12503,7 +12609,8 @@ msgstr "لا يمكن تشغيل الملف الذي تم تحريره لأنه 
 
 #: editor/plugins/script_editor_plugin.cpp
 msgid "Cannot run the script because it contains errors, check the output log."
-msgstr "لا يمكن تشغيل البرنامج النصي لأنه يحتوي على أخطاء، تحقق من سجل الإخراج."
+msgstr ""
+"لا يمكن تشغيل البرنامج النصي لأنه يحتوي على أخطاء، تحقق من سجل الإخراج."
 
 #: editor/plugins/script_editor_plugin.cpp
 msgid "Cannot run the script because it doesn't extend EditorScript."
@@ -13128,12 +13235,16 @@ msgid "LightOccluder2D Preview"
 msgstr "معاينة LightOccluder2D"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Can't convert a Sprite2D from a foreign scene."
+#, fuzzy
+msgid "Can't convert a sprite from a foreign scene."
 msgstr "لا يمكن تحويل Sprite2D من مشهد غريب."
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Sprite2D is empty!"
-msgstr "Sprite2D فارغ!"
+#, fuzzy
+msgid "Can't convert an empty sprite to mesh."
+msgstr ""
+"لا يمكن تحويل الرسومية (sprite) إلى سطح (mesh) باستخدام إطارات الرسوم "
+"المتحركة."
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
 msgid "Can't convert a sprite using animation frames to mesh."
@@ -15783,8 +15894,8 @@ msgid ""
 "Returns an associated unsigned integer scalar if the provided boolean value "
 "is true or false."
 msgstr ""
-"تُرجع عددًا صحيحًا غير موقّع مرتبطًا إذا كانت القيمة المنطقية المقدمة صحيحة "
-"أو خاطئة."
+"تُرجع عددًا صحيحًا غير موقّع مرتبطًا إذا كانت القيمة المنطقية المقدمة صحيحة أو "
+"خاطئة."
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Returns the boolean result of the comparison between two parameters."
@@ -17069,8 +17180,8 @@ msgid ""
 "Warning: You won't be able to open the project with previous versions of the "
 "engine anymore."
 msgstr ""
-"لا يحدد المشروع المحدد \"%s\" إصدار جوْدَتْ المدعوم في ملف الإعدادات الخاص "
-"به (\"project.godot\").\n"
+"لا يحدد المشروع المحدد \"%s\" إصدار جوْدَتْ المدعوم في ملف الإعدادات الخاص به "
+"(\"project.godot\").\n"
 "\n"
 "مسار المشروع: %s\n"
 "\n"
@@ -17096,8 +17207,7 @@ msgid ""
 "Warning: If you select a conversion option, you won't be able to open the "
 "project with previous versions of the engine anymore."
 msgstr ""
-"تم إنشاء المشروع المحدد \"%s\" بواسطة جوْدَتْ 3.x، ويجب تحويله إلى جوْدَتْ 4."
-"x.\n"
+"تم إنشاء المشروع المحدد \"%s\" بواسطة جوْدَتْ 3.x، ويجب تحويله إلى جوْدَتْ 4.x.\n"
 "\n"
 "مسار المشروع: %s\n"
 "\n"
@@ -17164,8 +17274,8 @@ msgid ""
 "\n"
 msgstr ""
 "تحذير: يستخدم هذا المشروع عوامات مزدوجة الدقة، ولكن هذا الإصدار من\n"
-"يستخدم جودو عوامات ذات دقة واحدة. قد يؤدي فتح هذا المشروع إلى فقدان البيانات."
-"\n"
+"يستخدم جودو عوامات ذات دقة واحدة. قد يؤدي فتح هذا المشروع إلى فقدان "
+"البيانات.\n"
 "\n"
 
 #: editor/project_manager.cpp
@@ -17184,8 +17294,8 @@ msgid ""
 "Godot %s.\n"
 "\n"
 msgstr ""
-"تحذير: هذا المشروع كان قد بُنِيَ بإصدار جوْدَتْ %s.فتح المشروع سوف يُرقيه أو "
-"ينزله إلى إصدار جوْدَت %s.\n"
+"تحذير: هذا المشروع كان قد بُنِيَ بإصدار جوْدَتْ %s.فتح المشروع سوف يُرقيه أو ينزله "
+"إلى إصدار جوْدَت %s.\n"
 "\n"
 
 #: editor/project_manager.cpp
@@ -17842,8 +17952,7 @@ msgstr ""
 "فشلت عملية حفظ العقدة الرئيسة كفرع في المشهد الموروث.\n"
 "لإنشاء نسخة قابلة للتحرير من المشهد الحالي، ضاعف المشهد مستخدماً قائمة "
 "الملفات \n"
-"أو أنشئ مشهداً موروثاً مستعملاً مشهد > مشهد موروث جديد... بدلاً عما قمت "
-"بفعله."
+"أو أنشئ مشهداً موروثاً مستعملاً مشهد > مشهد موروث جديد... بدلاً عما قمت بفعله."
 
 #: editor/scene_tree_dock.cpp
 msgid ""
@@ -17887,8 +17996,9 @@ msgstr ""
 "تعطيل \"المثيل_المُحرر\" سيجعل كل خصائص العقدة ترجع إلى الحالة الافتراضية."
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid ""
-"Enabling \"Load As Placeholder\" will disable \"Editable Children\" and "
+"Enabling \"Load as Placeholder\" will disable \"Editable Children\" and "
 "cause all properties of the node to be reverted to their default."
 msgstr ""
 "سيسبب تمكين \"التحميل كعنصر نائب\" \"Load As Placeholder\" تعطيل \"ابن قابل "
@@ -17898,6 +18008,11 @@ msgstr ""
 #: editor/scene_tree_dock.cpp
 msgid "Make Local"
 msgstr "اجعله محلياً"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Can't toggle unique name for nodes in subscene!"
+msgstr "لا يمكن تنفيذ الإجراء على عُقدة من مشهد أجنبي!"
 
 #: editor/scene_tree_dock.cpp
 msgid "Enable Scene Unique Name(s)"
@@ -18022,7 +18137,8 @@ msgid "Editable Children"
 msgstr "فروع قابلة للتعديل"
 
 #: editor/scene_tree_dock.cpp
-msgid "Load As Placeholder"
+#, fuzzy
+msgid "Load as Placeholder"
 msgstr "تحميله كعنصر نائب"
 
 #: editor/scene_tree_dock.cpp
@@ -18153,8 +18269,8 @@ msgid ""
 "or group (if prefixed with \"group:\" or \"g:\"). Filtering is case-"
 "insensitive."
 msgstr ""
-"قم بتصفية العقد عن طريق إدخال جزء من اسمها، ونوعها (إذا كانت مسبوقة بـ \"type"
-":\" أو \"t:\")\n"
+"قم بتصفية العقد عن طريق إدخال جزء من اسمها، ونوعها (إذا كانت مسبوقة بـ "
+"\"type:\" أو \"t:\")\n"
 "أو المجموعة (إذا كانت مسبوقة بـ \"group:\" أو \"g:\"). التصفية غير حساسة "
 "لحالة الأحرف."
 
@@ -18410,6 +18526,40 @@ msgstr "الاسم '%s' هو كلمة أساسية محجوزة في لغة ال
 msgid "Add Shader Global Parameter"
 msgstr "إضافة معلمة تظليل العالمية"
 
+#: editor/surface_upgrade_tool.cpp
+msgid ""
+"This project uses meshes with an outdated mesh format from previous Godot "
+"versions. The engine needs to update the format in order to use those "
+"meshes.\n"
+"\n"
+"Press 'Restart & Upgrade' to run the surface upgrade tool which will update "
+"and re-save all meshes and scenes. This update will restart the editor and "
+"may take several minutes. Upgrading will make the meshes incompatible with "
+"previous versions of Godot.\n"
+"\n"
+"Press 'Upgrade Only' to continue opening the scene as normal. The engine "
+"will update each mesh in memory, but the update will not be saved. Choosing "
+"this option will lead to slower load times every time this project is loaded."
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Restart & Upgrade"
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrade Only"
+msgstr "الوظائف فقط"
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrading All Meshes in Project"
+msgstr "تصدير جميع الموارد في المشروع"
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Attempting to re-save "
+msgstr ""
+
 #: editor/window_wrapper.cpp
 msgid "Make this panel floating in the screen %d."
 msgstr "اجعل هذه اللوحة عائمة على الشاشة %d."
@@ -18447,6 +18597,11 @@ msgid "Invalid type argument to convert(), use TYPE_* constants."
 msgstr "معامل خاطئ لدالة ()Convert، استخدم احدى الثوابت من مجموعة TYPE_*."
 
 #: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot resize array."
+msgstr "تغيير حجم المصفوفة..."
+
+#: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Step argument is zero!"
 msgstr "معامل الخطوة تساوي صفر!"
 
@@ -18477,6 +18632,11 @@ msgstr "نموذج الشكل القاموسي غير صالح ( النص الب
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Invalid instance dictionary (invalid subclasses)"
 msgstr "نموذج القاموس غير صالح (أصناف فرعية غير صالحة)"
+
+#: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot instantiate GDScript class."
+msgstr "تنسيخ النص البرمجي"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Value of type '%s' can't provide a length."
@@ -18725,6 +18885,20 @@ msgid "Optimizing acceleration structure"
 msgstr "تحسين هيكل التسارع"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid "OIDN denoiser failed, return code: %d"
+msgstr "فشل إتمام الطلب٫ الرمز الذي تم إرجاعه:"
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid ""
+"OIDN denoiser is selected in the project settings, but no or invalid OIDN "
+"executable path is configured in the editor settings."
+msgstr ""
+"يتم تمكين استيراد ملف Blend في إعدادات المشروع، ولكن لم يتم تكوين أي مسار "
+"Blender في إعدادات المحرر. لن يتم استيراد ملفات Blend."
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Begin Bake"
 msgstr "ابدأ الخبز (دمج تاثير الضوء في الصورة )"
 
@@ -18745,8 +18919,9 @@ msgid "Integrate indirect lighting"
 msgstr "دمج الإضاءة غير المباشرة"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
-msgid "Bounce %d/%d: Integrate indirect lighting %d%%"
-msgstr "الارتداد %d/%d: دمج الإضاءة غير المباشرة %d%%"
+#, fuzzy
+msgid "Integrate indirect lighting %d%%"
+msgstr "دمج الإضاءة غير المباشرة"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Baking lightprobes"
@@ -19227,8 +19402,8 @@ msgstr "لا يمكن تجاوز \"Target SDK\" إلا عند تمكين \"Use G
 msgid ""
 "\"Target SDK\" should be a valid integer, but got \"%s\" which is invalid."
 msgstr ""
-"يجب أن يكون \"Target SDK\" عددًا صحيحًا صالحًا، ولكنه يحتوي على \"%s\" وهو "
-"غير صالح."
+"يجب أن يكون \"Target SDK\" عددًا صحيحًا صالحًا، ولكنه يحتوي على \"%s\" وهو غير "
+"صالح."
 
 #: platform/android/export/export_plugin.cpp
 msgid "\"Target SDK\" version must be greater or equal to \"Min SDK\" version."
@@ -19271,6 +19446,10 @@ msgstr "لا يمكن التنفيذ على الجهاز."
 #: platform/android/export/export_plugin.cpp
 msgid "Exporting to Android when using C#/.NET is experimental."
 msgstr "يعد التصدير إلى الاندرويد عند استخدام C#/.NET أمرًا تجريبيًا."
+
+#: platform/android/export/export_plugin.cpp
+msgid "Android architecture %s not supported in C# projects."
+msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
@@ -19585,20 +19764,14 @@ msgstr ""
 "الحزمة."
 
 #: platform/ios/export/export_plugin.cpp
-msgid ""
-"Exporting to iOS is currently not supported in Godot 4 when using C#/.NET. "
-"Use Godot 3 to target iOS with C#/Mono instead."
-msgstr ""
-"التصدير إلى iOS غير مدعوم حاليًا في جوْدَتْ 4 عند استخدام C#/.NET. استخدم "
-"جوْدَتْ 3 لاستهداف iOS باستخدام C#/Mono بدلاً من ذلك."
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental and requires macOS."
+msgstr "يعد التصدير إلى الاندرويد عند استخدام C#/.NET أمرًا تجريبيًا."
 
-#: platform/ios/export/export_plugin.cpp platform/web/export/export_plugin.cpp
-msgid ""
-"If this project does not use C#, use a non-C# editor build to export the "
-"project."
-msgstr ""
-"إذا كان هذا المشروع لا يستخدم لغة C#، فاستخدم نسخة محرر غير لغة C# لتصدير "
-"المشروع."
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental."
+msgstr "يعد التصدير إلى الاندرويد عند استخدام C#/.NET أمرًا تجريبيًا."
 
 #: platform/ios/export/export_plugin.cpp platform/macos/export/export_plugin.h
 msgid "Identifier is missing."
@@ -19729,6 +19902,18 @@ msgstr "جارٍ رفع البرامج النصية..."
 msgid "Starting project..."
 msgstr "بدء المشروع..."
 
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "All Files"
+msgstr "كل الملفات (*)"
+
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp
+#, fuzzy
+msgid "Failed to execute file dialogs callback: %s."
+msgstr "فشل في فتح الملف القابل للتنفيذ \"%s\"."
+
 #: platform/macos/export/codesign.cpp
 msgid "Can't get filesystem access."
 msgstr "لم يتكمن من الحصول على حَقّ الدّخُول لملف النظام."
@@ -19834,6 +20019,12 @@ msgid "App sandbox is required for App Store distribution."
 msgstr "مطلوب وضع حماية التطبيق لتوزيع متجر التطبيقات."
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries (GDExtension or .NET)."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Code signing is required for App Store distribution."
 msgstr "توقيع الرمز مطلوب لتوزيع متجر التطبيقات."
 
@@ -19894,15 +20085,6 @@ msgid ""
 msgstr "تم تمكين الوصول إلى مكتبة الصور، ولكن لم يتم تحديد وصف الاستخدام."
 
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-msgid "Icon Creation"
-msgstr "إنشاء الأيقونة"
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Could not open icon file \"%s\"."
-msgstr "لا يُمكن فتح أيقونة الملف \"%s\"."
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Notarization"
 msgstr "توطين/تصديق"
 
@@ -19911,8 +20093,8 @@ msgid ""
 "rcodesign path is not set. Configure rcodesign path in the Editor Settings "
 "(Export > macOS > rcodesign)."
 msgstr ""
-"لم يتم تعيين مسار rcodesign. قم بتكوين مسار rcodesign في إعدادات المحرر ("
-"Export > macOS > rcodesign)."
+"لم يتم تعيين مسار rcodesign. قم بتكوين مسار rcodesign في إعدادات المحرر "
+"(Export > macOS > rcodesign)."
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Could not start rcodesign executable."
@@ -19952,13 +20134,6 @@ msgid "Could not start xcrun executable."
 msgstr "تعذر بدء تشغيل xcrun."
 
 #: platform/macos/export/export_plugin.cpp
-msgid ""
-"The notarization process generally takes less than an hour. When the process "
-"is completed, you'll receive an email."
-msgstr ""
-"عملية التوثيق تأخذ أقل من ساعة غالبا، إذا اكتملت العملية، ستأتيك رسالة بريد."
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Built-in CodeSign failed with error \"%s\"."
 msgstr ""
 
@@ -19971,8 +20146,8 @@ msgid ""
 "Xrcodesign path is not set. Configure rcodesign path in the Editor Settings "
 "(Export > macOS > rcodesign)."
 msgstr ""
-"‪‪لم يتم تعيين مسار Xrcodesign. قم بتكوين مسار rcodesign في إعدادات المحرر ("
-"Export > macOS > rcodesign)."
+"‪‪لم يتم تعيين مسار Xrcodesign. قم بتكوين مسار rcodesign في إعدادات المحرر "
+"(Export > macOS > rcodesign)."
 
 #: platform/macos/export/export_plugin.cpp
 msgid ""
@@ -20083,6 +20258,12 @@ msgid ""
 msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 #, fuzzy
 msgid "Could not create entitlements file."
 msgstr "لا يمكن إنشاء المجلد."
@@ -20190,6 +20371,10 @@ msgid "Could not write file: \"%s\"."
 msgstr "لا يمكن كتابة الملف: \"%s\"."
 
 #: platform/web/export/export_plugin.cpp
+msgid "Icon Creation"
+msgstr "إنشاء الأيقونة"
+
+#: platform/web/export/export_plugin.cpp
 msgid "Could not read file: \"%s\"."
 msgstr "لا يمكن قراءة الملف: \"%s\"."
 
@@ -20202,8 +20387,16 @@ msgid ""
 "Exporting to Web is currently not supported in Godot 4 when using C#/.NET. "
 "Use Godot 3 to target Web with C#/Mono instead."
 msgstr ""
-"التصدير إلى الويب غير مدعوم حاليًا في جوْدَتْ 4 عند استخدام C#/.NET. استخدم "
-"جوْدَتْ 3 لاستهداف الويب باستخدام C#/Mono بدلاً من ذلك."
+"التصدير إلى الويب غير مدعوم حاليًا في جوْدَتْ 4 عند استخدام C#/.NET. استخدم جوْدَتْ "
+"3 لاستهداف الويب باستخدام C#/Mono بدلاً من ذلك."
+
+#: platform/web/export/export_plugin.cpp
+msgid ""
+"If this project does not use C#, use a non-C# editor build to export the "
+"project."
+msgstr ""
+"إذا كان هذا المشروع لا يستخدم لغة C#، فاستخدم نسخة محرر غير لغة C# لتصدير "
+"المشروع."
 
 #: platform/web/export/export_plugin.cpp
 msgid "Could not read HTML shell: \"%s\"."
@@ -20395,11 +20588,11 @@ msgid ""
 "CollisionObject2D derived node. Please only use it as a child of Area2D, "
 "StaticBody2D, RigidBody2D, CharacterBody2D, etc. to give them a shape."
 msgstr ""
-"يعمل مُضلع التصادم ثنائي الأبعاد CollisionPolygon2D فقط كشكل تصادمي لكل العُ"
-"قد المشتقة من الكائن التصادمي ثنائي الأبعاد CollisionObject2D. من فضلك "
-"استخدمه فقط لكل أبناء الحيز ثنائي الأبعاد Area2D، الجسم السكوني ثنائي "
-"الأبعاد StaticBody2D و الجسم الجامد ثنائي الأبعاد RigidBody2D، والجسم "
-"المتحرك ثنائي الأبعاد KinematicBody2D إلخ.. لكي تمنح كل منهم شكلاً."
+"يعمل مُضلع التصادم ثنائي الأبعاد CollisionPolygon2D فقط كشكل تصادمي لكل العُقد "
+"المشتقة من الكائن التصادمي ثنائي الأبعاد CollisionObject2D. من فضلك استخدمه "
+"فقط لكل أبناء الحيز ثنائي الأبعاد Area2D، الجسم السكوني ثنائي الأبعاد "
+"StaticBody2D و الجسم الجامد ثنائي الأبعاد RigidBody2D، والجسم المتحرك ثنائي "
+"الأبعاد KinematicBody2D إلخ.. لكي تمنح كل منهم شكلاً."
 
 #: scene/2d/collision_polygon_2d.cpp
 msgid "An empty CollisionPolygon2D has no effect on collision."
@@ -20436,8 +20629,8 @@ msgstr ""
 "يعمل جسم-تصادم-ثنائي-البُعد (CollisionPolygon2D) فقط كشكل تصادمي لكل العُقد "
 "المشتقة من الكائن التصادمي ثنائي الأبعاد (CollisionObject2D). من فضلك "
 "استخدمه فقط لكل أبناء الحيز-ثنائي-البُعد (Area2D)، الجسم-الثابت-ثنائي-البُعد "
-"(StaticBody2D) و الجسم-الصلب-ثنائي-البُعد (RigidBody2D)، "
-"والجسم-المتحرك-ثنائي-البُعد (KinematicBody2D) إلخ.. لكي تمنح كل منهم شكلاً."
+"(StaticBody2D) و الجسم-الصلب-ثنائي-البُعد (RigidBody2D)، والجسم-المتحرك-ثنائي-"
+"البُعد (KinematicBody2D) إلخ.. لكي تمنح كل منهم شكلاً."
 
 #: scene/2d/collision_shape_2d.cpp
 msgid ""
@@ -20648,6 +20841,19 @@ msgstr ""
 "على عقدة TileMap نفسها."
 
 #: scene/2d/tile_map.cpp
+#, fuzzy
+msgid ""
+"The TileMap node is set as Y-sorted, but Y-sort is not enabled on any of the "
+"TileMap's layers.\n"
+"This may lead to unwanted behaviors, as a layer that is not Y-sorted will be "
+"Y-sorted as a whole."
+msgstr ""
+"الطبقة التي تم فرزها على ص لها نفس قيمة مؤشر ز مثل الطبقة التي لم يتم فرزها "
+"على ص.\n"
+"قد يؤدي هذا إلى سلوكيات غير مرغوب فيها، حيث أن الطبقة التي لم يتم فرزها على "
+"شكل ص سيتم فرزها على شكل ز ككل مع تجانبات من الطبقات التي تم فرزها على شكل ص."
+
+#: scene/2d/tile_map.cpp
 msgid ""
 "Isometric TileSet will likely not look as intended without Y-sort enabled "
 "for the TileMap and all of its layers."
@@ -20727,8 +20933,8 @@ msgid ""
 msgstr ""
 "من المحتمل ألا تعمل عقدة CollisionPolygon3D ذات الحجم غير المنتظم كما هو "
 "متوقع.\n"
-"يرجى جعل مقياسه موحدًا (أي هو نفسه على جميع المحاور)، وتغيير رؤوس المضلع "
-"بدلاً من ذلك."
+"يرجى جعل مقياسه موحدًا (أي هو نفسه على جميع المحاور)، وتغيير رؤوس المضلع بدلاً "
+"من ذلك."
 
 #: scene/3d/collision_shape_3d.cpp
 msgid ""
@@ -20772,8 +20978,8 @@ msgid ""
 "Please make its scale uniform (i.e. the same on all axes), and change the "
 "size of its shape resource instead."
 msgstr ""
-"من المحتمل ألا تعمل عقدة CollisionShape3D ذات الحجم غير المنتظم كما هو متوقع."
-"\n"
+"من المحتمل ألا تعمل عقدة CollisionShape3D ذات الحجم غير المنتظم كما هو "
+"متوقع.\n"
 "يرجى جعل مقياسه موحدًا (أي هو نفسه على جميع المحاور)، وتغيير حجم مصدر الشكل "
 "الخاص به بدلاً من ذلك."
 
@@ -21041,8 +21247,8 @@ msgid ""
 msgstr ""
 "تحتوي مجسّم الإطباق على أقل من 3 رؤوس، لذا لن يتم تنفيذ عملية إعدام الإطباق "
 "باستخدام OccluderInstance3D.\n"
-"لإنشاء مجسّم مُغلقة مناسبة، حدد OccluderInstance3D ثم استخدم زر Bake "
-"Occluders الموجود أعلى إطار عرض المحرر ثلاثي الأبعاد."
+"لإنشاء مجسّم مُغلقة مناسبة، حدد OccluderInstance3D ثم استخدم زر Bake Occluders "
+"الموجود أعلى إطار عرض المحرر ثلاثي الأبعاد."
 
 #: scene/3d/occluder_instance_3d.cpp
 msgid ""
@@ -21392,11 +21598,6 @@ msgstr ""
 
 #: scene/gui/file_dialog.cpp
 #, fuzzy
-msgid "All Files"
-msgstr "كل الملفات (*)"
-
-#: scene/gui/file_dialog.cpp
-#, fuzzy
 msgid "Invalid extension, or empty filename."
 msgstr "صيغة غير صالحة."
 
@@ -21432,6 +21633,12 @@ msgstr "تفعيل الخريطة المصغرة للشبكة."
 #, fuzzy
 msgid "Automatically arrange selected nodes."
 msgstr "Alt+سحب: لتغيير حجم العقدة المختارة."
+
+#: scene/gui/label.cpp
+msgid ""
+"Labels with autowrapping enabled must have a custom minimum size configured "
+"to work correctly inside a container."
+msgstr ""
 
 #: scene/gui/label.cpp
 msgid ""
@@ -21639,8 +21846,8 @@ msgid ""
 msgstr ""
 "قد تتصرف أوقات انتظار المؤقت المنخفضة جدًا (<0.05 ثانية) بطرق مختلفة بشكل "
 "كبير اعتمادًا على معدل الإطارات المعروض أو معدل الإطارات الفيزيائي.\n"
-"فكر في استخدام حلقة معالجة البرنامج النصي بدلاً من الاعتماد على المؤقت "
-"لفترات انتظار منخفضة جدًا."
+"فكر في استخدام حلقة معالجة البرنامج النصي بدلاً من الاعتماد على المؤقت لفترات "
+"انتظار منخفضة جدًا."
 
 #: scene/main/viewport.cpp
 msgid ""
@@ -21723,8 +21930,8 @@ msgid ""
 "The sampler port is connected but not used. Consider changing the source to "
 "'SamplerPort'."
 msgstr ""
-"منفذ أخذ العينات متصل ولكنه غير مستخدم. فكر في تغيير المصدر إلى \"SamplerPort"
-"\"."
+"منفذ أخذ العينات متصل ولكنه غير مستخدم. فكر في تغيير المصدر إلى "
+"\"SamplerPort\"."
 
 #: scene/resources/visual_shader_nodes.cpp
 msgid "Invalid source for preview."
@@ -21994,10 +22201,6 @@ msgstr "يمكن تعيين المتغيرات فقط في الذروة ."
 #, fuzzy
 msgid "Varying '%s' cannot be passed for the '%s' parameter in that context."
 msgstr "يمكن تعيين المتغيرات فقط في الذروة ."
-
-#: servers/rendering/shader_language.cpp
-msgid "A constant value cannot be passed for '%s' parameter."
-msgstr ""
 
 #: servers/rendering/shader_language.cpp
 msgid ""
@@ -22693,8 +22896,8 @@ msgid ""
 "predictable comparison."
 msgstr ""
 "المقارنة المباشرة بالفاصلة العائمة (قد لا يتم تقييمها على أنها \"صحيحة\" كما "
-"تتوقع). بدلاً من ذلك، استخدم `abs(a - b) < 0.0001` لإجراء مقارنة تقريبية "
-"ولكن يمكن التنبؤ بها."
+"تتوقع). بدلاً من ذلك، استخدم `abs(a - b) < 0.0001` لإجراء مقارنة تقريبية ولكن "
+"يمكن التنبؤ بها."
 
 #: servers/rendering/shader_warnings.cpp
 msgid "The const '%s' is declared but never used."

@@ -1389,7 +1389,7 @@ msgid "FPS"
 msgstr "FPS"
 
 #: editor/animation_track_editor.cpp editor/editor_plugin_settings.cpp
-#: editor/editor_resource_picker.cpp
+#: editor/editor_properties.cpp editor/editor_resource_picker.cpp
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #: editor/plugins/script_text_editor.cpp editor/plugins/text_editor.cpp
 #: editor/plugins/text_shader_editor.cpp
@@ -1873,19 +1873,6 @@ msgstr "關閉"
 msgid "Connect"
 msgstr "連接"
 
-#: editor/connections_dialog.cpp editor/editor_help.cpp
-#: editor/editor_inspector.cpp
-msgid "Class:"
-msgstr "類別："
-
-#: editor/connections_dialog.cpp
-msgid "Signal:"
-msgstr "訊號："
-
-#: editor/connections_dialog.cpp editor/editor_inspector.cpp
-msgid "No description."
-msgstr "沒說明。"
-
 #: editor/connections_dialog.cpp
 msgid "Connect '%s' to '%s'"
 msgstr "將「%s」連接至「%s」"
@@ -1975,7 +1962,8 @@ msgstr "這個class已經標記不用了。"
 msgid "This class is marked as experimental."
 msgstr "這個class已經標記實驗性了。"
 
-#: editor/create_dialog.cpp editor/property_selector.cpp
+#: editor/create_dialog.cpp editor/editor_build_profile.cpp
+#: editor/editor_feature_profile.cpp editor/property_selector.cpp
 msgid "No description available for %s."
 msgstr "缺少對%s的可用解釋。"
 
@@ -2117,8 +2105,9 @@ msgstr "開始"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
-#: editor/debugger/script_editor_debugger.cpp editor/editor_resource_picker.cpp
-#: editor/plugins/tiles/tile_data_editors.cpp editor/scene_tree_dock.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
+#: editor/editor_resource_picker.cpp editor/plugins/tiles/tile_data_editors.cpp
+#: editor/scene_tree_dock.cpp
 #: modules/multiplayer/editor/editor_network_profiler.cpp
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Clear"
@@ -2509,7 +2498,7 @@ msgstr ""
 "依然要移除嗎？（無法復原）\n"
 "取決於您的檔案系統設定，檔案將移至系統資源回收桶或是永久刪除。"
 
-#: editor/dependency_editor.cpp
+#: editor/dependency_editor.cpp editor/surface_upgrade_tool.cpp
 msgid "Cannot remove:"
 msgstr "無法移除："
 
@@ -3610,25 +3599,32 @@ msgstr "目前沒有此運算子的說明。"
 msgid ""
 "There is currently no description for this method. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "該方法目前沒有說明。請幫我們[color=$color][url=$url]貢獻一個[/url][/color]！"
+msgstr ""
+"該方法目前沒有說明。請幫我們[color=$color][url=$url]貢獻一個[/url][/color]！"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this constructor. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "該建構式目前沒有說明。請幫我們[color=$color][url=$url]貢獻一個[/url][/color]"
-"！"
+msgstr ""
+"該建構式目前沒有說明。請幫我們[color=$color][url=$url]貢獻一個[/url][/"
+"color]！"
 
 #: editor/editor_help.cpp
 msgid ""
 "There is currently no description for this operator. Please help us by "
 "[color=$color][url=$url]contributing one[/url][/color]!"
-msgstr "目前沒有此運算子的說明。請幫助我們[color=$color][url=$url]貢獻一個[/url][/col"
-"or]！"
+msgstr ""
+"目前沒有此運算子的說明。請幫助我們[color=$color][url=$url]貢獻一個[/url][/"
+"color]！"
 
 #: editor/editor_help.cpp
 msgid "Top"
 msgstr "頂端"
+
+#: editor/editor_help.cpp
+msgid "Class:"
+msgstr "類別："
 
 #: editor/editor_help.cpp editor/gui/scene_tree_editor.cpp
 #: editor/script_create_dialog.cpp
@@ -3675,8 +3671,9 @@ msgstr "注意："
 msgid ""
 "There are notable differences when using this API with C#. See [url=%s]C# "
 "API differences to GDScript[/url] for more information."
-msgstr "將此 API 與 C# 一起使用時存在顯著差異。請參閱 [url=%s]C# API 與 "
-"GDScript[/url] 的差異以獲取更多資訊。"
+msgstr ""
+"將此 API 與 C# 一起使用時存在顯著差異。請參閱 [url=%s]C# API 與 GDScript[/"
+"url] 的差異以獲取更多資訊。"
 
 #: editor/editor_help.cpp
 msgid "Online Tutorials"
@@ -3785,6 +3782,34 @@ msgid "Operator Descriptions"
 msgstr "運算子說明"
 
 #: editor/editor_help.cpp
+#, fuzzy
+msgid "Metadata:"
+msgstr "新增Metadata"
+
+#: editor/editor_help.cpp
+msgid "Property:"
+msgstr "屬性："
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Method:"
+msgstr "方法"
+
+#: editor/editor_help.cpp
+msgid "Signal:"
+msgstr "訊號："
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Theme Item:"
+msgstr "新增介面主題項目"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "No description available."
+msgstr "缺少對%s的可用解釋。"
+
+#: editor/editor_help.cpp
 msgid "%d match."
 msgstr "%d 件相符合的結果。"
 
@@ -3888,10 +3913,6 @@ msgstr "這個成員被標記廢棄:(。"
 #: editor/editor_help_search.cpp
 msgid "This member is marked as experimental."
 msgstr "這個成員被標記實驗性:(。"
-
-#: editor/editor_inspector.cpp
-msgid "Property:"
-msgstr "屬性："
 
 #: editor/editor_inspector.cpp
 msgid "Pin Value"
@@ -5222,6 +5243,16 @@ msgid "Assign..."
 msgstr "指派..."
 
 #: editor/editor_properties.cpp
+#, fuzzy
+msgid "Copy as Text"
+msgstr "複製文字"
+
+#: editor/editor_properties.cpp
+#, fuzzy
+msgid "Show Node in Tree"
+msgstr "移動節點至其父節點"
+
+#: editor/editor_properties.cpp
 msgid "Invalid RID"
 msgstr "無效的 RID"
 
@@ -5949,16 +5980,21 @@ msgid "All presets must have an export path defined for Export All to work."
 msgstr "所有預設設定都必須定義好匯出路徑，才可使用 [匯出全部] 功能。"
 
 #: editor/export/project_export.cpp
+msgid "Delete preset '%s'?"
+msgstr "確定要刪除預設設定「%s」？"
+
+#: editor/export/project_export.cpp
 msgid "Resources to exclude:"
 msgstr "排除的資源："
 
 #: editor/export/project_export.cpp
-msgid "Resources to export:"
+#, fuzzy
+msgid "Resources to override export behavior:"
 msgstr "匯出的資源："
 
 #: editor/export/project_export.cpp
-msgid "Delete preset '%s'?"
-msgstr "確定要刪除預設設定「%s」？"
+msgid "Resources to export:"
+msgstr "匯出的資源："
 
 #: editor/export/project_export.cpp
 msgid "(Inherited)"
@@ -6335,7 +6371,8 @@ msgid "New Inherited Scene"
 msgstr "新增繼承場景"
 
 #: editor/filesystem_dock.cpp
-msgid "Set As Main Scene"
+#, fuzzy
+msgid "Set as Main Scene"
 msgstr "設為主場景"
 
 #: editor/filesystem_dock.cpp
@@ -6491,6 +6528,44 @@ msgid "Open in External Program"
 msgstr "在外部程式中開啟"
 
 #: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Red"
+msgstr "重做"
+
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Orange"
+msgstr "改動"
+
+#: editor/filesystem_dock.cpp
+msgid "Yellow"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Green"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Teal"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Purple"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Pink"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+msgid "Gray"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
 msgid "Go to previous selected folder/file."
 msgstr "前往上一個選擇的資料夾/檔案。"
 
@@ -6503,7 +6578,8 @@ msgid "Re-Scan Filesystem"
 msgstr "重新掃描檔案系統"
 
 #: editor/filesystem_dock.cpp
-msgid "Toggle Split Mode"
+#, fuzzy
+msgid "Change Split Mode"
 msgstr "開啟／關閉分割模式"
 
 #: editor/filesystem_dock.cpp
@@ -7962,7 +8038,8 @@ msgstr "腳本名稱："
 msgid ""
 "Optional. The path to the script (relative to the add-on folder). If left "
 "empty, will default to \"plugin.gd\"."
-msgstr "選填。腳本的路徑（相對於載入項資料夾）。如果留空，將預設為“plugin.gd”。"
+msgstr ""
+"選填。腳本的路徑（相對於載入項資料夾）。如果留空，將預設為“plugin.gd”。"
 
 #: editor/plugin_config_dialog.cpp
 msgid "Activate now?"
@@ -8562,6 +8639,11 @@ msgid "Duplicated Animation Name:"
 msgstr "重複的動畫名稱："
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Onion skinning requires a RESET animation."
+msgstr "公證：需要程式碼簽名。"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 #: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Play selected animation backwards from current pos. (A)"
 msgstr "自目前位置開始倒放所選的動畫。 (A)"
@@ -8670,10 +8752,6 @@ msgid "Include Gizmos (3D)"
 msgstr "包含 Gizmo (3D)"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Onion Skinning temporarily disabled due to rendering bug."
-msgstr "由於渲染錯誤，洋蔥皮暫時禁用。"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Pin AnimationPlayer"
 msgstr "固定 AnimationPlayer"
 
@@ -8686,16 +8764,16 @@ msgid "Error!"
 msgstr "錯誤！"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+msgid "Cross-Animation Blend Times"
+msgstr "跨動畫混合時間"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Blend Times:"
 msgstr "混合時間："
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Next (Auto Queue):"
 msgstr "下一個（自動佇列）："
-
-#: editor/plugins/animation_player_editor_plugin.cpp
-msgid "Cross-Animation Blend Times"
-msgstr "跨動畫混合時間"
 
 #: editor/plugins/animation_state_machine_editor.cpp
 msgid "Move Node"
@@ -10082,6 +10160,19 @@ msgid ""
 msgstr "啟用此選項後，迴避對象的形狀、半徑和速度將在專案運行中可見。"
 
 #: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid "Debug CanvasItem Redraws"
+msgstr "移動 %d 個 CanvasItem"
+
+#: editor/plugins/debugger_editor_plugin.cpp
+#, fuzzy
+msgid ""
+"When this option is enabled, redraw requests of 2D objects will become "
+"visible (as a short flash) in the running project.\n"
+"This is useful to troubleshoot low processor mode."
+msgstr "啟用此選項後，路徑節點使用的曲線資源將在專案運行中可見。"
+
+#: editor/plugins/debugger_editor_plugin.cpp
 msgid "Synchronize Scene Changes"
 msgstr "同步常見更改"
 
@@ -10561,8 +10652,9 @@ msgid "Create Debug Tangents"
 msgstr "產生除錯切線"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "Contained Mesh is not of type ArrayMesh."
-msgstr "包含之 Mesh 並非 ArrayMesh 型別。"
+#, fuzzy
+msgid "No mesh to unwrap."
+msgstr "沒有可進行偵錯之網格。"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid ""
@@ -10574,7 +10666,8 @@ msgstr "網格無法展開 UV，因為它不屬於已編輯的場景。請先使
 msgid ""
 "Mesh cannot unwrap UVs because it belongs to another resource which was "
 "imported from another file type. Make it unique first."
-msgstr "網格無法展開 UV，因為它屬於從其他文件型別導入的另一個資源。 首先讓它獨立化。"
+msgstr ""
+"網格無法展開 UV，因為它屬於從其他文件型別導入的另一個資源。 首先讓它獨立化。"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid ""
@@ -10583,12 +10676,29 @@ msgid ""
 msgstr "網格無法展開 UV，因為它是從其他文件型別導入的。請先使其獨立化。"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "UV Unwrap failed, mesh may not be manifold?"
-msgstr "UV 展開失敗，該網格可能並非流形？"
-
-#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Unwrap UV2"
 msgstr "展開 UV2"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Contained Mesh is not of type ArrayMesh."
+msgstr "包含之 Mesh 並非 ArrayMesh 型別。"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Can't unwrap mesh with blend shapes."
+msgstr "在沒有開放場景的情況下無法刪除節點。"
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Only triangles are supported for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Normals are required for lightmap unwrap."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "UV Unwrap failed, mesh may not be manifold?"
+msgstr "UV 展開失敗，該網格可能並非流形？"
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "No mesh to debug."
@@ -10902,7 +11012,8 @@ msgstr "烘焙導航多邊形"
 msgid ""
 "Bakes the NavigationPolygon by first parsing the scene for source geometry "
 "and then creating the navigation polygon vertices and polygons."
-msgstr "透過先解析場景中的來源幾何體，然後創建導航多邊形的頂點和多邊形來烘焙導航多邊"
+msgstr ""
+"透過先解析場景中的來源幾何體，然後創建導航多邊形的頂點和多邊形來烘焙導航多邊"
 "形。"
 
 #: editor/plugins/navigation_polygon_editor_plugin.cpp
@@ -12849,12 +12960,14 @@ msgid "LightOccluder2D Preview"
 msgstr "LightOccluder2D 預覽"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Can't convert a Sprite2D from a foreign scene."
+#, fuzzy
+msgid "Can't convert a sprite from a foreign scene."
 msgstr "無法對外部場景的節點進行操作。"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
-msgid "Sprite2D is empty!"
-msgstr "Sprite2D 為空！"
+#, fuzzy
+msgid "Can't convert an empty sprite to mesh."
+msgstr "無法使用動畫影格將 Sprite 轉換為網格。"
 
 #: editor/plugins/sprite_2d_editor_plugin.cpp
 msgid "Can't convert a sprite using animation frames to mesh."
@@ -14677,7 +14790,8 @@ msgid ""
 "Warning: Modifying a source ID will result in all TileMaps using that source "
 "to reference an invalid source instead. This may result in unexpected data "
 "loss. Change this ID carefully."
-msgstr "警告：修改源ID會導致所有使用該來源的TileMap引用無效的來源。可能導致意料之外的"
+msgstr ""
+"警告：修改源ID會導致所有使用該來源的TileMap引用無效的來源。可能導致意料之外的"
 "資料遺失。請謹慎修改ID。"
 
 #: editor/plugins/tiles/tile_set_editor.cpp
@@ -14716,8 +14830,9 @@ msgstr "圖塊集"
 msgid ""
 "No VCS plugins are available in the project. Install a VCS plugin to use VCS "
 "integration features."
-msgstr "該專案中沒有可用的 VCS 外掛程式。要使用 VCS 整合功能，請安裝一個 VCS "
-"外掛程式。"
+msgstr ""
+"該專案中沒有可用的 VCS 外掛程式。要使用 VCS 整合功能，請安裝一個 VCS 外掛程"
+"式。"
 
 #: editor/plugins/version_control_editor_plugin.cpp
 msgid "Error"
@@ -15510,8 +15625,9 @@ msgstr "處理和碰撞著色器模式的”%s「輸入參數」。"
 msgid ""
 "A node for help to multiply a position input vector by rotation using "
 "specific axis. Intended to work with emitters."
-msgstr "一個節點，用於幫助通過使用特定軸的旋轉來乘以位置輸入向量。 "
-"旨在與發射器一起使用。"
+msgstr ""
+"一個節點，用於幫助通過使用特定軸的旋轉來乘以位置輸入向量。 旨在與發射器一起使"
+"用。"
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Float function."
@@ -16703,8 +16819,8 @@ msgstr ""
 "專案路徑：%s\n"
 "\n"
 "你有三個選擇：\n"
-"- 僅轉換設定檔（“project."
-"godot”）。此選項可以打開專案，但不嘗試轉換其中的場景、資源、腳本。\n"
+"- 僅轉換設定檔（“project.godot”）。此選項可以打開專案，但不嘗試轉換其中的場"
+"景、資源、腳本。\n"
 "- 轉換整個專案，包括其中的場景、資源、腳本（升級時推薦）。\n"
 "- 什麼都不做，返回。\n"
 "\n"
@@ -16975,8 +17091,8 @@ msgstr ""
 "注意，轉換是盡力而為的，也就是說，它可以讓專案的升級更容易，但無法做到開箱即"
 "用，仍然需要手動調整。\n"
 "\n"
-"重要：轉換前請一定要備份你的專案，因為本操作會使它無法在舊版本的 Godot "
-"中打開。"
+"重要：轉換前請一定要備份你的專案，因為本操作會使它無法在舊版本的 Godot 中打"
+"開。"
 
 #: editor/project_manager.cpp
 msgid "Can't run project"
@@ -17306,7 +17422,8 @@ msgstr "根名稱:"
 msgid ""
 "When empty, the root node name is derived from the scene name based on the "
 "\"editor/naming/node_name_casing\" project setting."
-msgstr "留空白時，根節點名稱從場景名稱衍生，使用專案設定“editor/naming/"
+msgstr ""
+"留空白時，根節點名稱從場景名稱衍生，使用專案設定“editor/naming/"
 "node_name_casing”的大小寫規則。"
 
 #: editor/scene_create_dialog.cpp
@@ -17440,8 +17557,8 @@ msgid ""
 "the instantiated scene using Scene > New Inherited Scene... instead."
 msgstr ""
 "無法儲存已實例化場景的分支。\n"
-"若要建立場景變體，您可使用場景 > 新增繼承場景..."
-"根據實例化的場景建立一個繼承場景。"
+"若要建立場景變體，您可使用場景 > 新增繼承場景...根據實例化的場景建立一個繼承"
+"場景。"
 
 #: editor/scene_tree_dock.cpp
 msgid ""
@@ -17474,8 +17591,9 @@ msgid ""
 msgstr "禁用「editable_instance」將導致節點的所有屬性都被還原為其預設值。"
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid ""
-"Enabling \"Load As Placeholder\" will disable \"Editable Children\" and "
+"Enabling \"Load as Placeholder\" will disable \"Editable Children\" and "
 "cause all properties of the node to be reverted to their default."
 msgstr ""
 "啟用「Load As Placeholder」將禁用「Editable Children」並導致其所有節點都被還"
@@ -17484,6 +17602,11 @@ msgstr ""
 #: editor/scene_tree_dock.cpp
 msgid "Make Local"
 msgstr "轉為本地"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Can't toggle unique name for nodes in subscene!"
+msgstr "無法對外部場景的節點進行操作！"
 
 #: editor/scene_tree_dock.cpp
 msgid "Enable Scene Unique Name(s)"
@@ -17606,7 +17729,8 @@ msgid "Editable Children"
 msgstr "可編輯子節點"
 
 #: editor/scene_tree_dock.cpp
-msgid "Load As Placeholder"
+#, fuzzy
+msgid "Load as Placeholder"
 msgstr "載入為佔位"
 
 #: editor/scene_tree_dock.cpp
@@ -17985,6 +18109,40 @@ msgstr "名稱「%s」是預留的著色器語言關鍵字。"
 msgid "Add Shader Global Parameter"
 msgstr "新增著色器全域參數"
 
+#: editor/surface_upgrade_tool.cpp
+msgid ""
+"This project uses meshes with an outdated mesh format from previous Godot "
+"versions. The engine needs to update the format in order to use those "
+"meshes.\n"
+"\n"
+"Press 'Restart & Upgrade' to run the surface upgrade tool which will update "
+"and re-save all meshes and scenes. This update will restart the editor and "
+"may take several minutes. Upgrading will make the meshes incompatible with "
+"previous versions of Godot.\n"
+"\n"
+"Press 'Upgrade Only' to continue opening the scene as normal. The engine "
+"will update each mesh in memory, but the update will not be saved. Choosing "
+"this option will lead to slower load times every time this project is loaded."
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Restart & Upgrade"
+msgstr ""
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrade Only"
+msgstr "僅運算子"
+
+#: editor/surface_upgrade_tool.cpp
+#, fuzzy
+msgid "Upgrading All Meshes in Project"
+msgstr "匯出專案內所有資源"
+
+#: editor/surface_upgrade_tool.cpp
+msgid "Attempting to re-save "
+msgstr ""
+
 #: editor/window_wrapper.cpp
 msgid "Make this panel floating in the screen %d."
 msgstr "讓這個面板在螢幕 %d 中浮動。"
@@ -18022,6 +18180,11 @@ msgid "Invalid type argument to convert(), use TYPE_* constants."
 msgstr "convert() 函式收到了無效的引數，請使用 TYPE_* 常數。"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot resize array."
+msgstr "調整陣列大小..."
+
+#: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Step argument is zero!"
 msgstr "Step 引數為 0！"
 
@@ -18052,6 +18215,11 @@ msgstr "無效的實體字典格式（位於 @path 的腳本無效）"
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Invalid instance dictionary (invalid subclasses)"
 msgstr "無效的實體字典（無效的子型別）"
+
+#: modules/gdscript/gdscript_utility_functions.cpp
+#, fuzzy
+msgid "Cannot instantiate GDScript class."
+msgstr "實例化腳本"
 
 #: modules/gdscript/gdscript_utility_functions.cpp
 msgid "Value of type '%s' can't provide a length."
@@ -18144,15 +18312,17 @@ msgstr "停用 '.blend' 檔案匯入功能需要重啟編輯器。"
 msgid ""
 "Blend file import is enabled in the project settings, but no Blender path is "
 "configured in the editor settings. Blend files will not be imported."
-msgstr "項目設置中啟用了 blend 檔的導入，但是編輯器設置中沒有配置 Blender 的路徑。 "
+msgstr ""
+"項目設置中啟用了 blend 檔的導入，但是編輯器設置中沒有配置 Blender 的路徑。 "
 "blend 檔將不會導入。"
 
 #: modules/gltf/register_types.cpp
 msgid ""
 "Blend file import is enabled, but the Blender path doesn't point to an "
 "accessible directory. Blend files will not be imported."
-msgstr "啟用了 blend 檔的導入，但是 Blender 路徑所指向的目錄不可存取。 blend "
-"檔將不會導入。"
+msgstr ""
+"啟用了 blend 檔的導入，但是 Blender 路徑所指向的目錄不可存取。 blend 檔將不會"
+"導入。"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Next Plane"
@@ -18291,6 +18461,20 @@ msgid "Optimizing acceleration structure"
 msgstr "正在最佳化加速結構"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid "OIDN denoiser failed, return code: %d"
+msgstr "要求失敗，回傳代碼："
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
+msgid ""
+"OIDN denoiser is selected in the project settings, but no or invalid OIDN "
+"executable path is configured in the editor settings."
+msgstr ""
+"項目設置中啟用了 blend 檔的導入，但是編輯器設置中沒有配置 Blender 的路徑。 "
+"blend 檔將不會導入。"
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Begin Bake"
 msgstr "開始烘焙"
 
@@ -18311,8 +18495,9 @@ msgid "Integrate indirect lighting"
 msgstr "集成間接光照"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
-msgid "Bounce %d/%d: Integrate indirect lighting %d%%"
-msgstr "彈跳%d/%d：集成間接照明%d%%"
+#, fuzzy
+msgid "Integrate indirect lighting %d%%"
+msgstr "集成間接光照"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 msgid "Baking lightprobes"
@@ -18353,8 +18538,8 @@ msgstr ""
 "無法載入 .NET 運行時，未找到相容的版本。\n"
 "嘗試創建/編輯專案會導致崩潰。\n"
 "\n"
-"請從 https://dotnet.microsoft.com/en-us/download 安裝 .NET SDK 6.0 "
-"或更新版本，然後重啟 Godot。"
+"請從 https://dotnet.microsoft.com/en-us/download 安裝 .NET SDK 6.0 或更新版"
+"本，然後重啟 Godot。"
 
 #: modules/mono/mono_gd/gd_mono.cpp
 msgid "Failed to load .NET runtime"
@@ -18383,8 +18568,8 @@ msgstr ""
 "無法載入 .NET 執行階段，具體為 hostfxr。\n"
 "嘗試創建/編輯專案會導致崩潰。\n"
 "\n"
-"請從 https://dotnet.microsoft.com/en-us/download 安裝 .NET SDK 6.0 "
-"或更新版本，然後重啟 Godot。"
+"請從 https://dotnet.microsoft.com/en-us/download 安裝 .NET SDK 6.0 或更新版"
+"本，然後重啟 Godot。"
 
 #: modules/multiplayer/editor/editor_network_profiler.cpp
 msgid "%d (%s)"
@@ -18523,14 +18708,16 @@ msgstr "不支援此型別的屬性。"
 msgid ""
 "A valid NodePath must be set in the \"Spawn Path\" property in order for "
 "MultiplayerSpawner to be able to spawn Nodes."
-msgstr "要讓 MultiplayerSpawner 能夠生出節點，必須在“Spawn Path”屬性中設置有效的 "
+msgstr ""
+"要讓 MultiplayerSpawner 能夠生出節點，必須在“Spawn Path”屬性中設置有效的 "
 "NodePath。"
 
 #: modules/multiplayer/multiplayer_synchronizer.cpp
 msgid ""
 "A valid NodePath must be set in the \"Root Path\" property in order for "
 "MultiplayerSynchronizer to be able to synchronize properties."
-msgstr "要讓 MultiplayerSynchronizer 能夠同步屬性，必須在“Root Path”屬性中設置有效的 "
+msgstr ""
+"要讓 MultiplayerSynchronizer 能夠同步屬性，必須在“Root Path”屬性中設置有效的 "
 "NodePath。"
 
 #: modules/navigation/editor/navigation_mesh_editor_plugin.cpp
@@ -18564,7 +18751,8 @@ msgstr "烘焙導航網格"
 msgid ""
 "Bakes the NavigationMesh by first parsing the scene for source geometry and "
 "then creating the navigation mesh vertices and polygons."
-msgstr "烘焙導航網格，首先解析場景中的來源幾何體，然後創建導航網格頂點和多邊形。"
+msgstr ""
+"烘焙導航網格，首先解析場景中的來源幾何體，然後創建導航網格頂點和多邊形。"
 
 #: modules/navigation/editor/navigation_mesh_editor_plugin.cpp
 msgid "Clear NavigationMesh"
@@ -18824,6 +19012,11 @@ msgid "Exporting to Android when using C#/.NET is experimental."
 msgstr "使用 C#/.NET 時匯出到 Android 是實驗性的。"
 
 #: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Android architecture %s not supported in C# projects."
+msgstr "\"%s“著色器尚未支援”hint_depth_texture“。"
+
+#: platform/android/export/export_plugin.cpp
 msgid ""
 "Android build template not installed in the project. Install it from the "
 "Project menu."
@@ -18882,8 +19075,9 @@ msgstr "找不到 Android SDK 生成工具的 apksigner 指令。"
 msgid ""
 "\"Target SDK\" %d is higher than the default version %d. This may work, but "
 "wasn't tested and may be unstable."
-msgstr "“Target "
-"SDK”%d比預設版本%d要高。這樣做也許可行，但並沒有經過測試，可能不穩定。"
+msgstr ""
+"“Target SDK”%d比預設版本%d要高。這樣做也許可行，但並沒有經過測試，可能不穩"
+"定。"
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
@@ -18908,8 +19102,8 @@ msgid ""
 "to execute. Please check that you have the correct version installed for "
 "your target sdk version. The resulting %s is unsigned."
 msgstr ""
-"位於 Android SDK“build-tools”目錄下的所有“apksigner”工具都未能成功執行。"
-"請檢查你是否為目標 SDK 版本安裝了正確的版本。生成的%s未簽名。"
+"位於 Android SDK“build-tools”目錄下的所有“apksigner”工具都未能成功執行。請檢"
+"查你是否為目標 SDK 版本安裝了正確的版本。生成的%s未簽名。"
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
@@ -18979,7 +19173,8 @@ msgstr "不支援的匯出格式！"
 msgid ""
 "Trying to build from a gradle built template, but no version info for it "
 "exists. Please reinstall from the 'Project' menu."
-msgstr "嘗試自自定建置樣板進行建置，但無版本資訊可用。請自「專案」選單中重新安裝。"
+msgstr ""
+"嘗試自自定建置樣板進行建置，但無版本資訊可用。請自「專案」選單中重新安裝。"
 
 #: platform/android/export/export_plugin.cpp
 msgid ""
@@ -19116,17 +19311,14 @@ msgid ""
 msgstr ".ipa 只能在macOS上建置。離開 Xcode 專案而不建置專案。"
 
 #: platform/ios/export/export_plugin.cpp
-msgid ""
-"Exporting to iOS is currently not supported in Godot 4 when using C#/.NET. "
-"Use Godot 3 to target iOS with C#/Mono instead."
-msgstr "Godot 4 中目前尚不支援使用 C#/.NET 導出到 iOS。要在 iOS 目標上使用 C#/Mono，"
-"請改用 Godot 3。"
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental and requires macOS."
+msgstr "使用 C#/.NET 時匯出到 Android 是實驗性的。"
 
-#: platform/ios/export/export_plugin.cpp platform/web/export/export_plugin.cpp
-msgid ""
-"If this project does not use C#, use a non-C# editor build to export the "
-"project."
-msgstr "如果這個專案不使用 C#，請使用非 C# 版本的編輯器來匯出專案。"
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Exporting to iOS when using C#/.NET is experimental."
+msgstr "使用 C#/.NET 時匯出到 Android 是實驗性的。"
 
 #: platform/ios/export/export_plugin.cpp platform/macos/export/export_plugin.h
 msgid "Identifier is missing."
@@ -19256,6 +19448,17 @@ msgstr "正在上傳腳本…"
 msgid "Starting project..."
 msgstr "正在啟動專案..."
 
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp scene/gui/file_dialog.cpp
+msgid "All Files"
+msgstr "所有檔案"
+
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp
+#, fuzzy
+msgid "Failed to execute file dialogs callback: %s."
+msgstr "無法打開執行檔「%s」。"
+
 #: platform/macos/export/codesign.cpp
 msgid "Can't get filesystem access."
 msgstr "無法存取檔案系統。"
@@ -19361,6 +19564,12 @@ msgid "App sandbox is required for App Store distribution."
 msgstr "App Store 分發時，App 沙盒是必選項。"
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries (GDExtension or .NET)."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Code signing is required for App Store distribution."
 msgstr "App Store 分發時，程式碼簽名是必選項。"
 
@@ -19377,8 +19586,9 @@ msgstr "Apple ID 名稱和 App Store Connect 發行者 ID 名稱均未指定。"
 msgid ""
 "Both Apple ID name and App Store Connect issuer ID name are specified, only "
 "one should be set at the same time."
-msgstr "同時指定了 Apple ID 名稱和 App Store Connect 發行商 ID "
-"名稱，只應同時設定一個。"
+msgstr ""
+"同時指定了 Apple ID 名稱和 App Store Connect 發行商 ID 名稱，只應同時設定一"
+"個。"
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Apple ID password not specified."
@@ -19420,15 +19630,6 @@ msgid ""
 msgstr "已啟用相簿存取，但未指定用途描述。"
 
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-msgid "Icon Creation"
-msgstr "圖示建立"
-
-#: platform/macos/export/export_plugin.cpp
-msgid "Could not open icon file \"%s\"."
-msgstr "無法開啟符號檔 「%s」。"
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Notarization"
 msgstr "Animation - 動畫選項"
 
@@ -19436,7 +19637,8 @@ msgstr "Animation - 動畫選項"
 msgid ""
 "rcodesign path is not set. Configure rcodesign path in the Editor Settings "
 "(Export > macOS > rcodesign)."
-msgstr "未設定 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > macOS > "
+msgstr ""
+"未設定 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > macOS > "
 "rcodesign）。"
 
 #: platform/macos/export/export_plugin.cpp
@@ -19476,12 +19678,6 @@ msgid "Could not start xcrun executable."
 msgstr "無法啟動 xcrun 可執行檔案。"
 
 #: platform/macos/export/export_plugin.cpp
-msgid ""
-"The notarization process generally takes less than an hour. When the process "
-"is completed, you'll receive an email."
-msgstr "公證過程通常少於一個小時。過程結束后，你會收到一封郵件。"
-
-#: platform/macos/export/export_plugin.cpp
 msgid "Built-in CodeSign failed with error \"%s\"."
 msgstr "內置程式碼簽名失敗，錯誤為”%s\"。"
 
@@ -19493,7 +19689,8 @@ msgstr "內置程式碼簽名需要 regex 模組。"
 msgid ""
 "Xrcodesign path is not set. Configure rcodesign path in the Editor Settings "
 "(Export > macOS > rcodesign)."
-msgstr "未設定 Xrcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > macOS > "
+msgstr ""
+"未設定 Xrcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > macOS > "
 "rcodesign）。"
 
 #: platform/macos/export/export_plugin.cpp
@@ -19597,6 +19794,12 @@ msgid ""
 msgstr "Ad-hoc 簽名的應用需要“禁止函式庫驗證”授權才能載入動態函式庫。"
 
 #: platform/macos/export/export_plugin.cpp
+msgid ""
+"'rcodesign' doesn't support signing applications with embedded dynamic "
+"libraries."
+msgstr ""
+
+#: platform/macos/export/export_plugin.cpp
 msgid "Could not create entitlements file."
 msgstr "無法建立授權檔。"
 
@@ -19642,21 +19845,24 @@ msgstr "公證：未安裝 Xcode 命令列工具。"
 msgid ""
 "Notarization: rcodesign path is not set. Configure rcodesign path in the "
 "Editor Settings (Export > macOS > rcodesign)."
-msgstr "公證：沒有設定 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > "
+msgstr ""
+"公證：沒有設定 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯出 > "
 "macOS > rcodesign）。"
 
 #: platform/macos/export/export_plugin.cpp
 msgid ""
 "Warning: Notarization is disabled. The exported project will be blocked by "
 "Gatekeeper if it's downloaded from an unknown source."
-msgstr "警告：已禁用公證。如果從未知來源下載該匯出后的專案，將被 Gatekeeper "
-"阻止運作。"
+msgstr ""
+"警告：已禁用公證。如果從未知來源下載該匯出后的專案，將被 Gatekeeper 阻止運"
+"作。"
 
 #: platform/macos/export/export_plugin.cpp
 msgid ""
 "Code signing is disabled. The exported project will not run on Macs with "
 "enabled Gatekeeper and Apple Silicon powered Macs."
-msgstr "已禁用程式碼簽名。匯出後的專案將無法在啟用 Gatekeeper 的 Mac 和使用 Apple "
+msgstr ""
+"已禁用程式碼簽名。匯出後的專案將無法在啟用 Gatekeeper 的 Mac 和使用 Apple "
 "Silicon 的 Mac 上運作。"
 
 #: platform/macos/export/export_plugin.cpp
@@ -19674,8 +19880,8 @@ msgid ""
 "Code signing: rcodesign path is not set. Configure rcodesign path in the "
 "Editor Settings (Export > macOS > rcodesign)."
 msgstr ""
-"程式碼簽名：沒有設置 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（"
-"匯出 > macOS > rcodesign）。"
+"程式碼簽名：沒有設置 rcodesign 路徑。請在編輯器設定中填入 rcodesign 路徑（匯"
+"出 > macOS > rcodesign）。"
 
 #: platform/macos/export/export_plugin.cpp
 msgid "Run on remote macOS system"
@@ -19698,6 +19904,10 @@ msgid "Could not write file: \"%s\"."
 msgstr "無法寫入檔案：「%s」。"
 
 #: platform/web/export/export_plugin.cpp
+msgid "Icon Creation"
+msgstr "圖示建立"
+
+#: platform/web/export/export_plugin.cpp
 msgid "Could not read file: \"%s\"."
 msgstr "無法讀取檔案：「%s」。"
 
@@ -19709,8 +19919,15 @@ msgstr "PWA"
 msgid ""
 "Exporting to Web is currently not supported in Godot 4 when using C#/.NET. "
 "Use Godot 3 to target Web with C#/Mono instead."
-msgstr "Godot 4 中目前尚不支援使用 C#/.NET 導出到 Web。要在 Web 目標上使用 C#/Mono，"
+msgstr ""
+"Godot 4 中目前尚不支援使用 C#/.NET 導出到 Web。要在 Web 目標上使用 C#/Mono，"
 "請改用 Godot 3。"
+
+#: platform/web/export/export_plugin.cpp
+msgid ""
+"If this project does not use C#, use a non-C# editor build to export the "
+"project."
+msgstr "如果這個專案不使用 C#，請使用非 C# 版本的編輯器來匯出專案。"
 
 #: platform/web/export/export_plugin.cpp
 msgid "Could not read HTML shell: \"%s\"."
@@ -19835,8 +20052,9 @@ msgstr "無法移除模板檔案 「%s」。"
 msgid ""
 "The rcedit tool must be configured in the Editor Settings (Export > Windows "
 "> rcedit) to change the icon or app information data."
-msgstr "必須在編輯器設定中田素 rcedit 工具（匯出 > Windows > "
-"Rcedit）才能修改圖示或應用程式訊息資料。"
+msgstr ""
+"必須在編輯器設定中田素 rcedit 工具（匯出 > Windows > Rcedit）才能修改圖示或應"
+"用程式訊息資料。"
 
 #: platform/windows/export/export_plugin.cpp
 msgid "Windows executables cannot be >= 4 GiB."
@@ -19854,8 +20072,9 @@ msgstr "在遠端 Windows 系統上執行匯出的專案"
 msgid ""
 "A SpriteFrames resource must be created or set in the \"Frames\" property in "
 "order for AnimatedSprite2D to display frames."
-msgstr "必須為「Frames」屬性建立或設定 SpriteFrames 資源以令 AnimatedSprite3D "
-"顯示影格。"
+msgstr ""
+"必須為「Frames」屬性建立或設定 SpriteFrames 資源以令 AnimatedSprite3D 顯示影"
+"格。"
 
 #: scene/2d/canvas_modulate.cpp
 msgid ""
@@ -19881,9 +20100,9 @@ msgid ""
 "CollisionObject2D derived node. Please only use it as a child of Area2D, "
 "StaticBody2D, RigidBody2D, CharacterBody2D, etc. to give them a shape."
 msgstr ""
-"CollisionPolygon2D 僅可為 CollisionObject2D 衍生的節點提供碰撞形狀資訊。"
-"請将其作为 Area2D, StaticBody2D, RigidBody2D或 CharacterBody2D "
-"…的子節點來提供形狀用。"
+"CollisionPolygon2D 僅可為 CollisionObject2D 衍生的節點提供碰撞形狀資訊。請将"
+"其作为 Area2D, StaticBody2D, RigidBody2D或 CharacterBody2D …的子節點來提供形"
+"狀用。"
 
 #: scene/2d/collision_polygon_2d.cpp
 msgid "An empty CollisionPolygon2D has no effect on collision."
@@ -19909,9 +20128,9 @@ msgid ""
 "CollisionObject2D derived node. Please only use it as a child of Area2D, "
 "StaticBody2D, RigidBody2D, CharacterBody2D, etc. to give them a shape."
 msgstr ""
-"CollisionShape2D 僅可為 CollisionObject2D 衍生的節點提供碰撞形狀資訊。"
-"請將其作為 Area2D、StaticBody2D、RigidBody2D 或 CharacterBody2D "
-"的子節點以提供形狀。"
+"CollisionShape2D 僅可為 CollisionObject2D 衍生的節點提供碰撞形狀資訊。請將其"
+"作為 Area2D、StaticBody2D、RigidBody2D 或 CharacterBody2D 的子節點以提供形"
+"狀。"
 
 #: scene/2d/collision_shape_2d.cpp
 msgid ""
@@ -20011,8 +20230,9 @@ msgstr "NavigationLink2D 的開始位置應與結束位置不同，才能發揮�
 msgid ""
 "A NavigationMesh resource must be set or created for this node to work. "
 "Please set a property or draw a polygon."
-msgstr "必須先在該節點上設定或建立 NavigationPolygon "
-"才可以使用。請設定屬性或繪製多邊形。"
+msgstr ""
+"必須先在該節點上設定或建立 NavigationPolygon 才可以使用。請設定屬性或繪製多邊"
+"形。"
 
 #: scene/2d/parallax_layer.cpp
 msgid ""
@@ -20034,7 +20254,8 @@ msgstr ""
 msgid ""
 "A PhysicalBone2D needs to be assigned to a Bone2D node in order to function! "
 "Please set a Bone2D node in the inspector."
-msgstr "PhysicalBone2D 需要分配給 Bone2D 節點，才能發揮作用！請在屬性面板中設置 "
+msgstr ""
+"PhysicalBone2D 需要分配給 Bone2D 節點，才能發揮作用！請在屬性面板中設置 "
 "Bone2D 節點。"
 
 #: scene/2d/physical_bone_2d.cpp
@@ -20042,8 +20263,8 @@ msgid ""
 "A PhysicalBone2D node should have a Joint2D-based child node to keep bones "
 "connected! Please add a Joint2D-based node as a child to this node!"
 msgstr ""
-"一個 PhysicalBone2D 節點應該有一個基於 Joint2D 的子節點來保持骨骼的連接！"
-"請增加一個基於 Joint2D 的節點作為其子節點！"
+"一個 PhysicalBone2D 節點應該有一個基於 Joint2D 的子節點來保持骨骼的連接！請增"
+"加一個基於 Joint2D 的節點作為其子節點！"
 
 #: scene/2d/physics_body_2d.cpp
 msgid ""
@@ -20083,8 +20304,8 @@ msgid ""
 "Y-sorted as a whole with tiles from Y-sorted layers."
 msgstr ""
 "Y 排序圖層與未 Y 排序層次具有相同的 Z 索引值。\n"
-"這可能會導致不需要的行為，因為未經過 Y 排序的圖層將使用來自 Y "
-"排序圖層的圖塊一起進行 Y 排序。"
+"這可能會導致不需要的行為，因為未經過 Y 排序的圖層將使用來自 Y 排序圖層的圖塊"
+"一起進行 Y 排序。"
 
 #: scene/2d/tile_map.cpp
 msgid ""
@@ -20093,11 +20314,24 @@ msgid ""
 msgstr "TileMap 圖層設置為 Y 排序，但 TileMap 節點本身未啟用 Y 排序。"
 
 #: scene/2d/tile_map.cpp
+#, fuzzy
+msgid ""
+"The TileMap node is set as Y-sorted, but Y-sort is not enabled on any of the "
+"TileMap's layers.\n"
+"This may lead to unwanted behaviors, as a layer that is not Y-sorted will be "
+"Y-sorted as a whole."
+msgstr ""
+"Y 排序圖層與未 Y 排序層次具有相同的 Z 索引值。\n"
+"這可能會導致不需要的行為，因為未經過 Y 排序的圖層將使用來自 Y 排序圖層的圖塊"
+"一起進行 Y 排序。"
+
+#: scene/2d/tile_map.cpp
 msgid ""
 "Isometric TileSet will likely not look as intended without Y-sort enabled "
 "for the TileMap and all of its layers."
-msgstr "如果不對 TileMap 和它的所有層啟用 Y排序，等軸 TileSet "
-"可能看起來不像預期的那樣顯示。"
+msgstr ""
+"如果不對 TileMap 和它的所有層啟用 Y排序，等軸 TileSet 可能看起來不像預期的那"
+"樣顯示。"
 
 #: scene/3d/bone_attachment_3d.cpp
 msgid ""
@@ -20111,8 +20345,8 @@ msgid ""
 "you intend to use the BoneAttachment3D without it being a child of a "
 "Skeleton3D node."
 msgstr ""
-"父節點不是 Skeleton3D 節點！如果不想讓 BoneAttachment3D 成為 Skeleton3D "
-"節點的子節點，請使用外部 Skeleton3D。"
+"父節點不是 Skeleton3D 節點！如果不想讓 BoneAttachment3D 成為 Skeleton3D 節點"
+"的子節點，請使用外部 Skeleton3D。"
 
 #: scene/3d/bone_attachment_3d.cpp
 msgid ""
@@ -20210,8 +20444,8 @@ msgid ""
 "CPUParticles3D animation requires the usage of a StandardMaterial3D whose "
 "Billboard Mode is set to \"Particle Billboard\"."
 msgstr ""
-"CPUParticles3D 動畫需要使用StandardMaterial3D ，其 Billboard Mode 應被設定為“"
-"Particle Billboard”。"
+"CPUParticles3D 動畫需要使用StandardMaterial3D ，其 Billboard Mode 應被設定"
+"為“Particle Billboard”。"
 
 #: scene/3d/decal.cpp
 msgid ""
@@ -20264,7 +20498,8 @@ msgstr "由於網格尚未被指派至描繪路徑（Draw Pass），未顯示任
 msgid ""
 "Particles animation requires the usage of a BaseMaterial3D whose Billboard "
 "Mode is set to \"Particle Billboard\"."
-msgstr "粒子動畫需要使用BaseMaterial3D，其BillboardMode應被設定為“Particle "
+msgstr ""
+"粒子動畫需要使用BaseMaterial3D，其BillboardMode應被設定為“Particle "
 "Billboard”。"
 
 #: scene/3d/gpu_particles_3d.cpp
@@ -20408,8 +20643,8 @@ msgid ""
 "occluder meshes for this OccluderInstance3D.\n"
 "To resolve this, enable at least one bit in the Bake Mask property."
 msgstr ""
-"烘培 Mask 沒有啟用任何位元，這意味著烘焙時不會為這個 OccluderInstance3D "
-"生成任何遮擋網格。\n"
+"烘培 Mask 沒有啟用任何位元，這意味著烘焙時不會為這個 OccluderInstance3D 生成"
+"任何遮擋網格。\n"
 "要解決這個問題，請在烘培 Mask屬性中至少啟用一個位元。"
 
 #: scene/3d/occluder_instance_3d.cpp
@@ -20420,8 +20655,8 @@ msgid ""
 "types or bake the scene meshes by selecting the OccluderInstance3D and "
 "pressing the Bake Occluders button at the top of the 3D editor viewport."
 msgstr ""
-"Occluder 屬性中沒有定義遮擋網格，所以使用這個 OccluderInstance3D "
-"不會進行遮擋剔除。\n"
+"Occluder 屬性中沒有定義遮擋網格，所以使用這個 OccluderInstance3D 不會進行遮擋"
+"剔除。\n"
 "要解決這個問題，可以將 Occluder 屬性設置為基本遮擋器型別之一，或者通過選擇 "
 "OccluderInstance3D 並使用 3D 編輯器視窗頂部的“烘焙遮擋器”按鈕來烘焙場景網格。"
 
@@ -20433,8 +20668,8 @@ msgid ""
 "the Bake Occluders button at the top of the 3D editor viewport."
 msgstr ""
 "遮擋網格的頂點少於 3 個，所以使用這個 OccluderInstance3D 不會進行遮擋剔除。\n"
-"要生成正確的遮擋網格，請選擇 OccluderInstance3D，然後使用 3D "
-"編輯器視窗頂部的“烘焙遮擋器”按鈕。"
+"要生成正確的遮擋網格，請選擇 OccluderInstance3D，然後使用 3D 編輯器視窗頂部"
+"的“烘焙遮擋器”按鈕。"
 
 #: scene/3d/occluder_instance_3d.cpp
 msgid ""
@@ -20443,10 +20678,10 @@ msgid ""
 "Vertices can be added in the inspector or using the polygon editing tools at "
 "the top of the 3D editor viewport."
 msgstr ""
-"多邊形遮擋器的頂點少於 3 個，因此使用這個 OccluderInstance3D "
-"不會進行遮擋剔除。\n"
-"可以在屬性面板中添加頂點，也可以使用 3D "
-"編輯器視窗頂部的多邊形編輯工具添加頂點。"
+"多邊形遮擋器的頂點少於 3 個，因此使用這個 OccluderInstance3D 不會進行遮擋剔"
+"除。\n"
+"可以在屬性面板中添加頂點，也可以使用 3D 編輯器視窗頂部的多邊形編輯工具添加頂"
+"點。"
 
 #: scene/3d/path_3d.cpp
 msgid "PathFollow3D only works when set as a child of a Path3D node."
@@ -20457,8 +20692,8 @@ msgid ""
 "PathFollow3D's ROTATION_ORIENTED requires \"Up Vector\" to be enabled in its "
 "parent Path3D's Curve resource."
 msgstr ""
-"PathFollow3D 的 ROTATION_ORIENTED 需要在其父節點的Path3D的 Curve 資源內啟用「"
-"Up Vector」。"
+"PathFollow3D 的 ROTATION_ORIENTED 需要在其父節點的Path3D的 Curve 資源內啟用"
+"「Up Vector」。"
 
 #: scene/3d/physics_body_3d.cpp
 msgid ""
@@ -20473,13 +20708,15 @@ msgstr ""
 msgid ""
 "ReflectionProbes are not supported when using the GL Compatibility backend "
 "yet. Support will be added in a future release."
-msgstr "使用 GL Compatibility 後端時尚不支援 ReflectionProbe。將在後續版本中加入。"
+msgstr ""
+"使用 GL Compatibility 後端時尚不支援 ReflectionProbe。將在後續版本中加入。"
 
 #: scene/3d/remote_transform_3d.cpp
 msgid ""
 "The \"Remote Path\" property must point to a valid Node3D or Node3D-derived "
 "node to work."
-msgstr "「Remote Path」屬性必須指向一個有效的 Node3D 或 Node3D 衍生之節點才可運作。"
+msgstr ""
+"「Remote Path」屬性必須指向一個有效的 Node3D 或 Node3D 衍生之節點才可運作。"
 
 #: scene/3d/shape_cast_3d.cpp
 msgid ""
@@ -20508,15 +20745,17 @@ msgstr ""
 msgid ""
 "VehicleWheel3D serves to provide a wheel system to a VehicleBody3D. Please "
 "use it as a child of a VehicleBody3D."
-msgstr "VehicleWheel3D旨在為 VehicleBody3D提供 Wheel System。請將其作為 "
-"VehicleBody3D的子節點。"
+msgstr ""
+"VehicleWheel3D旨在為 VehicleBody3D提供 Wheel System。請將其作為 VehicleBody3D"
+"的子節點。"
 
 #: scene/3d/visible_on_screen_notifier_3d.cpp
 msgid ""
 "VisibleOnScreenNotifier3D nodes are not supported when using the GL "
 "Compatibility backend yet. Support will be added in a future release."
-msgstr "使用 GL Compatibility 後端時尚不支援 VisibleOnScreenNotifier3D "
-"節點。將在後續版本中加入。"
+msgstr ""
+"使用 GL Compatibility 後端時尚不支援 VisibleOnScreenNotifier3D 節點。將在後續"
+"版本中加入。"
 
 #: scene/3d/visual_instance_3d.cpp
 msgid ""
@@ -20564,7 +20803,8 @@ msgstr "正在生成距離場"
 msgid ""
 "VoxelGI nodes are not supported when using the GL Compatibility backend yet. "
 "Support will be added in a future release."
-msgstr "使用 GL Compatibility 後端時尚不支援 VoxelGI 節點。將在後續版本中加入。"
+msgstr ""
+"使用 GL Compatibility 後端時尚不支援 VoxelGI 節點。將在後續版本中加入。"
 
 #: scene/3d/voxel_gi.cpp
 msgid ""
@@ -20579,8 +20819,8 @@ msgid ""
 "contain a CameraAttributes resource, or both."
 msgstr ""
 "要產生視覺效果，必須先將 WorldEnvironment 之「Environment」屬性設為包含 "
-"Environment ，或讓其“Camera Attributes”屬性包含 CameraAttributes "
-"資源，兩者也可同時設定。"
+"Environment ，或讓其“Camera Attributes”屬性包含 CameraAttributes 資源，兩者也"
+"可同時設定。"
 
 #: scene/3d/world_environment.cpp
 msgid ""
@@ -20735,10 +20975,6 @@ msgid "You don't have permission to access contents of this folder."
 msgstr "你無權存取此資料夾的內容。"
 
 #: scene/gui/file_dialog.cpp
-msgid "All Files"
-msgstr "所有檔案"
-
-#: scene/gui/file_dialog.cpp
 msgid "Invalid extension, or empty filename."
 msgstr "無效的副檔名，或空白的檔名。"
 
@@ -20747,8 +20983,9 @@ msgid ""
 "Please be aware that GraphEdit and GraphNode will undergo extensive "
 "refactoring in a future 4.x version involving compatibility-breaking API "
 "changes."
-msgstr "請注意，GraphEdit 和 GraphNode 將在未來的 4.x 版本中進行重構，"
-"會涉及大量破壞相容性的 API 更改。"
+msgstr ""
+"請注意，GraphEdit 和 GraphNode 將在未來的 4.x 版本中進行重構，會涉及大量破壞"
+"相容性的 API 更改。"
 
 #: scene/gui/graph_edit.cpp
 msgid "Toggle the visual grid."
@@ -20769,6 +21006,12 @@ msgstr "開關迷你地圖。。"
 #: scene/gui/graph_edit.cpp
 msgid "Automatically arrange selected nodes."
 msgstr "自動排列所選節點。"
+
+#: scene/gui/label.cpp
+msgid ""
+"Labels with autowrapping enabled must have a custom minimum size configured "
+"to work correctly inside a container."
+msgstr ""
 
 #: scene/gui/label.cpp
 msgid ""
@@ -20914,7 +21157,8 @@ msgid ""
 "Data from the original node is kept as a placeholder until this type of node "
 "is available again. It can hence be safely re-saved without risk of data "
 "loss."
-msgstr "原始節點中的資料將保留為佔位字元，直到此型別的節點再次可用。因此，它可以安全"
+msgstr ""
+"原始節點中的資料將保留為佔位字元，直到此型別的節點再次可用。因此，它可以安全"
 "地重新保存，而不會有資料遺失的風險。"
 
 #: scene/main/node.cpp
@@ -21180,13 +21424,15 @@ msgstr "型別為“%s”的Varying變數只能在”fragment“函數中被賦�
 msgid ""
 "Varyings which assigned in 'vertex' function may not be reassigned in "
 "'fragment' or 'light'."
-msgstr "已在“vertex”函數中賦值的 variant 不能在“fragment”或“light”中被重新賦值。"
+msgstr ""
+"已在“vertex”函數中賦值的 variant 不能在“fragment”或“light”中被重新賦值。"
 
 #: servers/rendering/shader_language.cpp
 msgid ""
 "Varyings which assigned in 'fragment' function may not be reassigned in "
 "'vertex' or 'light'."
-msgstr "已在「fragment」函數中被賦值的Varying變數不能在「vertex」或是「light」中再被"
+msgstr ""
+"已在「fragment」函數中被賦值的Varying變數不能在「vertex」或是「light」中再被"
 "賦值。"
 
 #: servers/rendering/shader_language.cpp
@@ -21210,8 +21456,9 @@ msgid ""
 "Sampler argument %d of function '%s' called more than once using both built-"
 "ins and uniform textures, this is not supported (use either one or the "
 "other)."
-msgstr "採樣器參數%d：函數”%s“有多次呼叫，同時使用了內建和 uniform "
-"紋理，不支援這種用法（請在其中選擇一種使用）。"
+msgstr ""
+"採樣器參數%d：函數”%s“有多次呼叫，同時使用了內建和 uniform 紋理，不支援這種用"
+"法（請在其中選擇一種使用）。"
 
 #: servers/rendering/shader_language.cpp
 msgid ""
@@ -21223,7 +21470,8 @@ msgstr "採樣器參數%d：函數”%s“有多次被呼叫，所使用紋理�
 msgid ""
 "Sampler argument %d of function '%s' called more than once using different "
 "built-ins. Only calling with the same built-in is supported."
-msgstr "採樣器參數%d：函數”%s“有多次被呼叫，使用的內建函數不同。僅支援使用相同的內建"
+msgstr ""
+"採樣器參數%d：函數”%s“有多次被呼叫，使用的內建函數不同。僅支援使用相同的內建"
 "函數進行呼叫。"
 
 #: servers/rendering/shader_language.cpp
@@ -21292,15 +21540,12 @@ msgid "Varying '%s' cannot be passed for the '%s' parameter in that context."
 msgstr "Varying變數'%s'不可在「%s」函式中作為參數傳遞。"
 
 #: servers/rendering/shader_language.cpp
-msgid "A constant value cannot be passed for '%s' parameter."
-msgstr "純量值不能作為”%s“參數傳遞。"
-
-#: servers/rendering/shader_language.cpp
 msgid ""
 "Unable to pass a multiview texture sampler as a parameter to custom "
 "function. Consider to sample it in the main function and then pass the "
 "vector result to it."
-msgstr "無法將多視圖紋理採樣器作為參數傳遞給自定義函數。請考慮在主函數中採樣，然後傳"
+msgstr ""
+"無法將多視圖紋理採樣器作為參數傳遞給自定義函數。請考慮在主函數中採樣，然後傳"
 "遞所得到的向量。"
 
 #: servers/rendering/shader_language.cpp
@@ -21314,8 +21559,8 @@ msgid ""
 "filter_linear_mipmap;' near the top of your shader."
 msgstr ""
 "%s已被移除，請改用 hint_%s和uniform。\n"
-"為了保持最小的程式碼改變，你可以在著色器頂部附近添加“uniform "
-"sampler2D%s：hint_%s，filter_linear_mipmap;“。"
+"為了保持最小的程式碼改變，你可以在著色器頂部附近添加“uniform sampler2D%s："
+"hint_%s，filter_linear_mipmap;“。"
 
 #: servers/rendering/shader_language.cpp
 msgid ""
