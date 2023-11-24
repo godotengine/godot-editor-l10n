@@ -27,6 +27,13 @@ msgstr ""
 # Some strings used by `doc/tools/make_rst.py` (godotengine/godot repo) are normally part of the editor translations,
 # so we need to include them manually here for the online docs.
 BASE_STRINGS = [
+    "All classes",
+    "Globals",
+    "Nodes",
+    "Resources",
+    "Editor-only",
+    "Other objects",
+    "Variant types",
     "Description",
     "Tutorials",
     "Properties",
@@ -37,6 +44,7 @@ BASE_STRINGS = [
     "Signals",
     "Enumerations",
     "Constants",
+    "Annotations",
     "Property Descriptions",
     "Constructor Descriptions",
     "Method Descriptions",
