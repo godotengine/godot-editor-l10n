@@ -66,6 +66,7 @@ BASE_STRINGS = [
     "This value is an integer composed as a bitmask of the following flags.",
     "There is currently no description for this class. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this signal. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
+    "There is currently no description for this constant. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this annotation. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this constructor. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
