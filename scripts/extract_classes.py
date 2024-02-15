@@ -5,6 +5,7 @@ import os
 import shutil
 from collections import OrderedDict
 
+EXTRACT_ATTRIBS = ["deprecated", "experimental"]
 EXTRACT_TAGS = ["description", "brief_description", "member", "constant", "theme_item", "link"]
 HEADER = """\
 # LANGUAGE translation of the Godot Engine class reference.
@@ -75,6 +76,15 @@ BASE_STRINGS = [
     "There is currently no description for this operator. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this theme property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There are notable differences when using this API with C#. See :ref:`doc_c_sharp_differences` for more information.",
+    "Deprecated:",
+    "Experimental:",
+    "This signal may be changed or removed in future versions.",
+    "This constant may be changed or removed in future versions.",
+    "This property may be changed or removed in future versions.",
+    "This constructor may be changed or removed in future versions.",
+    "This method may be changed or removed in future versions.",
+    "This operator may be changed or removed in future versions.",
+    "This theme property may be changed or removed in future versions.",
 ]
 
 ## <xml-line-number-hack from="https://stackoverflow.com/a/36430270/10846399">
@@ -232,12 +242,44 @@ def _strip_and_split_desc(desc, code_block_regions):
     return desc_strip
 
 
+def _c_escape(string):
+    result = ""
+    for i in range(len(string)):
+        c = string[i]
+        if c == "\n":
+            c = "\\n"
+        if c == '"':
+            c = '\\"'
+        if c == "\\":
+            c = "\\\\"
+        if c == "\t":
+            c = "\\t"
+        result += c
+    return result
+
+
 ## make catalog strings from xml elements
 def _make_translation_catalog(classes):
     unique_msgs = OrderedDict()
     for class_name in classes:
         desc_list = classes[class_name]
         for elem in desc_list.doc.iter():
+            for attrib_name in elem.attrib:
+                if attrib_name not in EXTRACT_ATTRIBS:
+                    continue
+                attrib_value = elem.attrib[attrib_name]
+                if not attrib_value:
+                    continue
+                line_no = elem._start_line_number
+                attrib_msg = _c_escape(attrib_value)
+                desc_obj = Desc(line_no, attrib_msg, desc_list)
+                desc_list.list.append(desc_obj)
+
+                if attrib_msg not in unique_msgs:
+                    unique_msgs[attrib_msg] = [desc_obj]
+                else:
+                    unique_msgs[attrib_msg].append(desc_obj)
+
             if elem.tag in EXTRACT_TAGS:
                 elem_text = elem.text
                 if elem.tag == "link":
