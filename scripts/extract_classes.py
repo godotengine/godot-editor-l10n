@@ -65,6 +65,7 @@ BASE_STRINGS = [
     "This method doesn't need an instance to be called, so it can be called directly using the class name.",
     "This method describes a valid operator to use with this type as left-hand operand.",
     "This value is an integer composed as a bitmask of the following flags.",
+    "No return value.",
     "There is currently no description for this class. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this signal. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
     "There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!",
