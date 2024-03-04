@@ -1,6 +1,6 @@
 # Makefile providing various facilities to manage translations
 
-TEMPLATE = runtime.pot
+TEMPLATE = extractable.pot
 MIN_COMPLETION = 0.20
 POFILES = $(wildcard *.po)
 LANGS = $(POFILES:%.po=%)

@@ -28,7 +28,7 @@ if not os.path.exists("editor"):
 processor = PropertyNameProcessor()
 
 main_po = """
-# LANGUAGE translation of the Godot Engine project strings.
+# LANGUAGE translation of the Godot Engine extractable strings.
 # Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
 # Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
 # This file is distributed under the same license as the Godot source code.
@@ -38,7 +38,7 @@ main_po = """
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Godot Engine project strings\\n"
+"Project-Id-Version: Godot Engine extractable strings\\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
