@@ -38,7 +38,7 @@ main_po = """
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Godot Engine properties\\n"
+"Project-Id-Version: Godot Engine editor properties\\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
