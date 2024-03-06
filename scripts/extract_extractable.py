@@ -48,9 +48,9 @@ msgstr ""
 
 # Regex "(?P<name>([^"\\]|\\.)*)" creates a group named `name` that matches a string.
 message_patterns = {
-    re.compile(r'ETR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ETR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
     re.compile(
-        r'ETRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
+        r'^(?!\s*\/\/|\s*\*).*ETRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
 }
 

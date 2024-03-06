@@ -48,14 +48,14 @@ msgstr ""
 
 # Regex "(?P<name>([^"\\]|\\.)*)" creates a group named `name` that matches a string.
 message_patterns = {
-    re.compile(r'RTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
-    re.compile(r'TTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
-    re.compile(r'TTRC\(U?"(?P<message>([^"\\]|\\.)*)"\)'): ExtractType.TEXT,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*RTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*TTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*TTRC\(U?"(?P<message>([^"\\]|\\.)*)"\)'): ExtractType.TEXT,
     re.compile(
-        r'TTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
+        r'^(?!\s*\/\/|\s*\*).*TTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
     re.compile(
-        r'RTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
+        r'^(?!\s*\/\/|\s*\*).*RTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
 }
 
