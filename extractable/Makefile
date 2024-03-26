@@ -2,6 +2,7 @@
 
 TEMPLATE = extractable.pot
 MIN_COMPLETION = 0.20
+POTFILE = "extractable.pot"
 POFILES = $(wildcard *.po)
 LANGS = $(POFILES:%.po=%)
 
@@ -25,10 +26,12 @@ check:
 # Completion ratio is derived from statistics string such as:
 # 2775 translated messages, 272 fuzzy translations, 151 untranslated messages.
 # First number can be 0, second and third numbers are only present if non-zero.
+# Also export the POT file, as it's necessary for POT creation in the editor.
 export:
 	@dest=../godot/editor/translations/extractable; \
 	mkdir -p $$dest; \
-	cp -f runtime_translations.gen.h $$dest/runtime_translations.gen.h; \
+	cp -f $(POTFILE) $$dest; \
+	echo $(POTFILE); \
 	for po in $(POFILES); do \
 	  res=`msgfmt --statistics $$po -o /dev/null 2>&1 | sed 's/[^0-9,]*//g'`; \
 	  complete=`cut -d',' -f1 <<< $$res`; \
