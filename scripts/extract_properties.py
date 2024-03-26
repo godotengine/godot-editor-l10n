@@ -48,25 +48,25 @@ msgstr ""
 
 # Regex "(?P<name>([^"\\]|\\.)*)" creates a group named `name` that matches a string.
 message_patterns = {
-    re.compile(r'_initial_set\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
-    re.compile(r'GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
-    re.compile(r'EDITOR_DEF(_RST)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*_initial_set\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*EDITOR_DEF(_RST)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
     re.compile(
-        r'EDITOR_SETTING(_USAGE)?\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
+        r'^(?!\s*\/\/|\s*\*).*EDITOR_SETTING(_USAGE)?\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
     ): ExtractType.PROPERTY_PATH,
     re.compile(
-        r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
+        r"^(?!\s*\/\/|\s*\*).*(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
         + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
     ): ExtractType.PROPERTY_PATH,
-    re.compile(r'ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
-    re.compile(r'ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
-    re.compile(r'(ADD_GROUP|GNAME)\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)"\)'): ExtractType.GROUP,
-    re.compile(r'ADD_GROUP_INDENT\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)", '): ExtractType.GROUP,
-    re.compile(r'ADD_SUBGROUP\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)"\)'): ExtractType.SUBGROUP,
-    re.compile(r'ADD_SUBGROUP_INDENT\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)", '): ExtractType.GROUP,
-    re.compile(r'PNAME\("(?P<message>[^"]+)"\)'): ExtractType.PROPERTY_PATH,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*(ADD_GROUP|GNAME)\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)"\)'): ExtractType.GROUP,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ADD_GROUP_INDENT\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)", '): ExtractType.GROUP,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ADD_SUBGROUP\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)"\)'): ExtractType.SUBGROUP,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*ADD_SUBGROUP_INDENT\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)", '): ExtractType.GROUP,
+    re.compile(r'^(?!\s*\/\/|\s*\*).*PNAME\("(?P<message>[^"]+)"\)'): ExtractType.PROPERTY_PATH,
 }
 theme_property_patterns = {
     re.compile(r'set_(?P<theme_item>constant|font|font_size|stylebox|color|icon)\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
