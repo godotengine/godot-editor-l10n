@@ -58,7 +58,7 @@ msgstr "Konfiguration"
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/3d/skeleton_3d.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
-#: servers/xr/xr_pose.cpp servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "Navn"
 
@@ -68,7 +68,7 @@ msgstr "Navn Lokaliseret"
 
 #: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
 #: scene/main/node.cpp scene/resources/visual_shader.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -100,6 +100,10 @@ msgstr "Deaktiver stderr"
 #, fuzzy
 msgid "Print Header"
 msgstr "Punktmidte"
+
+#: core/config/project_settings.cpp
+msgid "Enable Alt Space Menu"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -353,9 +357,9 @@ msgstr "Aktivér"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/2d/tile_map_layer.cpp scene/main/scene_tree.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 #, fuzzy
 msgid "Physics"
 msgstr "Fysik Frame %"
@@ -484,9 +488,10 @@ msgstr "Synkroniser Script Ændringer"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/main/scene_tree.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/rendering/renderer_scene_cull.cpp servers/rendering_server.cpp
+#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering_server.cpp
 msgid "Rendering"
 msgstr ""
 
@@ -501,6 +506,11 @@ msgstr "Rediger Poly"
 msgid "BVH Build Quality"
 msgstr "Optag"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Jitter Projection"
+msgstr "Projekt"
+
 #: core/config/project_settings.cpp core/string/translation.cpp main/main.cpp
 #, fuzzy
 msgid "Internationalization"
@@ -514,6 +524,11 @@ msgstr "Gennemtving layoutretning fra højre mod venstre"
 msgid "Root Node Layout Direction"
 msgstr "Rodknudelayoutretning"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Root Node Auto Translate"
+msgstr "Oversætter: "
+
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
 #: scene/main/viewport.cpp scene/register_scene_types.cpp
@@ -522,13 +537,17 @@ msgid "GUI"
 msgstr "GUI"
 
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp scene/main/viewport.cpp
+#: scene/gui/text_edit.cpp
 msgid "Timers"
 msgstr "Timere"
 
 #: core/config/project_settings.cpp
 msgid "Incremental Search Max Interval Msec"
 msgstr "Maksimalt interval for inkrementel søgning i ms"
+
+#: core/config/project_settings.cpp
+msgid "Tooltip Delay (sec)"
+msgstr ""
 
 #: core/config/project_settings.cpp main/main.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
@@ -593,6 +612,14 @@ msgstr ""
 #: core/config/project_settings.cpp
 msgid "Pipeline Cache"
 msgstr ""
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
+msgid "Enable"
+msgstr "Aktivér"
 
 #: core/config/project_settings.cpp
 #, fuzzy
@@ -879,7 +906,8 @@ msgstr ""
 msgid "Action"
 msgstr "Handling"
 
-#: core/input/input_event.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: core/input/input_event.cpp modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/environment.cpp scene/resources/material.cpp
 msgid "Strength"
@@ -1004,7 +1032,8 @@ msgid "Offset"
 msgstr "Forskydning"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Cell Size"
 msgstr ""
 
@@ -1191,14 +1220,10 @@ msgstr "Værdi"
 msgid "Arg Count"
 msgstr "Antal argumenter"
 
-#: editor/animation_track_editor.cpp
-msgid "Args"
-msgstr "Argumenter"
-
 #: editor/animation_track_editor.cpp editor/editor_settings.cpp
 #: modules/gltf/structures/gltf_accessor.cpp modules/noise/fastnoise_lite.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_positional_tracker.cpp
+#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "Type"
 
@@ -1221,7 +1246,7 @@ msgstr "Skifter Modus"
 msgid "Stream"
 msgstr "Strøm"
 
-#: editor/animation_track_editor.cpp
+#: editor/animation_track_editor.cpp scene/animation/animation_blend_tree.cpp
 msgid "Start Offset"
 msgstr "Startforskydning"
 
@@ -1281,8 +1306,8 @@ msgstr "Kodeord"
 msgid "Default Feature Profile"
 msgstr "Organiser Eksport Skabeloner"
 
-#: editor/editor_help.cpp editor/editor_settings.cpp
-#: editor/plugins/script_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_native_shader_source_visualizer.cpp
+#: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 msgid "Text Editor"
 msgstr "Tekstbehandler"
@@ -1336,6 +1361,18 @@ msgstr "Distraktions Fri Modus"
 #, fuzzy
 msgid "Movie Maker Enabled"
 msgstr "Filtrer filer..."
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: modules/gdscript/editor/gdscript_highlighter.cpp scene/gui/control.cpp
+#: scene/main/window.cpp scene/theme/theme_db.cpp
+msgid "Theme"
+msgstr ""
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: scene/3d/label_3d.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/label_settings.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "Linjeafstand"
 
 #: editor/editor_resource_picker.cpp
 #, fuzzy
@@ -1392,12 +1429,27 @@ msgid "Project Manager Screen"
 msgstr "Projekt Manager"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Connection"
+msgstr "Fjern Markering"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Engine Version Update Mode"
+msgstr "Eksporter Projekt"
+
+#: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
 msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
 msgstr "Benyt indlejret menu"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Use Native File Dialogs"
+msgstr "Indsæt Parametre"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1502,6 +1554,10 @@ msgstr "Lav Processorbrugstilstand Dvale (µsek)"
 msgid "Unfocused Low Processor Mode Sleep (µsec)"
 msgstr "Lav Processorbrugstilstand Dvale (µsek)"
 
+#: editor/editor_settings.cpp
+msgid "Import Resources When Unfocused"
+msgstr ""
+
 #: editor/editor_settings.cpp main/main.cpp
 #, fuzzy
 msgid "V-Sync Mode"
@@ -1528,6 +1584,15 @@ msgstr ""
 #, fuzzy
 msgid "Float Drag Speed"
 msgstr "Konstant"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Nested Color Mode"
+msgstr "Afspil Mode:"
+
+#: editor/editor_settings.cpp
+msgid "Delimitate All Container and Resources"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1572,11 +1637,6 @@ msgstr "Standardtilstand for farvevælger"
 #: editor/editor_settings.cpp
 msgid "Default Color Picker Shape"
 msgstr "Standardform for farvevælger"
-
-#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
-#: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
-msgid "Theme"
-msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1628,8 +1688,8 @@ msgstr "Tællinger:"
 msgid "Relationship Line Opacity"
 msgstr ""
 
-#: editor/editor_settings.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: editor/editor_settings.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Border Size"
 msgstr ""
 
@@ -1701,14 +1761,6 @@ msgstr "Tidssøgning Node"
 #: editor/editor_settings.cpp
 msgid "Multi Window"
 msgstr "Multivindue"
-
-#: editor/editor_settings.cpp
-#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
-msgid "Enable"
-msgstr "Aktivér"
 
 #: editor/editor_settings.cpp
 msgid "Restore Windows on Load"
@@ -1992,19 +2044,13 @@ msgstr "Kald"
 msgid "Draw Spaces"
 msgstr "Kald"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "Linjeafstand"
-
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Behavior"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/node_3d_editor_plugin.cpp
-#: modules/gridmap/grid_map.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/resources/2d/tile_set.cpp servers/navigation_server_3d.cpp
 msgid "Navigation"
 msgstr "Navigation"
 
@@ -2033,12 +2079,20 @@ msgstr "GridMap Slet Markerede"
 msgid "Stay in Script Editor on Node Selected"
 msgstr ""
 
+#: editor/editor_settings.cpp
+msgid "Open Script When Connecting Signal to Existing Method"
+msgstr ""
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Indent"
 msgstr "Indryk"
 
 #: editor/editor_settings.cpp
 msgid "Auto Indent"
+msgstr ""
+
+#: editor/editor_settings.cpp scene/gui/text_edit.cpp
+msgid "Indent Wrapped Lines"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
@@ -2114,6 +2168,15 @@ msgstr "Færdiggør filstier"
 #, fuzzy
 msgid "Add Type Hints"
 msgstr "Find Node Type"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Add String Name Literals"
+msgstr "Lagrings Fil:"
+
+#: editor/editor_settings.cpp
+msgid "Add Node Path Literals"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Single Quotes"
@@ -2251,6 +2314,11 @@ msgstr "Led"
 #: servers/physics_server_3d.cpp
 msgid "Shape"
 msgstr "Form"
+
+#: editor/editor_settings.cpp scene/3d/visible_on_screen_notifier_3d.cpp
+#: scene/resources/mesh.cpp
+msgid "AABB"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Primary Grid Steps"
@@ -2485,6 +2553,10 @@ msgid "Display Grid"
 msgstr "Vis alle"
 
 #: editor/editor_settings.cpp
+msgid "Highlight Selected Layer"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Polygon Editor"
 msgstr "Redaktør"
@@ -2624,6 +2696,11 @@ msgstr "Ryd Output"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Max Lines"
+msgstr "Værdi:"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Platforms"
 msgstr "Indsæt Node"
 
@@ -2634,11 +2711,6 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Prefer Wayland"
 msgstr ""
-
-#: editor/editor_settings.cpp
-#, fuzzy
-msgid "Connection"
-msgstr "Fjern Markering"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2705,6 +2777,10 @@ msgstr "Projekt Manager"
 #, fuzzy
 msgid "Sorting Order"
 msgstr "Omdøber mappe:"
+
+#: editor/editor_settings.cpp
+msgid "Directory Naming Convention"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2993,6 +3069,7 @@ msgstr "Medlemmer"
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr ""
 
@@ -3059,10 +3136,16 @@ msgid "File Mode"
 msgstr "Filtrer noder"
 
 #: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Filters"
 msgstr "Filter:"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Options"
+msgstr "Tællinger:"
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Disable Overwrite Warning"
@@ -3384,17 +3467,20 @@ msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
 #: scene/3d/physics/vehicle_body_3d.cpp scene/animation/root_motion_view.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/2d/circle_shape_2d.cpp
+#: scene/resources/2d/navigation_polygon.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
 #: scene/resources/3d/cylinder_shape_3d.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/3d/sphere_shape_3d.cpp scene/resources/environment.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Radius"
 msgstr ""
 
@@ -3426,7 +3512,7 @@ msgstr "Gem en Fil"
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
 #: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
 #: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
@@ -3444,10 +3530,6 @@ msgstr "Gem en Fil"
 #, fuzzy
 msgid "Enabled"
 msgstr "Aktivér"
-
-#: editor/import/3d/resource_importer_scene.cpp
-msgid "Make Streamable"
-msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -3477,7 +3559,8 @@ msgid "Use External"
 msgstr "Debug med ekstern editor"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/import/resource_importer_wav.cpp scene/resources/animation.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
 #: scene/resources/audio_stream_wav.cpp
 #, fuzzy
 msgid "Loop Mode"
@@ -3533,6 +3616,31 @@ msgstr ""
 #, fuzzy
 msgid "Import Tracks"
 msgstr "Importer"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Rest Pose"
+msgstr "Gem & genstart"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Load Pose"
+msgstr "Indlæs Fejl"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "External Animation Library"
+msgstr "Omdøb animation"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Animation"
+msgstr "Opret Ny Animation"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Timestamp"
+msgstr "Tid"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -3625,6 +3733,11 @@ msgstr "Fjern Anim Spor"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
+msgid "Import Rest as Reset"
+msgstr "Importer"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
 msgid "Import Script"
 msgstr "Importer Scene"
 
@@ -3639,6 +3752,12 @@ msgstr ""
 #, fuzzy
 msgid "Generate Mipmaps"
 msgstr "Generering af lightmaps"
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+#, fuzzy
+msgid "Disable Embedded Bitmaps"
+msgstr "Deaktiveret"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
@@ -3969,10 +4088,11 @@ msgstr "Interpolationsmetode"
 msgid "Trim Alpha Border From Region"
 msgstr ""
 
-#: editor/import/resource_importer_wav.cpp scene/2d/physics/rigid_body_2d.cpp
-#: scene/3d/physics/rigid_body_3d.cpp
+#: editor/import/resource_importer_wav.cpp
+#, fuzzy
+msgctxt "Enforce"
 msgid "Force"
-msgstr ""
+msgstr "Fejl!"
 
 #: editor/import/resource_importer_wav.cpp
 msgid "8 Bit"
@@ -4351,6 +4471,11 @@ msgid "Scene Name Casing"
 msgstr "Scene Sti:"
 
 #: editor/register_editor_types.cpp
+#, fuzzy
+msgid "Script Name Casing"
+msgstr "Scene Sti:"
+
+#: editor/register_editor_types.cpp
 msgid "Reimport Missing Imported Files"
 msgstr ""
 
@@ -4632,13 +4757,13 @@ msgstr "Pakker"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Eye Gaze Interaction"
-msgstr "Omdøb Funktion"
+msgid "Hand Interaction Profile"
+msgstr "Interpolationsmetode"
 
 #: main/main.cpp
 #, fuzzy
-msgid "In Editor"
-msgstr "Åbn redaktør"
+msgid "Eye Gaze Interaction"
+msgstr "Omdøb Funktion"
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -5051,6 +5176,10 @@ msgstr ""
 msgid "Use Thread"
 msgstr ""
 
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -5363,6 +5492,7 @@ msgid "Original Name"
 msgstr "Grupper"
 
 #: modules/gltf/structures/gltf_animation.cpp
+#: modules/interactive_music/audio_stream_playlist.cpp
 #: modules/minimp3/audio_stream_mp3.cpp
 #: modules/minimp3/resource_importer_mp3.cpp
 #: modules/vorbis/audio_stream_ogg_vorbis.cpp
@@ -5389,6 +5519,11 @@ msgstr ""
 #, fuzzy
 msgid "Indices"
 msgstr "Enhed"
+
+#: modules/gltf/structures/gltf_buffer_view.cpp
+#, fuzzy
+msgid "Vertex Attributes"
+msgstr "Forskel på små og store bogstaver"
 
 #: modules/gltf/structures/gltf_camera.cpp
 msgid "Perspective"
@@ -5565,6 +5700,31 @@ msgstr "Eksporter Projekt"
 msgid "Bake Navigation"
 msgstr "Rediger Poly"
 
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Initial Clip"
+msgstr "Konstant"
+
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Clip Count"
+msgstr "Konstant"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+msgid "Shuffle"
+msgstr ""
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#, fuzzy
+msgid "Fade Time"
+msgstr "Frame Tid (sek)"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#: modules/interactive_music/audio_stream_synchronized.cpp
+#, fuzzy
+msgid "Stream Count"
+msgstr "Tilføj punkt"
+
 #: modules/lightmapper_rd/register_types.cpp servers/rendering_server.cpp
 msgid "Lightmapping"
 msgstr ""
@@ -5684,6 +5844,11 @@ msgid "Display to Lens"
 msgstr "Vis alle"
 
 #: modules/mobile_vr/mobile_vr_interface.cpp
+#, fuzzy
+msgid "Offset Rect"
+msgstr "Forskydning"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "Oversample"
 msgstr ""
 
@@ -5694,6 +5859,18 @@ msgstr ""
 #: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "K2"
 msgstr ""
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Vulkan VRS"
+msgstr "Vulkan"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Min Radius"
+msgstr "Advarsler"
 
 #: modules/multiplayer/multiplayer_spawner.cpp
 #, fuzzy
@@ -5937,8 +6114,58 @@ msgstr "Vis alle"
 msgid "Render Target Size Multiplier"
 msgstr ""
 
-#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_hand_tracker.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Layer Viewport"
+msgstr "Eksporter Projekt"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Sort Order"
+msgstr "Omdøber mappe:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Blend"
+msgstr "Rediger Node Kurve"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "Mængde:"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Central Angle"
+msgstr "Værdi:"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Fallback Segments"
+msgstr "Afspil Mode:"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Central Horizontal Angle"
+msgstr "Filtrer filer..."
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Upper Vertical Angle"
+msgstr "Filtrer filer..."
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Lower Vertical Angle"
+msgstr "Filtrer filer..."
+
+#: modules/openxr/scene/openxr_composition_layer_quad.cpp
+#, fuzzy
+msgid "Quad Size"
+msgstr "Skrifttype Størrelse:"
+
+#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 msgid "Hand"
 msgstr ""
 
@@ -6491,6 +6718,10 @@ msgid "Export Project Only"
 msgstr "Projekt"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
 msgid "Capabilities"
 msgstr "Egenskaber"
@@ -6564,6 +6795,16 @@ msgstr "Egenskab beskrivelser"
 #, fuzzy
 msgid "Photolibrary Usage Description Localized"
 msgstr "Egenskab beskrivelser"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "Aktivér"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "Pakker"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Storyboard"
@@ -7945,6 +8186,19 @@ msgstr "Skift udtryk"
 msgid "Path Metadata Flags"
 msgstr ""
 
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Simplify Path"
+msgstr "Scene Sti:"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+msgid "Simplify Epsilon"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
@@ -7982,8 +8236,7 @@ msgid "Max Speed"
 msgstr ""
 
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Layers"
 msgstr "Aktivér"
@@ -8052,6 +8305,21 @@ msgstr "Rejse"
 msgid "Vertices"
 msgstr "Fjern vertikal guide"
 
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "NavigationMesh"
+msgstr "Rediger Poly"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Affect Navigation Mesh"
+msgstr "Rediger Poly"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Carve Navigation Mesh"
+msgstr "Rediger Poly"
+
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
@@ -8062,11 +8330,6 @@ msgstr "Rediger Poly"
 #, fuzzy
 msgid "Use Edge Connections"
 msgstr "Redigér Forbindelse:"
-
-#: scene/2d/navigation_region_2d.cpp
-#, fuzzy
-msgid "Constrain Avoidance"
-msgstr "Konstanter"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box_flat.cpp
 msgid "Skew"
@@ -8586,11 +8849,11 @@ msgid "Continuous CD"
 msgstr "Kontinuerlig"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Max Contacts Reported"
+msgid "Contact Monitor"
 msgstr ""
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Contact Monitor"
+msgid "Max Contacts Reported"
 msgstr ""
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
@@ -8614,6 +8877,12 @@ msgstr ""
 #, fuzzy
 msgid "Constant Forces"
 msgstr "Konstanter"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+#, fuzzy
+msgctxt "Physics"
+msgid "Force"
+msgstr "Fejl!"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Torque"
@@ -8719,7 +8988,12 @@ msgstr "Ramme %"
 msgid "Filter Clip Enabled"
 msgstr "Filtrer noder"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Tile Set"
+msgstr "TileSet..."
+
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Rendering Quadrant Size"
 msgstr "Kører Brugerdefineret Script..."
@@ -8729,20 +9003,34 @@ msgstr "Kører Brugerdefineret Script..."
 msgid "Collision Animatable"
 msgstr "Interpolationsmetode"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Collision Visibility Mode"
 msgstr "Eksporter Projekt"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Navigation Visibility Mode"
 msgstr "Eksporter Projekt"
 
-#: scene/2d/tile_map_layer_group.cpp
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
 #, fuzzy
-msgid "Tile Set"
-msgstr "TileSet..."
+msgid "Y Sort Origin"
+msgstr "Sorter"
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "Interpolationsmetode"
+
+#: scene/2d/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr ""
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Navigation Enabled"
+msgstr "Rediger Poly"
 
 #: scene/2d/touch_screen_button.cpp
 #, fuzzy
@@ -8950,11 +9238,12 @@ msgstr "Rediger Node Kurve"
 msgid "Albedo"
 msgstr ""
 
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
-#: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
-#: scene/theme/default_theme.cpp
+#: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
+#: scene/resources/material.cpp
+#, fuzzy
+msgctxt "Geometry"
 msgid "Normal"
-msgstr ""
+msgstr "Fjern Template"
 
 #: scene/3d/decal.cpp
 msgid "Orm"
@@ -9577,7 +9866,6 @@ msgid "Linear Limit"
 msgstr "Lineær"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "X"
 msgstr ""
 
@@ -9600,7 +9888,6 @@ msgid "Restitution"
 msgstr "Beskrivelse"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "Y"
 msgstr ""
 
@@ -10011,8 +10298,13 @@ msgstr "Kun metoder"
 
 #: scene/3d/skeleton_3d.cpp
 #, fuzzy
-msgid "Animate Physical Bones"
-msgstr "Tilføj animation"
+msgid "Modifier"
+msgstr "Afspil Mode:"
+
+#: scene/3d/skeleton_3d.cpp
+#, fuzzy
+msgid "Callback Mode Process"
+msgstr "Afspil Mode:"
 
 #: scene/3d/skeleton_ik_3d.cpp scene/resources/skeleton_profile.cpp
 #, fuzzy
@@ -10023,13 +10315,7 @@ msgstr "Omdøb"
 msgid "Tip Bone"
 msgstr ""
 
-#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
-#, fuzzy
-msgid "Interpolation"
-msgstr "Interpolationsmetode"
-
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_face_modifier_3d.cpp scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr ""
 
@@ -10059,6 +10345,17 @@ msgstr "Instans"
 #, fuzzy
 msgid "Max Iterations"
 msgstr "Omdøb Funktion"
+
+#: scene/3d/skeleton_modifier_3d.cpp scene/animation/animation_blend_tree.h
+#: scene/animation/animation_mixer.cpp
+#: servers/audio/effects/audio_effect_delay.cpp
+#, fuzzy
+msgid "Active"
+msgstr "Tilføj Funktion"
+
+#: scene/3d/skeleton_modifier_3d.cpp
+msgid "Influence"
+msgstr ""
 
 #: scene/3d/soft_body_3d.cpp
 #, fuzzy
@@ -10114,10 +10411,6 @@ msgstr ""
 msgid "Track Physics Step"
 msgstr "Fysik Frame %"
 
-#: scene/3d/visible_on_screen_notifier_3d.cpp scene/resources/mesh.cpp
-msgid "AABB"
-msgstr ""
-
 #: scene/3d/visual_instance_3d.cpp
 #, fuzzy
 msgid "Sorting"
@@ -10127,8 +10420,8 @@ msgstr "Sorter"
 msgid "Use AABB Center"
 msgstr ""
 
-#: scene/3d/visual_instance_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: scene/3d/visual_instance_3d.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Geometry"
 msgstr "Prøv igen"
@@ -10198,10 +10491,6 @@ msgstr "Tilføj Spor"
 msgid "Body Update"
 msgstr "Opdater"
 
-#: scene/3d/xr_body_modifier_3d.cpp
-msgid "Show When Tracked"
-msgstr ""
-
 #: scene/3d/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
@@ -10221,6 +10510,10 @@ msgstr "Tilføj Spor"
 msgid "Pose"
 msgstr ""
 
+#: scene/3d/xr_nodes.cpp
+msgid "Show When Tracked"
+msgstr ""
+
 #: scene/3d/xr_nodes.cpp servers/xr_server.cpp
 #, fuzzy
 msgid "World Scale"
@@ -10230,6 +10523,21 @@ msgstr "Skalér:"
 #, fuzzy
 msgid "Play Mode"
 msgstr "Afspil Mode:"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Use Custom Timeline"
+msgstr "Åbn Projekt datamappe"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Timeline Length"
+msgstr "Ændre Animationslængde"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Stretch Time Scale"
+msgstr "Tidsskala"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Sync"
@@ -10258,6 +10566,12 @@ msgstr ""
 #, fuzzy
 msgid "Fadeout Curve"
 msgstr "Rediger Node Kurve"
+
+#: scene/animation/animation_blend_tree.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Break Loop at End"
+msgstr "Skifter Modus"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -10302,12 +10616,6 @@ msgstr "Tilføj punkt"
 #, fuzzy
 msgid "Request"
 msgstr "Anmoder..."
-
-#: scene/animation/animation_blend_tree.h scene/animation/animation_mixer.cpp
-#: servers/audio/effects/audio_effect_delay.cpp
-#, fuzzy
-msgid "Active"
-msgstr "Tilføj Funktion"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
@@ -10440,6 +10748,26 @@ msgstr "Ny Animation Navn:"
 #, fuzzy
 msgid "Playback Options"
 msgstr "Klasse beskrivelse:"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture"
+msgstr "Gem Ikke"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Duration"
+msgstr "Animation"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Transition Type"
+msgstr "Overgang: "
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Ease Type"
+msgstr "Sæt Variabel Type"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -10899,13 +11227,13 @@ msgstr "Omdøb"
 
 #: scene/gui/file_dialog.cpp
 #, fuzzy
-msgid "Options"
-msgstr "Tællinger:"
-
-#: scene/gui/file_dialog.cpp
-#, fuzzy
 msgid "Use Native Dialog"
 msgstr "Indsæt Parametre"
+
+#: scene/gui/flow_container.cpp
+#, fuzzy
+msgid "Last Wrap Alignment"
+msgstr "Filtrer filer..."
 
 #: scene/gui/flow_container.cpp
 #, fuzzy
@@ -11014,10 +11342,35 @@ msgstr "Vælg"
 msgid "Selected"
 msgstr "Vælg"
 
-#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
 #: scene/resources/visual_shader.cpp
 msgid "Title"
 msgstr ""
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Enabled"
+msgstr "Aktivér"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Margin"
+msgstr "Knap"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Drag Margin"
+msgstr "Ekstra Call Argumenter:"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "Filtrer filer..."
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "Funktioner:"
 
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Select Mode"
@@ -11289,7 +11642,11 @@ msgid "Submenu Popup Delay"
 msgstr ""
 
 #: scene/gui/popup_menu.cpp
-msgid "System Menu Root"
+msgid "System Menu ID"
+msgstr ""
+
+#: scene/gui/popup_menu.cpp
+msgid "Prefer Native Menu"
 msgstr ""
 
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
@@ -11680,6 +12037,12 @@ msgid "Text Edit Undo Stack Max Size"
 msgstr ""
 
 #: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgctxt "Ordinary"
+msgid "Normal"
+msgstr "Fjern Template"
+
+#: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
 msgid "Hover"
 msgstr ""
 
@@ -11931,6 +12294,11 @@ msgstr "Editor Indstillinger"
 msgid "Messages"
 msgstr "Synkroniser Script Ændringer"
 
+#: scene/main/node.cpp scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Physics Interpolation"
+msgstr "Interpolationsmetode"
+
 #: scene/main/node.cpp
 #, fuzzy
 msgid "Auto Translate"
@@ -12124,6 +12492,10 @@ msgstr "Standard"
 msgid "Enable Object Picking"
 msgstr "Aktivér Onion Skin"
 
+#: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
+msgid "Menu"
+msgstr ""
+
 #: scene/main/timer.cpp
 #, fuzzy
 msgid "Wait Time"
@@ -12275,10 +12647,6 @@ msgid "Canvas Cull Mask"
 msgstr ""
 
 #: scene/main/viewport.cpp
-msgid "Tooltip Delay (sec)"
-msgstr ""
-
-#: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
 msgstr "Fysik Frame %"
@@ -12342,6 +12710,11 @@ msgstr "Vindue"
 msgid "Mouse Passthrough"
 msgstr ""
 
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Force Native"
+msgstr "Kald"
+
 #: scene/main/window.cpp scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Min Size"
@@ -12404,6 +12777,47 @@ msgstr "Rediger Poly"
 #, fuzzy
 msgid "Segments"
 msgstr "Argumenter:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Parsed Geometry Type"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Parsed Collision Mask"
+msgstr "Interpolationsmetode"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Source Geometry Mode"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Source Geometry Group Name"
+msgstr "Ressource"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Cells"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "Argumenter:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect"
+msgstr "Pakker"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect Offset"
+msgstr "Fjern Template"
 
 #: scene/resources/2d/segment_shape_2d.cpp
 msgid "A"
@@ -12650,11 +13064,6 @@ msgstr "Indsæt Node"
 
 #: scene/resources/2d/tile_set.cpp
 #, fuzzy
-msgid "Scenes"
-msgstr "Skift Scene Fane"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
 msgid "Scene"
 msgstr "Skift Scene Fane"
 
@@ -12690,11 +13099,6 @@ msgstr ""
 #, fuzzy
 msgid "Texture Origin"
 msgstr "Fjern Template"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Y Sort Origin"
-msgstr "Sorter"
 
 #: scene/resources/2d/tile_set.cpp
 #, fuzzy
@@ -13554,6 +13958,11 @@ msgstr "Interpolationsmetode"
 
 #: scene/resources/gradient.cpp
 #, fuzzy
+msgid "Interpolation"
+msgstr "Interpolationsmetode"
+
+#: scene/resources/gradient.cpp
+#, fuzzy
 msgid "Color Space"
 msgstr "Medlemmer"
 
@@ -13904,32 +14313,15 @@ msgstr ""
 msgid "Partition Type"
 msgstr "Sæt Variabel Type"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Parsed Geometry Type"
-msgstr ""
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Mode"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Source Group Name"
 msgstr "Ressource"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Cells"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Cell Height"
 msgstr "Forhåndsvisning:"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Agents"
-msgstr "Argumenter:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -13994,26 +14386,6 @@ msgstr ""
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Baking AABB Offset"
-msgstr "Fjern Template"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Collision Mask"
-msgstr "Interpolationsmetode"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Source Geometry Group Name"
-msgstr "Ressource"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect"
-msgstr "Pakker"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect Offset"
 msgstr "Fjern Template"
 
 #: scene/resources/packed_scene.cpp
@@ -14389,6 +14761,11 @@ msgstr "Skift Shader"
 #: scene/resources/visual_shader.cpp
 msgid "Qualifier"
 msgstr ""
+
+#: scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "Vis filer"
 
 #: scene/resources/visual_shader.cpp
 #, fuzzy
@@ -15338,10 +15715,6 @@ msgid "Drop Mark"
 msgstr "Vis i Filsystem"
 
 #: scene/theme/default_theme.cpp
-msgid "Menu"
-msgstr ""
-
-#: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Menu Highlight"
 msgstr "Beskrivelse"
@@ -15370,10 +15743,6 @@ msgstr "Tællinger:"
 #, fuzzy
 msgid "Button Highlight"
 msgstr "Beskrivelse"
-
-#: scene/theme/default_theme.cpp
-msgid "Large"
-msgstr ""
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -15851,6 +16220,11 @@ msgstr ""
 msgid "Resonance"
 msgstr "Ressource"
 
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
+msgid "Pre Gain dB"
+msgstr ""
+
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 #: servers/audio/effects/audio_effect_limiter.cpp
 msgid "Ceiling dB"
 msgstr ""
@@ -16053,6 +16427,10 @@ msgstr ""
 #, fuzzy
 msgid "Baking"
 msgstr "Pakker"
+
+#: servers/navigation_server_3d.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 msgid "Baking Use Multiple Threads"
@@ -16940,6 +17318,16 @@ msgstr ""
 msgid "Tracking Confidence"
 msgstr ""
 
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Min Radius"
+msgstr "Advarsler"
+
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Strength"
+msgstr "Styrke"
+
 #: servers/xr_server.cpp
 #, fuzzy
 msgid "World Origin"
@@ -16949,6 +17337,6 @@ msgstr "Sorter"
 msgid "Primary Interface"
 msgstr "Primær grænseflade"
 
-#: tests/core/object/test_object.h
+#: tests/core/object/test_object.h tests/core/object/test_undo_redo.h
 msgid "Property"
 msgstr "Egenskab"

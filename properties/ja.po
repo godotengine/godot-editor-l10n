@@ -87,7 +87,7 @@ msgstr "構成"
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/3d/skeleton_3d.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
-#: servers/xr/xr_pose.cpp servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "名前"
 
@@ -97,7 +97,7 @@ msgstr "ローカライズされた名前"
 
 #: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
 #: scene/main/node.cpp scene/resources/visual_shader.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "説明"
 
@@ -128,6 +128,10 @@ msgstr "stderrを無効化"
 #, fuzzy
 msgid "Print Header"
 msgstr "入力ポートを追加"
+
+#: core/config/project_settings.cpp
+msgid "Enable Alt Space Menu"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -357,9 +361,9 @@ msgstr "サブウィンドウを埋め込む"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/2d/tile_map_layer.cpp scene/main/scene_tree.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "物理"
 
@@ -479,9 +483,10 @@ msgstr "Message"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/main/scene_tree.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/rendering/renderer_scene_cull.cpp servers/rendering_server.cpp
+#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering_server.cpp
 msgid "Rendering"
 msgstr "レンダリング"
 
@@ -493,6 +498,11 @@ msgstr "オクルージョンカリング"
 #: core/config/project_settings.cpp
 msgid "BVH Build Quality"
 msgstr "BVH ビルド品質"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Jitter Projection"
+msgstr "プロジェクト"
 
 #: core/config/project_settings.cpp core/string/translation.cpp main/main.cpp
 msgid "Internationalization"
@@ -506,6 +516,11 @@ msgstr "レイアウト方向を右から左に強制"
 msgid "Root Node Layout Direction"
 msgstr "ルートノードの配置方向"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Root Node Auto Translate"
+msgstr "移動"
+
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
 #: scene/main/viewport.cpp scene/register_scene_types.cpp
@@ -514,13 +529,17 @@ msgid "GUI"
 msgstr "GUI"
 
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp scene/main/viewport.cpp
+#: scene/gui/text_edit.cpp
 msgid "Timers"
 msgstr "タイマー"
 
 #: core/config/project_settings.cpp
 msgid "Incremental Search Max Interval Msec"
 msgstr "インクリメンタルサーチの最大間隔 (ミリ秒)"
+
+#: core/config/project_settings.cpp
+msgid "Tooltip Delay (sec)"
+msgstr ""
 
 #: core/config/project_settings.cpp main/main.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
@@ -581,6 +600,14 @@ msgstr "テクスチャアップロード領域サイズ px"
 #: core/config/project_settings.cpp
 msgid "Pipeline Cache"
 msgstr "パイプラインキャッシュ"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
+msgid "Enable"
+msgstr "有効"
 
 #: core/config/project_settings.cpp
 msgid "Save Chunk Size (MB)"
@@ -854,7 +881,8 @@ msgstr "ダブルタップ"
 msgid "Action"
 msgstr "アクション(Action)"
 
-#: core/input/input_event.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: core/input/input_event.cpp modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/environment.cpp scene/resources/material.cpp
 msgid "Strength"
@@ -976,7 +1004,8 @@ msgid "Offset"
 msgstr "オフセット"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Cell Size"
 msgstr "セルサイズ"
 
@@ -1153,14 +1182,10 @@ msgstr "値"
 msgid "Arg Count"
 msgstr "引数の数"
 
-#: editor/animation_track_editor.cpp
-msgid "Args"
-msgstr "引数"
-
 #: editor/animation_track_editor.cpp editor/editor_settings.cpp
 #: modules/gltf/structures/gltf_accessor.cpp modules/noise/fastnoise_lite.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_positional_tracker.cpp
+#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "タイプ(型)"
 
@@ -1182,7 +1207,7 @@ msgstr "ハンドルモード"
 msgid "Stream"
 msgstr "ストリーム"
 
-#: editor/animation_track_editor.cpp
+#: editor/animation_track_editor.cpp scene/animation/animation_blend_tree.cpp
 msgid "Start Offset"
 msgstr "始点オフセット"
 
@@ -1237,8 +1262,8 @@ msgstr "パスワード"
 msgid "Default Feature Profile"
 msgstr "デフォルト機能プロファイル"
 
-#: editor/editor_help.cpp editor/editor_settings.cpp
-#: editor/plugins/script_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_native_shader_source_visualizer.cpp
+#: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 msgid "Text Editor"
 msgstr "テキストエディター"
@@ -1291,6 +1316,18 @@ msgstr "集中モード"
 msgid "Movie Maker Enabled"
 msgstr "戻り値が有効"
 
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: modules/gdscript/editor/gdscript_highlighter.cpp scene/gui/control.cpp
+#: scene/main/window.cpp scene/theme/theme_db.cpp
+msgid "Theme"
+msgstr "テーマ"
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: scene/3d/label_3d.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/label_settings.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "行間隔"
+
 #: editor/editor_resource_picker.cpp
 msgid "Base Type"
 msgstr "基底型"
@@ -1339,12 +1376,27 @@ msgid "Project Manager Screen"
 msgstr "プロジェクトマネージャー"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Connection"
+msgstr "完了"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Engine Version Update Mode"
+msgstr "優先順位モード"
+
+#: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
 msgstr "擬似ローカライズの有効化"
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
 msgstr "埋め込みメニューを使用"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Use Native File Dialogs"
+msgstr "ファイルダイアログ"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1445,6 +1497,10 @@ msgstr "省エネモードスリープ時間 (マイクロ秒)"
 msgid "Unfocused Low Processor Mode Sleep (µsec)"
 msgstr "非フォーカス時の省エネモードスリープ時間 (マイクロ秒)"
 
+#: editor/editor_settings.cpp
+msgid "Import Resources When Unfocused"
+msgstr ""
+
 #: editor/editor_settings.cpp main/main.cpp
 msgid "V-Sync Mode"
 msgstr "垂直同期モード"
@@ -1470,6 +1526,15 @@ msgstr "低レベルのOpenType機能を表示"
 #, fuzzy
 msgid "Float Drag Speed"
 msgstr "フリールックの基本速度"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Nested Color Mode"
+msgstr "フリールックの減速調整"
+
+#: editor/editor_settings.cpp
+msgid "Delimitate All Container and Resources"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Default Property Name Style"
@@ -1510,11 +1575,6 @@ msgstr "デフォルトのカラーピッカーモード"
 #: editor/editor_settings.cpp
 msgid "Default Color Picker Shape"
 msgstr "デフォルトのカラーピッカーモード"
-
-#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
-#: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
-msgid "Theme"
-msgstr "テーマ"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1564,8 +1624,8 @@ msgstr "分離:"
 msgid "Relationship Line Opacity"
 msgstr "関係線の不透明度"
 
-#: editor/editor_settings.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: editor/editor_settings.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Border Size"
 msgstr "ボーダーサイズ"
 
@@ -1633,14 +1693,6 @@ msgstr "ロード時にシーンを復元"
 #: editor/editor_settings.cpp
 msgid "Multi Window"
 msgstr "マルチウィンドウ"
-
-#: editor/editor_settings.cpp
-#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
-msgid "Enable"
-msgstr "有効"
 
 #: editor/editor_settings.cpp
 msgid "Restore Windows on Load"
@@ -1913,19 +1965,13 @@ msgstr "タブを描画"
 msgid "Draw Spaces"
 msgstr "スペースを描画"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "行間隔"
-
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Behavior"
 msgstr "ビヘイビア"
 
 #: editor/editor_settings.cpp editor/plugins/node_3d_editor_plugin.cpp
-#: modules/gridmap/grid_map.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/resources/2d/tile_set.cpp servers/navigation_server_3d.cpp
 msgid "Navigation"
 msgstr "ナビゲーション"
 
@@ -1954,6 +2000,10 @@ msgstr "選択範囲のドラッグ＆ドロップ"
 msgid "Stay in Script Editor on Node Selected"
 msgstr "ノード選択時にスクリプトエディターにとどまる"
 
+#: editor/editor_settings.cpp
+msgid "Open Script When Connecting Signal to Existing Method"
+msgstr ""
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Indent"
 msgstr "インデント"
@@ -1961,6 +2011,10 @@ msgstr "インデント"
 #: editor/editor_settings.cpp
 msgid "Auto Indent"
 msgstr "自動インデント"
+
+#: editor/editor_settings.cpp scene/gui/text_edit.cpp
+msgid "Indent Wrapped Lines"
+msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Files"
@@ -2032,6 +2086,15 @@ msgstr "ファイルパスの補完"
 #: editor/editor_settings.cpp
 msgid "Add Type Hints"
 msgstr "型ヒントを追加"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Add String Name Literals"
+msgstr "文字列の色"
+
+#: editor/editor_settings.cpp
+msgid "Add Node Path Literals"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Single Quotes"
@@ -2165,6 +2228,11 @@ msgstr "ジョイント"
 #: servers/physics_server_3d.cpp
 msgid "Shape"
 msgstr "シェイプ"
+
+#: editor/editor_settings.cpp scene/3d/visible_on_screen_notifier_3d.cpp
+#: scene/resources/mesh.cpp
+msgid "AABB"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Primary Grid Steps"
@@ -2380,6 +2448,11 @@ msgid "Display Grid"
 msgstr "グリッドを表示"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Highlight Selected Layer"
+msgstr "現在の行をハイライトする"
+
+#: editor/editor_settings.cpp
 msgid "Polygon Editor"
 msgstr "ポリゴンエディター"
 
@@ -2511,6 +2584,11 @@ msgstr "停止時には常に出力を閉じる"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Max Lines"
+msgstr "レイヤー"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Platforms"
 msgstr "ノードを切り取る"
 
@@ -2521,11 +2599,6 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Prefer Wayland"
 msgstr ""
-
-#: editor/editor_settings.cpp
-#, fuzzy
-msgid "Connection"
-msgstr "完了"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2590,6 +2663,10 @@ msgstr "プロジェクトマネージャー"
 #: editor/editor_settings.cpp
 msgid "Sorting Order"
 msgstr "ソート順"
+
+#: editor/editor_settings.cpp
+msgid "Directory Naming Convention"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2860,6 +2937,7 @@ msgstr "カスタムテンプレート"
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "リリース"
 
@@ -2924,9 +3002,15 @@ msgid "File Mode"
 msgstr "フィルターモード"
 
 #: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Filters"
 msgstr "フィルター"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Options"
+msgstr "操作"
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Disable Overwrite Warning"
@@ -3227,17 +3311,20 @@ msgstr "高さ"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
 #: scene/3d/physics/vehicle_body_3d.cpp scene/animation/root_motion_view.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/2d/circle_shape_2d.cpp
+#: scene/resources/2d/navigation_polygon.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
 #: scene/resources/3d/cylinder_shape_3d.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/3d/sphere_shape_3d.cpp scene/resources/environment.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Radius"
 msgstr "半径"
 
@@ -3266,7 +3353,7 @@ msgstr "ファイルへ保存"
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
 #: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
 #: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
@@ -3283,10 +3370,6 @@ msgstr "ファイルへ保存"
 #: servers/rendering_server.cpp
 msgid "Enabled"
 msgstr "有効"
-
-#: editor/import/3d/resource_importer_scene.cpp
-msgid "Make Streamable"
-msgstr "ストリーム可能"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Shadow Meshes"
@@ -3315,7 +3398,8 @@ msgid "Use External"
 msgstr "外部"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/import/resource_importer_wav.cpp scene/resources/animation.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
 #: scene/resources/audio_stream_wav.cpp
 msgid "Loop Mode"
 msgstr "ループモード"
@@ -3362,6 +3446,31 @@ msgstr "ページサイズ"
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Tracks"
 msgstr "トラックのインポート"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Rest Pose"
+msgstr "再起動"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Load Pose"
+msgstr "プリセットを読み込む"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "External Animation Library"
+msgstr "アニメーションのトラック名を自動変更"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Animation"
+msgstr "アニメーションを新規作成"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Timestamp"
+msgstr "時間"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Bone Map"
@@ -3441,6 +3550,11 @@ msgid "Remove Immutable Tracks"
 msgstr "不変トラックの削除"
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Import Rest as Reset"
+msgstr "インポートモード"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Script"
 msgstr "インポートスクリプト"
 
@@ -3456,6 +3570,12 @@ msgstr "初期化"
 #, fuzzy
 msgid "Generate Mipmaps"
 msgstr "ライトマップの生成"
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+#, fuzzy
+msgid "Disable Embedded Bitmaps"
+msgstr "右インデント"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
@@ -3766,8 +3886,9 @@ msgstr "領域にあわせて切り出す"
 msgid "Trim Alpha Border From Region"
 msgstr "領域からアルファ境界をトリミング"
 
-#: editor/import/resource_importer_wav.cpp scene/2d/physics/rigid_body_2d.cpp
-#: scene/3d/physics/rigid_body_3d.cpp
+#: editor/import/resource_importer_wav.cpp
+#, fuzzy
+msgctxt "Enforce"
 msgid "Force"
 msgstr "強制"
 
@@ -4136,6 +4257,11 @@ msgid "Scene Name Casing"
 msgstr "シーンのパス:"
 
 #: editor/register_editor_types.cpp
+#, fuzzy
+msgid "Script Name Casing"
+msgstr "シーンのパス:"
+
+#: editor/register_editor_types.cpp
 msgid "Reimport Missing Imported Files"
 msgstr "見つからないインポート済みファイルを再インポートする"
 
@@ -4406,13 +4532,13 @@ msgstr "トラッキング"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Eye Gaze Interaction"
-msgstr "関数を作成"
+msgid "Hand Interaction Profile"
+msgstr "補間モード"
 
 #: main/main.cpp
 #, fuzzy
-msgid "In Editor"
-msgstr "エディターで開く"
+msgid "Eye Gaze Interaction"
+msgstr "関数を作成"
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -4811,6 +4937,10 @@ msgstr ""
 msgid "Use Thread"
 msgstr "スレッドを使用"
 
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -5106,6 +5236,7 @@ msgid "Original Name"
 msgstr "プラグイン名:"
 
 #: modules/gltf/structures/gltf_animation.cpp
+#: modules/interactive_music/audio_stream_playlist.cpp
 #: modules/minimp3/audio_stream_mp3.cpp
 #: modules/minimp3/resource_importer_mp3.cpp
 #: modules/vorbis/audio_stream_ogg_vorbis.cpp
@@ -5130,6 +5261,11 @@ msgstr "バイト間隔"
 #: modules/gltf/structures/gltf_buffer_view.cpp
 msgid "Indices"
 msgstr "インデックス"
+
+#: modules/gltf/structures/gltf_buffer_view.cpp
+#, fuzzy
+msgid "Vertex Attributes"
+msgstr "大文字小文字を区別"
 
 #: modules/gltf/structures/gltf_camera.cpp
 msgid "Perspective"
@@ -5293,6 +5429,31 @@ msgstr "優先順位"
 msgid "Bake Navigation"
 msgstr "ナビゲーション"
 
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Initial Clip"
+msgstr "初期化"
+
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Clip Count"
+msgstr "コンスタント"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+msgid "Shuffle"
+msgstr ""
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#, fuzzy
+msgid "Fade Time"
+msgstr "クロスフェード時間 (秒):"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#: modules/interactive_music/audio_stream_synchronized.cpp
+#, fuzzy
+msgid "Stream Count"
+msgstr "入力ポートを追加"
+
 #: modules/lightmapper_rd/register_types.cpp servers/rendering_server.cpp
 msgid "Lightmapping"
 msgstr "ライトマップ"
@@ -5410,6 +5571,11 @@ msgid "Display to Lens"
 msgstr "シェーディングなしで表示"
 
 #: modules/mobile_vr/mobile_vr_interface.cpp
+#, fuzzy
+msgid "Offset Rect"
+msgstr "メッシュのオフセット"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "Oversample"
 msgstr ""
 
@@ -5420,6 +5586,18 @@ msgstr "K1"
 #: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "K2"
 msgstr "K2"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Vulkan VRS"
+msgstr "Vulkan"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Min Radius"
+msgstr "放出マスク"
 
 #: modules/multiplayer/multiplayer_spawner.cpp
 #, fuzzy
@@ -5668,8 +5846,58 @@ msgstr "ワイヤーフレーム表示"
 msgid "Render Target Size Multiplier"
 msgstr "複数設定:"
 
-#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_hand_tracker.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Layer Viewport"
+msgstr "1 ビューポート"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Sort Order"
+msgstr "ソート順"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Blend"
+msgstr "加速度曲線"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "量"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Central Angle"
+msgstr "初期化"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Fallback Segments"
+msgstr "環境を表示"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Central Horizontal Angle"
+msgstr "水平:"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Upper Vertical Angle"
+msgstr "大文字"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Lower Vertical Angle"
+msgstr "小文字"
+
+#: modules/openxr/scene/openxr_composition_layer_quad.cpp
+#, fuzzy
+msgid "Quad Size"
+msgstr "サイズ:"
+
+#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 #, fuzzy
 msgid "Hand"
 msgstr "ポータブル"
@@ -6222,6 +6450,10 @@ msgid "Export Project Only"
 msgstr "プロジェクト"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
 msgid "Capabilities"
 msgstr "プロパティを貼り付け"
@@ -6296,6 +6528,16 @@ msgstr "プロパティの説明"
 #, fuzzy
 msgid "Photolibrary Usage Description Localized"
 msgstr "プロパティの説明"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "有効"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "ハンドトラッキング"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Storyboard"
@@ -7672,6 +7914,19 @@ msgstr "後処理"
 msgid "Path Metadata Flags"
 msgstr ""
 
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Simplify Path"
+msgstr "パスを分割"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+msgid "Simplify Epsilon"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
@@ -7710,8 +7965,7 @@ msgid "Max Speed"
 msgstr "速度:"
 
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Layers"
 msgstr "有効"
@@ -7780,6 +8034,21 @@ msgstr "トラベル"
 msgid "Vertices"
 msgstr "垂直"
 
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "NavigationMesh"
+msgstr "ナビゲーションモード"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Affect Navigation Mesh"
+msgstr "ナビゲーションモード"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Carve Navigation Mesh"
+msgstr "ナビゲーションモード"
+
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
@@ -7790,11 +8059,6 @@ msgstr "ナビゲーション ポリゴンを編集"
 #, fuzzy
 msgid "Use Edge Connections"
 msgstr "保留中の接続数の上限"
-
-#: scene/2d/navigation_region_2d.cpp
-#, fuzzy
-msgid "Constrain Avoidance"
-msgstr "エディタビューを束縛する"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box_flat.cpp
 msgid "Skew"
@@ -8315,13 +8579,13 @@ msgid "Continuous CD"
 msgstr "連続的衝突判定"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Max Contacts Reported"
-msgstr ""
-
-#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 #, fuzzy
 msgid "Contact Monitor"
 msgstr "色を取得"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+msgid "Max Contacts Reported"
+msgstr ""
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Linear"
@@ -8344,6 +8608,12 @@ msgstr ""
 #, fuzzy
 msgid "Constant Forces"
 msgstr "定数"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+#, fuzzy
+msgctxt "Physics"
+msgid "Force"
+msgstr "強制"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Torque"
@@ -8451,7 +8721,11 @@ msgstr "フレーム %"
 msgid "Filter Clip Enabled"
 msgstr "スクリプトを絞り込む"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+msgid "Tile Set"
+msgstr "タイルセット"
+
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Rendering Quadrant Size"
 msgstr "カメラサイズを変更"
@@ -8461,19 +8735,33 @@ msgstr "カメラサイズを変更"
 msgid "Collision Animatable"
 msgstr "コリジョンモード"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Collision Visibility Mode"
 msgstr "優先順位モード"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Navigation Visibility Mode"
 msgstr "優先順位モード"
 
-#: scene/2d/tile_map_layer_group.cpp
-msgid "Tile Set"
-msgstr "タイルセット"
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+msgid "Y Sort Origin"
+msgstr "Yソート原点"
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "コリジョンモード"
+
+#: scene/2d/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr ""
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Navigation Enabled"
+msgstr "ナビゲーションモード"
 
 #: scene/2d/touch_screen_button.cpp
 #, fuzzy
@@ -8681,10 +8969,10 @@ msgstr "曲線を閉じる"
 msgid "Albedo"
 msgstr ""
 
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
-#: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
-#: scene/theme/default_theme.cpp
+#: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
+#: scene/resources/material.cpp
 #, fuzzy
+msgctxt "Geometry"
 msgid "Normal"
 msgstr "フォーマット"
 
@@ -9315,7 +9603,6 @@ msgid "Linear Limit"
 msgstr "リニア"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "X"
 msgstr ""
 
@@ -9338,7 +9625,6 @@ msgid "Restitution"
 msgstr "説明"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "Y"
 msgstr ""
 
@@ -9752,8 +10038,13 @@ msgstr "ルーラーを表示"
 
 #: scene/3d/skeleton_3d.cpp
 #, fuzzy
-msgid "Animate Physical Bones"
-msgstr "物理ボーンを作成する"
+msgid "Modifier"
+msgstr "パン操作の修飾キー"
+
+#: scene/3d/skeleton_3d.cpp
+#, fuzzy
+msgid "Callback Mode Process"
+msgstr "プレイモード:"
 
 #: scene/3d/skeleton_ik_3d.cpp scene/resources/skeleton_profile.cpp
 #, fuzzy
@@ -9765,13 +10056,7 @@ msgstr "ルートノード名"
 msgid "Tip Bone"
 msgstr "ボーン"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
-#, fuzzy
-msgid "Interpolation"
-msgstr "補間モード"
-
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_face_modifier_3d.cpp scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "ターゲット"
 
@@ -9802,6 +10087,17 @@ msgstr "距離を取得:"
 #, fuzzy
 msgid "Max Iterations"
 msgstr "関数を作成"
+
+#: scene/3d/skeleton_modifier_3d.cpp scene/animation/animation_blend_tree.h
+#: scene/animation/animation_mixer.cpp
+#: servers/audio/effects/audio_effect_delay.cpp
+#, fuzzy
+msgid "Active"
+msgstr "アクション(Action)"
+
+#: scene/3d/skeleton_modifier_3d.cpp
+msgid "Influence"
+msgstr ""
 
 #: scene/3d/soft_body_3d.cpp
 #, fuzzy
@@ -9855,10 +10151,6 @@ msgstr ""
 msgid "Track Physics Step"
 msgstr "物理ステップの追跡"
 
-#: scene/3d/visible_on_screen_notifier_3d.cpp scene/resources/mesh.cpp
-msgid "AABB"
-msgstr ""
-
 #: scene/3d/visual_instance_3d.cpp
 msgid "Sorting"
 msgstr "ソート"
@@ -9867,8 +10159,8 @@ msgstr "ソート"
 msgid "Use AABB Center"
 msgstr "AABBセンターを使用"
 
-#: scene/3d/visual_instance_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: scene/3d/visual_instance_3d.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Geometry"
 msgstr "再試行"
@@ -9941,10 +10233,6 @@ msgstr "トラックを追加"
 msgid "Body Update"
 msgstr "更新"
 
-#: scene/3d/xr_body_modifier_3d.cpp
-msgid "Show When Tracked"
-msgstr ""
-
 #: scene/3d/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
@@ -9964,6 +10252,10 @@ msgstr "トラックを追加"
 msgid "Pose"
 msgstr "ポーズ"
 
+#: scene/3d/xr_nodes.cpp
+msgid "Show When Tracked"
+msgstr ""
+
 #: scene/3d/xr_nodes.cpp servers/xr_server.cpp
 #, fuzzy
 msgid "World Scale"
@@ -9973,6 +10265,21 @@ msgstr "ランダムな縮尺:"
 #, fuzzy
 msgid "Play Mode"
 msgstr "プレイモード:"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Use Custom Timeline"
+msgstr "カスタムユーザディレクトリを使用"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Timeline Length"
+msgstr "アニメーションの長さを変更"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Stretch Time Scale"
+msgstr "タイムスケール"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Sync"
@@ -10002,6 +10309,12 @@ msgstr "クロスフェード時間 (秒):"
 #, fuzzy
 msgid "Fadeout Curve"
 msgstr "曲線を閉じる"
+
+#: scene/animation/animation_blend_tree.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Break Loop at End"
+msgstr "ループの終了"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -10048,12 +10361,6 @@ msgstr "入力ポートを追加"
 #: scene/animation/animation_blend_tree.h
 msgid "Request"
 msgstr "リクエスト"
-
-#: scene/animation/animation_blend_tree.h scene/animation/animation_mixer.cpp
-#: servers/audio/effects/audio_effect_delay.cpp
-#, fuzzy
-msgid "Active"
-msgstr "アクション(Action)"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
@@ -10183,6 +10490,26 @@ msgstr "アニメーションを設定"
 #, fuzzy
 msgid "Playback Options"
 msgstr "クラスオプション:"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture"
+msgstr "自動保存"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Duration"
+msgstr "減衰量"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Transition Type"
+msgstr "トランジション"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Ease Type"
+msgstr "サービス種類"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -10654,13 +10981,13 @@ msgstr "サブフォルダー:"
 
 #: scene/gui/file_dialog.cpp
 #, fuzzy
-msgid "Options"
-msgstr "操作"
-
-#: scene/gui/file_dialog.cpp
-#, fuzzy
 msgid "Use Native Dialog"
 msgstr "ファイルダイアログ"
+
+#: scene/gui/flow_container.cpp
+#, fuzzy
+msgid "Last Wrap Alignment"
+msgstr "シグナルを絞り込む"
 
 #: scene/gui/flow_container.cpp
 #, fuzzy
@@ -10771,10 +11098,35 @@ msgstr "選択"
 msgid "Selected"
 msgstr "選択"
 
-#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
 #: scene/resources/visual_shader.cpp
 msgid "Title"
 msgstr ""
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Enabled"
+msgstr "有効"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Margin"
+msgstr "ボタンのマスク"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Drag Margin"
+msgstr "ドラッグマージンを描画する"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "シグナルを絞り込む"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "テキストの色"
 
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Select Mode"
@@ -11053,7 +11405,11 @@ msgid "Submenu Popup Delay"
 msgstr ""
 
 #: scene/gui/popup_menu.cpp
-msgid "System Menu Root"
+msgid "System Menu ID"
+msgstr ""
+
+#: scene/gui/popup_menu.cpp
+msgid "Prefer Native Menu"
 msgstr ""
 
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
@@ -11449,6 +11805,12 @@ msgid "Text Edit Undo Stack Max Size"
 msgstr ""
 
 #: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgctxt "Ordinary"
+msgid "Normal"
+msgstr "フォーマット"
+
+#: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
 msgid "Hover"
 msgstr ""
 
@@ -11702,6 +12064,11 @@ msgstr "グリッドのサイズ"
 msgid "Messages"
 msgstr "メッセージ"
 
+#: scene/main/node.cpp scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Physics Interpolation"
+msgstr "補間モード"
+
 #: scene/main/node.cpp
 #, fuzzy
 msgid "Auto Translate"
@@ -11905,6 +12272,10 @@ msgstr "環境"
 msgid "Enable Object Picking"
 msgstr "オニオンスキンを有効にする"
 
+#: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
+msgid "Menu"
+msgstr ""
+
 #: scene/main/timer.cpp
 msgid "Wait Time"
 msgstr "待機時間"
@@ -12057,10 +12428,6 @@ msgid "Canvas Cull Mask"
 msgstr "カリングマスク"
 
 #: scene/main/viewport.cpp
-msgid "Tooltip Delay (sec)"
-msgstr ""
-
-#: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
 msgstr "領域のオーバーライド"
@@ -12128,6 +12495,11 @@ msgstr "ウィンドウ"
 msgid "Mouse Passthrough"
 msgstr "パススルー"
 
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Force Native"
+msgstr "ドローコール:"
+
 #: scene/main/window.cpp scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Min Size"
@@ -12190,6 +12562,47 @@ msgstr "ナビゲーション"
 #, fuzzy
 msgid "Segments"
 msgstr "メインシーンの引数:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Parsed Geometry Type"
+msgstr "解析されたジオメトリ型"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Parsed Collision Mask"
+msgstr "コリジョンマスク"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Source Geometry Mode"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Source Geometry Group Name"
+msgstr "ソース"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Cells"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "メインシーンの引数:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect"
+msgstr "トラッキング"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect Offset"
+msgstr "オフセット:"
 
 #: scene/resources/2d/segment_shape_2d.cpp
 msgid "A"
@@ -12438,11 +12851,6 @@ msgstr "複数設定:"
 
 #: scene/resources/2d/tile_set.cpp
 #, fuzzy
-msgid "Scenes"
-msgstr "シーンタブ"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
 msgid "Scene"
 msgstr "メインシーン"
 
@@ -12477,10 +12885,6 @@ msgstr "行列(縦横)入れ替え"
 #: scene/resources/2d/tile_set.cpp
 msgid "Texture Origin"
 msgstr "テクスチャの原点"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Y Sort Origin"
-msgstr "Yソート原点"
 
 #: scene/resources/2d/tile_set.cpp
 #, fuzzy
@@ -13361,6 +13765,11 @@ msgstr "ストレッチ"
 
 #: scene/resources/gradient.cpp
 #, fuzzy
+msgid "Interpolation"
+msgstr "補間モード"
+
+#: scene/resources/gradient.cpp
+#, fuzzy
 msgid "Color Space"
 msgstr "エディターのテーマ"
 
@@ -13716,32 +14125,15 @@ msgstr ""
 msgid "Partition Type"
 msgstr "変数の型を設定"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Parsed Geometry Type"
-msgstr "解析されたジオメトリ型"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Mode"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Source Group Name"
 msgstr "ソース"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Cells"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Cell Height"
 msgstr "目の高さ"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Agents"
-msgstr "メインシーンの引数:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -13810,26 +14202,6 @@ msgstr "AABBを生成中"
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Baking AABB Offset"
-msgstr "オフセット:"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Collision Mask"
-msgstr "コリジョンマスク"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Source Geometry Group Name"
-msgstr "ソース"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect"
-msgstr "トラッキング"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect Offset"
 msgstr "オフセット:"
 
 #: scene/resources/packed_scene.cpp
@@ -14209,6 +14581,11 @@ msgstr "パラメーターが変更されました:"
 #, fuzzy
 msgid "Qualifier"
 msgstr "品質"
+
+#: scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "自動スライス"
 
 #: scene/resources/visual_shader.cpp
 #, fuzzy
@@ -15156,10 +15533,6 @@ msgid "Drop Mark"
 msgstr "マージンを設定する"
 
 #: scene/theme/default_theme.cpp
-msgid "Menu"
-msgstr ""
-
-#: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Menu Highlight"
 msgstr "ハイライト"
@@ -15188,11 +15561,6 @@ msgstr "分離:"
 #, fuzzy
 msgid "Button Highlight"
 msgstr "ハイライト"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Large"
-msgstr "ターゲット"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -15674,6 +16042,12 @@ msgstr "ポストゲイン"
 msgid "Resonance"
 msgstr "反響"
 
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
+#, fuzzy
+msgid "Pre Gain dB"
+msgstr "プリゲイン"
+
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 #: servers/audio/effects/audio_effect_limiter.cpp
 msgid "Ceiling dB"
 msgstr ""
@@ -15876,6 +16250,10 @@ msgstr ""
 #, fuzzy
 msgid "Baking"
 msgstr "トラッキング"
+
+#: servers/navigation_server_3d.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -16769,6 +17147,16 @@ msgstr "アンカー検出を有効にする"
 msgid "Tracking Confidence"
 msgstr ""
 
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Min Radius"
+msgstr "放出マスク"
+
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Strength"
+msgstr "強さ"
+
 #: servers/xr_server.cpp
 #, fuzzy
 msgid "World Origin"
@@ -16779,6 +17167,6 @@ msgstr "原点を表示"
 msgid "Primary Interface"
 msgstr "ユーザーインターフェース"
 
-#: tests/core/object/test_object.h
+#: tests/core/object/test_object.h tests/core/object/test_undo_redo.h
 msgid "Property"
 msgstr "プロパティ"

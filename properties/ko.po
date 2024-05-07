@@ -85,7 +85,7 @@ msgstr "구성"
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/3d/skeleton_3d.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
-#: servers/xr/xr_pose.cpp servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "이름"
 
@@ -95,7 +95,7 @@ msgstr "로컬라이즈된 이름"
 
 #: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
 #: scene/main/node.cpp scene/resources/visual_shader.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "설명"
 
@@ -126,6 +126,10 @@ msgstr "표준 에러 비활성화"
 #, fuzzy
 msgid "Print Header"
 msgstr "점 중간"
+
+#: core/config/project_settings.cpp
+msgid "Enable Alt Space Menu"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -355,9 +359,9 @@ msgstr "보조 창 내장"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/2d/tile_map_layer.cpp scene/main/scene_tree.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "물리"
 
@@ -477,9 +481,10 @@ msgstr "메시지"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/main/scene_tree.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/rendering/renderer_scene_cull.cpp servers/rendering_server.cpp
+#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering_server.cpp
 msgid "Rendering"
 msgstr "렌더링"
 
@@ -491,6 +496,11 @@ msgstr "오클루전 컬링"
 #: core/config/project_settings.cpp
 msgid "BVH Build Quality"
 msgstr "BVH 빌드 품질"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Jitter Projection"
+msgstr "투상"
 
 #: core/config/project_settings.cpp core/string/translation.cpp main/main.cpp
 msgid "Internationalization"
@@ -504,6 +514,11 @@ msgstr "레이아웃 방향을 오른쪽에서 왼쪽으로 강제"
 msgid "Root Node Layout Direction"
 msgstr "루트 노드 레이아웃 방향"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Root Node Auto Translate"
+msgstr "자동 번역"
+
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
 #: scene/main/viewport.cpp scene/register_scene_types.cpp
@@ -512,13 +527,17 @@ msgid "GUI"
 msgstr "GUI"
 
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp scene/main/viewport.cpp
+#: scene/gui/text_edit.cpp
 msgid "Timers"
 msgstr "타이머"
 
 #: core/config/project_settings.cpp
 msgid "Incremental Search Max Interval Msec"
 msgstr "증분 검색의 최대 간격 밀리초"
+
+#: core/config/project_settings.cpp
+msgid "Tooltip Delay (sec)"
+msgstr ""
 
 #: core/config/project_settings.cpp main/main.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
@@ -579,6 +598,14 @@ msgstr "텍스처 업로드 영역 크기 px"
 #: core/config/project_settings.cpp
 msgid "Pipeline Cache"
 msgstr "파이프라인 캐시"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
+msgid "Enable"
+msgstr "활성화"
 
 #: core/config/project_settings.cpp
 msgid "Save Chunk Size (MB)"
@@ -853,7 +880,8 @@ msgstr "더블 탭"
 msgid "Action"
 msgstr "액션"
 
-#: core/input/input_event.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: core/input/input_event.cpp modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/environment.cpp scene/resources/material.cpp
 msgid "Strength"
@@ -974,7 +1002,8 @@ msgid "Offset"
 msgstr "오프셋"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Cell Size"
 msgstr "셀 크기"
 
@@ -1146,14 +1175,10 @@ msgstr "값"
 msgid "Arg Count"
 msgstr "인수 개수"
 
-#: editor/animation_track_editor.cpp
-msgid "Args"
-msgstr "인수"
-
 #: editor/animation_track_editor.cpp editor/editor_settings.cpp
 #: modules/gltf/structures/gltf_accessor.cpp modules/noise/fastnoise_lite.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_positional_tracker.cpp
+#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "타입"
 
@@ -1175,7 +1200,7 @@ msgstr "핸들 모드"
 msgid "Stream"
 msgstr "스트림"
 
-#: editor/animation_track_editor.cpp
+#: editor/animation_track_editor.cpp scene/animation/animation_blend_tree.cpp
 msgid "Start Offset"
 msgstr "시작 오프셋"
 
@@ -1230,8 +1255,8 @@ msgstr "비밀번호"
 msgid "Default Feature Profile"
 msgstr "기본 기능 프로필"
 
-#: editor/editor_help.cpp editor/editor_settings.cpp
-#: editor/plugins/script_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_native_shader_source_visualizer.cpp
+#: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 msgid "Text Editor"
 msgstr "텍스트 에디터"
@@ -1281,6 +1306,18 @@ msgstr "집중 모드"
 msgid "Movie Maker Enabled"
 msgstr "무비 메이커 활성화됨"
 
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: modules/gdscript/editor/gdscript_highlighter.cpp scene/gui/control.cpp
+#: scene/main/window.cpp scene/theme/theme_db.cpp
+msgid "Theme"
+msgstr "테마"
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: scene/3d/label_3d.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/label_settings.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "라인 간격"
+
 #: editor/editor_resource_picker.cpp
 msgid "Base Type"
 msgstr "기본 타입"
@@ -1329,12 +1366,27 @@ msgid "Project Manager Screen"
 msgstr "프로젝트 매니저 화면"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Connection"
+msgstr "선택 항목 복사"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Engine Version Update Mode"
+msgstr "가시성 업데이트 모드"
+
+#: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
 msgstr "가짜 현지화 사용"
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
 msgstr "내장된 메뉴 사용"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Use Native File Dialogs"
+msgstr "파일 대화 상자"
 
 #: editor/editor_settings.cpp
 msgid "Expand to Title"
@@ -1430,6 +1482,10 @@ msgstr "낮은 프로세서 모드 슬립 (µsec)"
 msgid "Unfocused Low Processor Mode Sleep (µsec)"
 msgstr "포커스되지 않은 낮은 프로세서 모드 슬립 (µsec)"
 
+#: editor/editor_settings.cpp
+msgid "Import Resources When Unfocused"
+msgstr ""
+
 #: editor/editor_settings.cpp main/main.cpp
 msgid "V-Sync Mode"
 msgstr "수직동기화 모드"
@@ -1453,6 +1509,15 @@ msgstr "저수준 OpenType 기능 보이기"
 #: editor/editor_settings.cpp
 msgid "Float Drag Speed"
 msgstr "실수값 드래그 속도"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Nested Color Mode"
+msgstr "색상 모드"
+
+#: editor/editor_settings.cpp
+msgid "Delimitate All Container and Resources"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Default Property Name Style"
@@ -1493,11 +1558,6 @@ msgstr "기본 색상 선택기 모드"
 #: editor/editor_settings.cpp
 msgid "Default Color Picker Shape"
 msgstr "기본 색상 선택기 모양"
-
-#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
-#: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
-msgid "Theme"
-msgstr "테마"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1546,8 +1606,8 @@ msgstr "아이콘 채도"
 msgid "Relationship Line Opacity"
 msgstr "관계선 불투명도"
 
-#: editor/editor_settings.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: editor/editor_settings.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Border Size"
 msgstr "테두리 크기"
 
@@ -1615,14 +1675,6 @@ msgstr "불러오기 시 씬 복원"
 #: editor/editor_settings.cpp
 msgid "Multi Window"
 msgstr "다중 창"
-
-#: editor/editor_settings.cpp
-#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
-msgid "Enable"
-msgstr "활성화"
 
 #: editor/editor_settings.cpp
 msgid "Restore Windows on Load"
@@ -1893,19 +1945,13 @@ msgstr "탭 사용"
 msgid "Draw Spaces"
 msgstr "공백 사용"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "라인 간격"
-
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Behavior"
 msgstr "행동"
 
 #: editor/editor_settings.cpp editor/plugins/node_3d_editor_plugin.cpp
-#: modules/gridmap/grid_map.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/resources/2d/tile_set.cpp servers/navigation_server_3d.cpp
 msgid "Navigation"
 msgstr "네비게이션"
 
@@ -1933,6 +1979,10 @@ msgstr "선택된 항목을 드래그 & 드롭"
 msgid "Stay in Script Editor on Node Selected"
 msgstr "선택한 노드에서 스크립트 에디터 유지"
 
+#: editor/editor_settings.cpp
+msgid "Open Script When Connecting Signal to Existing Method"
+msgstr ""
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Indent"
 msgstr "들여쓰기"
@@ -1940,6 +1990,10 @@ msgstr "들여쓰기"
 #: editor/editor_settings.cpp
 msgid "Auto Indent"
 msgstr "자동 들여쓰기"
+
+#: editor/editor_settings.cpp scene/gui/text_edit.cpp
+msgid "Indent Wrapped Lines"
+msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Files"
@@ -2009,6 +2063,15 @@ msgstr "파일 경로 완성"
 #: editor/editor_settings.cpp
 msgid "Add Type Hints"
 msgstr "타입 힌트 추가"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Add String Name Literals"
+msgstr "문자열 이름 색상"
+
+#: editor/editor_settings.cpp
+msgid "Add Node Path Literals"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Single Quotes"
@@ -2141,6 +2204,11 @@ msgstr "조인트"
 #: servers/physics_server_3d.cpp
 msgid "Shape"
 msgstr "모양"
+
+#: editor/editor_settings.cpp scene/3d/visible_on_screen_notifier_3d.cpp
+#: scene/resources/mesh.cpp
+msgid "AABB"
+msgstr "AABB"
 
 #: editor/editor_settings.cpp
 msgid "Primary Grid Steps"
@@ -2355,6 +2423,11 @@ msgid "Display Grid"
 msgstr "그리드 표시"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Highlight Selected Layer"
+msgstr "현재 줄 강조"
+
+#: editor/editor_settings.cpp
 msgid "Polygon Editor"
 msgstr "폴리곤 에디터"
 
@@ -2478,6 +2551,11 @@ msgstr "정지 시 항상 출력 닫기"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Max Lines"
+msgstr "최대 텍스트 줄 수"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Platforms"
 msgstr "플랫폼 빌드"
 
@@ -2488,11 +2566,6 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Prefer Wayland"
 msgstr ""
-
-#: editor/editor_settings.cpp
-#, fuzzy
-msgid "Connection"
-msgstr "선택 항목 복사"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2555,6 +2628,10 @@ msgstr "프로젝트 매니저"
 #: editor/editor_settings.cpp
 msgid "Sorting Order"
 msgstr "정렬 순서"
+
+#: editor/editor_settings.cpp
+msgid "Directory Naming Convention"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Default Renderer"
@@ -2823,6 +2900,7 @@ msgstr "커스텀 템플릿"
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "출시"
 
@@ -2883,9 +2961,15 @@ msgid "File Mode"
 msgstr "파일 모드"
 
 #: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Filters"
 msgstr "필터"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Options"
+msgstr "오퍼레이션"
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Disable Overwrite Warning"
@@ -3176,17 +3260,20 @@ msgstr "높이"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
 #: scene/3d/physics/vehicle_body_3d.cpp scene/animation/root_motion_view.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/2d/circle_shape_2d.cpp
+#: scene/resources/2d/navigation_polygon.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
 #: scene/resources/3d/cylinder_shape_3d.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/3d/sphere_shape_3d.cpp scene/resources/environment.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Radius"
 msgstr "반지름"
 
@@ -3215,7 +3302,7 @@ msgstr "파일로 저장"
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
 #: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
 #: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
@@ -3232,10 +3319,6 @@ msgstr "파일로 저장"
 #: servers/rendering_server.cpp
 msgid "Enabled"
 msgstr "활성화됨"
-
-#: editor/import/3d/resource_importer_scene.cpp
-msgid "Make Streamable"
-msgstr "스트림 가능하게 하기"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Shadow Meshes"
@@ -3262,7 +3345,8 @@ msgid "Use External"
 msgstr "외부 것 사용"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/import/resource_importer_wav.cpp scene/resources/animation.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
 #: scene/resources/audio_stream_wav.cpp
 msgid "Loop Mode"
 msgstr "루프 모드"
@@ -3309,6 +3393,31 @@ msgstr "페이지 크기"
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Tracks"
 msgstr "트랙 가져오기"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Rest Pose"
+msgstr "레스트 픽서"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Load Pose"
+msgstr "불러올 경로"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "External Animation Library"
+msgstr "애니메이션 트랙 자동 이름 바꾸기"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Animation"
+msgstr "애니메이션 생성"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Timestamp"
+msgstr "타임스탬프"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Bone Map"
@@ -3389,6 +3498,11 @@ msgid "Remove Immutable Tracks"
 msgstr "변경 불가한 트랙 제거"
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Import Rest as Reset"
+msgstr "임포터 메시"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Script"
 msgstr "스크립트 가져오기"
 
@@ -3402,6 +3516,12 @@ msgstr "안티앨리어싱"
 #: modules/noise/noise_texture_2d.cpp scene/resources/font.cpp
 msgid "Generate Mipmaps"
 msgstr "밉맵 생성"
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+#, fuzzy
+msgid "Disable Embedded Bitmaps"
+msgstr "환경광 비활성화"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
@@ -3699,8 +3819,9 @@ msgstr "영역으로 자르기"
 msgid "Trim Alpha Border From Region"
 msgstr "영역에서 알파 테두리 자르기"
 
-#: editor/import/resource_importer_wav.cpp scene/2d/physics/rigid_body_2d.cpp
-#: scene/3d/physics/rigid_body_3d.cpp
+#: editor/import/resource_importer_wav.cpp
+#, fuzzy
+msgctxt "Enforce"
 msgid "Force"
 msgstr "힘"
 
@@ -4039,6 +4160,11 @@ msgid "Scene Name Casing"
 msgstr "씬 이름 대소문자"
 
 #: editor/register_editor_types.cpp
+#, fuzzy
+msgid "Script Name Casing"
+msgstr "씬 이름 대소문자"
+
+#: editor/register_editor_types.cpp
 msgid "Reimport Missing Imported Files"
 msgstr "누락된 가져온 파일 다시 가져오기"
 
@@ -4300,12 +4426,13 @@ msgstr "트래킹"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Eye Gaze Interaction"
-msgstr "함수 만들기"
+msgid "Hand Interaction Profile"
+msgstr "상호작용 프로필 경로"
 
 #: main/main.cpp
-msgid "In Editor"
-msgstr "에디터 내"
+#, fuzzy
+msgid "Eye Gaze Interaction"
+msgstr "함수 만들기"
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -4687,6 +4814,10 @@ msgstr "에디터에서 네이티브 기호 표시"
 msgid "Use Thread"
 msgstr "스레드 사용"
 
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -4977,6 +5108,7 @@ msgid "Original Name"
 msgstr "플러그인 이름"
 
 #: modules/gltf/structures/gltf_animation.cpp
+#: modules/interactive_music/audio_stream_playlist.cpp
 #: modules/minimp3/audio_stream_mp3.cpp
 #: modules/minimp3/resource_importer_mp3.cpp
 #: modules/vorbis/audio_stream_ogg_vorbis.cpp
@@ -5001,6 +5133,11 @@ msgstr "바이트 스트라이드"
 #: modules/gltf/structures/gltf_buffer_view.cpp
 msgid "Indices"
 msgstr "인덱스"
+
+#: modules/gltf/structures/gltf_buffer_view.cpp
+#, fuzzy
+msgid "Vertex Attributes"
+msgstr "카메라 속성"
 
 #: modules/gltf/structures/gltf_camera.cpp
 msgid "Perspective"
@@ -5157,6 +5294,31 @@ msgstr "우선 순위"
 msgid "Bake Navigation"
 msgstr "내비게이션 굽기"
 
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Initial Clip"
+msgstr "초기화"
+
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Clip Count"
+msgstr "내용물 자르기"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+msgid "Shuffle"
+msgstr ""
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#, fuzzy
+msgid "Fade Time"
+msgstr "페이드 인 시간"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#: modules/interactive_music/audio_stream_synchronized.cpp
+#, fuzzy
+msgid "Stream Count"
+msgstr "프레임 카운트"
+
 #: modules/lightmapper_rd/register_types.cpp servers/rendering_server.cpp
 msgid "Lightmapping"
 msgstr "라이트 매핑"
@@ -5268,6 +5430,11 @@ msgid "Display to Lens"
 msgstr "렌즈에 표시"
 
 #: modules/mobile_vr/mobile_vr_interface.cpp
+#, fuzzy
+msgid "Offset Rect"
+msgstr "오프셋 메시"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "Oversample"
 msgstr "오버샘플"
 
@@ -5278,6 +5445,18 @@ msgstr "K1"
 #: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "K2"
 msgstr "K2"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Vulkan VRS"
+msgstr "Vulkan"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Min Radius"
+msgstr "고리 반경"
 
 #: modules/multiplayer/multiplayer_spawner.cpp
 msgid "Spawnable Scenes"
@@ -5493,8 +5672,58 @@ msgstr "디스플레이 주사율"
 msgid "Render Target Size Multiplier"
 msgstr "렌더 타겟 크기 배수"
 
-#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_hand_tracker.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Layer Viewport"
+msgstr "뷰포트"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Sort Order"
+msgstr "정렬 순서"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Blend"
+msgstr "알파 자르기"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "끝에서의 양"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Central Angle"
+msgstr "초기화"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Fallback Segments"
+msgstr "대안 환경"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Central Horizontal Angle"
+msgstr "수평:"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Upper Vertical Angle"
+msgstr "각도 상한"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Lower Vertical Angle"
+msgstr "각도 하한"
+
+#: modules/openxr/scene/openxr_composition_layer_quad.cpp
+#, fuzzy
+msgid "Quad Size"
+msgstr "크기:"
+
+#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 msgid "Hand"
 msgstr "손"
 
@@ -5998,6 +6227,10 @@ msgid "Export Project Only"
 msgstr "박스 투상"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 msgid "Capabilities"
 msgstr "앱 기능"
 
@@ -6062,6 +6295,16 @@ msgstr "사진 보관함 사용 설명"
 #: platform/ios/export/export_plugin.cpp
 msgid "Photolibrary Usage Description Localized"
 msgstr "사진 보관함 사용 설명 현지화됨"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "점핑 활성화"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "패킹 중"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Storyboard"
@@ -7315,6 +7558,19 @@ msgstr "경로 후처리"
 msgid "Path Metadata Flags"
 msgstr "경로 메타데이터 플래그"
 
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Simplify Path"
+msgstr "소환 경로"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+msgid "Simplify Epsilon"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
@@ -7347,8 +7603,7 @@ msgid "Max Speed"
 msgstr "최대 속도"
 
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 msgid "Avoidance Layers"
 msgstr "어보이던스 레이어"
 
@@ -7404,6 +7659,21 @@ msgstr "이동 비용"
 msgid "Vertices"
 msgstr "간선"
 
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "NavigationMesh"
+msgstr "네비게이션 메시"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Affect Navigation Mesh"
+msgstr "네비게이션 메시"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Carve Navigation Mesh"
+msgstr "네비게이션 메시"
+
 #: scene/2d/navigation_region_2d.cpp
 msgid "Navigation Polygon"
 msgstr "네비게이션 폴리곤"
@@ -7412,10 +7682,6 @@ msgstr "네비게이션 폴리곤"
 #: servers/navigation_server_3d.cpp
 msgid "Use Edge Connections"
 msgstr "엣지 연결 사용"
-
-#: scene/2d/navigation_region_2d.cpp
-msgid "Constrain Avoidance"
-msgstr "어보이던스 제약"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box_flat.cpp
 msgid "Skew"
@@ -7893,12 +8159,12 @@ msgid "Continuous CD"
 msgstr "연속적 충돌감지"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Max Contacts Reported"
-msgstr "보고할 최대 접촉 수"
-
-#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Contact Monitor"
 msgstr "접촉 감시"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+msgid "Max Contacts Reported"
+msgstr "보고할 최대 접촉 수"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Linear"
@@ -7919,6 +8185,12 @@ msgstr "각"
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Constant Forces"
 msgstr "상수 힘"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+#, fuzzy
+msgctxt "Physics"
+msgid "Force"
+msgstr "힘"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Torque"
@@ -8014,7 +8286,11 @@ msgstr "프레임 좌표"
 msgid "Filter Clip Enabled"
 msgstr "필터 클립 활성화"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+msgid "Tile Set"
+msgstr "타일셋"
+
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Rendering Quadrant Size"
 msgstr "셀 사분면 크기"
@@ -8023,17 +8299,31 @@ msgstr "셀 사분면 크기"
 msgid "Collision Animatable"
 msgstr "충돌 애니메이팅 가능"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 msgid "Collision Visibility Mode"
 msgstr "충돌 가시성 모드"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 msgid "Navigation Visibility Mode"
 msgstr "네비게이션 가시성 모드"
 
-#: scene/2d/tile_map_layer_group.cpp
-msgid "Tile Set"
-msgstr "타일셋"
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+msgid "Y Sort Origin"
+msgstr "Y 정렬 기준점"
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "충돌 애니메이팅 가능"
+
+#: scene/2d/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr ""
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Navigation Enabled"
+msgstr "내비게이션 레이어"
 
 #: scene/2d/touch_screen_button.cpp
 msgid "Texture Normal"
@@ -8216,9 +8506,10 @@ msgstr "스케일 곡선 Z"
 msgid "Albedo"
 msgstr "알베도"
 
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
-#: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
-#: scene/theme/default_theme.cpp
+#: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
+#: scene/resources/material.cpp
+#, fuzzy
+msgctxt "Geometry"
 msgid "Normal"
 msgstr "노멀"
 
@@ -8770,7 +9061,6 @@ msgid "Linear Limit"
 msgstr "선형 제한"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "X"
 msgstr "X"
 
@@ -8790,7 +9080,6 @@ msgid "Restitution"
 msgstr "복원력"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "Y"
 msgstr "Y"
 
@@ -9173,8 +9462,13 @@ msgstr "자 보이기"
 
 #: scene/3d/skeleton_3d.cpp
 #, fuzzy
-msgid "Animate Physical Bones"
-msgstr "물리적 본 만들기"
+msgid "Modifier"
+msgstr "팬 변경"
+
+#: scene/3d/skeleton_3d.cpp
+#, fuzzy
+msgid "Callback Mode Process"
+msgstr "재생 모드"
 
 #: scene/3d/skeleton_ik_3d.cpp scene/resources/skeleton_profile.cpp
 #, fuzzy
@@ -9186,12 +9480,7 @@ msgstr "루트 노드 이름"
 msgid "Tip Bone"
 msgstr "본"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
-msgid "Interpolation"
-msgstr "보간"
-
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_face_modifier_3d.cpp scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "대상"
 
@@ -9222,6 +9511,17 @@ msgstr "거리 선택:"
 #, fuzzy
 msgid "Max Iterations"
 msgstr "함수 만들기"
+
+#: scene/3d/skeleton_modifier_3d.cpp scene/animation/animation_blend_tree.h
+#: scene/animation/animation_mixer.cpp
+#: servers/audio/effects/audio_effect_delay.cpp
+msgid "Active"
+msgstr "활성"
+
+#: scene/3d/skeleton_modifier_3d.cpp
+#, fuzzy
+msgid "Influence"
+msgstr "구르기 영향력"
 
 #: scene/3d/soft_body_3d.cpp
 #, fuzzy
@@ -9274,10 +9574,6 @@ msgstr "항력 계수"
 msgid "Track Physics Step"
 msgstr "물리 스텝 추적"
 
-#: scene/3d/visible_on_screen_notifier_3d.cpp scene/resources/mesh.cpp
-msgid "AABB"
-msgstr "AABB"
-
 #: scene/3d/visual_instance_3d.cpp
 msgid "Sorting"
 msgstr "정렬"
@@ -9286,8 +9582,8 @@ msgstr "정렬"
 msgid "Use AABB Center"
 msgstr "AABB 중심점 사용"
 
-#: scene/3d/visual_instance_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: scene/3d/visual_instance_3d.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Geometry"
 msgstr "지오메트리"
 
@@ -9350,10 +9646,6 @@ msgstr "트래커"
 msgid "Body Update"
 msgstr "업데이트"
 
-#: scene/3d/xr_body_modifier_3d.cpp
-msgid "Show When Tracked"
-msgstr ""
-
 #: scene/3d/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
@@ -9372,6 +9664,10 @@ msgstr "트래커"
 msgid "Pose"
 msgstr "자세"
 
+#: scene/3d/xr_nodes.cpp
+msgid "Show When Tracked"
+msgstr ""
+
 #: scene/3d/xr_nodes.cpp servers/xr_server.cpp
 msgid "World Scale"
 msgstr "세계 크기"
@@ -9379,6 +9675,21 @@ msgstr "세계 크기"
 #: scene/animation/animation_blend_tree.cpp
 msgid "Play Mode"
 msgstr "재생 모드"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Use Custom Timeline"
+msgstr "커스텀 사용"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Timeline Length"
+msgstr "애니메이션 길이 바꾸기"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Stretch Time Scale"
+msgstr "시간 스케일"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Sync"
@@ -9403,6 +9714,12 @@ msgstr "페이드 아웃 시간"
 #: scene/animation/animation_blend_tree.cpp
 msgid "Fadeout Curve"
 msgstr "페이드 아웃 곡선"
+
+#: scene/animation/animation_blend_tree.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Break Loop at End"
+msgstr "루프 종료"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Auto Restart"
@@ -9442,11 +9759,6 @@ msgstr "입력 카운트"
 #: scene/animation/animation_blend_tree.h
 msgid "Request"
 msgstr "요청"
-
-#: scene/animation/animation_blend_tree.h scene/animation/animation_mixer.cpp
-#: servers/audio/effects/audio_effect_delay.cpp
-msgid "Active"
-msgstr "활성"
 
 #: scene/animation/animation_blend_tree.h
 msgid "Internal Active"
@@ -9559,6 +9871,26 @@ msgstr "현재 애니메이션"
 #: scene/animation/animation_player.cpp
 msgid "Playback Options"
 msgstr "재생 설정"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture"
+msgstr "자동 저장"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Duration"
+msgstr "감쇠량"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Transition Type"
+msgstr "전환: "
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Ease Type"
+msgstr "상태 머신 타입"
 
 #: scene/animation/animation_player.cpp
 msgid "Default Blend Time"
@@ -9952,13 +10284,13 @@ msgstr "루트 서브폴더"
 
 #: scene/gui/file_dialog.cpp
 #, fuzzy
-msgid "Options"
-msgstr "오퍼레이션"
-
-#: scene/gui/file_dialog.cpp
-#, fuzzy
 msgid "Use Native Dialog"
 msgstr "파일 대화 상자"
+
+#: scene/gui/flow_container.cpp
+#, fuzzy
+msgid "Last Wrap Alignment"
+msgstr "시그널 필터"
 
 #: scene/gui/flow_container.cpp
 #, fuzzy
@@ -10068,10 +10400,35 @@ msgstr "선택"
 msgid "Selected"
 msgstr "선택됨"
 
-#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
 #: scene/resources/visual_shader.cpp
 msgid "Title"
 msgstr ""
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Enabled"
+msgstr "어보이던스 활성화"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Margin"
+msgstr "버튼"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Drag Margin"
+msgstr "드래그 마진 그리기"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "기울이기 활성화"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "다음 층"
 
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Select Mode"
@@ -10321,7 +10678,11 @@ msgid "Submenu Popup Delay"
 msgstr ""
 
 #: scene/gui/popup_menu.cpp
-msgid "System Menu Root"
+msgid "System Menu ID"
+msgstr ""
+
+#: scene/gui/popup_menu.cpp
+msgid "Prefer Native Menu"
 msgstr ""
 
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
@@ -10715,6 +11076,12 @@ msgid "Text Edit Undo Stack Max Size"
 msgstr ""
 
 #: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgctxt "Ordinary"
+msgid "Normal"
+msgstr "노멀"
+
+#: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
 msgid "Hover"
 msgstr "호버"
 
@@ -10952,6 +11319,11 @@ msgstr "그룹 순서"
 msgid "Messages"
 msgstr "메시지"
 
+#: scene/main/node.cpp scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Physics Interpolation"
+msgstr "아이콘 보간"
+
 #: scene/main/node.cpp
 msgid "Auto Translate"
 msgstr "자동 번역"
@@ -11136,6 +11508,10 @@ msgstr "환경"
 msgid "Enable Object Picking"
 msgstr "어니언 스키닝 활성화"
 
+#: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
+msgid "Menu"
+msgstr ""
+
 #: scene/main/timer.cpp
 #, fuzzy
 msgid "Wait Time"
@@ -11290,10 +11666,6 @@ msgid "Canvas Cull Mask"
 msgstr ""
 
 #: scene/main/viewport.cpp
-msgid "Tooltip Delay (sec)"
-msgstr ""
-
-#: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
 msgstr "공간 오버라이드"
@@ -11360,6 +11732,11 @@ msgstr "창"
 msgid "Mouse Passthrough"
 msgstr ""
 
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Force Native"
+msgstr "힘 강도"
+
 #: scene/main/window.cpp scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Min Size"
@@ -11421,6 +11798,48 @@ msgstr "네비게이션"
 #, fuzzy
 msgid "Segments"
 msgstr "메인 씬 인수:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Parsed Geometry Type"
+msgstr "지오메트리 분석 중..."
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Parsed Collision Mask"
+msgstr "충돌 마스크"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Source Geometry Mode"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Source Geometry Group Name"
+msgstr "소스"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Cells"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "메인 씬 인수:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect"
+msgstr "트래킹"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect Offset"
+msgstr "오프셋:"
 
 #: scene/resources/2d/segment_shape_2d.cpp
 msgid "A"
@@ -11657,10 +12076,6 @@ msgid "Custom Data Layers"
 msgstr "커스텀 데이터 레이어"
 
 #: scene/resources/2d/tile_set.cpp
-msgid "Scenes"
-msgstr "씬"
-
-#: scene/resources/2d/tile_set.cpp
 msgid "Scene"
 msgstr "씬"
 
@@ -11692,10 +12107,6 @@ msgstr "전치"
 #: scene/resources/2d/tile_set.cpp
 msgid "Texture Origin"
 msgstr "텍스처 원점"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Y Sort Origin"
-msgstr "Y 정렬 기준점"
 
 #: scene/resources/2d/tile_set.cpp
 msgid "Terrain Set"
@@ -12507,6 +12918,10 @@ msgid "Font Stretch"
 msgstr "글꼴 늘림"
 
 #: scene/resources/gradient.cpp
+msgid "Interpolation"
+msgstr "보간"
+
+#: scene/resources/gradient.cpp
 msgid "Color Space"
 msgstr "색공간"
 
@@ -12823,33 +13238,15 @@ msgstr ""
 msgid "Partition Type"
 msgstr "변수 타입 설정"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Geometry Type"
-msgstr "지오메트리 분석 중..."
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Mode"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Source Group Name"
 msgstr "소스"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Cells"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Cell Height"
 msgstr "눈 높이"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Agents"
-msgstr "메인 씬 인수:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -12918,26 +13315,6 @@ msgstr "AABB 만드는 중"
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Baking AABB Offset"
-msgstr "오프셋:"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Collision Mask"
-msgstr "충돌 마스크"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Source Geometry Group Name"
-msgstr "소스"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect"
-msgstr "트래킹"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect Offset"
 msgstr "오프셋:"
 
 #: scene/resources/packed_scene.cpp
@@ -13296,6 +13673,11 @@ msgstr "매개변수 변경됨:"
 #, fuzzy
 msgid "Qualifier"
 msgstr "품질"
+
+#: scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "자동 자르기"
 
 #: scene/resources/visual_shader.cpp
 #, fuzzy
@@ -14252,10 +14634,6 @@ msgid "Drop Mark"
 msgstr "여백 설정"
 
 #: scene/theme/default_theme.cpp
-msgid "Menu"
-msgstr ""
-
-#: scene/theme/default_theme.cpp
 msgid "Menu Highlight"
 msgstr "메뉴 강조"
 
@@ -14283,11 +14661,6 @@ msgstr "간격:"
 #, fuzzy
 msgid "Button Highlight"
 msgstr "메뉴 강조"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Large"
-msgstr "Target(대상)"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -14759,6 +15132,12 @@ msgstr "포스트 게인"
 msgid "Resonance"
 msgstr "레조넌스"
 
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
+#, fuzzy
+msgid "Pre Gain dB"
+msgstr "프리 게인"
+
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 #: servers/audio/effects/audio_effect_limiter.cpp
 msgid "Ceiling dB"
 msgstr "천장값 dB"
@@ -14949,6 +15328,10 @@ msgstr ""
 #, fuzzy
 msgid "Baking"
 msgstr "트래킹"
+
+#: servers/navigation_server_3d.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -15827,6 +16210,16 @@ msgstr ""
 msgid "Tracking Confidence"
 msgstr ""
 
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Min Radius"
+msgstr "고리 반경"
+
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Strength"
+msgstr "힘"
+
 #: servers/xr_server.cpp
 #, fuzzy
 msgid "World Origin"
@@ -15837,6 +16230,6 @@ msgstr "원점 보이기"
 msgid "Primary Interface"
 msgstr "유저 인터페이스"
 
-#: tests/core/object/test_object.h
+#: tests/core/object/test_object.h tests/core/object/test_undo_redo.h
 msgid "Property"
 msgstr "속성"

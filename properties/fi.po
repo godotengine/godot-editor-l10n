@@ -52,7 +52,7 @@ msgstr "Konfiguraatio"
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/3d/skeleton_3d.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
-#: servers/xr/xr_pose.cpp servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "Nimi"
 
@@ -62,7 +62,7 @@ msgstr "Lokalisoitu nimi"
 
 #: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
 #: scene/main/node.cpp scene/resources/visual_shader.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "Kuvaus"
 
@@ -93,6 +93,10 @@ msgstr "Poista stderr käytöstä"
 #, fuzzy
 msgid "Print Header"
 msgstr "Lisää tuloportti"
+
+#: core/config/project_settings.cpp
+msgid "Enable Alt Space Menu"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -351,9 +355,9 @@ msgstr "Käytä tarttumista"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/2d/tile_map_layer.cpp scene/main/scene_tree.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "Fysiikka"
 
@@ -487,9 +491,10 @@ msgstr "Muutosten vahvistusviesti"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/main/scene_tree.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/rendering/renderer_scene_cull.cpp servers/rendering_server.cpp
+#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering_server.cpp
 #, fuzzy
 msgid "Rendering"
 msgstr "Renderöijä:"
@@ -505,6 +510,11 @@ msgstr "Näytä peittoharvennus"
 msgid "BVH Build Quality"
 msgstr "Laatu"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Jitter Projection"
+msgstr "Projekti"
+
 #: core/config/project_settings.cpp core/string/translation.cpp main/main.cpp
 #, fuzzy
 msgid "Internationalization"
@@ -519,6 +529,11 @@ msgstr ""
 msgid "Root Node Layout Direction"
 msgstr "Suunnat"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Root Node Auto Translate"
+msgstr "Siirrä"
+
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
 #: scene/main/viewport.cpp scene/register_scene_types.cpp
@@ -527,13 +542,17 @@ msgid "GUI"
 msgstr "GUI"
 
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp scene/main/viewport.cpp
+#: scene/gui/text_edit.cpp
 #, fuzzy
 msgid "Timers"
 msgstr "Aika"
 
 #: core/config/project_settings.cpp
 msgid "Incremental Search Max Interval Msec"
+msgstr ""
+
+#: core/config/project_settings.cpp
+msgid "Tooltip Delay (sec)"
 msgstr ""
 
 #: core/config/project_settings.cpp main/main.cpp
@@ -601,6 +620,14 @@ msgstr "Tekstuurialue"
 #: core/config/project_settings.cpp
 msgid "Pipeline Cache"
 msgstr ""
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
+msgid "Enable"
+msgstr "Ota käyttöön"
 
 #: core/config/project_settings.cpp
 #, fuzzy
@@ -906,7 +933,8 @@ msgstr ""
 msgid "Action"
 msgstr "Toiminto"
 
-#: core/input/input_event.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: core/input/input_event.cpp modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/environment.cpp scene/resources/material.cpp
 msgid "Strength"
@@ -1037,7 +1065,8 @@ msgid "Offset"
 msgstr "Poikkeama"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Cell Size"
 msgstr ""
 
@@ -1231,14 +1260,10 @@ msgstr "Arvo"
 msgid "Arg Count"
 msgstr "Määrä:"
 
-#: editor/animation_track_editor.cpp
-msgid "Args"
-msgstr ""
-
 #: editor/animation_track_editor.cpp editor/editor_settings.cpp
 #: modules/gltf/structures/gltf_accessor.cpp modules/noise/fastnoise_lite.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_positional_tracker.cpp
+#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -1263,7 +1288,7 @@ msgstr "Skaalaustila"
 msgid "Stream"
 msgstr ""
 
-#: editor/animation_track_editor.cpp
+#: editor/animation_track_editor.cpp scene/animation/animation_blend_tree.cpp
 #, fuzzy
 msgid "Start Offset"
 msgstr "Ruudukon siirtymä:"
@@ -1326,8 +1351,8 @@ msgstr "Salasana"
 msgid "Default Feature Profile"
 msgstr "Godotin ominaisuusprofiili"
 
-#: editor/editor_help.cpp editor/editor_settings.cpp
-#: editor/plugins/script_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_native_shader_source_visualizer.cpp
+#: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 #, fuzzy
 msgid "Text Editor"
@@ -1386,6 +1411,18 @@ msgstr "Häiriötön tila"
 msgid "Movie Maker Enabled"
 msgstr "Suoritettava"
 
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: modules/gdscript/editor/gdscript_highlighter.cpp scene/gui/control.cpp
+#: scene/main/window.cpp scene/theme/theme_db.cpp
+msgid "Theme"
+msgstr "Teema"
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: scene/3d/label_3d.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/label_settings.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr ""
+
 #: editor/editor_resource_picker.cpp
 msgid "Base Type"
 msgstr "Kantatyyppi"
@@ -1441,12 +1478,27 @@ msgid "Project Manager Screen"
 msgstr "Projektinhallinta"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Connection"
+msgstr "Kopioi valinta"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Engine Version Update Mode"
+msgstr "Prioriteettitila"
+
+#: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
 msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Use Native File Dialogs"
+msgstr "XForm-ikkuna"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1552,6 +1604,10 @@ msgstr "Matala prosessorin käyttötila"
 msgid "Unfocused Low Processor Mode Sleep (µsec)"
 msgstr "Matala prosessorin käyttötila"
 
+#: editor/editor_settings.cpp
+msgid "Import Resources When Unfocused"
+msgstr ""
+
 #: editor/editor_settings.cpp main/main.cpp
 #, fuzzy
 msgid "V-Sync Mode"
@@ -1577,6 +1633,15 @@ msgstr ""
 #, fuzzy
 msgid "Float Drag Speed"
 msgstr "Liikkumisen nopeussäädin"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Nested Color Mode"
+msgstr "Liikkumisen hitauskerroin"
+
+#: editor/editor_settings.cpp
+msgid "Delimitate All Container and Resources"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1622,11 +1687,6 @@ msgstr ""
 #, fuzzy
 msgid "Default Color Picker Shape"
 msgstr "Lataa väylän oletusasettelu."
-
-#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
-#: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
-msgid "Theme"
-msgstr "Teema"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -1679,8 +1739,8 @@ msgstr "Erotus:"
 msgid "Relationship Line Opacity"
 msgstr ""
 
-#: editor/editor_settings.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: editor/editor_settings.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Border Size"
 msgstr "Reunapikselit"
@@ -1758,14 +1818,6 @@ msgstr "Hae kohtaussolmu"
 #, fuzzy
 msgid "Multi Window"
 msgstr "Uusi ikkuna"
-
-#: editor/editor_settings.cpp
-#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
-msgid "Enable"
-msgstr "Ota käyttöön"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2067,19 +2119,13 @@ msgstr "Piirtokutsuja:"
 msgid "Draw Spaces"
 msgstr "Piirtokutsuja:"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr ""
-
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Behavior"
 msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/node_3d_editor_plugin.cpp
-#: modules/gridmap/grid_map.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/resources/2d/tile_set.cpp servers/navigation_server_3d.cpp
 msgid "Navigation"
 msgstr "Navigointi"
 
@@ -2108,6 +2154,10 @@ msgstr "Ruudukon valinta"
 msgid "Stay in Script Editor on Node Selected"
 msgstr ""
 
+#: editor/editor_settings.cpp
+msgid "Open Script When Connecting Signal to Existing Method"
+msgstr ""
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Indent"
 msgstr "Sisennys"
@@ -2115,6 +2165,10 @@ msgstr "Sisennys"
 #: editor/editor_settings.cpp
 msgid "Auto Indent"
 msgstr "Automaattinen sisennys"
+
+#: editor/editor_settings.cpp scene/gui/text_edit.cpp
+msgid "Indent Wrapped Lines"
+msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #, fuzzy
@@ -2192,6 +2246,15 @@ msgstr "Kopioi solmun polku"
 #, fuzzy
 msgid "Add Type Hints"
 msgstr "Lisää tyyppi"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Add String Name Literals"
+msgstr "Varastoidaan tiedostoa:"
+
+#: editor/editor_settings.cpp
+msgid "Add Node Path Literals"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2333,6 +2396,11 @@ msgstr "Piste"
 #: scene/resources/3d/primitive_meshes.cpp servers/physics_server_2d.cpp
 #: servers/physics_server_3d.cpp
 msgid "Shape"
+msgstr ""
+
+#: editor/editor_settings.cpp scene/3d/visible_on_screen_notifier_3d.cpp
+#: scene/resources/mesh.cpp
+msgid "AABB"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -2585,6 +2653,10 @@ msgid "Display Grid"
 msgstr "Näytä ylipiirto"
 
 #: editor/editor_settings.cpp
+msgid "Highlight Selected Layer"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #, fuzzy
 msgid "Polygon Editor"
 msgstr "Polygon 2D UV-editori"
@@ -2725,6 +2797,11 @@ msgstr "Tyhjennä tuloste"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Max Lines"
+msgstr "Kerros"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Platforms"
 msgstr "Mukautettu solmu"
 
@@ -2735,11 +2812,6 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Prefer Wayland"
 msgstr ""
-
-#: editor/editor_settings.cpp
-#, fuzzy
-msgid "Connection"
-msgstr "Kopioi valinta"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2806,6 +2878,10 @@ msgstr "Projektinhallinta"
 #, fuzzy
 msgid "Sorting Order"
 msgstr "järjestyksessä:"
+
+#: editor/editor_settings.cpp
+msgid "Directory Naming Convention"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -3097,6 +3173,7 @@ msgstr "Editorin teema"
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "Julkaisuversio"
 
@@ -3164,9 +3241,15 @@ msgid "File Mode"
 msgstr "Suodata solmuja"
 
 #: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Filters"
 msgstr "Suodattimet"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Options"
+msgstr "Asetuksia"
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Disable Overwrite Warning"
@@ -3492,17 +3575,20 @@ msgstr "Valo"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
 #: scene/3d/physics/vehicle_body_3d.cpp scene/animation/root_motion_view.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/2d/circle_shape_2d.cpp
+#: scene/resources/2d/navigation_polygon.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
 #: scene/resources/3d/cylinder_shape_3d.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/3d/sphere_shape_3d.cpp scene/resources/environment.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Radius"
 msgstr "Säde:"
@@ -3535,7 +3621,7 @@ msgstr "Tallenna tiedosto"
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
 #: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
 #: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
@@ -3553,10 +3639,6 @@ msgstr "Tallenna tiedosto"
 #, fuzzy
 msgid "Enabled"
 msgstr "Ota käyttöön"
-
-#: editor/import/3d/resource_importer_scene.cpp
-msgid "Make Streamable"
-msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -3587,7 +3669,8 @@ msgid "Use External"
 msgstr "Debuggaa ulkoisella editorilla"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/import/resource_importer_wav.cpp scene/resources/animation.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
 #: scene/resources/audio_stream_wav.cpp
 #, fuzzy
 msgid "Loop Mode"
@@ -3644,6 +3727,31 @@ msgstr "Sivu: "
 #, fuzzy
 msgid "Import Tracks"
 msgstr "Tuontitelakka"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Rest Pose"
+msgstr "Käynnistä uudelleen"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Load Pose"
+msgstr "Lataa esiasetus"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "External Animation Library"
+msgstr "Nimeä animaatio uudelleen"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Animation"
+msgstr "Luo uusi animaatio"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Timestamp"
+msgstr "Aika"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -3739,6 +3847,11 @@ msgstr "Poista animaatioraita"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
+msgid "Import Rest as Reset"
+msgstr "Vientitila:"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
 msgid "Import Script"
 msgstr "Tuo kohtaus"
 
@@ -3754,6 +3867,12 @@ msgstr "Alusta"
 #, fuzzy
 msgid "Generate Mipmaps"
 msgstr "Luodaan Lightmappeja"
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+#, fuzzy
+msgid "Disable Embedded Bitmaps"
+msgstr "Sisennä oikealle"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
@@ -4087,9 +4206,9 @@ msgstr "Aseta laatan alue"
 msgid "Trim Alpha Border From Region"
 msgstr ""
 
-#: editor/import/resource_importer_wav.cpp scene/2d/physics/rigid_body_2d.cpp
-#: scene/3d/physics/rigid_body_3d.cpp
+#: editor/import/resource_importer_wav.cpp
 #, fuzzy
+msgctxt "Enforce"
 msgid "Force"
 msgstr "Työnnä väkisin"
 
@@ -4471,6 +4590,11 @@ msgid "Scene Name Casing"
 msgstr "Kohtauspolku:"
 
 #: editor/register_editor_types.cpp
+#, fuzzy
+msgid "Script Name Casing"
+msgstr "Kohtauspolku:"
+
+#: editor/register_editor_types.cpp
 msgid "Reimport Missing Imported Files"
 msgstr ""
 
@@ -4755,13 +4879,13 @@ msgstr "Pakataan"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Eye Gaze Interaction"
-msgstr "Tee funktio"
+msgid "Hand Interaction Profile"
+msgstr "Interpolaatiotila"
 
 #: main/main.cpp
 #, fuzzy
-msgid "In Editor"
-msgstr "Avaa editori"
+msgid "Eye Gaze Interaction"
+msgstr "Tee funktio"
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -5186,6 +5310,10 @@ msgstr ""
 msgid "Use Thread"
 msgstr ""
 
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -5506,6 +5634,7 @@ msgid "Original Name"
 msgstr "Liitännäisen nimi:"
 
 #: modules/gltf/structures/gltf_animation.cpp
+#: modules/interactive_music/audio_stream_playlist.cpp
 #: modules/minimp3/audio_stream_mp3.cpp
 #: modules/minimp3/resource_importer_mp3.cpp
 #: modules/vorbis/audio_stream_ogg_vorbis.cpp
@@ -5533,6 +5662,11 @@ msgstr ""
 #, fuzzy
 msgid "Indices"
 msgstr "Kaikki laitteet"
+
+#: modules/gltf/structures/gltf_buffer_view.cpp
+#, fuzzy
+msgid "Vertex Attributes"
+msgstr "Merkkikokoriippuvainen"
 
 #: modules/gltf/structures/gltf_camera.cpp
 msgid "Perspective"
@@ -5712,6 +5846,31 @@ msgstr "Prioriteetti"
 msgid "Bake Navigation"
 msgstr "Navigointi"
 
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Initial Clip"
+msgstr "Alusta"
+
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Clip Count"
+msgstr "Luokkavakio"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+msgid "Shuffle"
+msgstr ""
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#, fuzzy
+msgid "Fade Time"
+msgstr "Ristihäivytyksen aika (s):"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#: modules/interactive_music/audio_stream_synchronized.cpp
+#, fuzzy
+msgid "Stream Count"
+msgstr "Lisää tuloportti"
+
 #: modules/lightmapper_rd/register_types.cpp servers/rendering_server.cpp
 #, fuzzy
 msgid "Lightmapping"
@@ -5834,6 +5993,11 @@ msgid "Display to Lens"
 msgstr "Näytä sävyttämätön"
 
 #: modules/mobile_vr/mobile_vr_interface.cpp
+#, fuzzy
+msgid "Offset Rect"
+msgstr "Siirtymä:"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "Oversample"
 msgstr ""
 
@@ -5844,6 +6008,18 @@ msgstr ""
 #: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "K2"
 msgstr ""
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Vulkan VRS"
+msgstr "Vulkan"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Min Radius"
+msgstr "Emissiomaski"
 
 #: modules/multiplayer/multiplayer_spawner.cpp
 #, fuzzy
@@ -6093,8 +6269,58 @@ msgstr "Näytä rautalankamalli"
 msgid "Render Target Size Multiplier"
 msgstr "Aseta useita:"
 
-#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_hand_tracker.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Layer Viewport"
+msgstr "1 näyttöruutu"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Sort Order"
+msgstr "järjestyksessä:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Blend"
+msgstr "Puolita käyrä"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "Määrä:"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Central Angle"
+msgstr "Alusta"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Fallback Segments"
+msgstr "Näytä ympäristö"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Central Horizontal Angle"
+msgstr "Vaakasuora:"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Upper Vertical Angle"
+msgstr "Isot kirjaimet"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Lower Vertical Angle"
+msgstr "Pienet kirjaimet"
+
+#: modules/openxr/scene/openxr_composition_layer_quad.cpp
+#, fuzzy
+msgid "Quad Size"
+msgstr "Koko:"
+
+#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 #, fuzzy
 msgid "Hand"
 msgstr "Aseta kahva"
@@ -6657,6 +6883,10 @@ msgid "Export Project Only"
 msgstr "Projekti"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
 msgid "Capabilities"
 msgstr "Liitä ominaisuudet"
@@ -6732,6 +6962,16 @@ msgstr "Ominaisuuksien kuvaukset"
 #, fuzzy
 msgid "Photolibrary Usage Description Localized"
 msgstr "Ominaisuuksien kuvaukset"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "Ota käyttöön"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "Pakataan"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Storyboard"
@@ -8150,6 +8390,19 @@ msgstr "Jälkikäsittely"
 msgid "Path Metadata Flags"
 msgstr ""
 
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Simplify Path"
+msgstr "Puolita polku"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+msgid "Simplify Epsilon"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
@@ -8188,8 +8441,7 @@ msgid "Max Speed"
 msgstr "Nopeus:"
 
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Layers"
 msgstr "Ota käyttöön"
@@ -8258,6 +8510,21 @@ msgstr "Matkaa"
 msgid "Vertices"
 msgstr "Pystysuora:"
 
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "NavigationMesh"
+msgstr "Siirtymistila"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Affect Navigation Mesh"
+msgstr "Siirtymistila"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Carve Navigation Mesh"
+msgstr "Siirtymistila"
+
 #: scene/2d/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
@@ -8268,11 +8535,6 @@ msgstr "Muokkaa navigointipolygonia"
 #, fuzzy
 msgid "Use Edge Connections"
 msgstr "Muokkaa yhteyttä:"
-
-#: scene/2d/navigation_region_2d.cpp
-#, fuzzy
-msgid "Constrain Avoidance"
-msgstr "Vakiot"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box_flat.cpp
 msgid "Skew"
@@ -8810,13 +9072,13 @@ msgid "Continuous CD"
 msgstr "Jatkuva"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Max Contacts Reported"
-msgstr ""
-
-#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 #, fuzzy
 msgid "Contact Monitor"
 msgstr "Poimi väri"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+msgid "Max Contacts Reported"
+msgstr ""
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Linear"
@@ -8839,6 +9101,12 @@ msgstr ""
 #, fuzzy
 msgid "Constant Forces"
 msgstr "Vakiot"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+#, fuzzy
+msgctxt "Physics"
+msgid "Force"
+msgstr "Työnnä väkisin"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Torque"
@@ -8946,7 +9214,12 @@ msgstr "Kuvaruutujen %"
 msgid "Filter Clip Enabled"
 msgstr "Suodata skriptejä"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Tile Set"
+msgstr "Laattavalikoima"
+
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Rendering Quadrant Size"
 msgstr "Muuta kameran kokoa"
@@ -8956,20 +9229,34 @@ msgstr "Muuta kameran kokoa"
 msgid "Collision Animatable"
 msgstr "Törmäystila"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Collision Visibility Mode"
 msgstr "Prioriteettitila"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 #, fuzzy
 msgid "Navigation Visibility Mode"
 msgstr "Prioriteettitila"
 
-#: scene/2d/tile_map_layer_group.cpp
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
 #, fuzzy
-msgid "Tile Set"
-msgstr "Laattavalikoima"
+msgid "Y Sort Origin"
+msgstr "Näytä origo"
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "Törmäystila"
+
+#: scene/2d/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr ""
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Navigation Enabled"
+msgstr "Siirtymistila"
 
 #: scene/2d/touch_screen_button.cpp
 #, fuzzy
@@ -9182,10 +9469,10 @@ msgstr "Sulje käyrä"
 msgid "Albedo"
 msgstr ""
 
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
-#: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
-#: scene/theme/default_theme.cpp
+#: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
+#: scene/resources/material.cpp
 #, fuzzy
+msgctxt "Geometry"
 msgid "Normal"
 msgstr "Muoto"
 
@@ -9819,7 +10106,6 @@ msgid "Linear Limit"
 msgstr "Lineaarinen"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "X"
 msgstr ""
 
@@ -9842,7 +10128,6 @@ msgid "Restitution"
 msgstr "Kuvaus"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "Y"
 msgstr ""
 
@@ -10259,8 +10544,13 @@ msgstr "Näytä viivaimet"
 
 #: scene/3d/skeleton_3d.cpp
 #, fuzzy
-msgid "Animate Physical Bones"
-msgstr "Luo fyysiset luut"
+msgid "Modifier"
+msgstr "Panorointitila"
+
+#: scene/3d/skeleton_3d.cpp
+#, fuzzy
+msgid "Callback Mode Process"
+msgstr "Toistotila:"
 
 #: scene/3d/skeleton_ik_3d.cpp scene/resources/skeleton_profile.cpp
 #, fuzzy
@@ -10272,13 +10562,7 @@ msgstr "Juurisolmun nimi"
 msgid "Tip Bone"
 msgstr "Luut"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
-#, fuzzy
-msgid "Interpolation"
-msgstr "Interpolaatiotila"
-
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_face_modifier_3d.cpp scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "Kohde"
 
@@ -10309,6 +10593,17 @@ msgstr "Poimintaetäisyys:"
 #, fuzzy
 msgid "Max Iterations"
 msgstr "Tee funktio"
+
+#: scene/3d/skeleton_modifier_3d.cpp scene/animation/animation_blend_tree.h
+#: scene/animation/animation_mixer.cpp
+#: servers/audio/effects/audio_effect_delay.cpp
+#, fuzzy
+msgid "Active"
+msgstr "Toiminto"
+
+#: scene/3d/skeleton_modifier_3d.cpp
+msgid "Influence"
+msgstr ""
 
 #: scene/3d/soft_body_3d.cpp
 #, fuzzy
@@ -10365,10 +10660,6 @@ msgstr ""
 msgid "Track Physics Step"
 msgstr "Fysiikkaruutujen %"
 
-#: scene/3d/visible_on_screen_notifier_3d.cpp scene/resources/mesh.cpp
-msgid "AABB"
-msgstr ""
-
 #: scene/3d/visual_instance_3d.cpp
 #, fuzzy
 msgid "Sorting"
@@ -10378,8 +10669,8 @@ msgstr "Lajittele"
 msgid "Use AABB Center"
 msgstr ""
 
-#: scene/3d/visual_instance_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: scene/3d/visual_instance_3d.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Geometry"
 msgstr "Yritä uudelleen"
@@ -10452,10 +10743,6 @@ msgstr "Lisää raita"
 msgid "Body Update"
 msgstr "Päivitä"
 
-#: scene/3d/xr_body_modifier_3d.cpp
-msgid "Show When Tracked"
-msgstr ""
-
 #: scene/3d/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
@@ -10476,6 +10763,10 @@ msgstr "Lisää raita"
 msgid "Pose"
 msgstr "Kopioi asento"
 
+#: scene/3d/xr_nodes.cpp
+msgid "Show When Tracked"
+msgstr ""
+
 #: scene/3d/xr_nodes.cpp servers/xr_server.cpp
 #, fuzzy
 msgid "World Scale"
@@ -10485,6 +10776,21 @@ msgstr "Satunnainen skaalaus:"
 #, fuzzy
 msgid "Play Mode"
 msgstr "Toistotila:"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Use Custom Timeline"
+msgstr "Käytä mukautettua käyttäjähakemistoa"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Timeline Length"
+msgstr "Muuta animaation pituutta"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Stretch Time Scale"
+msgstr "Ajanskaalaussolmu"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Sync"
@@ -10514,6 +10820,12 @@ msgstr "Ristihäivytyksen aika (s):"
 #, fuzzy
 msgid "Fadeout Curve"
 msgstr "Sulje käyrä"
+
+#: scene/animation/animation_blend_tree.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Break Loop at End"
+msgstr "Siirtotila"
 
 #: scene/animation/animation_blend_tree.cpp
 #, fuzzy
@@ -10560,12 +10872,6 @@ msgstr "Lisää tuloportti"
 #, fuzzy
 msgid "Request"
 msgstr "Pyydetään..."
-
-#: scene/animation/animation_blend_tree.h scene/animation/animation_mixer.cpp
-#: servers/audio/effects/audio_effect_delay.cpp
-#, fuzzy
-msgid "Active"
-msgstr "Toiminto"
 
 #: scene/animation/animation_blend_tree.h
 #, fuzzy
@@ -10696,6 +11002,26 @@ msgstr "Aseta animaatio"
 #, fuzzy
 msgid "Playback Options"
 msgstr "Luokan valinnat:"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture"
+msgstr "Jaa automaattisesti"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Duration"
+msgstr "Animaatio"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Transition Type"
+msgstr "Siirtymä"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Ease Type"
+msgstr "Aseta muuttujan tyyppi"
 
 #: scene/animation/animation_player.cpp
 #, fuzzy
@@ -11166,13 +11492,13 @@ msgstr "Alikansio:"
 
 #: scene/gui/file_dialog.cpp
 #, fuzzy
-msgid "Options"
-msgstr "Asetuksia"
-
-#: scene/gui/file_dialog.cpp
-#, fuzzy
 msgid "Use Native Dialog"
 msgstr "XForm-ikkuna"
+
+#: scene/gui/flow_container.cpp
+#, fuzzy
+msgid "Last Wrap Alignment"
+msgstr "Suodata signaaleja"
 
 #: scene/gui/flow_container.cpp
 #, fuzzy
@@ -11283,10 +11609,35 @@ msgstr "Valitse"
 msgid "Selected"
 msgstr "Valitse"
 
-#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
 #: scene/resources/visual_shader.cpp
 msgid "Title"
 msgstr ""
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Enabled"
+msgstr "Ota käyttöön"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Margin"
+msgstr "Nappi"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Drag Margin"
+msgstr "Aseta marginaali"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "Suodata signaaleja"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "Seuraava kerros"
 
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Select Mode"
@@ -11564,7 +11915,11 @@ msgid "Submenu Popup Delay"
 msgstr ""
 
 #: scene/gui/popup_menu.cpp
-msgid "System Menu Root"
+msgid "System Menu ID"
+msgstr ""
+
+#: scene/gui/popup_menu.cpp
+msgid "Prefer Native Menu"
 msgstr ""
 
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
@@ -11960,6 +12315,12 @@ msgid "Text Edit Undo Stack Max Size"
 msgstr ""
 
 #: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgctxt "Ordinary"
+msgid "Normal"
+msgstr "Muoto"
+
+#: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
 msgid "Hover"
 msgstr ""
 
@@ -12214,6 +12575,11 @@ msgstr "Ruudukon välistys:"
 msgid "Messages"
 msgstr "Muutosten vahvistusviesti"
 
+#: scene/main/node.cpp scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Physics Interpolation"
+msgstr "Interpolaatiotila"
+
 #: scene/main/node.cpp
 #, fuzzy
 msgid "Auto Translate"
@@ -12417,6 +12783,10 @@ msgstr "Näytä ympäristö"
 msgid "Enable Object Picking"
 msgstr "Käytä onion skinningiä"
 
+#: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
+msgid "Menu"
+msgstr ""
+
 #: scene/main/timer.cpp
 #, fuzzy
 msgid "Wait Time"
@@ -12571,10 +12941,6 @@ msgid "Canvas Cull Mask"
 msgstr ""
 
 #: scene/main/viewport.cpp
-msgid "Tooltip Delay (sec)"
-msgstr ""
-
-#: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
 msgstr "Ylikirjoittaa"
@@ -12640,6 +13006,11 @@ msgstr "Uusi ikkuna"
 msgid "Mouse Passthrough"
 msgstr ""
 
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Force Native"
+msgstr "Piirtokutsuja:"
+
 #: scene/main/window.cpp scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Min Size"
@@ -12702,6 +13073,48 @@ msgstr "Navigointi"
 #, fuzzy
 msgid "Segments"
 msgstr "Pääkohtauksen argumentit:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Parsed Geometry Type"
+msgstr "Jäsentää geometriaa…"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Parsed Collision Mask"
+msgstr "Törmäystila"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Source Geometry Mode"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Source Geometry Group Name"
+msgstr "Lähde"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Cells"
+msgstr ""
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+#, fuzzy
+msgid "Agents"
+msgstr "Pääkohtauksen argumentit:"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect"
+msgstr "Pakataan"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#, fuzzy
+msgid "Baking Rect Offset"
+msgstr "Siirtymä:"
 
 #: scene/resources/2d/segment_shape_2d.cpp
 msgid "A"
@@ -12950,11 +13363,6 @@ msgid "Custom Data Layers"
 msgstr "Aseta useita:"
 
 #: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Scenes"
-msgstr "Vaihda kohtaus-välilehteä"
-
-#: scene/resources/2d/tile_set.cpp
 msgid "Scene"
 msgstr "Kohtaus"
 
@@ -12990,11 +13398,6 @@ msgstr "Transponoi"
 #, fuzzy
 msgid "Texture Origin"
 msgstr "Aseta marginaali"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Y Sort Origin"
-msgstr "Näytä origo"
 
 #: scene/resources/2d/tile_set.cpp
 #, fuzzy
@@ -13877,6 +14280,11 @@ msgstr "Nouda"
 
 #: scene/resources/gradient.cpp
 #, fuzzy
+msgid "Interpolation"
+msgstr "Interpolaatiotila"
+
+#: scene/resources/gradient.cpp
+#, fuzzy
 msgid "Color Space"
 msgstr "Editorin teema"
 
@@ -14237,33 +14645,15 @@ msgstr ""
 msgid "Partition Type"
 msgstr "Aseta muunnoksen kantatyyppi"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Geometry Type"
-msgstr "Jäsentää geometriaa…"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Mode"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Source Group Name"
 msgstr "Lähde"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Cells"
-msgstr ""
-
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Cell Height"
 msgstr "Oletusesikatselu"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Agents"
-msgstr "Pääkohtauksen argumentit:"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -14332,26 +14722,6 @@ msgstr "Luodaan AABB"
 #: scene/resources/navigation_mesh.cpp
 #, fuzzy
 msgid "Baking AABB Offset"
-msgstr "Siirtymä:"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Parsed Collision Mask"
-msgstr "Törmäystila"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Source Geometry Group Name"
-msgstr "Lähde"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect"
-msgstr "Pakataan"
-
-#: scene/resources/navigation_polygon.cpp
-#, fuzzy
-msgid "Baking Rect Offset"
 msgstr "Siirtymä:"
 
 #: scene/resources/packed_scene.cpp
@@ -14732,6 +15102,11 @@ msgstr "Parametri muutettu:"
 #, fuzzy
 msgid "Qualifier"
 msgstr "Laatu"
+
+#: scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "Jaa automaattisesti"
 
 #: scene/resources/visual_shader.cpp
 #, fuzzy
@@ -15691,10 +16066,6 @@ msgid "Drop Mark"
 msgstr "Aseta marginaali"
 
 #: scene/theme/default_theme.cpp
-msgid "Menu"
-msgstr ""
-
-#: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Menu Highlight"
 msgstr "Suora valaistus"
@@ -15723,11 +16094,6 @@ msgstr "Erotus:"
 #, fuzzy
 msgid "Button Highlight"
 msgstr "Suora valaistus"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Large"
-msgstr "Kohde"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16213,6 +16579,12 @@ msgstr "Jälki"
 msgid "Resonance"
 msgstr "Resurssi"
 
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
+#, fuzzy
+msgid "Pre Gain dB"
+msgstr "Jälki"
+
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 #: servers/audio/effects/audio_effect_limiter.cpp
 msgid "Ceiling dB"
 msgstr ""
@@ -16418,6 +16790,10 @@ msgstr ""
 #, fuzzy
 msgid "Baking"
 msgstr "Pakataan"
+
+#: servers/navigation_server_3d.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -17319,6 +17695,16 @@ msgstr ""
 msgid "Tracking Confidence"
 msgstr ""
 
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Min Radius"
+msgstr "Emissiomaski"
+
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Strength"
+msgstr "Syvyys"
+
 #: servers/xr_server.cpp
 #, fuzzy
 msgid "World Origin"
@@ -17329,6 +17715,6 @@ msgstr "Näytä origo"
 msgid "Primary Interface"
 msgstr "Käyttöliittymä"
 
-#: tests/core/object/test_object.h
+#: tests/core/object/test_object.h tests/core/object/test_undo_redo.h
 msgid "Property"
 msgstr "Ominaisuus"

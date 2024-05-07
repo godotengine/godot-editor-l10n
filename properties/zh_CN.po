@@ -125,7 +125,7 @@ msgstr "配置"
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/3d/skeleton_3d.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
-#: servers/xr/xr_pose.cpp servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "名称"
 
@@ -135,7 +135,7 @@ msgstr "名称本地化"
 
 #: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
 #: scene/main/node.cpp scene/resources/visual_shader.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "描述"
 
@@ -165,6 +165,10 @@ msgstr "禁用标准错误输出"
 #: core/config/project_settings.cpp
 msgid "Print Header"
 msgstr "输出报头"
+
+#: core/config/project_settings.cpp
+msgid "Enable Alt Space Menu"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -394,9 +398,9 @@ msgstr "嵌入式子窗口"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/2d/tile_map_layer.cpp scene/main/scene_tree.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "物理"
 
@@ -516,9 +520,10 @@ msgstr "消息"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/main/scene_tree.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/rendering/renderer_scene_cull.cpp servers/rendering_server.cpp
+#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering_server.cpp
 msgid "Rendering"
 msgstr "渲染"
 
@@ -530,6 +535,11 @@ msgstr "遮挡剔除"
 #: core/config/project_settings.cpp
 msgid "BVH Build Quality"
 msgstr "BVH 构建质量"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Jitter Projection"
+msgstr "投影"
 
 #: core/config/project_settings.cpp core/string/translation.cpp main/main.cpp
 msgid "Internationalization"
@@ -543,6 +553,11 @@ msgstr "强制从右至左的布局方向"
 msgid "Root Node Layout Direction"
 msgstr "根节点排版方向"
 
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Root Node Auto Translate"
+msgstr "自动翻译"
+
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
 #: scene/main/viewport.cpp scene/register_scene_types.cpp
@@ -551,13 +566,17 @@ msgid "GUI"
 msgstr "GUI"
 
 #: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp scene/main/viewport.cpp
+#: scene/gui/text_edit.cpp
 msgid "Timers"
 msgstr "计时器"
 
 #: core/config/project_settings.cpp
 msgid "Incremental Search Max Interval Msec"
 msgstr "增量搜索最大间隔（毫秒）"
+
+#: core/config/project_settings.cpp
+msgid "Tooltip Delay (sec)"
+msgstr "工具提示延迟（毫秒）"
 
 #: core/config/project_settings.cpp main/main.cpp
 #: scene/gui/scroll_container.cpp scene/gui/text_edit.cpp
@@ -616,6 +635,14 @@ msgstr "纹理上传区域像素大小"
 #: core/config/project_settings.cpp
 msgid "Pipeline Cache"
 msgstr "管线缓存"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
+msgid "Enable"
+msgstr "启用"
 
 #: core/config/project_settings.cpp
 msgid "Save Chunk Size (MB)"
@@ -883,7 +910,8 @@ msgstr "双击"
 msgid "Action"
 msgstr "动作"
 
-#: core/input/input_event.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: core/input/input_event.cpp modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp scene/3d/gpu_particles_collision_3d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/environment.cpp scene/resources/material.cpp
 msgid "Strength"
@@ -1004,7 +1032,8 @@ msgid "Offset"
 msgstr "偏移"
 
 #: core/math/a_star_grid_2d.cpp scene/animation/root_motion_view.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Cell Size"
 msgstr "单元格大小"
 
@@ -1175,14 +1204,10 @@ msgstr "值"
 msgid "Arg Count"
 msgstr "参数个数"
 
-#: editor/animation_track_editor.cpp
-msgid "Args"
-msgstr "参数"
-
 #: editor/animation_track_editor.cpp editor/editor_settings.cpp
 #: modules/gltf/structures/gltf_accessor.cpp modules/noise/fastnoise_lite.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_positional_tracker.cpp
+#: scene/resources/visual_shader_nodes.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "类型"
 
@@ -1204,7 +1229,7 @@ msgstr "手柄模式"
 msgid "Stream"
 msgstr "流"
 
-#: editor/animation_track_editor.cpp
+#: editor/animation_track_editor.cpp scene/animation/animation_blend_tree.cpp
 msgid "Start Offset"
 msgstr "起点偏移"
 
@@ -1259,8 +1284,8 @@ msgstr "密码"
 msgid "Default Feature Profile"
 msgstr "默认功能配置"
 
-#: editor/editor_help.cpp editor/editor_settings.cpp
-#: editor/plugins/script_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_native_shader_source_visualizer.cpp
+#: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 msgid "Text Editor"
 msgstr "文本编辑器"
@@ -1310,6 +1335,18 @@ msgstr "专注模式"
 msgid "Movie Maker Enabled"
 msgstr "启用 Movie Maker"
 
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: modules/gdscript/editor/gdscript_highlighter.cpp scene/gui/control.cpp
+#: scene/main/window.cpp scene/theme/theme_db.cpp
+msgid "Theme"
+msgstr "主题"
+
+#: editor/editor_native_shader_source_visualizer.cpp editor/editor_settings.cpp
+#: scene/3d/label_3d.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/label_settings.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "行间距"
+
 #: editor/editor_resource_picker.cpp
 msgid "Base Type"
 msgstr "基础类型"
@@ -1357,12 +1394,26 @@ msgid "Project Manager Screen"
 msgstr "项目管理器屏幕"
 
 #: editor/editor_settings.cpp
+msgid "Connection"
+msgstr "连接"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Engine Version Update Mode"
+msgstr "可见性更新模式"
+
+#: editor/editor_settings.cpp
 msgid "Enable Pseudolocalization"
 msgstr "启用伪本地化"
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
 msgstr "使用嵌入式菜单"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Use Native File Dialogs"
+msgstr "使用原生对话框"
 
 #: editor/editor_settings.cpp
 msgid "Expand to Title"
@@ -1456,6 +1507,10 @@ msgstr "低处理器模式睡眠（微秒）"
 msgid "Unfocused Low Processor Mode Sleep (µsec)"
 msgstr "未聚焦低处理器模式睡眠（微秒）"
 
+#: editor/editor_settings.cpp
+msgid "Import Resources When Unfocused"
+msgstr ""
+
 #: editor/editor_settings.cpp main/main.cpp
 msgid "V-Sync Mode"
 msgstr "垂直同步模式"
@@ -1479,6 +1534,15 @@ msgstr "显示低阶 OpenType 特性"
 #: editor/editor_settings.cpp
 msgid "Float Drag Speed"
 msgstr "浮点数拖动速度"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Nested Color Mode"
+msgstr "颜色模式"
+
+#: editor/editor_settings.cpp
+msgid "Delimitate All Container and Resources"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Default Property Name Style"
@@ -1519,11 +1583,6 @@ msgstr "默认取色器模式"
 #: editor/editor_settings.cpp
 msgid "Default Color Picker Shape"
 msgstr "默认取色器形状"
-
-#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
-#: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
-msgid "Theme"
-msgstr "主题"
 
 #: editor/editor_settings.cpp
 msgid "Follow System Theme"
@@ -1569,8 +1628,8 @@ msgstr "图标饱和度"
 msgid "Relationship Line Opacity"
 msgstr "关系线不透明度"
 
-#: editor/editor_settings.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: editor/editor_settings.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Border Size"
 msgstr "边框大小"
 
@@ -1637,14 +1696,6 @@ msgstr "加载时恢复场景"
 #: editor/editor_settings.cpp
 msgid "Multi Window"
 msgstr "多窗口"
-
-#: editor/editor_settings.cpp
-#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#: scene/3d/physics/joints/hinge_joint_3d.cpp servers/rendering_server.cpp
-msgid "Enable"
-msgstr "启用"
 
 #: editor/editor_settings.cpp
 msgid "Restore Windows on Load"
@@ -1911,19 +1962,13 @@ msgstr "绘制制表符"
 msgid "Draw Spaces"
 msgstr "绘制空格"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "行间距"
-
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Behavior"
 msgstr "行为"
 
 #: editor/editor_settings.cpp editor/plugins/node_3d_editor_plugin.cpp
-#: modules/gridmap/grid_map.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
+#: modules/gridmap/grid_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/resources/2d/tile_set.cpp servers/navigation_server_3d.cpp
 msgid "Navigation"
 msgstr "导航"
 
@@ -1951,6 +1996,10 @@ msgstr "拖放选区"
 msgid "Stay in Script Editor on Node Selected"
 msgstr "选择节点时停留在脚本编辑器"
 
+#: editor/editor_settings.cpp
+msgid "Open Script When Connecting Signal to Existing Method"
+msgstr ""
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Indent"
 msgstr "缩进"
@@ -1958,6 +2007,10 @@ msgstr "缩进"
 #: editor/editor_settings.cpp
 msgid "Auto Indent"
 msgstr "自动缩进"
+
+#: editor/editor_settings.cpp scene/gui/text_edit.cpp
+msgid "Indent Wrapped Lines"
+msgstr ""
 
 #: editor/editor_settings.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Files"
@@ -2026,6 +2079,15 @@ msgstr "补全文件路径"
 #: editor/editor_settings.cpp
 msgid "Add Type Hints"
 msgstr "添加类型提示"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Add String Name Literals"
+msgstr "StringName 颜色"
+
+#: editor/editor_settings.cpp
+msgid "Add Node Path Literals"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Single Quotes"
@@ -2157,6 +2219,11 @@ msgstr "关节"
 #: servers/physics_server_3d.cpp
 msgid "Shape"
 msgstr "形状"
+
+#: editor/editor_settings.cpp scene/3d/visible_on_screen_notifier_3d.cpp
+#: scene/resources/mesh.cpp
+msgid "AABB"
+msgstr "AABB"
 
 #: editor/editor_settings.cpp
 msgid "Primary Grid Steps"
@@ -2371,6 +2438,11 @@ msgid "Display Grid"
 msgstr "显示栅格"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Highlight Selected Layer"
+msgstr "高亮当前行"
+
+#: editor/editor_settings.cpp
 msgid "Polygon Editor"
 msgstr "多边形编辑器"
 
@@ -2491,6 +2563,11 @@ msgid "Always Close Output on Stop"
 msgstr "停止时关闭输出"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Max Lines"
+msgstr "最大文本行数"
+
+#: editor/editor_settings.cpp
 msgid "Platforms"
 msgstr "平台"
 
@@ -2501,10 +2578,6 @@ msgstr "Linux/BSD"
 #: editor/editor_settings.cpp
 msgid "Prefer Wayland"
 msgstr "首选 Wayland"
-
-#: editor/editor_settings.cpp
-msgid "Connection"
-msgstr "连接"
 
 #: editor/editor_settings.cpp
 msgid "Network Mode"
@@ -2566,6 +2639,10 @@ msgstr "项目管理器"
 #: editor/editor_settings.cpp
 msgid "Sorting Order"
 msgstr "排序方式"
+
+#: editor/editor_settings.cpp
+msgid "Directory Naming Convention"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Default Renderer"
@@ -2814,6 +2891,7 @@ msgstr "自定义模板"
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "发布"
 
@@ -2872,9 +2950,14 @@ msgid "File Mode"
 msgstr "文件模式"
 
 #: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Filters"
 msgstr "过滤"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+msgid "Options"
+msgstr "选项"
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Disable Overwrite Warning"
@@ -3158,17 +3241,20 @@ msgstr "高度"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
 #: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
 #: scene/3d/physics/vehicle_body_3d.cpp scene/animation/root_motion_view.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/2d/circle_shape_2d.cpp
+#: scene/resources/2d/navigation_polygon.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
 #: scene/resources/3d/cylinder_shape_3d.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/3d/sphere_shape_3d.cpp scene/resources/environment.cpp
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Radius"
 msgstr "半径"
 
@@ -3197,7 +3283,7 @@ msgstr "保存为文件"
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
 #: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
 #: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
@@ -3214,10 +3300,6 @@ msgstr "保存为文件"
 #: servers/rendering_server.cpp
 msgid "Enabled"
 msgstr "启用"
-
-#: editor/import/3d/resource_importer_scene.cpp
-msgid "Make Streamable"
-msgstr "使可流式传输"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Shadow Meshes"
@@ -3244,7 +3326,8 @@ msgid "Use External"
 msgstr "使用外部"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/import/resource_importer_wav.cpp scene/resources/animation.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
 #: scene/resources/audio_stream_wav.cpp
 msgid "Loop Mode"
 msgstr "循环模式"
@@ -3291,6 +3374,31 @@ msgstr "页大小"
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Tracks"
 msgstr "导入轨道"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Rest Pose"
+msgstr "放松修复器"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Load Pose"
+msgstr "加载路径"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "External Animation Library"
+msgstr "自动重命名动画轨道"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Animation"
+msgstr "创建动画"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Selected Timestamp"
+msgstr "时间戳"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Bone Map"
@@ -3370,6 +3478,11 @@ msgid "Remove Immutable Tracks"
 msgstr "移除不可修改的轨道"
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Import Rest as Reset"
+msgstr "导入器网格"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Import Script"
 msgstr "导入脚本"
 
@@ -3383,6 +3496,12 @@ msgstr "抗锯齿"
 #: modules/noise/noise_texture_2d.cpp scene/resources/font.cpp
 msgid "Generate Mipmaps"
 msgstr "生成 Mipmap"
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+#, fuzzy
+msgid "Disable Embedded Bitmaps"
+msgstr "禁用环境光"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
@@ -3678,8 +3797,9 @@ msgstr "裁剪至区域"
 msgid "Trim Alpha Border From Region"
 msgstr "从区域修剪 Alpha 边框"
 
-#: editor/import/resource_importer_wav.cpp scene/2d/physics/rigid_body_2d.cpp
-#: scene/3d/physics/rigid_body_3d.cpp
+#: editor/import/resource_importer_wav.cpp
+#, fuzzy
+msgctxt "Enforce"
 msgid "Force"
 msgstr "强制"
 
@@ -4017,6 +4137,11 @@ msgid "Scene Name Casing"
 msgstr "场景名称大小写"
 
 #: editor/register_editor_types.cpp
+#, fuzzy
+msgid "Script Name Casing"
+msgstr "场景名称大小写"
+
+#: editor/register_editor_types.cpp
 msgid "Reimport Missing Imported Files"
 msgstr "重新导入缺失的已导入文件"
 
@@ -4268,12 +4393,13 @@ msgid "Hand Tracking"
 msgstr "手部跟踪"
 
 #: main/main.cpp
-msgid "Eye Gaze Interaction"
-msgstr "眼动交互"
+#, fuzzy
+msgid "Hand Interaction Profile"
+msgstr "交互配置路径"
 
 #: main/main.cpp
-msgid "In Editor"
-msgstr "在编辑器中"
+msgid "Eye Gaze Interaction"
+msgstr "眼动交互"
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -4647,6 +4773,10 @@ msgstr "编辑器中显示原生符号"
 msgid "Use Thread"
 msgstr "使用线程"
 
+#: modules/gdscript/language_server/gdscript_language_server.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -4930,6 +5060,7 @@ msgid "Original Name"
 msgstr "原始名称"
 
 #: modules/gltf/structures/gltf_animation.cpp
+#: modules/interactive_music/audio_stream_playlist.cpp
 #: modules/minimp3/audio_stream_mp3.cpp
 #: modules/minimp3/resource_importer_mp3.cpp
 #: modules/vorbis/audio_stream_ogg_vorbis.cpp
@@ -4954,6 +5085,11 @@ msgstr "字节步长"
 #: modules/gltf/structures/gltf_buffer_view.cpp
 msgid "Indices"
 msgstr "索引"
+
+#: modules/gltf/structures/gltf_buffer_view.cpp
+#, fuzzy
+msgid "Vertex Attributes"
+msgstr "相机属性"
 
 #: modules/gltf/structures/gltf_camera.cpp
 msgid "Perspective"
@@ -5109,6 +5245,31 @@ msgstr "优先级"
 msgid "Bake Navigation"
 msgstr "烘焙导航"
 
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Initial Clip"
+msgstr "初始角"
+
+#: modules/interactive_music/audio_stream_interactive.cpp
+#, fuzzy
+msgid "Clip Count"
+msgstr "裁剪内容"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+msgid "Shuffle"
+msgstr ""
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#, fuzzy
+msgid "Fade Time"
+msgstr "淡入时间"
+
+#: modules/interactive_music/audio_stream_playlist.cpp
+#: modules/interactive_music/audio_stream_synchronized.cpp
+#, fuzzy
+msgid "Stream Count"
+msgstr "帧数"
+
 #: modules/lightmapper_rd/register_types.cpp servers/rendering_server.cpp
 msgid "Lightmapping"
 msgstr "光照贴图"
@@ -5218,6 +5379,11 @@ msgid "Display to Lens"
 msgstr "显示器至镜头"
 
 #: modules/mobile_vr/mobile_vr_interface.cpp
+#, fuzzy
+msgid "Offset Rect"
+msgstr "偏移网格"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "Oversample"
 msgstr "过采样"
 
@@ -5228,6 +5394,18 @@ msgstr "K1"
 #: modules/mobile_vr/mobile_vr_interface.cpp
 msgid "K2"
 msgstr "K2"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Vulkan VRS"
+msgstr "Vulkan 渲染引擎"
+
+#: modules/mobile_vr/mobile_vr_interface.cpp
+#: modules/openxr/openxr_interface.cpp
+#, fuzzy
+msgid "Min Radius"
+msgstr "环半径"
 
 #: modules/multiplayer/multiplayer_spawner.cpp
 msgid "Spawnable Scenes"
@@ -5442,8 +5620,58 @@ msgstr "显示刷新率"
 msgid "Render Target Size Multiplier"
 msgstr "渲染目标大小倍数"
 
-#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_hand_tracker.cpp
-#: servers/xr/xr_positional_tracker.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Layer Viewport"
+msgstr "视口"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Sort Order"
+msgstr "排序方式"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Blend"
+msgstr "Alpha 曲线"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "数量比"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#, fuzzy
+msgid "Central Angle"
+msgstr "初始角"
+
+#: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Fallback Segments"
+msgstr "回退环境"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Central Horizontal Angle"
+msgstr "启用水平滚动"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Upper Vertical Angle"
+msgstr "上端角"
+
+#: modules/openxr/scene/openxr_composition_layer_equirect.cpp
+#, fuzzy
+msgid "Lower Vertical Angle"
+msgstr "下端角"
+
+#: modules/openxr/scene/openxr_composition_layer_quad.cpp
+#, fuzzy
+msgid "Quad Size"
+msgstr "制表符大小"
+
+#: modules/openxr/scene/openxr_hand.cpp servers/xr/xr_positional_tracker.cpp
 msgid "Hand"
 msgstr "手别"
 
@@ -5936,6 +6164,10 @@ msgid "Export Project Only"
 msgstr "仅导出项目"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 msgid "Capabilities"
 msgstr "能力"
 
@@ -5999,6 +6231,16 @@ msgstr "照片图库使用描述"
 #: platform/ios/export/export_plugin.cpp
 msgid "Photolibrary Usage Description Localized"
 msgstr "照片图库使用描述本地化"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "启用吸附"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "追踪置信度"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Storyboard"
@@ -7229,6 +7471,19 @@ msgstr "路径后处理"
 msgid "Path Metadata Flags"
 msgstr "路径元数据标志"
 
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Simplify Path"
+msgstr "出生路径"
+
+#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+msgid "Simplify Epsilon"
+msgstr ""
+
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
 #: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 #: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
@@ -7261,8 +7516,7 @@ msgid "Max Speed"
 msgstr "最大速度"
 
 #: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
 msgid "Avoidance Layers"
 msgstr "避障层"
 
@@ -7318,6 +7572,21 @@ msgstr "移动消耗"
 msgid "Vertices"
 msgstr "顶点"
 
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "NavigationMesh"
+msgstr "导航网格"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Affect Navigation Mesh"
+msgstr "导航网格"
+
+#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#, fuzzy
+msgid "Carve Navigation Mesh"
+msgstr "导航网格"
+
 #: scene/2d/navigation_region_2d.cpp
 msgid "Navigation Polygon"
 msgstr "导航多边形"
@@ -7326,10 +7595,6 @@ msgstr "导航多边形"
 #: servers/navigation_server_3d.cpp
 msgid "Use Edge Connections"
 msgstr "使用边界连接"
-
-#: scene/2d/navigation_region_2d.cpp
-msgid "Constrain Avoidance"
-msgstr "约束避障"
 
 #: scene/2d/node_2d.cpp scene/resources/style_box_flat.cpp
 msgid "Skew"
@@ -7797,12 +8062,12 @@ msgid "Continuous CD"
 msgstr "连续碰撞检测"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-msgid "Max Contacts Reported"
-msgstr "报告的最大接触"
-
-#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Contact Monitor"
 msgstr "接触监视器"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+msgid "Max Contacts Reported"
+msgstr "报告的最大接触"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Linear"
@@ -7823,6 +8088,12 @@ msgstr "角"
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Constant Forces"
 msgstr "恒力"
+
+#: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
+#, fuzzy
+msgctxt "Physics"
+msgid "Force"
+msgstr "强制"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
 msgid "Torque"
@@ -7916,7 +8187,11 @@ msgstr "帧坐标"
 msgid "Filter Clip Enabled"
 msgstr "启用过滤裁剪"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+msgid "Tile Set"
+msgstr "图块集"
+
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 msgid "Rendering Quadrant Size"
 msgstr "渲染象限大小"
 
@@ -7924,17 +8199,31 @@ msgstr "渲染象限大小"
 msgid "Collision Animatable"
 msgstr "碰撞可动画化"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 msgid "Collision Visibility Mode"
 msgstr "碰撞可见性模式"
 
-#: scene/2d/tile_map.cpp
+#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
 msgid "Navigation Visibility Mode"
 msgstr "导航可见性模式"
 
-#: scene/2d/tile_map_layer_group.cpp
-msgid "Tile Set"
-msgstr "图块集"
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+msgid "Y Sort Origin"
+msgstr "Y 排序原点"
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "碰撞可动画化"
+
+#: scene/2d/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr ""
+
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Navigation Enabled"
+msgstr "导航层"
 
 #: scene/2d/touch_screen_button.cpp
 msgid "Texture Normal"
@@ -8116,9 +8405,10 @@ msgstr "缩放曲线 Z"
 msgid "Albedo"
 msgstr "反照率"
 
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
-#: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
-#: scene/theme/default_theme.cpp
+#: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
+#: scene/resources/material.cpp
+#, fuzzy
+msgctxt "Geometry"
 msgid "Normal"
 msgstr "正常"
 
@@ -8662,7 +8952,6 @@ msgid "Linear Limit"
 msgstr "线性限制"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "X"
 msgstr "X"
 
@@ -8682,7 +8971,6 @@ msgid "Restitution"
 msgstr "复原"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp
 msgid "Y"
 msgstr "Y"
 
@@ -9033,8 +9321,14 @@ msgid "Show Rest Only"
 msgstr "仅显示放松"
 
 #: scene/3d/skeleton_3d.cpp
-msgid "Animate Physical Bones"
-msgstr "动画物理骨骼"
+#, fuzzy
+msgid "Modifier"
+msgstr "平移修饰键"
+
+#: scene/3d/skeleton_3d.cpp
+#, fuzzy
+msgid "Callback Mode Process"
+msgstr "回调模式"
 
 #: scene/3d/skeleton_ik_3d.cpp scene/resources/skeleton_profile.cpp
 msgid "Root Bone"
@@ -9044,12 +9338,7 @@ msgstr "根骨骼"
 msgid "Tip Bone"
 msgstr "尖端骨骼"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/resources/gradient.cpp
-msgid "Interpolation"
-msgstr "插值"
-
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_face_modifier_3d.cpp scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "目标"
 
@@ -9076,6 +9365,17 @@ msgstr "最小距离"
 #: scene/3d/skeleton_ik_3d.cpp
 msgid "Max Iterations"
 msgstr "最大迭代数"
+
+#: scene/3d/skeleton_modifier_3d.cpp scene/animation/animation_blend_tree.h
+#: scene/animation/animation_mixer.cpp
+#: servers/audio/effects/audio_effect_delay.cpp
+msgid "Active"
+msgstr "激活"
+
+#: scene/3d/skeleton_modifier_3d.cpp
+#, fuzzy
+msgid "Influence"
+msgstr "翻滚影响"
 
 #: scene/3d/soft_body_3d.cpp
 msgid "Pinned Points"
@@ -9125,10 +9425,6 @@ msgstr "阻力系数"
 msgid "Track Physics Step"
 msgstr "跟踪物理迭代"
 
-#: scene/3d/visible_on_screen_notifier_3d.cpp scene/resources/mesh.cpp
-msgid "AABB"
-msgstr "AABB"
-
 #: scene/3d/visual_instance_3d.cpp
 msgid "Sorting"
 msgstr "排序"
@@ -9137,8 +9433,8 @@ msgstr "排序"
 msgid "Use AABB Center"
 msgstr "使用 AABB 中心"
 
-#: scene/3d/visual_instance_3d.cpp scene/resources/navigation_mesh.cpp
-#: scene/resources/navigation_polygon.cpp
+#: scene/3d/visual_instance_3d.cpp scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
 msgid "Geometry"
 msgstr "几何体"
 
@@ -9199,10 +9495,6 @@ msgstr "身体追踪器"
 msgid "Body Update"
 msgstr "身体更新"
 
-#: scene/3d/xr_body_modifier_3d.cpp
-msgid "Show When Tracked"
-msgstr "追踪时显示"
-
 #: scene/3d/xr_face_modifier_3d.cpp
 msgid "Face Tracker"
 msgstr "面部追踪器"
@@ -9219,6 +9511,10 @@ msgstr "追踪器"
 msgid "Pose"
 msgstr "姿势"
 
+#: scene/3d/xr_nodes.cpp
+msgid "Show When Tracked"
+msgstr "追踪时显示"
+
 #: scene/3d/xr_nodes.cpp servers/xr_server.cpp
 msgid "World Scale"
 msgstr "世界缩放"
@@ -9226,6 +9522,21 @@ msgstr "世界缩放"
 #: scene/animation/animation_blend_tree.cpp
 msgid "Play Mode"
 msgstr "播放模式"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Use Custom Timeline"
+msgstr "使用自定义"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Timeline Length"
+msgstr "节长度"
+
+#: scene/animation/animation_blend_tree.cpp
+#, fuzzy
+msgid "Stretch Time Scale"
+msgstr "时间缩放"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Sync"
@@ -9250,6 +9561,12 @@ msgstr "淡出时间"
 #: scene/animation/animation_blend_tree.cpp
 msgid "Fadeout Curve"
 msgstr "淡出曲线"
+
+#: scene/animation/animation_blend_tree.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Break Loop at End"
+msgstr "循环终点"
 
 #: scene/animation/animation_blend_tree.cpp
 msgid "Auto Restart"
@@ -9289,11 +9606,6 @@ msgstr "输入数"
 #: scene/animation/animation_blend_tree.h
 msgid "Request"
 msgstr "请求"
-
-#: scene/animation/animation_blend_tree.h scene/animation/animation_mixer.cpp
-#: servers/audio/effects/audio_effect_delay.cpp
-msgid "Active"
-msgstr "激活"
 
 #: scene/animation/animation_blend_tree.h
 msgid "Internal Active"
@@ -9404,6 +9716,26 @@ msgstr "当前动画"
 #: scene/animation/animation_player.cpp
 msgid "Playback Options"
 msgstr "播放选项"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture"
+msgstr "探针捕获"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Duration"
+msgstr "衰减"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Transition Type"
+msgstr "远端过渡"
+
+#: scene/animation/animation_player.cpp
+#, fuzzy
+msgid "Auto Capture Ease Type"
+msgstr "状态机类型"
 
 #: scene/animation/animation_player.cpp
 msgid "Default Blend Time"
@@ -9796,12 +10128,13 @@ msgid "Root Subfolder"
 msgstr "根部子文件夹"
 
 #: scene/gui/file_dialog.cpp
-msgid "Options"
-msgstr "选项"
-
-#: scene/gui/file_dialog.cpp
 msgid "Use Native Dialog"
 msgstr "使用原生对话框"
+
+#: scene/gui/flow_container.cpp
+#, fuzzy
+msgid "Last Wrap Alignment"
+msgstr "选项卡对齐"
 
 #: scene/gui/flow_container.cpp
 msgid "Reverse Fill"
@@ -9892,10 +10225,35 @@ msgstr "可选中"
 msgid "Selected"
 msgstr "选中"
 
-#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
 #: scene/resources/visual_shader.cpp
 msgid "Title"
 msgstr "标题"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Enabled"
+msgstr "启用避障"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Autoshrink Margin"
+msgstr "按钮边距"
+
+#: scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Drag Margin"
+msgstr "绘制拖拽边距"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "启用倾斜"
+
+#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "标题颜色"
 
 #: scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Select Mode"
@@ -10137,8 +10495,14 @@ msgid "Submenu Popup Delay"
 msgstr "子菜单弹出延迟"
 
 #: scene/gui/popup_menu.cpp
-msgid "System Menu Root"
+#, fuzzy
+msgid "System Menu ID"
 msgstr "系统菜单根"
+
+#: scene/gui/popup_menu.cpp
+#, fuzzy
+msgid "Prefer Native Menu"
+msgstr "首选全局菜单"
 
 #: scene/gui/progress_bar.cpp scene/gui/texture_progress_bar.cpp
 msgid "Fill Mode"
@@ -10471,6 +10835,12 @@ msgid "Text Edit Undo Stack Max Size"
 msgstr "TextEdit 撤消栈最大大小"
 
 #: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgctxt "Ordinary"
+msgid "Normal"
+msgstr "正常"
+
+#: scene/gui/texture_button.cpp scene/theme/default_theme.cpp
 msgid "Hover"
 msgstr "悬停"
 
@@ -10690,6 +11060,11 @@ msgstr "分组顺序"
 msgid "Messages"
 msgstr "消息"
 
+#: scene/main/node.cpp scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Physics Interpolation"
+msgstr "图标插值"
+
 #: scene/main/node.cpp
 msgid "Auto Translate"
 msgstr "自动翻译"
@@ -10864,6 +11239,10 @@ msgstr "默认环境"
 msgid "Enable Object Picking"
 msgstr "启用对象拾取"
 
+#: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
+msgid "Menu"
+msgstr "菜单"
+
 #: scene/main/timer.cpp
 msgid "Wait Time"
 msgstr "等待时间"
@@ -10995,10 +11374,6 @@ msgid "Canvas Cull Mask"
 msgstr "画布剔除遮罩"
 
 #: scene/main/viewport.cpp
-msgid "Tooltip Delay (sec)"
-msgstr "工具提示延迟（毫秒）"
-
-#: scene/main/viewport.cpp
 msgid "Size 2D Override"
 msgstr "2D 大小覆盖"
 
@@ -11054,6 +11429,11 @@ msgstr "弹出窗口"
 msgid "Mouse Passthrough"
 msgstr "鼠标穿透"
 
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Force Native"
+msgstr "力量大小"
+
 #: scene/main/window.cpp scene/resources/navigation_mesh.cpp
 msgid "Min Size"
 msgstr "最小大小"
@@ -11105,6 +11485,42 @@ msgstr "3D 导航"
 #: scene/resources/2d/concave_polygon_shape_2d.cpp
 msgid "Segments"
 msgstr "分段"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Parsed Geometry Type"
+msgstr "解析几何体类型"
+
+#: scene/resources/2d/navigation_polygon.cpp
+msgid "Parsed Collision Mask"
+msgstr "解析碰撞遮罩"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Source Geometry Mode"
+msgstr "来源几何体模式"
+
+#: scene/resources/2d/navigation_polygon.cpp
+msgid "Source Geometry Group Name"
+msgstr "来源几何体分组名称"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Cells"
+msgstr "单元格"
+
+#: scene/resources/2d/navigation_polygon.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Agents"
+msgstr "代理"
+
+#: scene/resources/2d/navigation_polygon.cpp
+msgid "Baking Rect"
+msgstr "烘焙矩形"
+
+#: scene/resources/2d/navigation_polygon.cpp
+msgid "Baking Rect Offset"
+msgstr "烘焙矩形偏移"
 
 #: scene/resources/2d/segment_shape_2d.cpp
 msgid "A"
@@ -11312,10 +11728,6 @@ msgid "Custom Data Layers"
 msgstr "自定义数据层"
 
 #: scene/resources/2d/tile_set.cpp
-msgid "Scenes"
-msgstr "场景"
-
-#: scene/resources/2d/tile_set.cpp
 msgid "Scene"
 msgstr "场景"
 
@@ -11346,10 +11758,6 @@ msgstr "转置"
 #: scene/resources/2d/tile_set.cpp
 msgid "Texture Origin"
 msgstr "纹理原点"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Y Sort Origin"
-msgstr "Y 排序原点"
 
 #: scene/resources/2d/tile_set.cpp
 msgid "Terrain Set"
@@ -12108,6 +12516,10 @@ msgid "Font Stretch"
 msgstr "字体拉伸"
 
 #: scene/resources/gradient.cpp
+msgid "Interpolation"
+msgstr "插值"
+
+#: scene/resources/gradient.cpp
 msgid "Color Space"
 msgstr "色彩空间"
 
@@ -12413,29 +12825,13 @@ msgstr "可见实例数"
 msgid "Partition Type"
 msgstr "分区类型"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Parsed Geometry Type"
-msgstr "解析几何体类型"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Mode"
-msgstr "来源几何体模式"
-
 #: scene/resources/navigation_mesh.cpp
 msgid "Source Group Name"
 msgstr "来源分组名称"
 
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Cells"
-msgstr "单元格"
-
 #: scene/resources/navigation_mesh.cpp
 msgid "Cell Height"
 msgstr "单元格高度"
-
-#: scene/resources/navigation_mesh.cpp scene/resources/navigation_polygon.cpp
-msgid "Agents"
-msgstr "代理"
 
 #: scene/resources/navigation_mesh.cpp
 msgid "Max Climb"
@@ -12496,22 +12892,6 @@ msgstr "烘焙 AABB"
 #: scene/resources/navigation_mesh.cpp
 msgid "Baking AABB Offset"
 msgstr "烘焙 AABB 偏移"
-
-#: scene/resources/navigation_polygon.cpp
-msgid "Parsed Collision Mask"
-msgstr "解析碰撞遮罩"
-
-#: scene/resources/navigation_polygon.cpp
-msgid "Source Geometry Group Name"
-msgstr "来源几何体分组名称"
-
-#: scene/resources/navigation_polygon.cpp
-msgid "Baking Rect"
-msgstr "烘焙矩形"
-
-#: scene/resources/navigation_polygon.cpp
-msgid "Baking Rect Offset"
-msgstr "烘焙矩形偏移"
 
 #: scene/resources/packed_scene.cpp
 msgid "Bundled"
@@ -12828,6 +13208,11 @@ msgstr "参数名称"
 #: scene/resources/visual_shader.cpp
 msgid "Qualifier"
 msgstr "修饰符"
+
+#: scene/resources/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "自动隐藏"
 
 #: scene/resources/visual_shader.cpp
 msgid "Varying Name"
@@ -13619,10 +14004,6 @@ msgid "Drop Mark"
 msgstr "放下标记"
 
 #: scene/theme/default_theme.cpp
-msgid "Menu"
-msgstr "菜单"
-
-#: scene/theme/default_theme.cpp
 msgid "Menu Highlight"
 msgstr "菜单高亮"
 
@@ -13645,10 +14026,6 @@ msgstr "图标间距"
 #: scene/theme/default_theme.cpp
 msgid "Button Highlight"
 msgstr "按钮高亮"
-
-#: scene/theme/default_theme.cpp
-msgid "Large"
-msgstr "大号"
 
 #: scene/theme/default_theme.cpp
 msgid "SV Width"
@@ -14066,6 +14443,12 @@ msgstr "后增益"
 msgid "Resonance"
 msgstr "共振"
 
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
+#, fuzzy
+msgid "Pre Gain dB"
+msgstr "预增益"
+
+#: servers/audio/effects/audio_effect_hard_limiter.cpp
 #: servers/audio/effects/audio_effect_limiter.cpp
 msgid "Ceiling dB"
 msgstr "上限 dB"
@@ -14246,6 +14629,10 @@ msgstr "避障使用高优先级线程"
 #: servers/navigation_server_3d.cpp
 msgid "Baking"
 msgstr "烘焙"
+
+#: servers/navigation_server_3d.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 msgid "Baking Use Multiple Threads"
@@ -15016,6 +15403,16 @@ msgstr "锚点检测是否启用"
 msgid "Tracking Confidence"
 msgstr "追踪置信度"
 
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Min Radius"
+msgstr "环半径"
+
+#: servers/xr/xr_vrs.cpp
+#, fuzzy
+msgid "VRS Strength"
+msgstr "强度"
+
 #: servers/xr_server.cpp
 msgid "World Origin"
 msgstr "世界原点"
@@ -15024,6 +15421,6 @@ msgstr "世界原点"
 msgid "Primary Interface"
 msgstr "主接口"
 
-#: tests/core/object/test_object.h
+#: tests/core/object/test_object.h tests/core/object/test_undo_redo.h
 msgid "Property"
 msgstr "属性"
