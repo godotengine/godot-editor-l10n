@@ -48,14 +48,14 @@ msgstr ""
 
 # Regex "(?P<name>([^"\\]|\\.)*)" creates a group named `name` that matches a string.
 message_patterns = {
-    re.compile(r'^(?!\s*\/\/|\s*\*).*RTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
-    re.compile(r'^(?!\s*\/\/|\s*\*).*TTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
-    re.compile(r'^(?!\s*\/\/|\s*\*).*TTRC\(U?"(?P<message>([^"\\]|\\.)*)"\)'): ExtractType.TEXT,
+    re.compile(r'RTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
+    re.compile(r'TTR\(U?"(?P<message>([^"\\]|\\.)*)"(, "(?P<context>([^"\\]|\\.)*)")?\)'): ExtractType.TEXT,
+    re.compile(r'TTRC\(U?"(?P<message>([^"\\]|\\.)*)"\)'): ExtractType.TEXT,
     re.compile(
-        r'^(?!\s*\/\/|\s*\*).*TTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
+        r'TTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
     re.compile(
-        r'^(?!\s*\/\/|\s*\*).*RTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
+        r'RTRN\(U?"(?P<message>([^"\\]|\\.)*)", "(?P<plural_message>([^"\\]|\\.)*)",[^,)]+?(, "(?P<context>([^"\\]|\\.)*)")?\)'
     ): ExtractType.TEXT,
 }
 
@@ -99,45 +99,50 @@ def _extract_translator_comment(line, is_block_translator_comment):
 
 def process_file(f, fname):
     l = f.readline()
+    ls = l.lstrip()
     lc = 1
+
     reading_translator_comment = False
     is_block_translator_comment = False
     translator_comment = ""
     patterns = message_patterns
 
     while l:
+        has_translation_comment = l.find("TRANSLATORS:") != -1
+        # Skip code comments that aren't for translators.
+        if (not ls.startswith("//") and not ls.startswith("* ")) or reading_translator_comment or has_translation_comment:
+            # Detect translator comments.
+            if not reading_translator_comment and has_translation_comment:
+                reading_translator_comment = True
+                is_block_translator_comment = _is_block_translator_comment(l)
+                translator_comment = ""
 
-        # Detect translator comments.
-        if not reading_translator_comment and l.find("TRANSLATORS:") != -1:
-            reading_translator_comment = True
-            is_block_translator_comment = _is_block_translator_comment(l)
-            translator_comment = ""
+            # Gather translator comments. It will be gathered for the next translation function.
+            if reading_translator_comment:
+                reading_translator_comment, extracted_comment = _extract_translator_comment(l, is_block_translator_comment)
+                if extracted_comment != "":
+                    translator_comment += extracted_comment + "\n"
+                if not reading_translator_comment:
+                    translator_comment = translator_comment[:-1]  # Remove extra \n at the end.
 
-        # Gather translator comments. It will be gathered for the next translation function.
-        if reading_translator_comment:
-            reading_translator_comment, extracted_comment = _extract_translator_comment(l, is_block_translator_comment)
-            if extracted_comment != "":
-                translator_comment += extracted_comment + "\n"
             if not reading_translator_comment:
-                translator_comment = translator_comment[:-1]  # Remove extra \n at the end.
+                for pattern, extract_type in patterns.items():
+                    for m in pattern.finditer(l):
+                        location = os.path.relpath(fname).replace("\\", "/")
+                        if line_nb:
+                            location += ":" + str(lc)
 
-        if not reading_translator_comment:
-            for pattern, extract_type in patterns.items():
-                for m in pattern.finditer(l):
-                    location = os.path.relpath(fname).replace("\\", "/")
-                    if line_nb:
-                        location += ":" + str(lc)
+                        captures = m.groupdict("")
+                        msg = captures.get("message", "")
+                        msg_plural = captures.get("plural_message", "")
+                        msgctx = captures.get("context", "")
 
-                    captures = m.groupdict("")
-                    msg = captures.get("message", "")
-                    msg_plural = captures.get("plural_message", "")
-                    msgctx = captures.get("context", "")
-
-                    if extract_type == ExtractType.TEXT:
-                        _add_message(msg, msg_plural, msgctx, location, translator_comment)
-            translator_comment = ""
+                        if extract_type == ExtractType.TEXT:
+                            _add_message(msg, msg_plural, msgctx, location, translator_comment)
+                translator_comment = ""
 
         l = f.readline()
+        ls = l.lstrip()
         lc += 1
 
 
