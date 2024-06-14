@@ -22,6 +22,17 @@ merge:
 	  msgattrib --output-file=$$po --no-obsolete --clear-fuzzy --empty $$po; \
 	done
 
+# Hacky 'merge' with hardcoded path to `main` branch po files,
+# to merge more recent Godot `master` branch translations which
+# are compatible with the stable branch.
+merge-main-in-stable:
+	@for po in $(POFILES); do \
+	  echo -e "\nMerging $$po..."; \
+	  msgmerge -w 80 -C ../../weblate-editor-l10n/$(basename $(TEMPLATE))/$$po $$po $(TEMPLATE) > "$$po".new; \
+	  mv -f "$$po".new $$po; \
+	  msgattrib --output-file=$$po --no-obsolete --clear-fuzzy --empty $$po; \
+	done
+
 check:
 	@for po in $(POFILES); do msgfmt -c $$po -o /dev/null; done
 
