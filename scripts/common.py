@@ -113,7 +113,7 @@ class PropertyNameProcessor:
 def get_source_files() -> List[str]:
     matches = []
     for root, dirnames, filenames in os.walk("."):
-        dirnames[:] = [d for d in dirnames if d not in ["thirdparty"]]
+        dirnames[:] = [d for d in dirnames if d not in ["tests", "thirdparty"]]
         for filename in fnmatch.filter(filenames, "*.cpp"):
             matches.append(os.path.join(root, filename))
         for filename in fnmatch.filter(filenames, "*.h"):
