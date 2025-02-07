@@ -303,14 +303,15 @@ msgid "Accept"
 msgstr "אישור"
 
 #: core/input/input_map.cpp editor/editor_locale_dialog.cpp
-#: editor/editor_node.cpp editor/plugins/tiles/tile_set_atlas_source_editor.cpp
+#: editor/editor_node.cpp editor/gui/editor_quick_open_dialog.cpp
+#: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 msgid "Select"
 msgstr "בחירה"
 
 #: core/input/input_map.cpp editor/editor_node.h
 #: editor/export/export_template_manager.cpp editor/fbx_importer_manager.cpp
 #: editor/find_in_files.cpp editor/plugins/tiles/tiles_editor_plugin.cpp
-#: editor/progress_dialog.cpp
+#: editor/progress_dialog.cpp editor/project_manager/project_list.cpp
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -436,10 +437,10 @@ msgstr ""
 #: core/input/input_map.cpp editor/dependency_editor.cpp editor/editor_node.cpp
 #: editor/export/project_export.cpp editor/filesystem_dock.cpp
 #: editor/groups_editor.cpp editor/gui/editor_file_dialog.cpp
-#: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
 #: editor/plugins/visual_shader_editor_plugin.cpp
 #: editor/project_settings_editor.cpp editor/scene_tree_dock.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Delete"
 msgstr "מחיקה"
 
@@ -587,6 +588,10 @@ msgstr "הצג/הסתר קבצים מוסתרים"
 msgid "Swap Input Direction"
 msgstr "כיוונים"
 
+#: core/input/input_map.cpp
+msgid "Start Unicode Character Input"
+msgstr ""
+
 #: core/math/expression.cpp
 msgid "Invalid input %d (not passed) in expression"
 msgstr "קלט שגוי %d (לא הועבר) בתוך הביטוי"
@@ -697,6 +702,7 @@ msgstr "סינון לפי שם"
 
 #: editor/action_map_editor.cpp editor/editor_settings_dialog.cpp
 #: editor/plugins/tiles/tile_proxies_manager_dialog.cpp
+#: editor/run_instances_dialog.cpp
 msgid "Clear All"
 msgstr "ניקוי הכל"
 
@@ -708,8 +714,8 @@ msgstr "מחק סינוני חיפוש."
 msgid "Add New Action"
 msgstr "הוספת פעולה חדשה"
 
-#: editor/action_map_editor.cpp editor/connections_dialog.cpp
-#: editor/editor_autoload_settings.cpp editor/editor_inspector.cpp
+#: editor/action_map_editor.cpp editor/add_metadata_dialog.cpp
+#: editor/connections_dialog.cpp editor/editor_autoload_settings.cpp
 #: editor/group_settings_editor.cpp editor/plugins/theme_editor_plugin.cpp
 #: editor/plugins/tiles/tile_proxies_manager_dialog.cpp
 #: editor/project_settings_editor.cpp editor/shader_globals_editor.cpp
@@ -728,11 +734,56 @@ msgstr "פעולה"
 msgid "Deadzone"
 msgstr "שטח מת"
 
+#: editor/add_metadata_dialog.cpp editor/directory_create_dialog.cpp
+#: editor/editor_properties.cpp editor/export/project_export.cpp
+#: editor/group_settings_editor.cpp editor/groups_editor.cpp
+#: editor/gui/editor_file_dialog.cpp editor/plugins/theme_editor_plugin.cpp
+#: editor/script_create_dialog.cpp editor/shader_globals_editor.cpp
+msgid "Name:"
+msgstr "שם:"
+
+#: editor/add_metadata_dialog.cpp editor/animation_track_editor.cpp
+#: editor/debugger/editor_debugger_tree.cpp editor/editor_resource_picker.cpp
+#: editor/gui/scene_tree_editor.cpp
+#: editor/plugins/resource_preloader_editor_plugin.cpp
+#: editor/plugins/theme_editor_plugin.cpp editor/shader_create_dialog.cpp
+#: editor/shader_globals_editor.cpp
+msgid "Type:"
+msgstr "סוג:"
+
+#: editor/add_metadata_dialog.cpp
+#, fuzzy
+msgid "Metadata name is valid."
+msgstr "נתיב/שם הסקריפט תקף."
+
+#: editor/add_metadata_dialog.cpp
+msgid "Add Metadata Property for \"%s\""
+msgstr "הוספת מטא־נתון עבור ”%s“"
+
+#: editor/add_metadata_dialog.cpp
+msgid "Metadata name can't be empty."
+msgstr ""
+
+#: editor/add_metadata_dialog.cpp
+#, fuzzy
+msgid "Metadata name must be a valid identifier."
+msgstr "שם מתודה חייב להיות מזהה חוקי."
+
+#: editor/add_metadata_dialog.cpp
+#, fuzzy
+msgid "Metadata with name \"%s\" already exists."
+msgstr "פעולה עם השם '%s' כבר קיימת."
+
+#: editor/add_metadata_dialog.cpp
+msgid "Names starting with _ are reserved for editor-only metadata."
+msgstr ""
+
 #: editor/animation_bezier_editor.cpp editor/debugger/editor_profiler.cpp
 msgid "Time:"
 msgstr "זמן:"
 
 #: editor/animation_bezier_editor.cpp editor/animation_track_editor.cpp
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Value:"
 msgstr "ערך:"
 
@@ -818,11 +869,6 @@ msgstr "מחיקת מפתחות הנפשה"
 
 #: editor/animation_bezier_editor.cpp
 #, fuzzy
-msgid "Animation Bezier Curve Change Call"
-msgstr "שינוי קריאת הנפשה"
-
-#: editor/animation_bezier_editor.cpp
-#, fuzzy
 msgid "Focus"
 msgstr "מיקוד נתיב"
 
@@ -901,11 +947,28 @@ msgid "Change Animation Loop"
 msgstr "שינוי לולאת אנימציה"
 
 #: editor/animation_track_editor.cpp
-msgid "Can't change loop mode on animation instanced from imported scene."
+msgid ""
+"Can't change loop mode on animation instanced from an imported scene.\n"
+"\n"
+"To change this animation's loop mode, navigate to the scene's Advanced "
+"Import settings and select the animation.\n"
+"You can then change the loop mode from the inspector menu."
 msgstr ""
 
 #: editor/animation_track_editor.cpp
-msgid "Can't change loop mode on animation embedded in another scene."
+msgid ""
+"Can't change loop mode on animation instanced from an imported resource."
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+msgid ""
+"Can't change loop mode on animation embedded in another scene.\n"
+"\n"
+"You must open this scene and change the animation's loop mode from there."
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+msgid "Can't change loop mode on animation embedded in another resource."
 msgstr ""
 
 #: editor/animation_track_editor.cpp
@@ -1028,15 +1091,6 @@ msgstr "קנה מידה:"
 #, fuzzy
 msgid "Blend Shape:"
 msgstr "מיזוג 0:"
-
-#: editor/animation_track_editor.cpp editor/debugger/editor_debugger_tree.cpp
-#: editor/editor_inspector.cpp editor/editor_resource_picker.cpp
-#: editor/gui/scene_tree_editor.cpp
-#: editor/plugins/resource_preloader_editor_plugin.cpp
-#: editor/plugins/theme_editor_plugin.cpp editor/shader_create_dialog.cpp
-#: editor/shader_globals_editor.cpp
-msgid "Type:"
-msgstr "סוג:"
 
 #: editor/animation_track_editor.cpp
 msgid "(Invalid, expected type: %s)"
@@ -1219,12 +1273,13 @@ msgstr ""
 #: editor/animation_track_editor.cpp editor/create_dialog.cpp
 #: editor/editor_audio_buses.cpp editor/editor_feature_profile.cpp
 #: editor/plugins/abstract_polygon_2d_editor.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#: editor/plugins/particles_editor_plugin.cpp
 #: editor/plugins/plugin_config_dialog.cpp
 #: editor/plugins/version_control_editor_plugin.cpp
 #: editor/plugins/visual_shader_editor_plugin.cpp editor/project_manager.cpp
-#: editor/script_create_dialog.cpp editor/shader_create_dialog.cpp
+#: editor/project_manager/project_dialog.cpp editor/script_create_dialog.cpp
+#: editor/shader_create_dialog.cpp
 msgid "Create"
 msgstr "יצירה"
 
@@ -1347,7 +1402,7 @@ msgid "BlendShape"
 msgstr "מיזוג"
 
 #: editor/animation_track_editor.cpp editor/connections_dialog.cpp
-#: editor/editor_help.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
 msgid "Methods"
 msgstr "מתודות"
 
@@ -1474,8 +1529,17 @@ msgid "Group tracks by node or display them as plain list."
 msgstr "קיבוץ רצועות לפי מפרק או הצגה כרשימה פשוטה."
 
 #: editor/animation_track_editor.cpp
-msgid "Snap:"
-msgstr "הצמדה:"
+msgid "Apply snapping to timeline cursor."
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Apply snapping to selected key(s)."
+msgstr "שכפול מפתח(ות) שנבחרו"
+
+#: editor/animation_track_editor.cpp
+msgid "Apply snapping to the nearest integer FPS."
+msgstr ""
 
 #: editor/animation_track_editor.cpp
 msgid "Animation step value."
@@ -1801,6 +1865,130 @@ msgstr "בחירת הכל/כלום"
 msgid "Animation Change Keyframe Time"
 msgstr "שינוי זמן פריים־מפתח אנימציה"
 
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Marker name is read-only in the inspector."
+msgstr "פעולה זו לא יכולה להתבצע על שורש העץ."
+
+#: editor/animation_track_editor.cpp
+msgid ""
+"A marker's name can only be changed by right-clicking it in the animation "
+"editor and selecting \"Rename Marker\", in order to make sure that marker "
+"names are all unique."
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Insert Marker..."
+msgstr "הכנסת מפתח..."
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Rename Marker"
+msgstr "שינוי שם שכבה"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Delete Marker(s)"
+msgstr "מחיקת מפתח(ות)"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Show All Marker Names"
+msgstr "צמצום כל השורות"
+
+#: editor/animation_track_editor.cpp
+msgid "Marker:"
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Animation Move Markers"
+msgstr "מפתחות הזזת אנימצייה"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Animation Delete Markers"
+msgstr "מחיקת מפתחות הנפשה"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Marker '%s' already exists!"
+msgstr "הטעינה האוטומטית ‚%s’ כבר קיימת!"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Add Marker Key"
+msgstr "הוסף מפתח רצועת שיטה"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Empty marker names are not allowed."
+msgstr "שם מפרק לא חוקי, התווים הבאים אינם מותרים:"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Insert Marker"
+msgstr "הכנסת מפתח"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Marker Name"
+msgstr "משתנה השתנה"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Marker Color"
+msgstr "קובץ אחסון:"
+
+#: editor/animation_track_editor.cpp editor/connections_dialog.cpp
+#: editor/dependency_editor.cpp editor/editor_dock_manager.cpp
+#: editor/editor_settings_dialog.cpp editor/export/export_template_manager.cpp
+#: editor/export/project_export.cpp editor/find_in_files.cpp
+#: editor/import/3d/scene_import_settings.cpp
+#: editor/import/audio_stream_import_settings.cpp
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/asset_library_editor_plugin.cpp
+#: editor/plugins/resource_preloader_editor_plugin.cpp
+#: editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+#: editor/plugins/texture_region_editor_plugin.cpp
+#: editor/plugins/theme_editor_plugin.cpp
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#: editor/project_manager/quick_settings_dialog.cpp
+#: editor/project_settings_editor.cpp
+msgid "Close"
+msgstr "סגירה"
+
+#: editor/animation_track_editor.cpp
+#: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/resource_preloader_editor_plugin.cpp
+#: editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/script_text_editor.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Error!"
+msgstr "שגיאה!"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Change Marker Name:"
+msgstr "שינוי שם הנפשה:"
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Edit Marker Color"
+msgstr "תיקייה חדשה…"
+
+#: editor/animation_track_editor.cpp
+msgid "Multi Edit Marker Color"
+msgstr ""
+
+#: editor/animation_track_editor.cpp
+#, fuzzy
+msgid "Animation Change Marker Time"
+msgstr "שינוי זמן פריים־מפתח אנימציה"
+
 #: editor/animation_track_editor_plugins.cpp
 msgid "Add Audio Track Clip"
 msgstr "הוספת קטע רצועת שמע"
@@ -1845,6 +2033,16 @@ msgstr[0] "%d מתוך %d התאים"
 msgstr[1] "%d מתוך %d התאימו"
 msgstr[2] "%d מתוך %d התאימו"
 msgstr[3] "%d מתוך %d התאימו"
+
+#: editor/code_editor.cpp
+#, fuzzy
+msgid "Hide Replace"
+msgstr "החלפה"
+
+#: editor/code_editor.cpp
+#, fuzzy
+msgid "Show Replace"
+msgstr "החלפה"
 
 #: editor/code_editor.cpp
 #, fuzzy
@@ -1929,6 +2127,13 @@ msgstr "אזהרות"
 #, fuzzy
 msgid "Zoom factor"
 msgstr "התרחקות"
+
+#. TRANSLATORS: The placeholders are keyboard shortcuts. The first one is in the form of "Ctrl+"/"Cmd+".
+#: editor/code_editor.cpp
+msgid ""
+"%sMouse wheel, %s/%s: Finetune\n"
+"%s: Reset"
+msgstr ""
 
 #: editor/code_editor.cpp
 msgid "Line and column numbers."
@@ -2068,24 +2273,6 @@ msgstr "ניתוק האות אחרי השידור הראשון."
 msgid "Cannot connect signal"
 msgstr "אין אפשרות לחבר אות"
 
-#: editor/connections_dialog.cpp editor/dependency_editor.cpp
-#: editor/editor_dock_manager.cpp editor/editor_settings_dialog.cpp
-#: editor/export/export_template_manager.cpp editor/export/project_export.cpp
-#: editor/find_in_files.cpp editor/import/3d/scene_import_settings.cpp
-#: editor/import/audio_stream_import_settings.cpp
-#: editor/import/dynamic_font_import_settings.cpp
-#: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/asset_library_editor_plugin.cpp
-#: editor/plugins/resource_preloader_editor_plugin.cpp
-#: editor/plugins/script_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-#: editor/plugins/texture_region_editor_plugin.cpp
-#: editor/plugins/theme_editor_plugin.cpp
-#: editor/project_manager/quick_settings_dialog.cpp
-#: editor/project_settings_editor.cpp
-msgid "Close"
-msgstr "סגירה"
-
 #: editor/connections_dialog.cpp
 msgid "Connect"
 msgstr "התחברות"
@@ -2122,7 +2309,8 @@ msgstr "עריכת חיבור: ”%s“"
 msgid "Are you sure you want to remove all connections from the \"%s\" signal?"
 msgstr "האם אתה בטוח שאתה רוצה להסיר את כל החיבורים מהאות ”%s“?"
 
-#: editor/connections_dialog.cpp editor/editor_help.cpp editor/node_dock.cpp
+#: editor/connections_dialog.cpp editor/editor_help.cpp
+#: editor/editor_help_search.cpp editor/node_dock.cpp
 msgid "Signals"
 msgstr "מסרים"
 
@@ -2165,13 +2353,22 @@ msgstr "שינוי הסוג של ”%s“"
 msgid "Change"
 msgstr "שינוי"
 
-#: editor/create_dialog.cpp
+#: editor/create_dialog.cpp editor/editor_interface.cpp
 msgid "Create New %s"
 msgstr "יצירת %s חדש"
 
 #: editor/create_dialog.cpp
 msgid "No results for \"%s\"."
 msgstr "אין תוצאות עבור ”%s“."
+
+#: editor/create_dialog.cpp
+#, fuzzy
+msgid "Script path: %s"
+msgstr "העתקת נתיב הסקריפט"
+
+#: editor/create_dialog.cpp
+msgid "The script will run in the editor."
+msgstr ""
 
 #: editor/create_dialog.cpp editor/editor_help_search.cpp
 msgid "This class is marked as deprecated."
@@ -2200,14 +2397,13 @@ msgstr "אחרונים:"
 msgid "(Un)favorite selected item."
 msgstr "(בטל) העדפת תיקייה נוכחית."
 
-#: editor/create_dialog.cpp editor/editor_quick_open.cpp
-#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
-#: editor/rename_dialog.cpp
+#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/property_selector.cpp editor/rename_dialog.cpp
 msgid "Search:"
 msgstr "חיפוש:"
 
-#: editor/create_dialog.cpp editor/editor_quick_open.cpp
-#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
+#: editor/create_dialog.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/property_selector.cpp
 msgid "Matches:"
 msgstr "התאמות:"
 
@@ -2222,6 +2418,10 @@ msgstr "תיאור:"
 #: editor/debugger/editor_debugger_inspector.cpp
 msgid "Remote %s:"
 msgstr "%s מרוחק:"
+
+#: editor/debugger/editor_debugger_node.cpp
+msgid "Session %d"
+msgstr ""
 
 #: editor/debugger/editor_debugger_node.cpp
 #: editor/plugins/debugger_editor_plugin.cpp
@@ -2241,6 +2441,11 @@ msgstr "שמירת ענף כסצנה"
 msgid "Copy Node Path"
 msgstr "העתקת נתיב המפרק"
 
+#: editor/debugger/editor_debugger_tree.cpp editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Expand/Collapse Branch"
+msgstr "להראות/להסתיר הכל"
+
 #: editor/debugger/editor_debugger_tree.cpp editor/gui/scene_tree_editor.cpp
 #: editor/plugins/resource_preloader_editor_plugin.cpp
 msgid "Instance:"
@@ -2256,6 +2461,33 @@ msgstr ""
 #: editor/debugger/editor_debugger_tree.cpp editor/gui/scene_tree_editor.cpp
 msgid "Toggle Visibility"
 msgstr "הצגה/הסתרה"
+
+#: editor/debugger/editor_expression_evaluator.cpp
+msgid "Expression to evaluate"
+msgstr ""
+
+#: editor/debugger/editor_expression_evaluator.cpp
+#, fuzzy
+msgid "Clear on Run"
+msgstr "יצירת מצולע"
+
+#: editor/debugger/editor_expression_evaluator.cpp
+#, fuzzy
+msgid "Evaluate"
+msgstr "(ערך)"
+
+#: editor/debugger/editor_expression_evaluator.cpp
+#: editor/debugger/editor_profiler.cpp
+#: editor/debugger/editor_visual_profiler.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
+#: editor/editor_resource_picker.cpp
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+#: editor/plugins/tiles/tile_data_editors.cpp editor/run_instances_dialog.cpp
+#: editor/scene_tree_dock.cpp
+#: modules/multiplayer/editor/editor_network_profiler.cpp
+#: scene/gui/color_picker.cpp
+msgid "Clear"
+msgstr "ניקוי"
 
 #: editor/debugger/editor_file_server.cpp
 msgid "Updating assets on target device:"
@@ -2323,13 +2555,10 @@ msgstr "התחלה"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
-#: editor/debugger/script_editor_debugger.cpp editor/editor_properties.cpp
-#: editor/editor_resource_picker.cpp
-#: editor/plugins/animation_blend_tree_editor_plugin.cpp
-#: editor/plugins/tiles/tile_data_editors.cpp editor/scene_tree_dock.cpp
 #: modules/multiplayer/editor/editor_network_profiler.cpp
-msgid "Clear"
-msgstr "ניקוי"
+#, fuzzy
+msgid "Autostart"
+msgstr "הפעלה מחדש"
 
 #: editor/debugger/editor_profiler.cpp
 #: editor/debugger/editor_visual_profiler.cpp
@@ -2565,10 +2794,14 @@ msgid "Collapse All"
 msgstr "לצמצם הכול"
 
 #: editor/debugger/script_editor_debugger.cpp
+msgid "Evaluator"
+msgstr ""
+
+#: editor/debugger/script_editor_debugger.cpp editor/gui/editor_run_bar.cpp
 msgid "Profiler"
 msgstr "מאפיין"
 
-#: editor/debugger/script_editor_debugger.cpp
+#: editor/debugger/script_editor_debugger.cpp editor/gui/editor_run_bar.cpp
 #, fuzzy
 msgid "Visual Profiler"
 msgstr "מאפיין"
@@ -2654,15 +2887,15 @@ msgstr ""
 msgid "Dependencies"
 msgstr "תלויות"
 
-#: editor/dependency_editor.cpp editor/editor_resource_picker.cpp
+#: editor/dependency_editor.cpp editor/editor_help.cpp
 #: editor/import/3d/scene_import_settings.cpp
 #: editor/plugins/animation_library_editor.cpp
 msgid "Resource"
 msgstr "משאב"
 
 #: editor/dependency_editor.cpp editor/editor_autoload_settings.cpp
-#: editor/import/3d/scene_import_settings.cpp editor/localization_editor.cpp
-#: editor/project_manager.cpp
+#: editor/editor_help.cpp editor/import/3d/scene_import_settings.cpp
+#: editor/localization_editor.cpp editor/project_manager.cpp
 msgid "Path"
 msgstr "נתיב"
 
@@ -2692,11 +2925,11 @@ msgstr[1] "פתיחת סצנה"
 msgstr[2] "פתיחת סצנה"
 msgstr[3] "פתיחת סצנה"
 
-#: editor/dependency_editor.cpp editor/editor_help_search.cpp
-#: editor/editor_node.cpp editor/editor_quick_open.cpp
-#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
-#: editor/plugins/script_editor_plugin.cpp editor/property_selector.cpp
-#: editor/script_create_dialog.cpp editor/shader_create_dialog.cpp
+#: editor/dependency_editor.cpp editor/editor_help.cpp
+#: editor/editor_help_search.cpp editor/filesystem_dock.cpp
+#: editor/gui/editor_file_dialog.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/property_selector.cpp editor/script_create_dialog.cpp
+#: editor/shader_create_dialog.cpp
 msgid "Open"
 msgstr "פתיחה"
 
@@ -2737,6 +2970,15 @@ msgstr ""
 #: editor/dependency_editor.cpp editor/surface_upgrade_tool.cpp
 msgid "Cannot remove:"
 msgstr "לא ניתן להסיר:"
+
+#: editor/dependency_editor.cpp
+#, fuzzy
+msgid "Files to be deleted:"
+msgstr "מחיקת הנבחר"
+
+#: editor/dependency_editor.cpp
+msgid "Dependencies of files to be deleted:"
+msgstr ""
 
 #: editor/dependency_editor.cpp
 msgid "Error loading:"
@@ -2782,6 +3024,21 @@ msgstr "בעליו של"
 msgid "Resources Without Explicit Ownership:"
 msgstr "משאבים נטולי בעלות מפורשת:"
 
+#: editor/directory_create_dialog.cpp editor/shader_globals_editor.cpp
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "שם ההנפשה כבר קיים!"
+
+#: editor/directory_create_dialog.cpp
+#, fuzzy
+msgid "File name can't end with /."
+msgstr "שם ההנפשה כבר קיים!"
+
+#: editor/directory_create_dialog.cpp
+#, fuzzy
+msgid "File name cannot be empty."
+msgstr "שם ההנפשה כבר קיים!"
+
 #: editor/directory_create_dialog.cpp
 #, fuzzy
 msgid "Folder name cannot be empty."
@@ -2789,18 +3046,23 @@ msgstr "שם ההנפשה כבר קיים!"
 
 #: editor/directory_create_dialog.cpp
 #, fuzzy
-msgid "Folder name contains invalid characters."
+msgid "File name contains invalid characters."
 msgstr "השם שסופק מכיל תווים שגויים"
 
 #: editor/directory_create_dialog.cpp
 #, fuzzy
-msgid "Folder name cannot begin or end with a space."
-msgstr "שם ההנפשה כבר קיים!"
+msgid "Folder name contains invalid characters."
+msgstr "השם שסופק מכיל תווים שגויים"
+
+#: editor/directory_create_dialog.cpp editor/scene_create_dialog.cpp
+#, fuzzy
+msgid "File name begins with a dot."
+msgstr "לא ניתן להתחיל עם סיפרה."
 
 #: editor/directory_create_dialog.cpp
 #, fuzzy
-msgid "Folder name cannot begin with a dot."
-msgstr "שם ההנפשה כבר קיים!"
+msgid "Folder name begins with a dot."
+msgstr "לא ניתן להתחיל עם סיפרה."
 
 #: editor/directory_create_dialog.cpp
 msgid "File with that name already exists."
@@ -2814,18 +3076,22 @@ msgstr "תיקייה עם שם זה כבר קיימת."
 msgid "Using slashes in folder names will create subfolders recursively."
 msgstr "שימוש בקווים נטויים בשמות תיקיות יצור תת־תיקיות בצורה רקורסיבית."
 
-#: editor/directory_create_dialog.cpp editor/gui/editor_file_dialog.cpp
-msgid "Could not create folder."
-msgstr "לא ניתן ליצור תיקייה."
+#: editor/directory_create_dialog.cpp
+#, fuzzy
+msgid ""
+"Using slashes in path will create the file in subfolder, creating new "
+"subfolders if necessary."
+msgstr "שימוש בקווים נטויים בשמות תיקיות יצור תת־תיקיות בצורה רקורסיבית."
 
 #: editor/directory_create_dialog.cpp
-msgid "Create new folder in %s:"
-msgstr "יצירת תיקייה חדשה ב־%s:"
+#, fuzzy
+msgid "File name is valid."
+msgstr "שם הקובץ ריק."
 
-#: editor/directory_create_dialog.cpp editor/gui/editor_dir_dialog.cpp
-#: editor/gui/editor_file_dialog.cpp editor/project_manager/project_dialog.cpp
-msgid "Create Folder"
-msgstr "יצירת תיקייה"
+#: editor/directory_create_dialog.cpp
+#, fuzzy
+msgid "Base path: %s"
+msgstr "עץ הנפשה לא חוקי."
 
 #: editor/directory_create_dialog.cpp
 msgid "Folder name is valid."
@@ -2838,17 +3104,6 @@ msgstr "לחיצה כפולה לפתיחה בדפדפן."
 #: editor/editor_about.cpp
 msgid "Thanks from the Godot community!"
 msgstr "תודות מקהילת Godot!"
-
-#: editor/editor_about.cpp editor/gui/editor_bottom_panel.cpp
-#: editor/project_manager.cpp
-msgid "(unknown)"
-msgstr "(לא ידוע)"
-
-#: editor/editor_about.cpp
-msgid ""
-"Git commit date: %s\n"
-"Click to copy the version number."
-msgstr ""
 
 #: editor/editor_about.cpp
 msgid "Godot Engine contributors"
@@ -3038,6 +3293,7 @@ msgstr ""
 
 #: editor/editor_asset_installer.cpp editor/editor_node.cpp
 #: editor/plugins/asset_library_editor_plugin.cpp
+#: editor/project_manager/project_dialog.cpp
 msgid "Install"
 msgstr "התקנה"
 
@@ -3164,22 +3420,14 @@ msgstr "מיקום לפריסה החדשה…"
 msgid "Open Audio Bus Layout"
 msgstr "פתיחת פריסת אפיקי שמע"
 
-#: editor/editor_audio_buses.cpp
-msgid "There is no '%s' file."
-msgstr "הקובץ ”%s“ אינו קיים."
+#: editor/editor_audio_buses.cpp editor/plugins/skeleton_3d_editor_plugin.cpp
+msgid "Error saving file: %s"
+msgstr "שגיאה בשמירת קובץ: %s"
 
 #: editor/editor_audio_buses.cpp
 #, fuzzy
 msgid "Layout:"
 msgstr "פריסה"
-
-#: editor/editor_audio_buses.cpp
-msgid "Invalid file, not an audio bus layout."
-msgstr "קובץ שגוי, לא פריסה של אפיקי שמע."
-
-#: editor/editor_audio_buses.cpp editor/plugins/skeleton_3d_editor_plugin.cpp
-msgid "Error saving file: %s"
-msgstr "שגיאה בשמירת קובץ: %s"
 
 #: editor/editor_audio_buses.cpp
 msgid "Add Bus"
@@ -3191,6 +3439,7 @@ msgstr "הוסף אפיק שמע חדש לפריסה זו."
 
 #: editor/editor_audio_buses.cpp editor/editor_build_profile.cpp
 #: editor/script_create_dialog.cpp editor/shader_create_dialog.cpp
+#: scene/gui/color_picker.cpp
 msgid "Load"
 msgstr "טעינה"
 
@@ -3199,7 +3448,7 @@ msgid "Load an existing Bus Layout."
 msgstr "טעינת פריסת אפיקי שמע."
 
 #: editor/editor_audio_buses.cpp editor/editor_build_profile.cpp
-#: editor/plugins/animation_library_editor.cpp
+#: editor/plugins/animation_library_editor.cpp scene/gui/color_picker.cpp
 msgid "Save As"
 msgstr "שמירה בשם"
 
@@ -3231,13 +3480,8 @@ msgstr "שם שגוי."
 
 #: editor/editor_autoload_settings.cpp
 #, fuzzy
-msgid "Cannot begin with a digit."
-msgstr "לא ניתן להתחיל עם סיפרה."
-
-#: editor/editor_autoload_settings.cpp
-#, fuzzy
-msgid "Valid characters:"
-msgstr "תווים תקפים:"
+msgid "Must be a valid Unicode identifier."
+msgstr "שם מתודה חייב להיות מזהה חוקי."
 
 #: editor/editor_autoload_settings.cpp
 msgid "Must not collide with an existing engine class name."
@@ -3509,6 +3753,7 @@ msgstr "חדש"
 #: editor/plugins/script_editor_plugin.cpp
 #: editor/plugins/theme_editor_plugin.cpp
 #: modules/openxr/editor/openxr_action_map_editor.cpp
+#: scene/gui/color_picker.cpp
 msgid "Save"
 msgstr "שמירה"
 
@@ -3601,7 +3846,18 @@ msgstr "[ריק]"
 msgid "[unsaved]"
 msgstr "[לא נשמר]"
 
-#: editor/editor_dock_manager.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/editor_dock_manager.cpp
+#, fuzzy
+msgid "Open the %s dock."
+msgstr "הסרת רצועה."
+
+#: editor/editor_dock_manager.cpp
+#, fuzzy
+msgid "Focus on the %s dock."
+msgstr "הסרת רצועה."
+
+#: editor/editor_dock_manager.cpp editor/plugins/game_view_plugin.cpp
+#: editor/plugins/script_editor_plugin.cpp
 #: editor/plugins/shader_editor_plugin.cpp
 msgid "%s - Godot Engine"
 msgstr ""
@@ -3679,6 +3935,11 @@ msgid "History Dock"
 msgstr "הבא בהיסטוריה"
 
 #: editor/editor_feature_profile.cpp
+#, fuzzy
+msgid "Game View"
+msgstr "מבט אחורי"
+
+#: editor/editor_feature_profile.cpp
 msgid "Allows to view and edit 3D scenes."
 msgstr "מאפשר צפייה ועריכה של סצנות תלת־ממד."
 
@@ -3714,6 +3975,10 @@ msgstr ""
 
 #: editor/editor_feature_profile.cpp
 msgid "Provides an overview of the editor's and each scene's undo history."
+msgstr ""
+
+#: editor/editor_feature_profile.cpp
+msgid "Provides tools for selecting and debugging nodes at runtime."
 msgstr ""
 
 #: editor/editor_feature_profile.cpp
@@ -3797,11 +4062,13 @@ msgstr "הפוך לנוכחי"
 
 #: editor/editor_feature_profile.cpp editor/editor_node.cpp
 #: editor/plugins/theme_editor_plugin.cpp editor/project_manager.cpp
+#: editor/project_manager/project_dialog.cpp
 msgid "Import"
 msgstr "ייבוא"
 
 #: editor/editor_feature_profile.cpp editor/editor_node.cpp
-#: editor/export/project_export.cpp platform/android/export/export_plugin.cpp
+#: editor/export/editor_export_platform.cpp editor/export/project_export.cpp
+#: platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
@@ -3838,6 +4105,47 @@ msgstr "נהל פרופילי תכונות העורך"
 
 #: editor/editor_file_system.cpp
 #, fuzzy
+msgid "Project initialization"
+msgstr "לוקליזציה"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Scanning file structure..."
+msgstr ""
+"הקבצים נסרקים,\n"
+"נא להמתין…"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Loading global class names..."
+msgstr "השינויים המקומיים מאוחסנים…"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Verifying GDExtensions..."
+msgstr "הגדרות"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Creating autoload scripts..."
+msgstr "הסצנה מתעדכנת…"
+
+#: editor/editor_file_system.cpp
+msgid "Initializing plugins..."
+msgstr ""
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Starting file scan..."
+msgstr "ייצוא מיזם"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Scanning actions..."
+msgstr "הדבקת הנפשה"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
 msgid "Some extensions need the editor to restart to take effect."
 msgstr "ההגדרות שונו! כדי שהשינויים יחולו יש להפעיל מחדש את מנהל המיזמים."
 
@@ -3858,12 +4166,17 @@ msgstr "סריקת מקורות"
 
 #: editor/editor_file_system.cpp
 #, fuzzy
-msgid "Update Scene Groups"
-msgstr "הסצנה מתעדכנת"
+msgid "Registering global classes..."
+msgstr "השינויים המקומיים מאוחסנים…"
 
 #: editor/editor_file_system.cpp
 #, fuzzy
-msgid "Updating Scene Groups..."
+msgid "Updating scripts documentation"
+msgstr "פתיחת התיעוד"
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Updating Scene Groups"
 msgstr "הסצנה מתעדכנת…"
 
 #: editor/editor_file_system.cpp
@@ -3877,8 +4190,56 @@ msgid "(Re)Importing Assets"
 msgstr "ייבוא משאבים (מחדש)"
 
 #: editor/editor_file_system.cpp
+msgid "Preparing files to reimport..."
+msgstr ""
+
+#: editor/editor_file_system.cpp
+msgid "Executing pre-reimport operations..."
+msgstr ""
+
+#: editor/editor_file_system.cpp
 msgid "Import resources of type: %s"
 msgstr "ייבוא משאבים מסוג: %s"
+
+#: editor/editor_file_system.cpp
+msgid "Finalizing Asset Import..."
+msgstr ""
+
+#: editor/editor_file_system.cpp
+msgid "Executing post-reimport operations..."
+msgstr ""
+
+#: editor/editor_file_system.cpp
+#, fuzzy
+msgid "Copying files..."
+msgstr "איתור…"
+
+#: editor/editor_help.cpp
+msgid "This method supports a variable number of arguments."
+msgstr "שיטה זאת תומכת במספר משתנה של ארגומנטים."
+
+#: editor/editor_help.cpp
+msgid ""
+"This method is called by the engine.\n"
+"It can be overridden to customize built-in behavior."
+msgstr ""
+
+#: editor/editor_help.cpp
+msgid ""
+"This method has no side effects.\n"
+"It does not modify the object in any way."
+msgstr ""
+
+#: editor/editor_help.cpp
+msgid ""
+"This method does not need an instance to be called.\n"
+"It can be called directly using the class name."
+msgstr ""
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Code snippet copied to clipboard."
+msgstr "העתקת הנפשה ללוח ההעתקה."
 
 #: editor/editor_help.cpp
 msgid "No return value."
@@ -3906,33 +4267,11 @@ msgstr "שכפול"
 msgid "Experimental:"
 msgstr "ניסיוני:"
 
-#: editor/editor_help.cpp
-msgid "This method supports a variable number of arguments."
-msgstr "שיטה זאת תומכת במספר משתנה של ארגומנטים."
-
-#: editor/editor_help.cpp
-msgid ""
-"This method is called by the engine.\n"
-"It can be overridden to customize built-in behavior."
-msgstr ""
-
-#: editor/editor_help.cpp
-msgid ""
-"This method has no side effects.\n"
-"It does not modify the object in any way."
-msgstr ""
-
-#: editor/editor_help.cpp
-msgid ""
-"This method does not need an instance to be called.\n"
-"It can be called directly using the class name."
-msgstr ""
-
-#: editor/editor_help.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
 msgid "Constructors"
 msgstr "מגדירים"
 
-#: editor/editor_help.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
 #, fuzzy
 msgid "Operators"
 msgstr "מונים:"
@@ -4056,7 +4395,8 @@ msgstr ""
 msgid "Online Tutorials"
 msgstr "הדרכות מקוונות"
 
-#: editor/editor_help.cpp modules/multiplayer/editor/replication_editor.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+#: modules/multiplayer/editor/replication_editor.cpp
 msgid "Properties"
 msgstr "מאפיינים"
 
@@ -4073,7 +4413,7 @@ msgstr "ברירת מחדל:"
 msgid "property:"
 msgstr "מאפיין:"
 
-#: editor/editor_help.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
 msgid "Theme Properties"
 msgstr "מאפייני ערכת עיצוב"
 
@@ -4081,7 +4421,8 @@ msgstr "מאפייני ערכת עיצוב"
 msgid "Colors"
 msgstr "צבעים"
 
-#: editor/editor_help.cpp editor/plugins/theme_editor_plugin.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+#: editor/plugins/theme_editor_plugin.cpp
 msgid "Constants"
 msgstr "קבועים"
 
@@ -4100,6 +4441,11 @@ msgstr "סמלים"
 #: editor/editor_help.cpp
 msgid "Styles"
 msgstr "סגנונות"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "This theme property may be changed or removed in future versions."
+msgstr "מאפיין זה עלול להשתנות או להיות מוסר בגרסאות עתידיות."
 
 #: editor/editor_help.cpp
 msgid "There is currently no description for this theme property."
@@ -4141,7 +4487,7 @@ msgstr ""
 msgid "This constant may be changed or removed in future versions."
 msgstr "קבוע זה עלול להשתנות או להיות מוסר בגרסאות עתידיות."
 
-#: editor/editor_help.cpp
+#: editor/editor_help.cpp editor/editor_help_search.cpp
 msgid "Annotations"
 msgstr "הערות הסבר"
 
@@ -4170,12 +4516,6 @@ msgid "This property may be changed or removed in future versions."
 msgstr "מאפיין זה עלול להשתנות או להיות מוסר בגרסאות עתידיות."
 
 #: editor/editor_help.cpp
-msgid ""
-"[b]Note:[/b] The returned array is [i]copied[/i] and any changes to it will "
-"not update the original property value. See [%s] for more details."
-msgstr ""
-
-#: editor/editor_help.cpp
 msgid "There is currently no description for this property."
 msgstr "כרגע אין תיאור למאפיין זאת."
 
@@ -4187,6 +4527,12 @@ msgstr ""
 "כרגע אין תיאור למאפיין זה. בבקשה עזור לנו על-ידי [color=$color]"
 "[url=$url]כתיבת תיאור[/url][/color]!"
 
+#: editor/editor_help.cpp
+msgid ""
+"[b]Note:[/b] The returned array is [i]copied[/i] and any changes to it will "
+"not update the original property value. See [%s] for more details."
+msgstr ""
+
 #: editor/editor_help.cpp editor/editor_node.cpp
 #: editor/script_create_dialog.cpp
 msgid "Editor"
@@ -4197,25 +4543,64 @@ msgid "Click to copy."
 msgstr ""
 
 #: editor/editor_help.cpp
+#, fuzzy
+msgid "Click to open in browser."
+msgstr "לחיצה כפולה לפתיחה בדפדפן."
+
+#: editor/editor_help.cpp
 msgid "No description available."
 msgstr "אין תיאור זמין."
 
 #: editor/editor_help.cpp
-msgid "Metadata:"
+#, fuzzy
+msgid "This annotation may be changed or removed in future versions."
+msgstr "פעולה זו לא יכולה להתבצע על שורש העץ."
+
+#: editor/editor_help.cpp editor/editor_resource_picker.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_quick_open_dialog.cpp
+#: editor/gui/editor_scene_tabs.cpp editor/inspector_dock.cpp
+#: editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/shader_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp editor/scene_tree_dock.cpp
+msgid "Show in FileSystem"
+msgstr "הצגה בחלון הקבצים"
+
+#: editor/editor_help.cpp editor/filesystem_dock.cpp
+#: editor/gui/editor_file_dialog.cpp
+msgid "Open in File Manager"
+msgstr "פתיחה במנהל הקבצים"
+
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+msgid "Class"
+msgstr "מחלקה"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Enumeration"
+msgstr "מונים"
+
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+#: editor/plugins/curve_editor_plugin.cpp
+msgid "Constant"
+msgstr "קבוע"
+
+#: editor/editor_help.cpp
+msgid "Metadata"
 msgstr ""
 
 #: editor/editor_help.cpp
 #, fuzzy
-msgid "Setting:"
+msgid "Setting"
 msgstr "הגדרות"
 
-#: editor/editor_help.cpp
-msgid "Property:"
-msgstr "מאפיין:"
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+#: editor/inspector_dock.cpp
+msgid "Property"
+msgstr "מאפיין"
 
 #: editor/editor_help.cpp
 #, fuzzy
-msgid "Internal Property:"
+msgid "Internal Property"
 msgstr "מאפיין ערכת נושא:"
 
 #: editor/editor_help.cpp
@@ -4223,17 +4608,72 @@ msgstr "מאפיין ערכת נושא:"
 msgid "This property can only be set in the Inspector."
 msgstr "פעולה זו לא יכולה להתבצע על שורש העץ."
 
-#: editor/editor_help.cpp
-msgid "Method:"
-msgstr "שיטה:"
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+msgid "Theme Property"
+msgstr "מאפיין ערכת עיצוב"
+
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+msgid "Method"
+msgstr "מתודה"
+
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+#: editor/plugins/script_text_editor.cpp
+msgid "Signal"
+msgstr "אות"
+
+#: editor/editor_help.cpp editor/editor_help_search.cpp
+msgid "Annotation"
+msgstr "הערת הסבר"
 
 #: editor/editor_help.cpp
-msgid "Signal:"
-msgstr "אות:"
+#, fuzzy
+msgid "Local Constant"
+msgstr "קבוע"
 
 #: editor/editor_help.cpp
-msgid "Theme Property:"
-msgstr "מאפיין ערכת נושא:"
+#, fuzzy
+msgid "Local Variable"
+msgstr "משתנה גלובלי"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "This variable may be changed or removed in future versions."
+msgstr "אות זה עלול להשתנות או להיות מוסר בגרסאות עתידיות."
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "TextFile"
+msgstr "קובץ טקסט חדש…"
+
+#: editor/editor_help.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/shader_editor_plugin.cpp
+msgid "File"
+msgstr "קובץ"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Directory"
+msgstr "כיוונים"
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Invalid UID"
+msgstr "שם שגוי."
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "This UID does not point to any valid Resource."
+msgstr "מאפיין הנתיב חייב להצביע על מפרק Node2D חוקי כדי לעבוד."
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "Invalid path"
+msgstr "נתיב לא חוקי."
+
+#: editor/editor_help.cpp
+#, fuzzy
+msgid "This path does not exist."
+msgstr "הקובץ לא קיים."
 
 #: editor/editor_help.cpp
 #, fuzzy
@@ -4249,32 +4689,8 @@ msgid "Constructor"
 msgstr "בנאי"
 
 #: editor/editor_help_search.cpp
-msgid "Method"
-msgstr "מתודה"
-
-#: editor/editor_help_search.cpp
 msgid "Operator"
 msgstr "אופרטור"
-
-#: editor/editor_help_search.cpp editor/plugins/script_text_editor.cpp
-msgid "Signal"
-msgstr "אות"
-
-#: editor/editor_help_search.cpp editor/plugins/curve_editor_plugin.cpp
-msgid "Constant"
-msgstr "קבוע"
-
-#: editor/editor_help_search.cpp editor/inspector_dock.cpp
-msgid "Property"
-msgstr "מאפיין"
-
-#: editor/editor_help_search.cpp
-msgid "Theme Property"
-msgstr "מאפיין ערכת עיצוב"
-
-#: editor/editor_help_search.cpp
-msgid "Annotation"
-msgstr "הערת הסבר"
 
 #: editor/editor_help_search.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Search Help"
@@ -4333,16 +4749,12 @@ msgid "Member Type"
 msgstr "סוג שדה"
 
 #: editor/editor_help_search.cpp
-msgid "(constructors)"
-msgstr "(בנאים)"
-
-#: editor/editor_help_search.cpp
 msgid "Keywords"
 msgstr "מילות מפתח"
 
 #: editor/editor_help_search.cpp
-msgid "Class"
-msgstr "מחלקה"
+msgid "Matches the \"%s\" keyword."
+msgstr ""
 
 #: editor/editor_help_search.cpp
 msgid "This member is marked as deprecated."
@@ -4350,6 +4762,24 @@ msgstr ""
 
 #: editor/editor_help_search.cpp
 msgid "This member is marked as experimental."
+msgstr ""
+
+#: editor/editor_inspector.cpp
+#, fuzzy
+msgid "Unfavorite Property"
+msgstr "מאפיין ערכת נושא:"
+
+#: editor/editor_inspector.cpp
+msgid "Make this property be put back at its original place."
+msgstr ""
+
+#: editor/editor_inspector.cpp
+#, fuzzy
+msgid "Favorite Property"
+msgstr "מאפייני פריט."
+
+#: editor/editor_inspector.cpp
+msgid "Make this property be placed at the top for all objects of this class."
 msgstr ""
 
 #: editor/editor_inspector.cpp
@@ -4366,6 +4796,11 @@ msgstr "הצמדת ערך [מושבת מכיוון ש- '%s' הוא ל-עורך �
 msgid ""
 "Pinning a value forces it to be saved even if it's equal to the default."
 msgstr "הצמדת ערך מאלצת אותו להישמר גם אם הוא שווה לברירת המחדל."
+
+#: editor/editor_inspector.cpp
+#, fuzzy
+msgid "Unfavorite All"
+msgstr "לשמור הכול"
 
 #: editor/editor_inspector.cpp
 msgid "(%d change)"
@@ -4472,40 +4907,10 @@ msgstr "בוטלה ההצמדה של %s"
 msgid "Add metadata %s"
 msgstr ""
 
-#: editor/editor_inspector.cpp
-msgid "Metadata name can't be empty."
-msgstr ""
-
-#: editor/editor_inspector.cpp
+#: editor/editor_inspector.cpp editor/filesystem_dock.cpp
 #, fuzzy
-msgid "Metadata name must be a valid identifier."
-msgstr "שם מתודה חייב להיות מזהה חוקי."
-
-#: editor/editor_inspector.cpp
-#, fuzzy
-msgid "Metadata with name \"%s\" already exists."
-msgstr "פעולה עם השם '%s' כבר קיימת."
-
-#: editor/editor_inspector.cpp
-msgid "Names starting with _ are reserved for editor-only metadata."
-msgstr ""
-
-#: editor/editor_inspector.cpp editor/editor_properties.cpp
-#: editor/export/project_export.cpp editor/filesystem_dock.cpp
-#: editor/group_settings_editor.cpp editor/groups_editor.cpp
-#: editor/gui/editor_file_dialog.cpp editor/plugins/theme_editor_plugin.cpp
-#: editor/script_create_dialog.cpp editor/shader_globals_editor.cpp
-msgid "Name:"
-msgstr "שם:"
-
-#: editor/editor_inspector.cpp
-#, fuzzy
-msgid "Metadata name is valid."
-msgstr "נתיב/שם הסקריפט תקף."
-
-#: editor/editor_inspector.cpp
-msgid "Add Metadata Property for \"%s\""
-msgstr "הוספת מטא־נתון עבור ”%s“"
+msgid "Favorites"
+msgstr "מועדפים:"
 
 #: editor/editor_inspector.cpp
 msgid "Copy Value"
@@ -4664,6 +5069,10 @@ msgstr ""
 #: editor/editor_node.cpp editor/project_manager/project_list.cpp
 msgid "Unnamed Project"
 msgstr "פרויקט ללא שם"
+
+#: editor/editor_node.cpp
+msgid "Recovery Mode is enabled. Editor functionality has been restricted."
+msgstr ""
 
 #: editor/editor_node.cpp
 msgid ""
@@ -4906,18 +5315,6 @@ msgid "Open Base Scene"
 msgstr "פתיחת סצנת בסיס"
 
 #: editor/editor_node.cpp
-msgid "Quick Open..."
-msgstr "פתיחה מהירה…"
-
-#: editor/editor_node.cpp
-msgid "Quick Open Scene..."
-msgstr "פתיחת סצנה מהירה…"
-
-#: editor/editor_node.cpp
-msgid "Quick Open Script..."
-msgstr "פתיחת סקריפט מהירה…"
-
-#: editor/editor_node.cpp
 msgid "%s no longer exists! Please specify a new save location."
 msgstr ""
 
@@ -4941,8 +5338,8 @@ msgid "Save Scene As..."
 msgstr "שמירת סצנה בשם…"
 
 #: editor/editor_node.cpp
-msgid "Current scene not saved. Open anyway?"
-msgstr "הסצנה הנוכחית לא נשמרה. לפתוח בכל זאת?"
+msgid "Pack Project as ZIP..."
+msgstr ""
 
 #: editor/editor_node.cpp
 msgid "Can't undo while mouse buttons are pressed."
@@ -5052,6 +5449,11 @@ msgid "Export Mesh Library"
 msgstr "ייצוא Mesh Library"
 
 #: editor/editor_node.cpp
+#, fuzzy
+msgid "Quick Open Color Palette..."
+msgstr "פתיחת סצנה מהירה…"
+
+#: editor/editor_node.cpp
 msgid "Unable to enable addon plugin at: '%s' parsing of config failed."
 msgstr "לא ניתן לפתוח את תוסף ההרחבות בנתיב: ”%s“ פענוח ההגדרות נכשל."
 
@@ -5138,8 +5540,46 @@ msgid "There is no defined scene to run."
 msgstr "כבר יש סצנה בעריכה."
 
 #: editor/editor_node.cpp
+#, fuzzy
+msgid "Loading editor"
+msgstr "לצאת מהעורך?"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Loading editor layout..."
+msgstr "מיקום לפריסה החדשה…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Loading docks..."
+msgstr "בטעינה…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Reopening scenes..."
+msgstr "הסצנה מתעדכנת…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Loading central editor layout..."
+msgstr "מיקום לפריסה החדשה…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Loading plugin window layout..."
+msgstr ""
+"הקבצים נסרקים,\n"
+"נא להמתין…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Editor layout ready."
+msgstr "פריסת עורך"
+
+#: editor/editor_node.cpp
+#, fuzzy
 msgid ""
-"No main scene has ever been defined, select one?\n"
+"No main scene has ever been defined. Select one?\n"
 "You can change it later in \"Project Settings\" under the 'application' "
 "category."
 msgstr ""
@@ -5147,8 +5587,9 @@ msgstr ""
 "ניתן לשנות זאת בהמשך ב”הגדרות המיזם“ תחת הקטגוריה ”יישום“."
 
 #: editor/editor_node.cpp
+#, fuzzy
 msgid ""
-"Selected scene '%s' does not exist, select a valid one?\n"
+"Selected scene '%s' does not exist. Select a valid one?\n"
 "You can change it later in \"Project Settings\" under the 'application' "
 "category."
 msgstr ""
@@ -5156,8 +5597,9 @@ msgstr ""
 "ניתן לשנות זאת בהמשך ב”הגדרות המיזם“ תחת הקטגוריה ”יישום“."
 
 #: editor/editor_node.cpp
+#, fuzzy
 msgid ""
-"Selected scene '%s' is not a scene file, select a valid one?\n"
+"Selected scene '%s' is not a scene file. Select a valid one?\n"
 "You can change it later in \"Project Settings\" under the 'application' "
 "category."
 msgstr ""
@@ -5327,11 +5769,6 @@ msgstr "הסרת הבחירה"
 
 #: editor/editor_node.cpp
 #, fuzzy
-msgid "Restart Emission"
-msgstr "להפעיל מחדש כעת"
-
-#: editor/editor_node.cpp
-#, fuzzy
 msgid "Pan View"
 msgstr "מבט אחורי"
 
@@ -5407,6 +5844,18 @@ msgid "Save Scene"
 msgstr "שמירת סצנה"
 
 #: editor/editor_node.cpp
+msgid "Quick Open..."
+msgstr "פתיחה מהירה…"
+
+#: editor/editor_node.cpp
+msgid "Quick Open Scene..."
+msgstr "פתיחת סצנה מהירה…"
+
+#: editor/editor_node.cpp
+msgid "Quick Open Script..."
+msgstr "פתיחת סקריפט מהירה…"
+
+#: editor/editor_node.cpp
 #, fuzzy
 msgid "Export As..."
 msgstr "ייצוא"
@@ -5474,6 +5923,11 @@ msgstr "הגדרת תצורה..."
 #: editor/editor_node.cpp
 #, fuzzy
 msgid "Upgrade Mesh Surfaces..."
+msgstr "שמירת המשאב בתור…"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Upgrade UIDs..."
 msgstr "שמירת המשאב בתור…"
 
 #: editor/editor_node.cpp
@@ -5668,7 +6122,8 @@ msgid "Select Android sources file"
 msgstr "לא מבוסס על קובץ משאב"
 
 #: editor/editor_node.cpp editor/filesystem_dock.cpp
-#: editor/gui/editor_file_dialog.cpp editor/project_manager/project_list.cpp
+#: editor/gui/editor_file_dialog.cpp editor/gui/editor_quick_open_dialog.cpp
+#: editor/project_manager/project_list.cpp
 msgid "Show in File Manager"
 msgstr "הצגה במנהל הקבצים"
 
@@ -5691,25 +6146,30 @@ msgid "Open & Run a Script"
 msgstr "פתיחה והרצה של סקריפט"
 
 #: editor/editor_node.cpp editor/plugins/script_editor_plugin.cpp
-msgid "Files have been modified on disk"
+msgid "Files have been modified outside Godot"
 msgstr ""
 
-#: editor/editor_node.cpp
-msgid ""
-"The following files are newer on disk.\n"
-"What action should be taken?"
+#: editor/editor_node.cpp editor/plugins/script_editor_plugin.cpp
+#, fuzzy
+msgid "The following files are newer on disk:"
 msgstr ""
 "הקבצים הבאים הם חדשים בכונן.\n"
 "באילו פעולות לנקוט?"
 
 #: editor/editor_node.cpp editor/plugins/script_editor_plugin.cpp
 #, fuzzy
-msgid "Discard local changes and reload"
-msgstr "היפטר מכל השינויים"
+msgid "What action should be taken?"
+msgstr "באיזו פעולה יש לנקוט?"
 
 #: editor/editor_node.cpp editor/plugins/script_editor_plugin.cpp
-msgid "Keep local changes and overwrite"
-msgstr ""
+#, fuzzy
+msgid "Reload from disk"
+msgstr "שגיאת הורדה"
+
+#: editor/editor_node.cpp editor/plugins/script_editor_plugin.cpp
+#, fuzzy
+msgid "Ignore external changes"
+msgstr "השינויים המקומיים מאוחסנים…"
 
 #: editor/editor_node.cpp
 #, fuzzy
@@ -5745,6 +6205,11 @@ msgstr "פתיחת עורך תלת־ממד"
 #: editor/editor_node.cpp
 msgid "Open Script Editor"
 msgstr "פתיחת עורך סקריפטים"
+
+#: editor/editor_node.cpp
+#, fuzzy
+msgid "Open Game View"
+msgstr "פתיחת קובץ"
 
 #: editor/editor_node.cpp editor/project_manager.cpp
 msgid "Open Asset Library"
@@ -5904,7 +6369,11 @@ msgid "(Nil) %s"
 msgstr ""
 
 #: editor/editor_properties_array_dict.cpp
-msgid "%s (size %s)"
+msgid "%s%s (size %d)"
+msgstr ""
+
+#: editor/editor_properties_array_dict.cpp
+msgid "%s (size %d)"
 msgstr ""
 
 #: editor/editor_properties_array_dict.cpp
@@ -5916,15 +6385,6 @@ msgstr "מבט קדמי"
 #: editor/plugins/theme_editor_plugin.cpp
 msgid "Remove Item"
 msgstr "הסר פריט"
-
-#: editor/editor_properties_array_dict.cpp
-#, fuzzy
-msgid "Dictionary (Nil)"
-msgstr "החלפת ערך מילון"
-
-#: editor/editor_properties_array_dict.cpp
-msgid "Dictionary (size %d)"
-msgstr ""
 
 #: editor/editor_properties_array_dict.cpp
 msgid "Add Key/Value Pair"
@@ -5992,12 +6452,6 @@ msgstr "הפוך לייחודי"
 msgid "Save As..."
 msgstr "שמירה בשם…"
 
-#: editor/editor_resource_picker.cpp editor/filesystem_dock.cpp
-#: editor/gui/editor_scene_tabs.cpp editor/inspector_dock.cpp
-#: editor/plugins/script_editor_plugin.cpp editor/scene_tree_dock.cpp
-msgid "Show in FileSystem"
-msgstr "הצגה בחלון הקבצים"
-
 #: editor/editor_resource_picker.cpp
 msgid "Convert to %s"
 msgstr "המרה ל-%s"
@@ -6027,12 +6481,12 @@ msgid "New Shader..."
 msgstr "מצליל חדש..."
 
 #: editor/editor_run_native.cpp
-msgid "No Remote Debug export presets configured."
+msgid "No Remote Deploy export presets configured."
 msgstr ""
 
 #: editor/editor_run_native.cpp
 #, fuzzy
-msgid "Remote Debug"
+msgid "Remote Deploy"
 msgstr "מרוחק "
 
 #: editor/editor_run_native.cpp
@@ -6044,14 +6498,30 @@ msgstr ""
 
 #: editor/editor_run_native.cpp
 msgid ""
-"Warning: The CPU architecture '%s' is not active in your export preset.\n"
+"Warning: The CPU architecture \"%s\" is not active in your export preset.\n"
 "\n"
 msgstr ""
 
 #: editor/editor_run_native.cpp
 #, fuzzy
-msgid "Run 'Remote Debug' anyway?"
+msgid "Run \"Remote Deploy\" anyway?"
 msgstr "מרוחק "
+
+#: editor/editor_run_native.cpp
+msgid "Deploy to First Device in List"
+msgstr ""
+
+#: editor/editor_run_native.cpp
+msgid "Deploy to Second Device in List"
+msgstr ""
+
+#: editor/editor_run_native.cpp
+msgid "Deploy to Third Device in List"
+msgstr ""
+
+#: editor/editor_run_native.cpp
+msgid "Deploy to Fourth Device in List"
+msgstr ""
 
 #: editor/editor_run_native.cpp
 #, fuzzy
@@ -6066,6 +6536,10 @@ msgstr "ניתן לכתוב את הלוגיקה שלך בשיטה ‎_run()‎."
 msgid "The current scene already has a root node."
 msgstr ""
 
+#: editor/editor_sectioned_inspector.cpp
+msgid "Advanced settings are always shown when searching."
+msgstr ""
+
 #: editor/editor_settings_dialog.cpp
 msgid "Edit Built-in Action: %s"
 msgstr "עריכת הפעולה המובנית: %s"
@@ -6075,10 +6549,29 @@ msgstr "עריכת הפעולה המובנית: %s"
 msgid "Edit Shortcut: %s"
 msgstr "מקשי קיצור"
 
+#: editor/editor_settings_dialog.cpp editor/plugins/node_3d_editor_plugin.cpp
+#: editor/plugins/texture_region_editor_plugin.cpp
+#: editor/plugins/theme_editor_plugin.cpp
+#: editor/project_manager/project_dialog.cpp editor/scene_tree_dock.cpp
+#: scene/resources/visual_shader.cpp
+msgid "None"
+msgstr ""
+
+#. TRANSLATORS: This is the label for the main input event of a shortcut.
+#: editor/editor_settings_dialog.cpp
+#, fuzzy
+msgid "Primary"
+msgstr "קו ראשי כל:"
+
 #: editor/editor_settings_dialog.cpp
 #, fuzzy
 msgid "Common"
 msgstr "קהילה"
+
+#: editor/editor_settings_dialog.cpp
+#, fuzzy
+msgid "Event %d"
+msgstr "רכיב %s"
 
 #: editor/editor_settings_dialog.cpp
 msgid "Editor Settings"
@@ -6092,6 +6585,11 @@ msgstr "כללי"
 #, fuzzy
 msgid "Filter Settings"
 msgstr "הגדרות עורך"
+
+#: editor/editor_settings_dialog.cpp editor/project_settings_editor.cpp
+#, fuzzy
+msgid "Advanced Settings"
+msgstr "הגדרות הצמדה"
 
 #: editor/editor_settings_dialog.cpp
 msgid "The editor must be restarted for changes to take effect."
@@ -6357,6 +6855,16 @@ msgstr "שגיאת הורדה"
 msgid "Export failed with error code %d."
 msgstr "יצוא נכשל עם קוד שגיאה %d."
 
+#: editor/export/editor_export_platform.cpp
+#, fuzzy
+msgid "Patch Creation"
+msgstr "מונים:"
+
+#: editor/export/editor_export_platform.cpp
+#, fuzzy
+msgid "Could not load patch pack with path \"%s\"."
+msgstr "לא ניתן לכתוב קובץ:"
+
 #. TRANSLATORS: This is an editor progress label describing the storing of a file.
 #: editor/export/editor_export_platform.cpp
 msgid "Storing File: %s"
@@ -6370,6 +6878,24 @@ msgstr "קובץ אחסון:"
 #, fuzzy
 msgid "No export template found at the expected path:"
 msgstr "לא נמצאה תבנית ייצוא בנתיב המצופה:"
+
+#: editor/export/editor_export_platform.cpp
+msgid ""
+"Using user provided text server data, text display in the exported project "
+"might be broken if export template was built with different ICU version!"
+msgstr ""
+
+#: editor/export/editor_export_platform.cpp
+msgid ""
+"Using editor embedded text server data, text display in the exported project "
+"might be broken if export template was built with different ICU version!"
+msgstr ""
+
+#: editor/export/editor_export_platform.cpp
+msgid ""
+"Missing text server data, text display in the exported project might be "
+"broken!"
+msgstr ""
 
 #: editor/export/editor_export_platform.cpp
 #, fuzzy
@@ -6398,6 +6924,11 @@ msgid "Failed to export project files."
 msgstr "נכשל ביצוא קבצי הפרויקט."
 
 #: editor/export/editor_export_platform.cpp
+#, fuzzy
+msgid "No files or changes to export."
+msgstr "לא ניתן לפתוח תבנית לייצוא:"
+
+#: editor/export/editor_export_platform.cpp
 msgid "Can't open file for writing at path \"%s\"."
 msgstr "לא ניתן לפתוח קובץ לכתיבה במסלול: \"%s\"."
 
@@ -6421,6 +6952,11 @@ msgstr "לא ניתן לפתוח קובץ לקריאה במסלול: \"%s\"."
 #, fuzzy
 msgid "Save ZIP"
 msgstr "שמירה בשם"
+
+#: editor/export/editor_export_platform.cpp
+#, fuzzy
+msgid "Failed to move temporary file \"%s\" to \"%s\"."
+msgstr "לא ניתן להסיר:"
 
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
@@ -6471,6 +7007,17 @@ msgstr ""
 #: editor/export/editor_export_platform_pc.cpp
 msgid "On 32-bit exports the embedded PCK cannot be bigger than 4 GiB."
 msgstr "בייצוא ארכיטקטורת 32 ביט, ה PCK המובנה לא יכול לחרוג מעבר ל 4 GiB."
+
+#: editor/export/editor_export_platform_pc.cpp
+#: editor/plugins/gdextension_export_plugin.h
+#, fuzzy
+msgid "GDExtension"
+msgstr "חיפוש בסיומות קבצים"
+
+#: editor/export/editor_export_platform_pc.cpp
+#, fuzzy
+msgid "Failed to copy shared object \"%s\"."
+msgstr "לא ניתן ליצור תיקייה."
 
 #: editor/export/editor_export_plugin.cpp
 msgid "Plugin \"%s\" is not supported on \"%s\""
@@ -6649,6 +7196,31 @@ msgid "Remove templates for the version '%s'?"
 msgstr "להסיר את גרסת התבנית ‚%s’?"
 
 #: editor/export/export_template_manager.cpp
+msgid "Export templates are missing. Download them or install from a file."
+msgstr ""
+
+#: editor/export/export_template_manager.cpp
+msgid "Export templates are missing. Install them from a file."
+msgstr ""
+
+#: editor/export/export_template_manager.cpp
+msgid "Not available in offline mode"
+msgstr ""
+
+#: editor/export/export_template_manager.cpp
+msgid "Template downloading is disabled in offline mode."
+msgstr ""
+
+#: editor/export/export_template_manager.cpp
+#, fuzzy
+msgid "No templates for development builds"
+msgstr "להסיר את גרסת התבנית ‚%s’?"
+
+#: editor/export/export_template_manager.cpp
+msgid "Official export templates aren't available for development builds."
+msgstr ""
+
+#: editor/export/export_template_manager.cpp
 msgid "Uncompressing Android Build Sources"
 msgstr ""
 
@@ -6659,14 +7231,6 @@ msgstr "מנהל ייצוא תבניות"
 #: editor/export/export_template_manager.cpp
 msgid "Current Version:"
 msgstr "גרסה נוכחית:"
-
-#: editor/export/export_template_manager.cpp
-msgid "Export templates are missing. Download them or install from a file."
-msgstr ""
-
-#: editor/export/export_template_manager.cpp
-msgid "Export templates are missing. Install them from a file."
-msgstr ""
 
 #: editor/export/export_template_manager.cpp
 msgid "Export templates are installed and ready to be used."
@@ -6696,11 +7260,6 @@ msgstr "שגיאת הורדה"
 
 #: editor/export/export_template_manager.cpp
 #, fuzzy
-msgid "(no templates for development builds)"
-msgstr "להסיר את גרסת התבנית ‚%s’?"
-
-#: editor/export/export_template_manager.cpp
-#, fuzzy
 msgid "Open in Web Browser"
 msgstr "הפעלה בדפדפן"
 
@@ -6717,10 +7276,6 @@ msgstr "הורדה והתקנה"
 msgid ""
 "Download and install templates for the current version from the best "
 "possible mirror."
-msgstr ""
-
-#: editor/export/export_template_manager.cpp
-msgid "Official export templates aren't available for development builds."
 msgstr ""
 
 #: editor/export/export_template_manager.cpp
@@ -6811,8 +7366,18 @@ msgid "(Inherited)"
 msgstr "ירושה:"
 
 #: editor/export/project_export.cpp
+#, fuzzy
+msgid "Delete patch '%s' from list?"
+msgstr "מחיקת אנימציה?"
+
+#: editor/export/project_export.cpp
 msgid "Export With Debug"
 msgstr ""
+
+#: editor/export/project_export.cpp
+#, fuzzy
+msgid "Export As Patch"
+msgstr "ייצוא מיזם"
 
 #. TRANSLATORS: This is the name of a project export file format. %s will be replaced by the platform name.
 #: editor/export/project_export.cpp
@@ -6836,8 +7401,9 @@ msgstr ""
 msgid "Add..."
 msgstr ""
 
-#: editor/export/project_export.cpp editor/filesystem_dock.cpp
+#: editor/export/project_export.cpp
 #: editor/plugins/visual_shader_editor_plugin.cpp editor/scene_tree_dock.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Duplicate"
 msgstr "שכפול"
 
@@ -6861,9 +7427,7 @@ msgstr ""
 msgid "Export Path"
 msgstr "ייצוא מיזם"
 
-#: editor/export/project_export.cpp
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
+#: editor/export/project_export.cpp editor/plugins/particles_editor_plugin.cpp
 #: editor/plugins/path_2d_editor_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
 #: editor/plugins/theme_editor_preview.cpp
@@ -6925,6 +7489,26 @@ msgid ""
 msgstr ""
 
 #: editor/export/project_export.cpp
+#, fuzzy
+msgid "Patches"
+msgstr "התאמות:"
+
+#: editor/export/project_export.cpp
+#, fuzzy
+msgid "Base Packs:"
+msgstr "הדבקת רצועות"
+
+#: editor/export/project_export.cpp
+#, fuzzy
+msgid "Godot Project Pack"
+msgstr "ייצוא מיזם"
+
+#: editor/export/project_export.cpp
+#, fuzzy
+msgid "Add Pack"
+msgstr "הוספת רצועה"
+
+#: editor/export/project_export.cpp
 msgid "Features"
 msgstr ""
 
@@ -6967,6 +7551,10 @@ msgstr ""
 
 #: editor/export/project_export.cpp
 msgid "Encryption Key (256-bits as hexadecimal):"
+msgstr ""
+
+#: editor/export/project_export.cpp
+msgid "Initialization vector seed"
 msgstr ""
 
 #: editor/export/project_export.cpp
@@ -7044,11 +7632,6 @@ msgid "ZIP File"
 msgstr "קובץ ZIP"
 
 #: editor/export/project_export.cpp
-#, fuzzy
-msgid "Godot Project Pack"
-msgstr "ייצוא מיזם"
-
-#: editor/export/project_export.cpp
 msgid "Export templates for this platform are missing:"
 msgstr ""
 
@@ -7120,10 +7703,10 @@ msgstr ""
 msgid "Confirm Path"
 msgstr "העתקת נתיב"
 
+#. TRANSLATORS: This is a tooltip for a file that is a symbolic link to another file.
 #: editor/filesystem_dock.cpp
-#, fuzzy
-msgid "Favorites"
-msgstr "מועדפים:"
+msgid "Link to: %s"
+msgstr ""
 
 #: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "View items as a grid of thumbnails."
@@ -7160,13 +7743,8 @@ msgstr "שגיאה בשכפול:"
 
 #: editor/filesystem_dock.cpp
 #, fuzzy
-msgid "Failed to save resource at %s: %s"
-msgstr "טעינת המשאב נכשלה."
-
-#: editor/filesystem_dock.cpp
-#, fuzzy
-msgid "Failed to load resource at %s: %s"
-msgstr "טעינת המשאב נכשלה."
+msgid "Error duplicating directory:"
+msgstr "שגיאה בשכפול:"
 
 #: editor/filesystem_dock.cpp
 #, fuzzy
@@ -7191,10 +7769,10 @@ msgstr ""
 msgid "A file or folder with this name already exists."
 msgstr "כבר קיימים קובץ או תיקייה בשם הזה."
 
-#: editor/filesystem_dock.cpp editor/script_create_dialog.cpp
+#: editor/filesystem_dock.cpp
 #, fuzzy
-msgid "Name begins with a dot."
-msgstr "לא ניתן להתחיל עם סיפרה."
+msgid "Could not create base directory: %s"
+msgstr "לא ניתן ליצור תיקייה."
 
 #: editor/filesystem_dock.cpp
 msgid ""
@@ -7230,6 +7808,21 @@ msgstr "קובץ משוכפל:"
 #: editor/filesystem_dock.cpp
 msgid "Duplicating folder:"
 msgstr "תיקייה משוכפלת:"
+
+#: editor/filesystem_dock.cpp editor/gui/editor_dir_dialog.cpp
+#: editor/gui/editor_file_dialog.cpp editor/project_manager/project_dialog.cpp
+msgid "Create Folder"
+msgstr "יצירת תיקייה"
+
+#: editor/filesystem_dock.cpp
+msgid ""
+"Do you wish to convert these files to %s? (This operation cannot be undone!)"
+msgstr ""
+
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Could not create folder: %s"
+msgstr "לא ניתן ליצור תיקייה."
 
 #: editor/filesystem_dock.cpp
 msgid "New Inherited Scene"
@@ -7328,6 +7921,11 @@ msgstr "מועדפים:"
 msgid "Remove from Favorites"
 msgstr "הסרה מקבוצה"
 
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Convert to..."
+msgstr "המרה ל-%s"
+
 #: editor/filesystem_dock.cpp editor/import/3d/scene_import_settings.cpp
 #: editor/import/audio_stream_import_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp editor/import_dock.cpp
@@ -7340,12 +7938,9 @@ msgid "Open in Terminal"
 msgstr "פתיחת עורך דו־ממד"
 
 #: editor/filesystem_dock.cpp
-msgid "Open Containing Folder in Terminal"
-msgstr ""
-
-#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
-msgid "Open in File Manager"
-msgstr "פתיחה במנהל הקבצים"
+#, fuzzy
+msgid "Open Folder in Terminal"
+msgstr "פתיחת עורך דו־ממד"
 
 #: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "New Folder..."
@@ -7371,29 +7966,31 @@ msgstr "קובץ טקסט חדש…"
 msgid "Sort Files"
 msgstr "חיפוש במחלקות"
 
-#: editor/filesystem_dock.cpp editor/plugins/tiles/tile_map_layer_editor.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
+#: editor/plugins/tiles/tile_map_layer_editor.cpp
 #: editor/plugins/tiles/tile_set_editor.cpp
 msgid "Sort by Name (Ascending)"
 msgstr ""
 
-#: editor/filesystem_dock.cpp editor/plugins/tiles/tile_map_layer_editor.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
+#: editor/plugins/tiles/tile_map_layer_editor.cpp
 #: editor/plugins/tiles/tile_set_editor.cpp
 msgid "Sort by Name (Descending)"
 msgstr ""
 
-#: editor/filesystem_dock.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "Sort by Type (Ascending)"
 msgstr ""
 
-#: editor/filesystem_dock.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "Sort by Type (Descending)"
 msgstr ""
 
-#: editor/filesystem_dock.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "Sort by Last Modified"
 msgstr ""
 
-#: editor/filesystem_dock.cpp
+#: editor/filesystem_dock.cpp editor/gui/editor_file_dialog.cpp
 msgid "Sort by First Modified"
 msgstr ""
 
@@ -7506,6 +8103,11 @@ msgstr ""
 msgid "Create Script"
 msgstr "יצירת סקריפט"
 
+#: editor/filesystem_dock.cpp
+#, fuzzy
+msgid "Convert"
+msgstr "היפוך"
+
 #: editor/find_in_files.cpp editor/plugins/script_editor_plugin.cpp
 msgid "Find in Files"
 msgstr "איתור בקבצים"
@@ -7558,6 +8160,11 @@ msgstr "להחליף הכול"
 #, fuzzy
 msgid "Searching..."
 msgstr "שמירה…"
+
+#: editor/find_in_files.cpp
+#, fuzzy
+msgid "Remove result"
+msgstr "הסרת נקודה בנתיב"
 
 #: editor/find_in_files.cpp
 #, fuzzy
@@ -7702,11 +8309,24 @@ msgstr "הוספת סצנה חדשה."
 msgid "Filter Groups"
 msgstr "מחיקת שורה"
 
-#: editor/gui/editor_bottom_panel.cpp editor/project_manager.cpp
+#: editor/gui/editor_bottom_panel.cpp
 msgid ""
-"Git commit date: %s\n"
-"Click to copy the version information."
+"Scroll Left\n"
+"Hold Ctrl to scroll to the begin.\n"
+"Hold Shift to scroll one page."
 msgstr ""
+
+#: editor/gui/editor_bottom_panel.cpp
+msgid ""
+"Scroll Right\n"
+"Hold Ctrl to scroll to the end.\n"
+"Hold Shift to scroll one page."
+msgstr ""
+
+#: editor/gui/editor_bottom_panel.cpp
+#, fuzzy
+msgid "Pin Bottom Panel Switching"
+msgstr "הרחבת הפאנל התחתון"
 
 #: editor/gui/editor_bottom_panel.cpp
 msgid "Expand Bottom Panel"
@@ -7734,6 +8354,7 @@ msgid "Choose target directory:"
 msgstr "נא לבחור תיקייה"
 
 #: editor/gui/editor_dir_dialog.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Move"
 msgstr "העברה"
 
@@ -7765,11 +8386,14 @@ msgid "Select This Folder"
 msgstr "בחירת התיקייה"
 
 #: editor/gui/editor_file_dialog.cpp
-msgid "All Recognized"
-msgstr "כל המוכרים"
+msgid "Show Package Contents"
+msgstr ""
 
 #: editor/gui/editor_file_dialog.cpp
-msgid "All Files (*)"
+#: platform/linuxbsd/freedesktop_portal_desktop.cpp
+#: platform/windows/display_server_windows.cpp
+#, fuzzy
+msgid "All Files"
 msgstr "כל הקבצים (*)"
 
 #: editor/gui/editor_file_dialog.cpp
@@ -7792,10 +8416,19 @@ msgstr "פתיחת קובץ או תיקייה"
 msgid "Save a File"
 msgstr "שמירת קובץ"
 
+#: editor/gui/editor_file_dialog.cpp editor/project_manager/project_dialog.cpp
+#, fuzzy
+msgid "The path specified is invalid."
+msgstr "הקובץ לא קיים."
+
 #: editor/gui/editor_file_dialog.cpp
 #, fuzzy
 msgid "Could not create folder. File with that name already exists."
 msgstr "כבר קיימים קובץ או תיקייה בשם הזה."
+
+#: editor/gui/editor_file_dialog.cpp
+msgid "Could not create folder."
+msgstr "לא ניתן ליצור תיקייה."
 
 #: editor/gui/editor_file_dialog.cpp
 msgid "Favorited folder does not exist anymore and will be removed."
@@ -7830,6 +8463,11 @@ msgid "Focus Path"
 msgstr "מיקוד נתיב"
 
 #: editor/gui/editor_file_dialog.cpp
+#, fuzzy
+msgid "Focus Filter"
+msgstr "מערכת קבצים"
+
+#: editor/gui/editor_file_dialog.cpp
 msgid "Move Favorite Up"
 msgstr "העברת המועדף מעלה"
 
@@ -7858,10 +8496,6 @@ msgid "(Un)favorite current folder."
 msgstr "(בטל) העדפת תיקייה נוכחית."
 
 #: editor/gui/editor_file_dialog.cpp
-msgid "Toggle the visibility of hidden files."
-msgstr "הצג/הסתר קבצים מוסתרים."
-
-#: editor/gui/editor_file_dialog.cpp
 #, fuzzy
 msgid "Create a new folder."
 msgstr "יצירת מפרקים חדשים."
@@ -7871,11 +8505,35 @@ msgid "Directories & Files:"
 msgstr "תיקיות וקבצים:"
 
 #: editor/gui/editor_file_dialog.cpp
+msgid "Toggle the visibility of hidden files."
+msgstr "הצג/הסתר קבצים מוסתרים."
+
+#: editor/gui/editor_file_dialog.cpp
+#, fuzzy
+msgid "Sort files"
+msgstr "חיפוש במחלקות"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Toggle the visibility of the filter for file names."
+msgstr "הצג/הסתר קבצים מוסתרים."
+
+#: editor/gui/editor_file_dialog.cpp
 #: editor/import/audio_stream_import_settings.cpp
 #: editor/plugins/sprite_2d_editor_plugin.cpp
 #: editor/plugins/tiles/atlas_merging_dialog.cpp editor/rename_dialog.cpp
 msgid "Preview:"
 msgstr "תצוגה מקדימה:"
+
+#: editor/gui/editor_file_dialog.cpp scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Filter:"
+msgstr "מסננים..."
+
+#: editor/gui/editor_file_dialog.cpp scene/resources/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Filter"
+msgstr "מסננים..."
 
 #: editor/gui/editor_file_dialog.cpp
 #: editor/plugins/version_control_editor_plugin.cpp
@@ -7901,6 +8559,67 @@ msgstr ""
 msgid "Open a list of sub-resources."
 msgstr ""
 
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Search files..."
+msgstr "חיפוש בעזרה"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Select Resource"
+msgstr "מחיקת משאב"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Select Scene"
+msgstr "שחזור סצנה"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Fuzzy Search"
+msgstr "חיפוש"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Enable fuzzy matching"
+msgstr "איפשור סינון"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+msgid "Addons"
+msgstr ""
+
+#: editor/gui/editor_quick_open_dialog.cpp
+msgid "Include files from addons"
+msgstr ""
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "No files found for this type"
+msgstr "תוכן המשאב \"%s\" -אין התנגשויות עם הפרוייקט שלך:"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+msgid "Start searching to find files..."
+msgstr ""
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "No results found"
+msgstr "אין תוצאות עבור ”%s“."
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid " (recently opened)"
+msgstr "עודכן לאחרונה"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+#, fuzzy
+msgid "Grid view"
+msgstr "שלב רשת:"
+
+#: editor/gui/editor_quick_open_dialog.cpp
+msgid "List view"
+msgstr ""
+
 #: editor/gui/editor_run_bar.cpp
 msgid "Play the project."
 msgstr "הרצת המיזם."
@@ -7919,10 +8638,6 @@ msgid "Reload the played scene."
 msgstr "טעינה מחדש של הסצנה שנוגנה."
 
 #: editor/gui/editor_run_bar.cpp
-msgid "Quick Run Scene..."
-msgstr "הפעלה מהירה של הסצנה..."
-
-#: editor/gui/editor_run_bar.cpp
 msgid ""
 "Movie Maker mode is enabled, but no movie file path has been specified.\n"
 "A default movie file path can be specified in the project settings under the "
@@ -7937,6 +8652,77 @@ msgstr ""
 #, fuzzy
 msgid "Could not start subprocess(es)!"
 msgstr "לא ניתן להפעיל תהליך משנה!"
+
+#: editor/gui/editor_run_bar.cpp
+msgid "Recovery Mode is enabled. Disable it to run the project."
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid ""
+"Autostart is enabled for the following profilers, which can have a "
+"performance impact:"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+#: modules/multiplayer/editor/multiplayer_editor_plugin.cpp
+msgid "Network Profiler"
+msgstr "מאפיין רשת"
+
+#: editor/gui/editor_run_bar.cpp
+msgid "Click to open the first profiler for which autostart is enabled."
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+#, fuzzy
+msgid "Recovery Mode"
+msgstr "מצב תנועה"
+
+#: editor/gui/editor_run_bar.cpp
+msgid ""
+"Godot opened the project in Recovery Mode, which is a special mode that can "
+"help recover projects that crash the engine upon initialization. The "
+"following features have been temporarily disabled:"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp editor/project_manager.cpp
+#, fuzzy
+msgid "Tool scripts"
+msgstr "סקריפט"
+
+#: editor/gui/editor_run_bar.cpp editor/project_manager.cpp
+#, fuzzy
+msgid "Editor plugins"
+msgstr "עריכת תוסף"
+
+#: editor/gui/editor_run_bar.cpp editor/project_manager.cpp
+msgid "GDExtension addons"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp editor/project_manager.cpp
+msgid "Automatic scene restoring"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid ""
+"If the project cannot be opened outside of this mode, then it's very likely "
+"any of these components is preventing this project from launching. This mode "
+"is intended only for basic editing to troubleshoot such issues, and "
+"therefore it is not possible to run a project in this mode."
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid ""
+"To disable Recovery Mode, reload the project by pressing the Reload button "
+"next to the Recovery Mode banner, or by reopening the project normally."
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid "Disable recovery mode and reload the project."
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid "Recovery Mode is enabled. Click for more details."
+msgstr ""
 
 #: editor/gui/editor_run_bar.cpp
 msgid "Run the project's default scene."
@@ -7968,6 +8754,14 @@ msgid "Stop Running Project"
 msgstr "מיזם"
 
 #: editor/gui/editor_run_bar.cpp
+msgid "Run Scene in Regular Mode"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
+msgid "Run Scene in XR Mode"
+msgstr ""
+
+#: editor/gui/editor_run_bar.cpp
 #, fuzzy
 msgid "Run the currently edited scene."
 msgstr "שמירת המשאב שנערך כרגע."
@@ -7976,6 +8770,16 @@ msgstr "שמירת המשאב שנערך כרגע."
 #, fuzzy
 msgid "Run Current Scene"
 msgstr "מסך נוכחית"
+
+#: editor/gui/editor_run_bar.cpp
+#, fuzzy
+msgid "Run in Regular Mode"
+msgstr "מצב שינוי קנה מידה (R)"
+
+#: editor/gui/editor_run_bar.cpp
+#, fuzzy
+msgid "Run in XR Mode"
+msgstr "הפעלה בדפדפן"
 
 #: editor/gui/editor_run_bar.cpp
 msgid "Run a specific scene."
@@ -8005,6 +8809,7 @@ msgid "Undo Close Tab"
 msgstr "ביטול סגירת לשונית"
 
 #: editor/gui/editor_scene_tabs.cpp editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/shader_editor_plugin.cpp
 msgid "Close Other Tabs"
 msgstr "סגירת לשוניות אחרות"
 
@@ -8047,6 +8852,23 @@ msgstr "הדבקת הנפשה"
 msgid "Silence the notifications."
 msgstr "הדבקת הנפשה"
 
+#: editor/gui/editor_version_button.cpp
+msgid "(unknown)"
+msgstr "(לא ידוע)"
+
+#: editor/gui/editor_version_button.cpp
+msgid ""
+"Git commit date: %s\n"
+"Click to copy the version information."
+msgstr ""
+
+#: editor/gui/scene_tree_editor.cpp
+msgid ""
+"The root node of a scene is recommended to not be transformed, since "
+"instances of the scene will usually override this. Reset the transform and "
+"reload the scene to remove this warning."
+msgstr ""
+
 #: editor/gui/scene_tree_editor.cpp
 msgid "Toggle Visible"
 msgstr "הצגה/הסתרה"
@@ -8059,6 +8881,11 @@ msgstr "ביטול נעילת מפרק"
 #, fuzzy
 msgid "Ungroup Children"
 msgstr "הסרת הבחירה"
+
+#: editor/gui/scene_tree_editor.cpp
+#, fuzzy
+msgid "Revoke unique name for node \"%s\"?"
+msgstr "שם המפרק:"
 
 #: editor/gui/scene_tree_editor.cpp
 #, fuzzy
@@ -8075,9 +8902,12 @@ msgstr "אזהרת תצורת מפרק:"
 
 #: editor/gui/scene_tree_editor.cpp
 msgid ""
-"This node can be accessed from within anywhere in the scene by preceding it "
-"with the '%s' prefix in a node path.\n"
-"Click to disable this."
+"This node can be accessed from anywhere within the scene it belongs to by "
+"using the '%s' prefix in the node path."
+msgstr ""
+
+#: editor/gui/scene_tree_editor.cpp
+msgid "Click to disable this."
 msgstr ""
 
 #: editor/gui/scene_tree_editor.cpp
@@ -8104,6 +8934,19 @@ msgid "Click to show signals dock."
 msgstr ""
 "למפרק יש %s חיבור(ים).\n"
 "לחיצה תציג את פנל האותות."
+
+#: editor/gui/scene_tree_editor.cpp
+#, fuzzy
+msgid "Click to show groups dock."
+msgstr ""
+"למפרק יש %s חיבור(ים).\n"
+"לחיצה תציג את פנל האותות."
+
+#: editor/gui/scene_tree_editor.cpp
+msgid ""
+"This script can run in the editor.\n"
+"It is currently disabled due to recovery mode."
+msgstr ""
 
 #: editor/gui/scene_tree_editor.cpp
 msgid "This script is currently running in the editor."
@@ -8153,6 +8996,12 @@ msgid "\"%s\" is not a known filter."
 msgstr ""
 
 #: editor/gui/scene_tree_editor.cpp
+msgid ""
+"Root nodes cannot be accessed as unique names in their own scene. "
+"Instantiate in another scene and set as unique name there."
+msgstr ""
+
+#: editor/gui/scene_tree_editor.cpp
 msgid "Invalid node name, the following characters are not allowed:"
 msgstr "שם מפרק לא חוקי, התווים הבאים אינם מותרים:"
 
@@ -8160,6 +9009,11 @@ msgstr "שם מפרק לא חוקי, התווים הבאים אינם מותרי
 #, fuzzy
 msgid "A node with the unique name %s already exists in this scene."
 msgstr "פעולה עם השם '%s' כבר קיימת."
+
+#: editor/gui/scene_tree_editor.cpp editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Enable Scene Unique Name(s)"
+msgstr "שם המפרק:"
 
 #: editor/gui/scene_tree_editor.cpp
 #, fuzzy
@@ -8178,6 +9032,20 @@ msgstr "עץ סצינה (מפרקים):"
 #: editor/gui/scene_tree_editor.cpp
 msgid "Node Configuration Warning!"
 msgstr "אזהרת תצורת מפרק!"
+
+#: editor/gui/scene_tree_editor.cpp
+msgid "Revoke"
+msgstr ""
+
+#: editor/gui/scene_tree_editor.cpp
+msgid "Don't Ask Again"
+msgstr ""
+
+#: editor/gui/scene_tree_editor.cpp
+msgid ""
+"This dialog can also be enabled/disabled in the Editor Settings: Docks > "
+"Scene Tree > Ask Before Revoking Unique Name."
+msgstr ""
 
 #: editor/gui/scene_tree_editor.cpp
 msgid "Allowed:"
@@ -8402,6 +9270,16 @@ msgstr "שינויי חומרים"
 #, fuzzy
 msgid "Selected Animation Play/Pause"
 msgstr "הנפשה"
+
+#: editor/import/3d/scene_import_settings.cpp
+#, fuzzy
+msgid "Selected Animation Stop"
+msgstr "מחיקת אנימציה?"
+
+#: editor/import/3d/scene_import_settings.cpp
+#, fuzzy
+msgid "Toggle Animation Skeleton Visibility"
+msgstr "החלפת תצוגת חלונית סקריפטים"
 
 #: editor/import/3d/scene_import_settings.cpp
 #, fuzzy
@@ -8662,10 +9540,12 @@ msgid "2D/3D (Auto-Detect)"
 msgstr ""
 
 #: editor/import/resource_importer_texture.cpp
+#: editor/plugins/game_view_plugin.cpp
 msgid "2D"
 msgstr "2D"
 
 #: editor/import/resource_importer_texture.cpp
+#: editor/plugins/game_view_plugin.cpp
 #: modules/noise/editor/noise_editor_plugin.cpp
 msgid "3D"
 msgstr "3D"
@@ -8951,20 +9831,32 @@ msgstr ""
 
 #: editor/localization_editor.cpp
 #, fuzzy
-msgid "Add %d Translations"
-msgstr "הוספת מעברון"
+msgid "Add %d Translation"
+msgid_plural "Add %d Translations"
+msgstr[0] "הוספת מעברון"
+msgstr[1] "הוספת מעברון"
+msgstr[2] "הוספת מעברון"
+msgstr[3] "הוספת מעברון"
 
 #: editor/localization_editor.cpp
 msgid "Remove Translation"
 msgstr ""
 
 #: editor/localization_editor.cpp
-msgid "Translation Resource Remap: Add %d Path(s)"
-msgstr ""
+msgid "Translation Resource Remap: Add %d Path"
+msgid_plural "Translation Resource Remap: Add %d Paths"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: editor/localization_editor.cpp
-msgid "Translation Resource Remap: Add %d Remap(s)"
-msgstr ""
+msgid "Translation Resource Remap: Add %d Remap"
+msgid_plural "Translation Resource Remap: Add %d Remaps"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: editor/localization_editor.cpp
 msgid "Change Resource Remap Language"
@@ -8979,8 +9871,12 @@ msgid "Remove Resource Remap Option"
 msgstr ""
 
 #: editor/localization_editor.cpp
-msgid "Add %d file(s) for POT generation"
-msgstr ""
+msgid "Add %d file for POT generation"
+msgid_plural "Add %d files for POT generation"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: editor/localization_editor.cpp
 msgid "Remove file from POT generation"
@@ -9404,6 +10300,34 @@ msgstr "מילוי הבחירה"
 msgid "Invert"
 msgstr "היפוך"
 
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+#, fuzzy
+msgid "Start of Animation"
+msgstr "קביעת הנפשה"
+
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+#, fuzzy
+msgid "End of Animation"
+msgstr "הוסף אנימציה"
+
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+msgid "Set Custom Timeline from Marker"
+msgstr ""
+
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+#, fuzzy
+msgid "Select Markers"
+msgstr "בחירה"
+
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+#, fuzzy
+msgid "Start Marker"
+msgstr "עצירת שרת HTTP"
+
+#: editor/plugins/animation_blend_tree_editor_plugin.cpp
+msgid "End Marker"
+msgstr ""
+
 #: editor/plugins/animation_library_editor.cpp
 msgid "Library Name:"
 msgstr "שם הספרייה:"
@@ -9694,6 +10618,7 @@ msgid "Animation '%s' already exists!"
 msgstr "שם ההנפשה כבר קיים!"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
+#: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Duplicate Animation"
 msgstr "שכפול הנפשה"
 
@@ -9721,30 +10646,29 @@ msgid "Onion skinning requires a RESET animation."
 msgstr ""
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Play selected animation backwards from current pos. (A)"
-msgstr "ניגון לאחור של ההנפשה שנבחרה מהמיקום הנוכחי. (A)"
+#, fuzzy
+msgid "Play Animation Backwards"
+msgstr "שם הנפשה:"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Play selected animation backwards from end. (Shift+A)"
+#, fuzzy
+msgid "Play Animation Backwards from End"
 msgstr "ניגון לאחור של ההנפשה שנבחרה מהסוף. (Shift+A)"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
 #, fuzzy
-msgid "Pause/stop animation playback. (S)"
-msgstr "עצירת ניגון ההנפשה. (S)"
+msgid "Pause/Stop Animation"
+msgstr "הנפשה הודבקה"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Play selected animation from start. (Shift+D)"
+#, fuzzy
+msgid "Play Animation from Start"
 msgstr "ניגון ההנפשה שנבחרה מההתחלה. (Shift+D)"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Play selected animation from current pos. (D)"
-msgstr "ניגון ההנפשה שנבחרה מהמיקום הנוכחי. (D)"
+#, fuzzy
+msgid "Play Animation"
+msgstr "הנפשה הודבקה"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Animation position (in seconds)."
@@ -9839,14 +10763,6 @@ msgid "Pin AnimationPlayer"
 msgstr "הצמדת AnimationPlayer"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
-#: editor/plugins/resource_preloader_editor_plugin.cpp
-#: editor/plugins/script_editor_plugin.cpp
-#: editor/plugins/script_text_editor.cpp
-#: editor/plugins/sprite_frames_editor_plugin.cpp
-msgid "Error!"
-msgstr "שגיאה!"
-
-#: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Cross-Animation Blend Times"
 msgstr "זמני מיזוג בין הנפשות"
 
@@ -9857,6 +10773,16 @@ msgstr "זמני מיזוג:"
 #: editor/plugins/animation_player_editor_plugin.cpp
 msgid "Next (Auto Queue):"
 msgstr "הבא (תור אוטומטי):"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Go to Next Keyframe"
+msgstr "מעבר לצעד הבא"
+
+#: editor/plugins/animation_player_editor_plugin.cpp
+#, fuzzy
+msgid "Go to Previous Keyframe"
+msgstr "מעבר לצעד הקודם"
 
 #: editor/plugins/animation_player_editor_plugin.cpp
 #, fuzzy
@@ -10433,21 +11359,6 @@ msgstr "קנה מידה:"
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
 #: editor/plugins/node_3d_editor_plugin.cpp
-msgid ""
-"Project Camera Override\n"
-"Overrides the running project's camera with the editor viewport camera."
-msgstr ""
-
-#: editor/plugins/canvas_item_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_plugin.cpp
-msgid ""
-"Project Camera Override\n"
-"No project instance running. Run the project from the editor to use this "
-"feature."
-msgstr ""
-
-#: editor/plugins/canvas_item_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Lock Selected"
 msgstr "בחירת מיקוד"
@@ -10544,7 +11455,7 @@ msgid "Center View"
 msgstr "הזחה משמאל"
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_plugin.cpp
+#: editor/plugins/game_view_plugin.cpp editor/plugins/node_3d_editor_plugin.cpp
 msgid "Select Mode"
 msgstr "בחירת מצב"
 
@@ -10573,6 +11484,12 @@ msgid "Alt+RMB: Show list of all nodes at position clicked, including locked."
 msgstr ""
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
+#: editor/plugins/node_3d_editor_plugin.cpp
+#, fuzzy
+msgid "(Available in all modes.)"
+msgstr "פרופילים זמינים:"
+
+#: editor/plugins/canvas_item_editor_plugin.cpp
 msgid "RMB: Add node at position clicked."
 msgstr ""
 
@@ -10597,22 +11514,22 @@ msgid "Shift: Scale proportionally."
 msgstr ""
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
-#: editor/plugins/node_3d_editor_plugin.cpp
+#: editor/plugins/game_view_plugin.cpp editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Show list of selectable nodes at position clicked."
 msgstr "הסרת מפרק או מעברון שנבחרו."
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
-msgid "Click to change object's rotation pivot."
+msgid "Click to change object's pivot."
 msgstr ""
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
-msgid "Shift: Set temporary rotation pivot."
+msgid "Shift: Set temporary pivot."
 msgstr ""
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
 msgid ""
-"Click this button while holding Shift to put the rotation pivot in the "
+"Click this button while holding Shift to put the temporary pivot in the "
 "center of the selected nodes."
 msgstr ""
 
@@ -10626,6 +11543,7 @@ msgid ""
 msgstr ""
 
 #: editor/plugins/canvas_item_editor_plugin.cpp
+#: editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Ruler Mode"
 msgstr "מצב שינוי קנה מידה (R)"
@@ -11031,6 +11949,7 @@ msgid "Container Default"
 msgstr "טעינת בררת המחדל"
 
 #: editor/plugins/control_editor_plugin.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Fill"
 msgstr ""
 
@@ -11209,98 +12128,6 @@ msgstr "סנן אותות"
 #, fuzzy
 msgid "Vertical alignment"
 msgstr "סנן אותות"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Convert to GPUParticles3D"
-msgstr "המרה לאותיות גדולות"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Load Emission Mask"
-msgstr ""
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "Convert to GPUParticles2D"
-msgstr "המרה לאותיות גדולות"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "CPUParticles2D"
-msgstr "קודקודים"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Emission Mask"
-msgstr ""
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Solid Pixels"
-msgstr ""
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Border Pixels"
-msgstr ""
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "Directed Border Pixels"
-msgstr "תיקיות וקבצים:"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "Centered"
-msgstr "הזחה משמאל"
-
-#: editor/plugins/cpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Capture Colors from Pixel"
-msgstr ""
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Generating Visibility AABB (Waiting for Particle Simulation)"
-msgstr ""
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Generating..."
-msgstr "מתבצעת התחברות…"
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Generate Visibility AABB"
-msgstr ""
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "CPUParticles3D"
-msgstr "קודקודים"
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Generate AABB"
-msgstr "כללי"
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Create Emission Points From Node"
-msgstr ""
-
-#: editor/plugins/cpu_particles_3d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Generation Time (sec):"
-msgstr ""
 
 #: editor/plugins/curve_editor_plugin.cpp
 msgid "Load Curve Preset"
@@ -11524,6 +12351,12 @@ msgid "Edit Plugin"
 msgstr "עריכת תוסף"
 
 #: editor/plugins/editor_plugin_settings.cpp
+msgid ""
+"Recovery mode is enabled. Enabled plugins will not run while this mode is "
+"active."
+msgstr ""
+
+#: editor/plugins/editor_plugin_settings.cpp
 msgid "Installed Plugins:"
 msgstr "תוספים מותקנים:"
 
@@ -11640,13 +12473,177 @@ msgstr ""
 msgid "Numeral Alignment"
 msgstr "סנן אותות"
 
+#. TRANSLATORS: This refers to variable font config, appended to the font name.
 #: editor/plugins/font_config_plugin.cpp
 #, fuzzy
-msgid " - Variation"
+msgid "Variation"
 msgstr "מונים:"
 
 #: editor/plugins/font_config_plugin.cpp
 msgid "Unable to preview font"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Connection impossible to the game process."
+msgstr "התחברות למפרק:"
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Game starting..."
+msgstr "מתבצעת התחברות…"
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Game running not embedded."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Press play to start the game."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Embedding is disabled."
+msgstr "תצוגה מקדימה"
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Game embedding not available on your OS."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Game embedding not available when the game starts minimized.\n"
+"Consider overriding the window mode project setting with the editor feature "
+"tag to Windowed to use game embedding while leaving the exported project "
+"intact."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Game embedding not available when the game starts maximized.\n"
+"Consider overriding the window mode project setting with the editor feature "
+"tag to Windowed to use game embedding while leaving the exported project "
+"intact."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Game embedding not available when the game starts in fullscreen.\n"
+"Consider overriding the window mode project setting with the editor feature "
+"tag to Windowed to use game embedding while leaving the exported project "
+"intact."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Game embedding not available in single window mode."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Suspend"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Next Frame"
+msgstr "בחירה"
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Input"
+msgstr "הוספת קלט"
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Allow game input."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Disable game input and allow to select Node2Ds, Controls, and manipulate the "
+"2D camera."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Disable game input and allow to select Node3Ds and manipulate the 3D camera."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Toggle Selection Visibility"
+msgstr "הצגה/הסתרה"
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Alt+RMB: Show list of all nodes at position clicked."
+msgstr "הסרת מפרק או מעברון שנבחרו."
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Override the in-game camera."
+msgstr "דריסה"
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Camera Override Options"
+msgstr "הגדרות הצמדה"
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Reset 2D Camera"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Reset 3D Camera"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Manipulate In-Game"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Manipulate From Editors"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid ""
+"Embedded game size is based on project settings.\n"
+"The 'Keep Aspect' mode is used when the Game Workspace is smaller than the "
+"desired size."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Keep the aspect ratio of the embedded game."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Embedded game size stretches to fit the Game Workspace."
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Embedding Options"
+msgstr "הגדרות הצמדה"
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Embed Game on Next Play"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+msgid "Make Game Workspace Floating on Next Play"
+msgstr ""
+
+#: editor/plugins/game_view_plugin.cpp
+#, fuzzy
+msgid "Game Workspace"
+msgstr "מעבר אחורה"
+
+#: editor/plugins/gdextension_export_plugin.h
+msgid ""
+"No \"%s\" library found for GDExtension: \"%s\". Possible feature flags for "
+"your platform: %s"
+msgstr ""
+
+#: editor/plugins/gdextension_export_plugin.h
+msgid "Multiple \"%s\" libraries found for GDExtension: \"%s\": \"%s\"."
 msgstr ""
 
 #: editor/plugins/gizmos/audio_stream_player_3d_gizmo_plugin.cpp
@@ -11669,7 +12666,6 @@ msgstr "שינוי רדיוס לצורת כדור"
 
 #: editor/plugins/gizmos/collision_shape_3d_gizmo_plugin.cpp
 #: editor/plugins/gizmos/occluder_instance_3d_gizmo_plugin.cpp
-#: modules/csg/editor/csg_gizmos.cpp
 #, fuzzy
 msgid "Change Box Shape Size"
 msgstr "שינוי הרחבות של צורת תיבה"
@@ -11748,88 +12744,6 @@ msgstr "שינוי הרחבות בדיקה"
 #: editor/plugins/gizmos/visible_on_screen_notifier_3d_gizmo_plugin.cpp
 msgid "Change Notifier AABB"
 msgstr "שינוי מודיע AABB"
-
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "Convert to CPUParticles2D"
-msgstr "המרה לאותיות גדולות"
-
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "Generating Visibility Rect (Waiting for Particle Simulation)"
-msgstr "חולל נראות ריבוע"
-
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Generate Visibility Rect"
-msgstr ""
-
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-msgid "Can only set point into a ParticleProcessMaterial process material"
-msgstr ""
-
-#: editor/plugins/gpu_particles_2d_editor_plugin.cpp
-#, fuzzy
-msgid "GPUParticles2D"
-msgstr "קודקודים"
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "The geometry's faces don't contain any area."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "The geometry doesn't contain any faces."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "\"%s\" doesn't inherit from Node3D."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "\"%s\" doesn't contain geometry."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "\"%s\" doesn't contain face geometry."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Create Emitter"
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Emission Points:"
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Surface Points"
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Surface Points+Normal (Directed)"
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "Volume"
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Emission Source:"
-msgstr "צורות התנגשות גלויים"
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-msgid "A processor material of type 'ParticleProcessMaterial' is required."
-msgstr ""
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Convert to CPUParticles3D"
-msgstr "המרה לאותיות גדולות"
-
-#: editor/plugins/gpu_particles_3d_editor_plugin.cpp
-#, fuzzy
-msgid "GPUParticles3D"
-msgstr "קודקודים"
 
 #: editor/plugins/gpu_particles_collision_sdf_editor_plugin.cpp
 #: editor/plugins/voxel_gi_editor_plugin.cpp
@@ -11939,14 +12853,36 @@ msgstr ""
 "ממאפייני BakedLightmap."
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
-#, fuzzy
 msgid ""
-"No meshes to bake. Make sure they contain an UV2 channel and that the 'Bake "
-"Light' flag is on."
-msgstr "אין רשתות לאפייה. ודא/י שהם מכילים ערוץ UV2 והדגל 'Bake Light' מאופשר."
+"No meshes with lightmapping support to bake. Make sure they contain UV2 data "
+"and their Global Illumination property is set to Static."
+msgstr ""
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
-msgid "Failed creating lightmap images, make sure path is writable."
+msgid ""
+"To import a scene with lightmapping support, set Meshes > Light Baking to "
+"Static Lightmaps in the Import dock."
+msgstr ""
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
+msgid ""
+"To enable lightmapping support on a primitive mesh, edit the PrimitiveMesh "
+"resource in the inspector and check Add UV2."
+msgstr ""
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
+msgid ""
+"To enable lightmapping support on a CSG mesh, select the root CSG node and "
+"choose CSG > Bake Mesh Instance at the top of the 3D editor viewport.\n"
+"Select the generated MeshInstance3D node and choose Mesh > Unwrap UV2 for "
+"Lightmap/AO at the top of the 3D editor viewport."
+msgstr ""
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
+#, fuzzy
+msgid ""
+"Failed creating lightmap images. Make sure the lightmap destination path is "
+"writable."
 msgstr "יצירת תמונות lightmap נכשלה, ודא/י שהנתיב ניתן לכתיבה."
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
@@ -11967,9 +12903,9 @@ msgstr ""
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
 msgid ""
-"Failed creating lightmap images. Make sure all meshes selected to bake have "
-"`lightmap_size_hint` value set high enough, and `texel_scale` value of "
-"LightmapGI is not too low."
+"Failed creating lightmap images. Make sure all meshes to bake have the "
+"Lightmap Size Hint property set high enough, and the LightmapGI's Texel "
+"Scale value is not too low."
 msgstr ""
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
@@ -11983,6 +12919,22 @@ msgid "Bake Lightmaps"
 msgstr "אפיית Lightmaps"
 
 #: editor/plugins/lightmap_gi_editor_plugin.cpp
+#, fuzzy
+msgid "Lightmap baking is not supported on this GPU (%s)."
+msgstr "התוסף \"%s\" לא נתמך ב - \"%s\""
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
+#, fuzzy
+msgid "Lightmaps cannot be baked on %s."
+msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
+msgid ""
+"Lightmaps cannot be baked, as the `lightmapper_rd` module was disabled at "
+"compile-time."
+msgstr ""
+
+#: editor/plugins/lightmap_gi_editor_plugin.cpp
 msgid "LightMap Bake"
 msgstr ""
 
@@ -11990,6 +12942,10 @@ msgstr ""
 #, fuzzy
 msgid "Select lightmap bake file:"
 msgstr "בחירת קובץ תבנית"
+
+#: editor/plugins/material_editor_plugin.cpp
+msgid "Preview is not available for this shader mode."
+msgstr ""
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Couldn't create a Trimesh collision shape."
@@ -12017,10 +12973,6 @@ msgstr "לא ניתן ליצור תיקייה."
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Mesh is empty!"
-msgstr ""
-
-#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
-msgid "Create Navigation Mesh"
 msgstr ""
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
@@ -12085,6 +13037,10 @@ msgstr ""
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "Mesh has no UV in layer %d."
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid "Create Navigation Mesh"
 msgstr ""
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
@@ -12231,6 +13187,24 @@ msgstr ""
 
 #: editor/plugins/mesh_instance_3d_editor_plugin.cpp
 msgid "UV Channel Debug"
+msgstr ""
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Create NavigationMesh"
+msgstr "ניקוי רשת הניווט."
+
+#: editor/plugins/mesh_instance_3d_editor_plugin.cpp
+msgid ""
+"Before converting a rendering mesh to a navigation mesh, please verify:\n"
+"\n"
+"- The mesh is two-dimensional.\n"
+"- The mesh has no surface overlap.\n"
+"- The mesh has no self-intersection.\n"
+"- The mesh surfaces have indices.\n"
+"\n"
+"If the mesh does not fulfill these requirements, the pathfinding will be "
+"broken."
 msgstr ""
 
 #: editor/plugins/mesh_library_editor_plugin.cpp
@@ -12385,23 +13359,66 @@ msgid "Set end_position"
 msgstr "קביעת הנפשה"
 
 #: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
-msgid "Set NavigationObstacle3D Vertices"
+msgid "Set Obstacle Vertices"
+msgstr ""
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+msgid "Edit Obstacle (Flip Winding)"
 msgstr ""
 
 #: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
 #, fuzzy
-msgid "Edit Vertices"
+msgid "Edit Obstacle (Clear Vertices)"
 msgstr "עריכת מסננים"
 
 #: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
-#: editor/plugins/polygon_3d_editor_plugin.cpp
-msgid "Edit Poly"
-msgstr "עריכת מצולע"
+#, fuzzy
+msgid "Add Vertex"
+msgstr "קודקודים"
 
 #: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
-#: editor/plugins/polygon_3d_editor_plugin.cpp
-msgid "Edit Poly (Remove Point)"
+#, fuzzy
+msgid "Edit Vertex"
+msgstr "עריכת מסננים"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Delete Vertex"
+msgstr "מחיקת פריט"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Flip Winding"
+msgstr "קישור"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Clear Vertices"
+msgstr "ניקוי קשר ירושה"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+msgid "Edit Obstacle (Add Vertex)"
+msgstr ""
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+msgid "Edit Obstacle (Move Vertex)"
+msgstr ""
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Edit Obstacle (Remove Vertex)"
 msgstr "עריכת מצולע (הסרת נקודה)"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#: editor/plugins/path_2d_editor_plugin.cpp
+#: editor/plugins/path_3d_editor_plugin.cpp
+msgid "Please Confirm..."
+msgstr "נא לאשר…"
+
+#: editor/plugins/navigation_obstacle_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Remove all vertices?"
+msgstr "הסרת כל נקודות העצירה"
 
 #: editor/plugins/navigation_polygon_editor_plugin.cpp
 msgid "Create Navigation Polygon"
@@ -12503,7 +13520,7 @@ msgstr ""
 
 #. TRANSLATORS: This will be appended to the view name when Auto Orthogonal is enabled.
 #: editor/plugins/node_3d_editor_plugin.cpp
-msgid " [auto]"
+msgid "[auto]"
 msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
@@ -12572,6 +13589,12 @@ msgstr ""
 msgid "FPS: %d"
 msgstr ""
 
+#. TRANSLATORS: Refers to changing the position of a node in the 3D editor.
+#: editor/plugins/node_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Translating:"
+msgstr "מעברון: "
+
 #: editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Instantiating:"
@@ -12630,14 +13653,6 @@ msgid "Circular dependency found at %s"
 msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
-#: editor/plugins/texture_region_editor_plugin.cpp
-#: editor/plugins/theme_editor_plugin.cpp
-#: editor/project_manager/project_dialog.cpp editor/scene_tree_dock.cpp
-#: scene/resources/visual_shader.cpp
-msgid "None"
-msgstr ""
-
-#: editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Rotate"
 msgstr "הטיית מצולע"
@@ -12646,12 +13661,6 @@ msgstr "הטיית מצולע"
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Translate"
 msgstr ""
-
-#. TRANSLATORS: Refers to changing the position of a node in the 3D editor.
-#: editor/plugins/node_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Translating:"
-msgstr "מעברון: "
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Rotating %s degrees."
@@ -12818,6 +13827,11 @@ msgid "View Gizmos"
 msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
+#, fuzzy
+msgid "View Transform Gizmo"
+msgstr "הצגת מידע"
+
+#: editor/plugins/node_3d_editor_plugin.cpp
 msgid "View Grid"
 msgstr ""
 
@@ -12849,6 +13863,30 @@ msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 msgid "Not available when using the OpenGL renderer."
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Orbit Modifier 1"
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Orbit Modifier 2"
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Pan Modifier 1"
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Pan Modifier 2"
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Zoom Modifier 1"
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Viewport Zoom Modifier 2"
 msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
@@ -12920,6 +13958,10 @@ msgstr "הצגת מידע"
 #, fuzzy
 msgid "Begin Scale Transformation"
 msgstr "התמרה"
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "Reposition Using Collisions"
+msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 #, fuzzy
@@ -13006,6 +14048,10 @@ msgstr "שימוש בהצמדה"
 msgid ""
 "Groups the selected node with its children. This selects the parent when any "
 "child node is clicked in 2D and 3D view."
+msgstr ""
+
+#: editor/plugins/node_3d_editor_plugin.cpp
+msgid "LMB+Drag: Measure the distance between two points in 3D space."
 msgstr ""
 
 #: editor/plugins/node_3d_editor_plugin.cpp
@@ -13116,6 +14162,7 @@ msgstr "איפוס לברירת מחדל"
 
 #: editor/plugins/node_3d_editor_plugin.cpp
 #: editor/plugins/visual_shader_editor_plugin.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Transform"
 msgstr "שינוי צורה"
 
@@ -13376,6 +14423,174 @@ msgstr ""
 msgid "Toggle between minimum/maximum and base value/spread modes."
 msgstr ""
 
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Restart Emission"
+msgstr "להפעיל מחדש כעת"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Generate Visibility Rect"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Load Emission Mask"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Solid Pixels"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Border Pixels"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Directed Border Pixels"
+msgstr "תיקיות וקבצים:"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Emission Mask"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Centered"
+msgstr "הזחה משמאל"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Capture Colors from Pixel"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Generating Visibility Rect (Waiting for Particle Simulation)"
+msgstr "חולל נראות ריבוע"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Generating..."
+msgstr "מתבצעת התחברות…"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Loading emission mask requires ParticleProcessMaterial."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "GPUParticles2D"
+msgstr "קודקודים"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Convert to CPUParticles2D"
+msgstr "המרה לאותיות גדולות"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Generation Time (sec):"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "CPUParticles2D"
+msgstr "קודקודים"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Convert to GPUParticles2D"
+msgstr "המרה לאותיות גדולות"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Generating Visibility AABB (Waiting for Particle Simulation)"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Generate Visibility AABB"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "\"%s\" doesn't inherit from Node3D."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "\"%s\" doesn't contain geometry."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "\"%s\" doesn't contain face geometry."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Generate AABB"
+msgstr "כללי"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Create Emission Points From Node"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "The geometry's faces don't contain any area."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "The geometry doesn't contain any faces."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Create Emitter"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Emission Points:"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Surface Points"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Surface Points+Normal (Directed)"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "Volume"
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Emission Source:"
+msgstr "צורות התנגשות גלויים"
+
+#: editor/plugins/particles_editor_plugin.cpp
+msgid "A processor material of type 'ParticleProcessMaterial' is required."
+msgstr ""
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Create Emission Points"
+msgstr "מחיקת נקודות"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "GPUParticles3D"
+msgstr "קודקודים"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Convert to CPUParticles3D"
+msgstr "המרה לאותיות גדולות"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "CPUParticles3D"
+msgstr "קודקודים"
+
+#: editor/plugins/particles_editor_plugin.cpp
+#, fuzzy
+msgid "Convert to GPUParticles3D"
+msgstr "המרה לאותיות גדולות"
+
 #: editor/plugins/path_2d_editor_plugin.cpp
 msgid "Remove Point from Curve"
 msgstr ""
@@ -13418,6 +14633,11 @@ msgstr "סגירת לשוניות אחרות"
 #: editor/plugins/path_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Clear Curve Points"
+msgstr "הזזת נקודה"
+
+#: editor/plugins/path_2d_editor_plugin.cpp
+#, fuzzy
+msgid "Create Curve in Path2D"
 msgstr "הזזת נקודה"
 
 #: editor/plugins/path_2d_editor_plugin.cpp
@@ -13473,11 +14693,6 @@ msgstr "יצירת מצולע"
 
 #: editor/plugins/path_2d_editor_plugin.cpp
 #: editor/plugins/path_3d_editor_plugin.cpp
-msgid "Please Confirm..."
-msgstr "נא לאשר…"
-
-#: editor/plugins/path_2d_editor_plugin.cpp
-#: editor/plugins/path_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Remove all curve points?"
 msgstr "הסרת כל נקודות העצירה"
@@ -13491,6 +14706,12 @@ msgstr ""
 #: editor/plugins/path_3d_editor_plugin.cpp
 msgid "Mirror Handle Lengths"
 msgstr ""
+
+#: editor/plugins/path_2d_editor_plugin.cpp
+#: editor/plugins/path_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Create Curve"
+msgstr "סגירת לשוניות אחרות"
 
 #: editor/plugins/path_3d_editor_plugin.cpp
 msgid "Curve Point #"
@@ -13545,6 +14766,15 @@ msgstr ""
 #, fuzzy
 msgid "Reset Point Tilt"
 msgstr "הוספת נקודה"
+
+#: editor/plugins/path_3d_editor_plugin.cpp
+msgid "Toggle Open/Closed Curve"
+msgstr ""
+
+#: editor/plugins/path_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Create Curve in Path3D"
+msgstr "הזזת נקודה"
 
 #: editor/plugins/path_3d_editor_plugin.cpp
 msgid "Shift+Click: Select multiple Points"
@@ -13666,8 +14896,8 @@ msgstr ""
 
 #: editor/plugins/plugin_config_dialog.cpp
 msgid ""
-"Optional. The path to the script (relative to the add-on folder). If left "
-"empty, will default to \"plugin.gd\"."
+"Optional. The name of the script file. If left empty, will default to the "
+"subfolder name."
 msgstr ""
 
 #: editor/plugins/plugin_config_dialog.cpp
@@ -13698,12 +14928,6 @@ msgstr "המאפיין ”skeleton“ של Polygon2D אינו מצביע על מ
 #, fuzzy
 msgid "Sync Bones"
 msgstr "שינוי קנה מידה של מצולע"
-
-#: editor/plugins/polygon_2d_editor_plugin.cpp
-msgid ""
-"No texture in this polygon.\n"
-"Set a texture to be able to edit UV."
-msgstr ""
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 msgid "Create UV Map"
@@ -13757,19 +14981,6 @@ msgstr ""
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #, fuzzy
-msgid "Open Polygon 2D UV editor."
-msgstr "פתיחת עורך דו־ממד"
-
-#: editor/plugins/polygon_2d_editor_plugin.cpp
-msgid "Polygon 2D UV Editor"
-msgstr ""
-
-#: editor/plugins/polygon_2d_editor_plugin.cpp
-msgid "UV"
-msgstr ""
-
-#: editor/plugins/polygon_2d_editor_plugin.cpp
-#, fuzzy
 msgid "Points"
 msgstr "הזזת נקודה"
 
@@ -13779,27 +14990,35 @@ msgid "Polygons"
 msgstr "עריכת מצולע"
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp
+msgid "UV"
+msgstr ""
+
+#: editor/plugins/polygon_2d_editor_plugin.cpp
 msgid "Bones"
 msgstr ""
 
+#. TRANSLATORS: %s is Control or Command key name.
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #, fuzzy
 msgid "Move Points"
 msgstr "הזזת נקודה"
 
+#. TRANSLATORS: %s is Control or Command key name.
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #, fuzzy
-msgid ": Rotate"
+msgid "%s: Rotate"
 msgstr "הטיית מצולע"
 
+#. TRANSLATORS: %s is Control or Command key name.
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #, fuzzy
 msgid "Shift: Move All"
 msgstr "לשמור הכול"
 
+#. TRANSLATORS: %s is Control or Command key name.
 #: editor/plugins/polygon_2d_editor_plugin.cpp
 #, fuzzy
-msgid "Shift: Scale"
+msgid "%s + Shift: Scale"
 msgstr "Shift+Ctrl: קנה מידה"
 
 #: editor/plugins/polygon_2d_editor_plugin.cpp
@@ -13892,10 +15111,28 @@ msgstr ""
 msgid "Sync Bones to Polygon"
 msgstr "שינוי קנה מידה של מצולע"
 
+#: editor/plugins/polygon_2d_editor_plugin.cpp
+#, fuzzy
+msgid "Polygon"
+msgstr "עריכת מצולע"
+
+#: editor/plugins/polygon_2d_editor_plugin.cpp
+#, fuzzy
+msgid "Toggle Polygon Bottom Panel"
+msgstr "מתג אפיק שמע בודד"
+
 #: editor/plugins/polygon_3d_editor_plugin.cpp
 #, fuzzy
 msgid "Create Polygon3D"
 msgstr "יצירת מצולע"
+
+#: editor/plugins/polygon_3d_editor_plugin.cpp
+msgid "Edit Poly"
+msgstr "עריכת מצולע"
+
+#: editor/plugins/polygon_3d_editor_plugin.cpp
+msgid "Edit Poly (Remove Point)"
+msgstr "עריכת מצולע (הסרת נקודה)"
 
 #: editor/plugins/resource_preloader_editor_plugin.cpp
 msgid "ERROR: Couldn't load resource!"
@@ -14108,11 +15345,6 @@ msgid "Previous Script"
 msgstr "הסקריפט הקודם"
 
 #: editor/plugins/script_editor_plugin.cpp
-#: editor/plugins/shader_editor_plugin.cpp
-msgid "File"
-msgstr "קובץ"
-
-#: editor/plugins/script_editor_plugin.cpp
 msgid "Open..."
 msgstr "פתיחה..."
 
@@ -14126,7 +15358,13 @@ msgid "Soft Reload Tool Script"
 msgstr "סקריפט רענון רך"
 
 #: editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/shader_editor_plugin.cpp
 msgid "Copy Script Path"
+msgstr "העתקת נתיב הסקריפט"
+
+#: editor/plugins/script_editor_plugin.cpp
+#, fuzzy
+msgid "Copy Script UID"
 msgstr "העתקת נתיב הסקריפט"
 
 #: editor/plugins/script_editor_plugin.cpp
@@ -14157,6 +15395,7 @@ msgid "Save Theme"
 msgstr "שמירת ערכת העיצוב"
 
 #: editor/plugins/script_editor_plugin.cpp
+#: editor/plugins/shader_editor_plugin.cpp
 msgid "Close All"
 msgstr "לסגור הכול"
 
@@ -14191,24 +15430,14 @@ msgstr "מעבר למסמך הבא שנערך."
 
 #: editor/plugins/script_editor_plugin.cpp
 #, fuzzy
-msgid "Make the script editor floating."
+msgid ""
+"Make the script editor floating.\n"
+"Right-click to open the screen selector."
 msgstr "לא ניתן לקבל את הסקריפט להרצה."
 
 #: editor/plugins/script_editor_plugin.cpp
 msgid "Discard"
 msgstr "התעלמות"
-
-#: editor/plugins/script_editor_plugin.cpp
-#, fuzzy
-msgid "The following files are newer on disk."
-msgstr ""
-"הקבצים הבאים הם חדשים בכונן.\n"
-"באילו פעולות לנקוט?"
-
-#: editor/plugins/script_editor_plugin.cpp
-#, fuzzy
-msgid "What action should be taken?:"
-msgstr "באיזו פעולה יש לנקוט?"
 
 #: editor/plugins/script_editor_plugin.cpp
 #, fuzzy
@@ -14264,6 +15493,10 @@ msgstr "העתקת טקסט"
 msgid "JSON"
 msgstr ""
 
+#: editor/plugins/script_editor_plugin.h
+msgid "Markdown"
+msgstr ""
+
 #: editor/plugins/script_text_editor.cpp
 #, fuzzy
 msgid "Connections to method:"
@@ -14304,6 +15537,15 @@ msgid "Line %d:"
 msgstr "שורה %d"
 
 #: editor/plugins/script_text_editor.cpp
+msgid "(truncated)"
+msgstr ""
+
+#: editor/plugins/script_text_editor.cpp
+#, fuzzy
+msgid "Current value: "
+msgstr "פרופיל נוכחי:"
+
+#: editor/plugins/script_text_editor.cpp
 msgid "Go to Function"
 msgstr "עבור לפונקציה"
 
@@ -14326,8 +15568,9 @@ msgstr "לא יכול לפעול על מפרקים מסצנה זרה!"
 msgid "Can't drop nodes because script '%s' does not inherit Node."
 msgstr ""
 
-#: editor/plugins/script_text_editor.cpp
-msgid "Lookup Symbol"
+#: editor/plugins/script_text_editor.cpp editor/plugins/text_editor.cpp
+#: editor/plugins/text_shader_editor.cpp
+msgid "Emoji & Symbols"
 msgstr ""
 
 #: editor/plugins/script_text_editor.cpp
@@ -14393,7 +15636,6 @@ msgid "Unfold All Lines"
 msgstr "הרחבת כל השורות"
 
 #: editor/plugins/script_text_editor.cpp
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Duplicate Selection"
 msgstr "שכפול הבחירה"
 
@@ -14479,6 +15721,10 @@ msgid "Go to Line..."
 msgstr "מעבר לשורה…"
 
 #: editor/plugins/script_text_editor.cpp
+msgid "Lookup Symbol"
+msgstr ""
+
+#: editor/plugins/script_text_editor.cpp
 msgid "Toggle Breakpoint"
 msgstr "החלפת מצב נקודת עצירה"
 
@@ -14508,11 +15754,6 @@ msgstr "לשמור את השינויים לסצנות הבאות לפני היצ
 
 #: editor/plugins/shader_editor_plugin.cpp
 #, fuzzy
-msgid "Shader Editor"
-msgstr "עורך סקריפטים"
-
-#: editor/plugins/shader_editor_plugin.cpp
-#, fuzzy
 msgid "New Shader Include..."
 msgstr "יצירת תיקייה"
 
@@ -14538,11 +15779,23 @@ msgstr "פתיחת קובץ במפקח"
 
 #: editor/plugins/shader_editor_plugin.cpp
 #, fuzzy
+msgid "Inspect Native Shader Code..."
+msgstr "יצירת תיקייה"
+
+#: editor/plugins/shader_editor_plugin.cpp
+#, fuzzy
 msgid "Close File"
 msgstr "לסגור הכול"
 
 #: editor/plugins/shader_editor_plugin.cpp
-msgid "Make the shader editor floating."
+#, fuzzy
+msgid "Shader Editor"
+msgstr "עורך סקריפטים"
+
+#: editor/plugins/shader_editor_plugin.cpp
+msgid ""
+"Make the shader editor floating.\n"
+"Right-click to open the screen selector."
 msgstr ""
 
 #: editor/plugins/shader_editor_plugin.cpp
@@ -14604,8 +15857,31 @@ msgstr "דריסה"
 
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #, fuzzy
+msgid "Bone Metadata"
+msgstr "הסרת מטא-נתונים %s"
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+msgid "Add Bone Metadata"
+msgstr ""
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+#, fuzzy
 msgid "Set Bone Transform"
 msgstr "התמרה"
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+msgid "Modify metadata '%s' for bone '%s'"
+msgstr ""
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Remove metadata '%s' from bone '%s'"
+msgstr "הסרת מטא-נתונים %s"
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Add metadata '%s' to bone '%s'"
+msgstr "חיבור ”%s“ ל־ ”%s“"
 
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #, fuzzy
@@ -14632,6 +15908,16 @@ msgstr "ייצא פרופיל"
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 msgid "Set Bone Parentage"
 msgstr ""
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Revert Bone"
+msgstr "הסרת פונקציה"
+
+#: editor/plugins/skeleton_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Revert"
+msgstr "היפוך"
 
 #: editor/plugins/skeleton_3d_editor_plugin.cpp
 #, fuzzy
@@ -14895,6 +16181,27 @@ msgid "Animation Frames:"
 msgstr "שקופיות ההנפשה"
 
 #: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Play selected animation backwards from current pos. (A)"
+msgstr "ניגון לאחור של ההנפשה שנבחרה מהמיקום הנוכחי. (A)"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Play selected animation backwards from end. (Shift+A)"
+msgstr "ניגון לאחור של ההנפשה שנבחרה מהסוף. (Shift+A)"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+#, fuzzy
+msgid "Pause/stop animation playback. (S)"
+msgstr "עצירת ניגון ההנפשה. (S)"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Play selected animation from start. (Shift+D)"
+msgstr "ניגון ההנפשה שנבחרה מההתחלה. (Shift+D)"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
+msgid "Play selected animation from current pos. (D)"
+msgstr "ניגון ההנפשה שנבחרה מהמיקום הנוכחי. (D)"
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
 #, fuzzy
 msgid "Frame Duration:"
 msgstr "מונים:"
@@ -15037,6 +16344,11 @@ msgid "Offset"
 msgstr "היסט רשת:"
 
 #: editor/plugins/sprite_frames_editor_plugin.cpp
+#: editor/plugins/texture_region_editor_plugin.cpp
+msgid "Auto Slice"
+msgstr ""
+
+#: editor/plugins/sprite_frames_editor_plugin.cpp
 msgid "Create Frames from Sprite Sheet"
 msgstr ""
 
@@ -15071,16 +16383,22 @@ msgstr "רענון"
 msgid "Resave"
 msgstr "שמירה מחדש"
 
+#: editor/plugins/texture_3d_editor_plugin.cpp
 #: editor/plugins/texture_editor_plugin.cpp
+#: editor/plugins/texture_layered_editor_plugin.cpp
 msgid "%s Mipmaps"
 msgstr ""
 
+#: editor/plugins/texture_3d_editor_plugin.cpp
 #: editor/plugins/texture_editor_plugin.cpp
+#: editor/plugins/texture_layered_editor_plugin.cpp
 #, fuzzy
 msgid "Memory: %s"
 msgstr "זכרון"
 
+#: editor/plugins/texture_3d_editor_plugin.cpp
 #: editor/plugins/texture_editor_plugin.cpp
+#: editor/plugins/texture_layered_editor_plugin.cpp
 msgid "No Mipmaps"
 msgstr ""
 
@@ -15108,10 +16426,6 @@ msgstr ""
 #: editor/plugins/texture_region_editor_plugin.cpp
 #: editor/plugins/tiles/tile_data_editors.cpp
 msgid "Grid Snap"
-msgstr ""
-
-#: editor/plugins/texture_region_editor_plugin.cpp
-msgid "Auto Slice"
 msgstr ""
 
 #: editor/plugins/texture_region_editor_plugin.cpp
@@ -16204,8 +17518,8 @@ msgstr "הדבקה ובחירה"
 
 #: editor/plugins/tiles/tile_map_layer_editor.cpp
 #, fuzzy
-msgid "Selection"
-msgstr "בחירת מיקוד"
+msgid "Selection Tool"
+msgstr "בחירה בלבד"
 
 #: editor/plugins/tiles/tile_map_layer_editor.cpp
 #, fuzzy
@@ -16272,8 +17586,8 @@ msgstr "אריחים"
 
 #: editor/plugins/tiles/tile_map_layer_editor.cpp
 msgid ""
-"This TileMap's TileSet has no source configured. Go to the TileSet bottom "
-"panel to add one."
+"This TileMap's TileSet has no Tile Source configured. Go to the TileSet "
+"bottom panel to add one."
 msgstr ""
 
 #: editor/plugins/tiles/tile_map_layer_editor.cpp
@@ -16850,7 +18164,7 @@ msgid "Select tiles."
 msgstr "בחירה"
 
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
-#: editor/plugins/tiles/tiles_editor_plugin.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Paint"
 msgstr ""
 
@@ -16937,6 +18251,11 @@ msgstr "שינוי שם משאב"
 #, fuzzy
 msgid "Add atlas source"
 msgstr "הוספת משאב"
+
+#: editor/plugins/tiles/tile_set_editor.cpp
+#, fuzzy
+msgid "Tile Sources"
+msgstr "משאב"
 
 #: editor/plugins/tiles/tile_set_editor.cpp
 #, fuzzy
@@ -17033,25 +18352,30 @@ msgstr "מאפייני פריט."
 
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
 #, fuzzy
-msgctxt "Tool"
-msgid "Line"
-msgstr "שורה:"
+msgid "Paint Tool"
+msgstr "מאפייני פריט."
 
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
-msgid "Rect"
+#, fuzzy
+msgid "Line Tool"
+msgstr "שורה %d"
+
+#: editor/plugins/tiles/tiles_editor_plugin.cpp
+#, fuzzy
+msgid "Rect Tool"
+msgstr "לולאת הפניות מחדש."
+
+#: editor/plugins/tiles/tiles_editor_plugin.cpp
+msgid "Bucket Tool"
 msgstr ""
 
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
-msgid "Bucket"
-msgstr ""
-
-#: editor/plugins/tiles/tiles_editor_plugin.cpp
-msgid "Eraser"
+msgid "Eraser Tool"
 msgstr ""
 
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
 #, fuzzy
-msgid "Picker"
+msgid "Picker Tool"
 msgstr "בוחר מהמסך"
 
 #: editor/plugins/tiles/tiles_editor_plugin.cpp
@@ -17445,6 +18769,14 @@ msgid ""
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Copy Preview Shader Parameters From Material"
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Paste Preview Shader Parameters To Material"
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Add Input Port"
 msgstr "הוספת פורט כניסה"
 
@@ -17629,6 +18961,11 @@ msgstr "שינוי"
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 #, fuzzy
+msgid "Edit Preview Parameter: %s"
+msgstr "הוספת מאפיין גלובלי"
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#, fuzzy
 msgid "Duplicate VisualShader Node(s)"
 msgstr "שכפול מפרקי VisualScript"
 
@@ -17672,9 +19009,17 @@ msgid "Varying with that name is already exist."
 msgstr "פעולה עם השם '%s' כבר קיימת."
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Boolean type cannot be used with `%s` varying mode."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 #, fuzzy
 msgid "Add Node(s) to Visual Shader"
 msgstr "הוספת מפרק/ים מהעץ"
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Hold %s Key To Swap Connections"
+msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 #, fuzzy
@@ -17730,6 +19075,11 @@ msgstr "יצירת תיקייה"
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 #, fuzzy
+msgid "Toggle shader preview."
+msgstr "שינוי גודל מצלמה"
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#, fuzzy
 msgid "Generated Shader Code"
 msgstr "יצירת תיקייה"
 
@@ -17751,6 +19101,20 @@ msgstr "הכנס כאן מפתח"
 #, fuzzy
 msgid "Insert New Reroute"
 msgstr "הכנסת חדש לפני"
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#, fuzzy
+msgid "Filter Parameters"
+msgstr "מאפייני פריט."
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Copy Parameters From Material"
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#, fuzzy
+msgid "Paste Parameters To Material"
+msgstr "משתנה השתנה"
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 #, fuzzy
@@ -17788,11 +19152,19 @@ msgid "Converts HSV vector to RGB equivalent."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Converts color from linear to sRGB color space."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Converts RGB vector to HSV equivalent."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Sepia function."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Converts color from sRGB to linear color space."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
@@ -17845,6 +19217,11 @@ msgstr "בחירת צבע"
 #: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "(Fragment/Light mode only) Derivative function."
 msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+#, fuzzy
+msgid "Derivative function."
+msgstr "פונקציית צבע."
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Returns the boolean result of the %s comparison between two parameters."
@@ -18123,6 +19500,14 @@ msgid ""
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Scalar) Derivative in 'x' using local differencing."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Scalar) Derivative in 'y' using local differencing."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Base-e Exponential."
 msgstr ""
 
@@ -18188,6 +19573,10 @@ msgid "1.0 / scalar"
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Remaps a value from the input range to the output range."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid "Finds the nearest integer to the parameter."
 msgstr ""
 
@@ -18235,6 +19624,10 @@ msgstr ""
 msgid ""
 "(Fragment/Light mode only) (Scalar) Sum of absolute derivative in 'x' and "
 "'y'."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Scalar) Sum of absolute derivative in 'x' and 'y'."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
@@ -18581,10 +19974,6 @@ msgid "Returns a random value between the minimum and maximum input values."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
-msgid "Remaps a given input from the input range to the output range."
-msgstr ""
-
-#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid ""
 "Builds a rotation matrix from the given axis and angle, multiply the input "
 "vector by it and returns both this vector and a matrix."
@@ -18644,6 +20033,14 @@ msgstr ""
 msgid ""
 "(Fragment/Light mode only) (Vector) Derivative in 'y' using local "
 "differencing."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Vector) Derivative in 'x' using local differencing."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Vector) Derivative in 'y' using local differencing."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
@@ -18707,6 +20104,16 @@ msgid "Returns the vector that points in the direction of refraction."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "Remaps a vector from the input range to the output range."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid ""
+"Remaps a vector from the input range to the output range. Ranges defined "
+"with scalars."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
 msgid ""
 "SmoothStep function( vector(edge0), vector(edge1), vector(x) ).\n"
 "\n"
@@ -18742,6 +20149,10 @@ msgstr ""
 msgid ""
 "(Fragment/Light mode only) (Vector) Sum of absolute derivative in 'x' and "
 "'y'."
+msgstr ""
+
+#: editor/plugins/visual_shader_editor_plugin.cpp
+msgid "(Vector) Sum of absolute derivative in 'x' and 'y'."
 msgstr ""
 
 #: editor/plugins/visual_shader_editor_plugin.cpp
@@ -19063,6 +20474,31 @@ msgid ""
 msgstr ""
 
 #: editor/project_manager.cpp
+msgid ""
+"It looks like Godot crashed when opening this project the last time. If "
+"you're having problems editing this project, you can try to open it in "
+"Recovery Mode."
+msgstr ""
+
+#: editor/project_manager.cpp
+msgid ""
+"Recovery Mode is a special mode that may help to recover projects that crash "
+"the engine during initialization. This mode temporarily disables the "
+"following features:"
+msgstr ""
+
+#: editor/project_manager.cpp
+msgid ""
+"This mode is intended only for basic editing to troubleshoot such issues, "
+"and therefore it will not be possible to run the project during this mode. "
+"It is also a good idea to make a backup of your project before proceeding."
+msgstr ""
+
+#: editor/project_manager.cpp
+msgid "Edit the project in Recovery Mode?"
+msgstr ""
+
+#: editor/project_manager.cpp
 #, fuzzy
 msgid "Couldn't load project at '%s'. It may be missing or corrupted."
 msgstr "לא ניתן לפתוח את ‚%s’."
@@ -19182,6 +20618,10 @@ msgstr "הערה: ספריית המשאבים צריכה חיבור לאינטר
 msgid "Edit Project"
 msgstr "ייצוא מיזם"
 
+#: editor/project_manager.cpp
+msgid "Edit in recovery mode"
+msgstr ""
+
 #: editor/project_manager.cpp editor/project_manager/project_dialog.cpp
 msgid "Rename Project"
 msgstr ""
@@ -19213,6 +20653,15 @@ msgstr "נא לבחור תיקייה לסריקה"
 
 #: editor/project_manager.cpp
 msgid "Remove All"
+msgstr ""
+
+#: editor/project_manager.cpp
+#, fuzzy
+msgid "Edit normally"
+msgstr "עריכת מצולע"
+
+#: editor/project_manager.cpp
+msgid "Edit in Recovery Mode"
 msgstr ""
 
 #: editor/project_manager.cpp
@@ -19288,11 +20737,6 @@ msgstr "שם שגוי."
 msgid ""
 "Please choose a \"project.godot\", a directory with one, or a \".zip\" file."
 msgstr ""
-
-#: editor/project_manager/project_dialog.cpp
-#, fuzzy
-msgid "The path specified is invalid."
-msgstr "הקובץ לא קיים."
 
 #: editor/project_manager/project_dialog.cpp
 #, fuzzy
@@ -19387,7 +20831,7 @@ msgid "Supports desktop, mobile + web platforms."
 msgstr ""
 
 #: editor/project_manager/project_dialog.cpp
-msgid "Least advanced 3D graphics (currently work-in-progress)."
+msgid "Least advanced 3D graphics."
 msgstr ""
 
 #: editor/project_manager/project_dialog.cpp
@@ -19443,19 +20887,7 @@ msgid ""
 msgstr ""
 
 #: editor/project_manager/project_dialog.cpp
-msgid "Import & Edit"
-msgstr ""
-
-#: editor/project_manager/project_dialog.cpp
-msgid "Create & Edit"
-msgstr ""
-
-#: editor/project_manager/project_dialog.cpp
 msgid "Install Project:"
-msgstr ""
-
-#: editor/project_manager/project_dialog.cpp
-msgid "Install & Edit"
 msgstr ""
 
 #: editor/project_manager/project_dialog.cpp
@@ -19475,6 +20907,13 @@ msgid "Renderer:"
 msgstr ""
 
 #: editor/project_manager/project_dialog.cpp
+msgid ""
+"RenderingDevice-based methods not available on this GPU:\n"
+"%s\n"
+"Please use the Compatibility renderer."
+msgstr ""
+
+#: editor/project_manager/project_dialog.cpp
 msgid "The renderer can be changed later, but scenes may need to be adjusted."
 msgstr ""
 
@@ -19487,6 +20926,11 @@ msgstr "בקרת גירסאות"
 #, fuzzy
 msgid "Git"
 msgstr "GiB"
+
+#: editor/project_manager/project_dialog.cpp
+#, fuzzy
+msgid "Edit Now"
+msgstr "עורך"
 
 #: editor/project_manager/project_list.cpp
 msgid "This project was last edited in a different Godot version: "
@@ -19503,6 +20947,16 @@ msgstr ""
 #: editor/project_manager/project_list.cpp
 msgid "Last edited timestamp"
 msgstr ""
+
+#: editor/project_manager/project_list.cpp
+#, fuzzy
+msgid "Scanning"
+msgstr "אזהרות"
+
+#: editor/project_manager/project_list.cpp
+#, fuzzy
+msgid "Scanning for projects..."
+msgstr "ייצוא מיזם"
 
 #: editor/project_manager/project_list.cpp
 #, fuzzy
@@ -19595,11 +21049,6 @@ msgstr ""
 #: editor/project_settings_editor.cpp
 msgid "Project Settings (project.godot)"
 msgstr ""
-
-#: editor/project_settings_editor.cpp
-#, fuzzy
-msgid "Advanced Settings"
-msgstr "הגדרות הצמדה"
 
 #: editor/project_settings_editor.cpp
 #, fuzzy
@@ -19850,6 +21299,7 @@ msgid "Pick Root Node Type"
 msgstr "איתור סוג המפרק"
 
 #: editor/scene_create_dialog.cpp
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Pick"
 msgstr ""
 
@@ -19862,11 +21312,6 @@ msgstr "שם הקובץ ריק."
 #, fuzzy
 msgid "File name invalid."
 msgstr "שינוי שם אות"
-
-#: editor/scene_create_dialog.cpp
-#, fuzzy
-msgid "File name begins with a dot."
-msgstr "לא ניתן להתחיל עם סיפרה."
 
 #: editor/scene_create_dialog.cpp
 #, fuzzy
@@ -19990,11 +21435,6 @@ msgstr[3] "שינוי זווית הפליטה של AudioStreamPlayer3D"
 #, fuzzy
 msgid "Replace with Branch Scene"
 msgstr "החלפה בסצינה אחרת"
-
-#: editor/scene_tree_dock.cpp
-#, fuzzy
-msgid "Instantiate Child Scene"
-msgstr "יצירת מופע לסצנה הצאצאית"
 
 #: editor/scene_tree_dock.cpp
 msgid "Detach Script"
@@ -20130,11 +21570,6 @@ msgstr "לא יכול לפעול על מפרקים מסצנה זרה!"
 
 #: editor/scene_tree_dock.cpp
 #, fuzzy
-msgid "Enable Scene Unique Name(s)"
-msgstr "שם המפרק:"
-
-#: editor/scene_tree_dock.cpp
-#, fuzzy
 msgid "Unique names already used by another node in the scene:"
 msgstr "השם כבר בשימוש של פונקציה/משתנה/אות אחר:"
 
@@ -20219,6 +21654,21 @@ msgid "This operation requires a single selected node."
 msgstr ""
 
 #: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Reset Position"
+msgstr "מיקום"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Reset Scale"
+msgstr "איפוס עצמת השמע"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Reset Rotation"
+msgstr "צעד סיבוב"
+
+#: editor/scene_tree_dock.cpp
 msgid ""
 "Couldn't save new scene. Likely dependencies (instances) couldn't be "
 "satisfied."
@@ -20236,6 +21686,11 @@ msgstr "שגיאה בשכפול הסצנה בזמן השמירה."
 #, fuzzy
 msgid "Instantiate Script"
 msgstr "יצירת סקריפט"
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "<unknown>"
+msgstr "(לא ידוע)"
 
 #: editor/scene_tree_dock.cpp
 msgid "Sub-Resources"
@@ -20279,6 +21734,11 @@ msgid ""
 "If enabled, Reparent to New Node will create the new node in the center of "
 "the selected nodes, if possible."
 msgstr ""
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
+msgid "Hide Filtered Out Parents"
+msgstr "מאפייני פריט."
 
 #: editor/scene_tree_dock.cpp
 #, fuzzy
@@ -20368,11 +21828,6 @@ msgid "Instantiate Child Scene..."
 msgstr "יצירת מופע לסצנה הצאצאית"
 
 #: editor/scene_tree_dock.cpp
-#, fuzzy
-msgid "Expand/Collapse Branch"
-msgstr "להראות/להסתיר הכל"
-
-#: editor/scene_tree_dock.cpp
 msgid "Paste as Sibling"
 msgstr ""
 
@@ -20439,6 +21894,11 @@ msgstr "ניתוק הסקריפט מהמפרק שנבחר."
 
 #: editor/scene_tree_dock.cpp
 #, fuzzy
+msgid "Extend the script of the selected node."
+msgstr "ניתוק הסקריפט מהמפרק שנבחר."
+
+#: editor/scene_tree_dock.cpp
+#, fuzzy
 msgid "Extra scene options."
 msgstr "לא בנתיב המשאב."
 
@@ -20479,6 +21939,11 @@ msgstr "שם הקובץ ריק."
 #, fuzzy
 msgid "Filename is invalid."
 msgstr "שם הקובץ ריק."
+
+#: editor/script_create_dialog.cpp
+#, fuzzy
+msgid "Name begins with a dot."
+msgstr "לא ניתן להתחיל עם סיפרה."
 
 #: editor/script_create_dialog.cpp editor/shader_create_dialog.cpp
 msgid "Path is not local."
@@ -20691,11 +22156,6 @@ msgstr "משתנה גלובלי"
 
 #: editor/shader_globals_editor.cpp
 #, fuzzy
-msgid "Name cannot be empty."
-msgstr "שם ההנפשה כבר קיים!"
-
-#: editor/shader_globals_editor.cpp
-#, fuzzy
 msgid "Name must be a valid identifier."
 msgstr "שם מתודה חייב להיות מזהה חוקי."
 
@@ -20732,7 +22192,7 @@ msgstr ""
 msgid "Upgrading All Meshes in Project"
 msgstr ""
 
-#: editor/surface_upgrade_tool.cpp
+#: editor/surface_upgrade_tool.cpp editor/uid_upgrade_tool.cpp
 msgid "Attempting to re-save "
 msgstr ""
 
@@ -20760,6 +22220,36 @@ msgstr ""
 msgid "Restart & Upgrade"
 msgstr ""
 
+#: editor/uid_upgrade_tool.cpp
+#, fuzzy
+msgid "Updating Script UIDs"
+msgstr "הסצנה מתעדכנת…"
+
+#: editor/uid_upgrade_tool.cpp
+msgid ""
+"As of Godot 4.4, scenes and resources use UIDs to reference scripts and "
+"shaders.\n"
+"\n"
+"Normally, this update is applied to a single scene or resource once you save "
+"it in Godot 4.4 for the first time. If you have a lot of scenes and/or "
+"resources, doing this manually may be time-consuming. This tool will update "
+"all of the project's scenes and resources at once.\n"
+"\n"
+"Click \"Restart & Upgrade\" to restart the editor and update all of the "
+"scenes and resources in this project. Depending on the project size, it may "
+"take several minutes.\n"
+"\n"
+"Note: Please make sure you have your project backed up before running the "
+"tool, to avoid the possibility of data loss. Additionally, make sure to "
+"commit all .uid files into version control (and do not add them to ignore-"
+"lists like .gitignore)."
+msgstr ""
+
+#: editor/uid_upgrade_tool.cpp
+#, fuzzy
+msgid "Learn More"
+msgstr "מצב פנורמה"
+
 #: editor/window_wrapper.cpp
 msgid "Make this panel floating in the screen %d."
 msgstr ""
@@ -20775,12 +22265,76 @@ msgstr ""
 msgid "Select Screen"
 msgstr "שחזור סצנה"
 
+#: modules/csg/csg_shape.cpp
+msgid ""
+"The CSGShape3D has an empty shape.\n"
+"CSGShape3D empty shapes typically occur because the mesh is not manifold.\n"
+"A manifold mesh forms a solid object without gaps, holes, or loose edges.\n"
+"Each edge must be a member of exactly two faces."
+msgstr ""
+
 #: modules/csg/editor/csg_gizmos.cpp
-msgid "Change Cylinder Radius"
+msgid "CSG operation returned an empty array."
+msgstr ""
+
+#: modules/csg/editor/csg_gizmos.cpp
+msgid ""
+"Can not add a baked mesh as sibling for the scene root.\n"
+"Move the CSG root node below a parent node."
+msgstr ""
+
+#: modules/csg/editor/csg_gizmos.cpp
+msgid "CSG operation returned an empty mesh."
+msgstr ""
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Create baked CSGShape3D Mesh Instance"
+msgstr "המרה לאותיות גדולות"
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid ""
+"Can not add a baked collision shape as sibling for the scene root.\n"
+"Move the CSG root node below a parent node."
+msgstr "לא ניתן ליצור תיקייה."
+
+#: modules/csg/editor/csg_gizmos.cpp
+msgid "CSG operation returned an empty shape."
+msgstr ""
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Create baked CSGShape3D Collision Shape"
+msgstr "צורות התנגשות גלויים"
+
+#: modules/csg/editor/csg_gizmos.cpp
+msgid "CSG"
+msgstr ""
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Bake Mesh Instance"
+msgstr "המרה לאותיות גדולות"
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Bake Collision Shape"
+msgstr "צורות התנגשות גלויים"
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Change CSG Box Size"
+msgstr "שינוי הרחבות של צורת תיבה"
+
+#: modules/csg/editor/csg_gizmos.cpp
+#, fuzzy
+msgid "Change CSG Cylinder Radius"
 msgstr "שינוי רדיוס גליל"
 
 #: modules/csg/editor/csg_gizmos.cpp
-msgid "Change Cylinder Height"
+#, fuzzy
+msgid "Change CSG Cylinder Height"
 msgstr "שינוי גובה גליל"
 
 #: modules/csg/editor/csg_gizmos.cpp
@@ -20806,32 +22360,33 @@ msgid "Step argument is zero!"
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Not a script with an instance"
-msgstr ""
-
-#: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Not based on a script"
+msgid "Not a script with an instance."
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
 #, fuzzy
-msgid "Not based on a resource file"
+msgid "Not based on a script."
 msgstr "טעינת המשאב נכשלה."
 
 #: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Invalid instance dictionary format (missing @path)"
+#, fuzzy
+msgid "Not based on a resource file."
+msgstr "טעינת המשאב נכשלה."
+
+#: modules/gdscript/gdscript_utility_functions.cpp
+msgid "Invalid instance dictionary format (missing @path)."
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Invalid instance dictionary format (can't load script at @path)"
+msgid "Invalid instance dictionary format (can't load script at @path)."
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Invalid instance dictionary format (invalid script at @path)"
+msgid "Invalid instance dictionary format (invalid script at @path)."
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
-msgid "Invalid instance dictionary (invalid subclasses)"
+msgid "Invalid instance dictionary (invalid subclasses)."
 msgstr ""
 
 #: modules/gdscript/gdscript_utility_functions.cpp
@@ -20944,30 +22499,6 @@ msgid "Disabling '.blend' file import requires restarting the editor."
 msgstr ""
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Next Plane"
-msgstr "המישור הבא"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Previous Plane"
-msgstr "המישור הקודם"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Plane:"
-msgstr "מישור:"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Next Floor"
-msgstr "הקומה הבאה"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Previous Floor"
-msgstr "הקומה הקודמת"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Floor:"
-msgstr "קומה:"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "GridMap Delete Selection"
 msgstr "GridMap מחיקת הבחירה"
 
@@ -20989,6 +22520,14 @@ msgid "GridMap Selection"
 msgstr "GridMap מילוי הבחירה"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid "Previous Floor"
+msgstr "הקומה הקודמת"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid "Next Floor"
+msgstr "הקומה הבאה"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Edit X Axis"
 msgstr "עריכת ציר X"
 
@@ -20999,6 +22538,33 @@ msgstr "עריכת ציר Y"
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Edit Z Axis"
 msgstr "עריכת ציר Z"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "Keep Selection"
+msgstr "מחיקת הבחירה"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "Clear Rotation"
+msgstr "מחיקת הטיית מצביע"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid "GridMap Settings"
+msgstr "הגדרות GridMap"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid "Pick Distance:"
+msgstr "בחירת מרחק:"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "Selection"
+msgstr "בחירת מיקוד"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid "Erase"
+msgstr ""
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Cursor Rotate X"
@@ -21013,49 +22579,11 @@ msgid "Cursor Rotate Z"
 msgstr "הטיית מצביע ב־Z"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Cursor Back Rotate X"
-msgstr "הטיית מצביע הפוכה ב־X"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Cursor Back Rotate Y"
-msgstr "הטיית מצביע הפוכה ב־Y"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Cursor Back Rotate Z"
-msgstr "הטיית מצביע הפוכה ב־Z"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Cursor Clear Rotation"
-msgstr "מחיקת הטיית מצביע"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Paste Selects"
-msgstr "הדבקה ובחירה"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-#, fuzzy
-msgid "Cut Selection"
-msgstr "בחירת מיקוד"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Clear Selection"
-msgstr "ניקוי הבחירה"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Fill Selection"
-msgstr "מילוי הבחירה"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Grid Map"
-msgstr "מפת רשת"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "GridMap Settings"
-msgstr "הגדרות GridMap"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid "Pick Distance:"
-msgstr "בחירת מרחק:"
+msgid ""
+"Change Grid Floor:\n"
+"Previous Plane (%s)\n"
+"Next Plane (%s)"
+msgstr ""
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 #, fuzzy
@@ -21065,6 +22593,16 @@ msgstr "סינון רשתות"
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Give a MeshLibrary resource to this GridMap to use its meshes."
 msgstr "יש לחבר משאב MeshLibrary ל- GridMap הזה כדי להשתמש ברשתות שלו."
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "GridMap"
+msgstr "מפת רשת"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "Toggle GridMap Bottom Panel"
+msgstr "החלפת תצוגת חלונית סקריפטים"
 
 #: modules/interactive_music/audio_stream_interactive.cpp
 #, fuzzy
@@ -21260,6 +22798,11 @@ msgstr "הזחה מימין"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 #, fuzzy
+msgid "Plot direct lighting %d%%"
+msgstr "הזחה מימין"
+
+#: modules/lightmapper_rd/lightmapper_rd.cpp
+#, fuzzy
 msgid "Integrate indirect lighting"
 msgstr "הזחה מימין"
 
@@ -21270,7 +22813,7 @@ msgstr "הזחה מימין"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
 #, fuzzy
-msgid "Baking lightprobes"
+msgid "Baking light probes"
 msgstr "נוצרות מפות תאורה"
 
 #: modules/lightmapper_rd/lightmapper_rd.cpp
@@ -21306,8 +22849,8 @@ msgid ""
 "Unable to load .NET runtime, no compatible version was found.\n"
 "Attempting to create/edit a project will lead to a crash.\n"
 "\n"
-"Please install the .NET SDK 6.0 or later from https://dotnet.microsoft.com/"
-"en-us/download and restart Godot."
+"Please install the .NET SDK 8.0 or later from https://get.dot.net and "
+"restart Godot."
 msgstr ""
 
 #: modules/mono/mono_gd/gd_mono.cpp
@@ -21331,8 +22874,8 @@ msgid ""
 "Unable to load .NET runtime, specifically hostfxr.\n"
 "Attempting to create/edit a project will lead to a crash.\n"
 "\n"
-"Please install the .NET SDK 6.0 or later from https://dotnet.microsoft.com/"
-"en-us/download and restart Godot."
+"Please install the .NET SDK 8.0 or later from https://get.dot.net and "
+"restart Godot."
 msgstr ""
 
 #: modules/multiplayer/editor/editor_network_profiler.cpp
@@ -21378,10 +22921,6 @@ msgstr "הקונפדרציה"
 #, fuzzy
 msgid "Count"
 msgstr "כמות:"
-
-#: modules/multiplayer/editor/multiplayer_editor_plugin.cpp
-msgid "Network Profiler"
-msgstr "מאפיין רשת"
 
 #: modules/multiplayer/editor/multiplayer_editor_plugin.cpp
 #, fuzzy
@@ -21696,6 +23235,29 @@ msgstr "הוספת פונקציה"
 msgid "Remove action set."
 msgstr "הסרת פונקציה"
 
+#: modules/openxr/editor/openxr_binding_modifier_editor.cpp
+#, fuzzy
+msgid "Remove binding modifier."
+msgstr "הסרת תבנית"
+
+#: modules/openxr/editor/openxr_binding_modifiers_dialog.cpp
+#, fuzzy
+msgid "Remove binding modifier"
+msgstr "הסרת תבנית"
+
+#: modules/openxr/editor/openxr_binding_modifiers_dialog.cpp
+#, fuzzy
+msgid "Add binding modifier"
+msgstr "קישור"
+
+#: modules/openxr/editor/openxr_binding_modifiers_dialog.cpp
+msgid "Note: modifiers will only be applied if supported on the host system."
+msgstr ""
+
+#: modules/openxr/editor/openxr_binding_modifiers_dialog.cpp
+msgid "Binding modifiers for:"
+msgstr ""
+
 #: modules/openxr/editor/openxr_editor_plugin.cpp
 #, fuzzy
 msgid "OpenXR Action Map"
@@ -21711,6 +23273,14 @@ msgid "Remove action from interaction profile"
 msgstr ""
 
 #: modules/openxr/editor/openxr_interaction_profile_editor.cpp
+msgid "Edit binding modifiers"
+msgstr ""
+
+#: modules/openxr/editor/openxr_interaction_profile_editor.cpp
+msgid "Note: This interaction profile requires extension %s support."
+msgstr ""
+
+#: modules/openxr/editor/openxr_interaction_profile_editor.cpp
 #, fuzzy
 msgid "Add binding"
 msgstr "קישור"
@@ -21719,6 +23289,10 @@ msgstr "קישור"
 #, fuzzy
 msgid "Remove binding"
 msgstr "הסרת תבנית"
+
+#: modules/openxr/editor/openxr_interaction_profile_editor.cpp
+msgid "Note: This binding path requires extension %s support."
+msgstr ""
 
 #: modules/openxr/editor/openxr_interaction_profile_editor.cpp
 msgid "Pose"
@@ -21742,6 +23316,10 @@ msgstr "ניווט גלוי"
 msgid "Select an interaction profile"
 msgstr "מאפייני ההנפשה."
 
+#: modules/openxr/editor/openxr_select_interaction_profile_dialog.cpp
+msgid "All interaction profiles have been added to the action map."
+msgstr ""
+
 #: modules/openxr/editor/openxr_select_runtime.cpp
 #, fuzzy
 msgid "Choose an XR runtime."
@@ -21751,6 +23329,12 @@ msgstr "נא לבחור תיקייה"
 msgid ""
 "Cannot use the same SubViewport with multiple OpenXR composition layers. "
 "Clear it from its current layer first."
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid ""
+"Cannot set SubViewport on an OpenXR composition layer when using an Android "
+"surface."
 msgstr ""
 
 #: modules/openxr/scene/openxr_composition_layer.cpp
@@ -21768,6 +23352,11 @@ msgstr ""
 msgid ""
 "Hole punching won't work as expected unless the sort order is less than zero."
 msgstr ""
+
+#: modules/openxr/scene/openxr_visibility_mask.cpp
+#, fuzzy
+msgid "OpenXR visibility mask must have an XRCamera3D node as their parent."
+msgstr "ההורה של ARVRController חייב להיות מפרק ARVROrigin."
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -21807,6 +23396,11 @@ msgstr "מפתח ציבורי לא חוקי להרחבת APK."
 #: platform/android/export/export_plugin.cpp
 msgid "Invalid package name:"
 msgstr "שם חבילה לא חוקי:"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "\"Use Gradle Build\" is required to enable \"Swipe to dismiss\"."
+msgstr "חובה לאפשר ״שימוש בבניה מותאמת אישית״ כדי להשתמש בתוספים."
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -21855,6 +23449,23 @@ msgstr ""
 #: platform/android/export/export_plugin.cpp
 msgid "\"Target SDK\" version must be greater or equal to \"Min SDK\" version."
 msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "\"Use Gradle Build\" must be enabled to enable \"Show In Android Tv\"."
+msgstr "חובה לאפשר ״שימוש בבניה מותאמת אישית״ כדי להשתמש בתוספים."
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid ""
+"\"Use Gradle Build\" must be enabled to enable \"Show As Launcher App\"."
+msgstr "חובה לאפשר ״שימוש בבניה מותאמת אישית״ כדי להשתמש בתוספים."
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid ""
+"\"Use Gradle Build\" must be enabled to disable \"Show In App Library\"."
+msgstr "חובה לאפשר ״שימוש בבניה מותאמת אישית״ כדי להשתמש בתוספים."
 
 #: platform/android/export/export_plugin.cpp
 #: platform/ios/export/export_plugin.cpp
@@ -21908,7 +23519,7 @@ msgid "Exporting to Android when using C#/.NET is experimental."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Android architecture %s not supported in C# projects."
+msgid "Gradle build is not supported for the Android editor."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -22034,25 +23645,20 @@ msgid "Code Signing"
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid ""
-"All 'apksigner' tools located in Android SDK 'build-tools' directory failed "
-"to execute. Please check that you have the correct version installed for "
-"your target sdk version. The resulting %s is unsigned."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid ""
-"'apksigner' could not be found. Please check that the command is available "
-"in the Android SDK build-tools directory. The resulting %s is unsigned."
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-msgid "Signing debug %s..."
-msgstr ""
+#, fuzzy
+msgid "AAB signing is not supported"
+msgstr "התוסף \"%s\" לא נתמך ב - \"%s\""
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Signing release %s..."
+msgid "Signing debug APK..."
+msgstr ""
+"הקבצים נסרקים,\n"
+"נא להמתין…"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Signing release APK..."
 msgstr ""
 "הקבצים נסרקים,\n"
 "נא להמתין…"
@@ -22061,6 +23667,24 @@ msgstr ""
 #, fuzzy
 msgid "Could not find keystore, unable to export."
 msgstr "לא ניתן לפתוח תבנית לייצוא:"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Unable to sign apk."
+msgstr "איפשור סינון"
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"All 'apksigner' tools located in Android SDK 'build-tools' directory failed "
+"to execute. Please check that you have the correct version installed for "
+"your target sdk version. The resulting APK is unsigned."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid ""
+"'apksigner' could not be found. Please check that the command is available "
+"in the Android SDK build-tools directory. The resulting APK is unsigned."
+msgstr ""
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -22080,11 +23704,15 @@ msgstr "פלט:"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Verifying %s..."
+msgid "Verifying APK..."
 msgstr "הגדרות"
 
 #: platform/android/export/export_plugin.cpp
-msgid "'apksigner' verification of %s failed."
+msgid "Unable to verify signed apk."
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+msgid "'apksigner' verification of APK failed."
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
@@ -22172,8 +23800,13 @@ msgstr "לא ניתן להסיר:"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
-msgid "Package not found: \"%s\"."
-msgstr "הנפשה לא נמצאה: '%s'"
+msgid "Debug export template not found: \"%s\"."
+msgstr "תבנית שחרור מותאמת-אישית לא נמצאה."
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Release export template not found: \"%s\"."
+msgstr "תבנית שחרור מותאמת-אישית לא נמצאה."
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -22378,6 +24011,10 @@ msgstr ""
 msgid "Invalid additional PList content: "
 msgstr ""
 
+#: platform/ios/export/export_plugin.cpp
+msgid "Metal renderer require iOS 14+."
+msgstr ""
+
 #: platform/ios/export/export_plugin.cpp platform/macos/export/export_plugin.h
 #, fuzzy
 msgid "Identifier is missing."
@@ -22387,19 +24024,6 @@ msgstr "מזהה חסר."
 #, fuzzy
 msgid "The character '%s' is not allowed in Identifier."
 msgstr "התו '%s' אינו מותר במזהה."
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Could not start simctl executable."
-msgstr "לא ניתן להפעיל תהליך משנה!"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Installation failed, see editor log for details."
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Running failed, see editor log for details."
-msgstr ""
 
 #: platform/ios/export/export_plugin.cpp
 #, fuzzy
@@ -22416,9 +24040,17 @@ msgid "Could not start device executable."
 msgstr "לא ניתן להפעיל תהליך משנה!"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Installation failed, see editor log for details."
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
 msgid "Could not start devicectl executable."
 msgstr "לא ניתן להפעיל תהליך משנה!"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Running failed, see editor log for details."
+msgstr ""
 
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -22433,6 +24065,12 @@ msgid "Could not open file \"%s\"."
 msgstr "לא ניתן לכתוב קובץ:"
 
 #: platform/linuxbsd/export/export_plugin.cpp
+msgid ""
+"Mismatching custom export template executable architecture, found \"%s\", "
+"expected \"%s\"."
+msgstr ""
+
+#: platform/linuxbsd/export/export_plugin.cpp
 msgid "Debug Console Export"
 msgstr ""
 
@@ -22441,6 +24079,20 @@ msgstr ""
 #, fuzzy
 msgid "Could not create console wrapper."
 msgstr "לא ניתן ליצור תיקייה."
+
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid ""
+"Mismatching custom debug export template executable architecture: found "
+"\"%s\", expected \"%s\"."
+msgstr ""
+
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid ""
+"Mismatching custom release export template executable architecture: found "
+"\"%s\", expected \"%s\"."
+msgstr ""
 
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -22531,12 +24183,6 @@ msgstr "הסצנה מתעדכנת…"
 #, fuzzy
 msgid "Starting project..."
 msgstr "ייצוא מיזם"
-
-#: platform/linuxbsd/freedesktop_portal_desktop.cpp
-#: platform/windows/display_server_windows.cpp
-#, fuzzy
-msgid "All Files"
-msgstr "כל הקבצים (*)"
 
 #: platform/macos/export/export_plugin.cpp
 #, fuzzy
@@ -22689,10 +24335,6 @@ msgid "Built-in CodeSign failed with error \"%s\"."
 msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
-msgid "Built-in CodeSign require regex module."
-msgstr ""
-
-#: platform/macos/export/export_plugin.cpp
 msgid ""
 "Xrcodesign path is not set. Configure rcodesign path in the Editor Settings "
 "(Export > macOS > rcodesign)."
@@ -22794,6 +24436,12 @@ msgstr ""
 #, fuzzy
 msgid "Could not created symlink \"%s\" -> \"%s\"."
 msgstr "לא ניתן לכתוב קובץ:"
+
+#: platform/macos/export/export_plugin.cpp
+msgid ""
+"Unable to set Unix permissions for executable \"%s\". Use \"chmod +x\" to "
+"set it after transferring the exported .app to macOS or Linux."
+msgstr ""
 
 #: platform/macos/export/export_plugin.cpp
 #, fuzzy
@@ -23030,6 +24678,12 @@ msgid "Icon size \"%d\" is missing."
 msgstr "מזהה חסר."
 
 #: platform/windows/export/export_plugin.cpp
+msgid ""
+"Mismatching custom export template executable architecture: found \"%s\", "
+"expected \"%s\"."
+msgstr ""
+
+#: platform/windows/export/export_plugin.cpp
 #, fuzzy
 msgid "Failed to rename temporary file \"%s\"."
 msgstr "לא ניתן להסיר:"
@@ -23187,13 +24841,13 @@ msgstr ""
 #: scene/2d/gpu_particles_2d.cpp scene/3d/gpu_particles_3d.cpp
 msgid ""
 "Particle trails are only available when using the Forward+ or Mobile "
-"rendering backends."
+"renderers."
 msgstr ""
 
 #: scene/2d/gpu_particles_2d.cpp
 msgid ""
-"Particle sub-emitters are not available when using the GL Compatibility "
-"rendering backend."
+"Particle sub-emitters are not available when using the Compatibility "
+"renderer."
 msgstr ""
 
 #: scene/2d/light_2d.cpp
@@ -23220,6 +24874,21 @@ msgstr ""
 msgid ""
 "NavigationLink2D start position should be different than the end position to "
 "be useful."
+msgstr ""
+
+#: scene/2d/navigation_obstacle_2d.cpp
+msgid "NavigationObstacle2D does not support negative or zero scaling."
+msgstr ""
+
+#: scene/2d/navigation_obstacle_2d.cpp
+msgid ""
+"The agent radius can only be scaled uniformly. The largest value along the "
+"two axes of the global scale will be used to scale the radius. This value "
+"may change in unexpected ways when the node is rotated."
+msgstr ""
+
+#: scene/2d/navigation_obstacle_2d.cpp
+msgid "Skew has no effect on the agent radius."
 msgstr ""
 
 #: scene/2d/navigation_region_2d.cpp
@@ -23301,11 +24970,9 @@ msgstr "יש לספק צורה כדי ש-CollisionShape2D יתפקד. יש לי�
 
 #: scene/2d/physics/collision_shape_2d.cpp
 msgid ""
-"Polygon-based shapes are not meant be used nor edited directly through the "
-"CollisionShape2D node. Please use the CollisionPolygon2D node instead."
+"The CollisionShape2D node has limited editing options for polygon-based "
+"shapes. Consider using a CollisionPolygon2D node instead."
 msgstr ""
-"צורות מבוססות מצולע אינן מיועדות לשימוש או לעריכה ישירות דרך מפרק "
-"CollisionShape2D. במקום זאת יש להשתמש במפרק מסוג CollisionPolygon2D."
 
 #: scene/2d/physics/joints/joint_2d.cpp
 msgid "Node A and Node B must be PhysicsBody2Ds"
@@ -23448,9 +25115,7 @@ msgstr ""
 "מוגדר ל-\"Particle Billboard\"."
 
 #: scene/3d/decal.cpp
-msgid ""
-"Decals are only available when using the Forward+ or Mobile rendering "
-"backends."
+msgid "Decals are only available when using the Forward+ or Mobile renderers."
 msgstr ""
 
 #: scene/3d/decal.cpp
@@ -23475,7 +25140,7 @@ msgid ""
 msgstr ""
 
 #: scene/3d/fog_volume.cpp
-msgid "Fog Volumes are only visible when using the Forward+ backend."
+msgid "Fog Volumes are only visible when using the Forward+ renderer."
 msgstr ""
 
 #: scene/3d/fog_volume.cpp
@@ -23523,7 +25188,7 @@ msgstr ""
 #: scene/3d/gpu_particles_3d.cpp
 msgid ""
 "Particle sub-emitters are only available when using the Forward+ or Mobile "
-"rendering backends."
+"renderers."
 msgstr ""
 
 #: scene/3d/gpu_particles_collision_3d.cpp
@@ -23543,7 +25208,7 @@ msgstr ""
 
 #: scene/3d/light_3d.cpp
 msgid ""
-"Projector textures are not supported when using the GL Compatibility backend "
+"Projector textures are not supported when using the Compatibility renderer "
 "yet. Support will be added in a future release."
 msgstr ""
 
@@ -23591,8 +25256,34 @@ msgstr ""
 
 #: scene/3d/lightmap_gi.cpp
 msgid ""
-"Lightmap can only be baked from a device that supports the RD backends. "
-"Lightmap baking may fail."
+"Lightmaps can only be baked from a GPU that supports the RenderingDevice "
+"backends.\n"
+"Your GPU (%s) does not support RenderingDevice, as it does not support "
+"Vulkan, Direct3D 12, or Metal.\n"
+"Lightmap baking will not be available on this device, although rendering "
+"existing baked lightmaps will work."
+msgstr ""
+
+#: scene/3d/lightmap_gi.cpp
+msgid ""
+"The lightmap has no baked shadowmask textures. Please rebake with the "
+"Shadowmask Mode set to anything other than None."
+msgstr ""
+
+#: scene/3d/lightmap_gi.cpp
+msgid ""
+"Lightmaps cannot be baked on %s. Rendering existing baked lightmaps will "
+"still work."
+msgstr ""
+
+#: scene/3d/lightmap_gi.cpp
+msgid ""
+"Lightmaps cannot be baked, as the `lightmapper_rd` module was disabled at "
+"compile-time. Rendering existing baked lightmaps will still work."
+msgstr ""
+
+#: scene/3d/look_at_modifier_3d.cpp
+msgid "Forward axis and primary rotation axis must not be parallel."
 msgstr ""
 
 #: scene/3d/navigation_agent_3d.cpp
@@ -23604,6 +25295,23 @@ msgstr ""
 msgid ""
 "NavigationLink3D start position should be different than the end position to "
 "be useful."
+msgstr ""
+
+#: scene/3d/navigation_obstacle_3d.cpp
+msgid ""
+"NavigationObstacle3D only takes global rotation around the y-axis into "
+"account. Rotations around the x-axis or z-axis might lead to unexpected "
+"results."
+msgstr ""
+
+#: scene/3d/navigation_obstacle_3d.cpp
+msgid "NavigationObstacle3D does not support negative or zero scaling."
+msgstr ""
+
+#: scene/3d/navigation_obstacle_3d.cpp
+msgid ""
+"The agent radius can only be scaled uniformly. The largest scale value along "
+"the three axes will be used."
 msgstr ""
 
 #: scene/3d/occluder_instance_3d.cpp
@@ -23810,6 +25518,11 @@ msgstr ""
 "המאפיין \"Remote Path\" חייב להפנות למפרק חוקי מסוג Spatial או יורש ממנו כדי "
 "לעבוד."
 
+#: scene/3d/retarget_modifier_3d.cpp
+#, fuzzy
+msgid "There is no child Skeleton3D!"
+msgstr "כבר יש סצנה בעריכה."
+
 #: scene/3d/skeleton_modifier_3d.cpp
 msgid ""
 "Skeleton3D node not set! SkeletonModifier3D must be child of Skeleton3D."
@@ -23818,6 +25531,10 @@ msgstr ""
 #: scene/3d/soft_body_3d.cpp
 msgid "This body will be ignored until you set a mesh."
 msgstr "תהיה התעלמות מגוף זה עד שתקבע רשת."
+
+#: scene/3d/spring_bone_collision_3d.cpp
+msgid "Parent node should be a SpringBoneSimulator3D node."
+msgstr ""
 
 #: scene/3d/sprite_3d.cpp
 #, fuzzy
@@ -23868,17 +25585,17 @@ msgid "Plotting Meshes"
 msgstr "הדפסת רשתות"
 
 #: scene/3d/voxel_gi.cpp
-msgid "Finishing Plot"
-msgstr "מסיים הדפסה"
-
-#: scene/3d/voxel_gi.cpp
 #, fuzzy
 msgid "Generating Distance Field"
 msgstr "מצב ללא הסחות דעת"
 
 #: scene/3d/voxel_gi.cpp
+msgid "Finishing Plot"
+msgstr "מסיים הדפסה"
+
+#: scene/3d/voxel_gi.cpp
 msgid ""
-"VoxelGI nodes are not supported when using the GL Compatibility backend yet. "
+"VoxelGI nodes are not supported when using the Compatibility renderer yet. "
 "Support will be added in a future release."
 msgstr ""
 
@@ -23974,6 +25691,21 @@ msgid "Copy this constructor in a script."
 msgstr "הנפשה לא נמצאה: '%s'"
 
 #: scene/gui/color_picker.cpp
+#, fuzzy
+msgid "Load Color Palette"
+msgstr "Ctrl: הטייה"
+
+#: scene/gui/color_picker.cpp
+#, fuzzy
+msgid "Save Color Palette"
+msgstr "שינוי שם מפרק"
+
+#: scene/gui/color_picker.cpp
+#, fuzzy
+msgid "Quick Load"
+msgstr "טעינה"
+
+#: scene/gui/color_picker.cpp
 msgid "Switch between hexadecimal and code values."
 msgstr "מעבר בין ערכים הקסדצימלים לערכי קוד."
 
@@ -24011,6 +25743,13 @@ msgstr ""
 msgid ""
 "The current font does not support rendering one or more characters used in "
 "this Label's text."
+msgstr ""
+
+#: scene/gui/popup.cpp scene/gui/popup_menu.cpp
+msgid ""
+"The current theme style has shadows and/or rounded corners for popups, but "
+"those won't display correctly if \"display/window/per_pixel_transparency/"
+"allowed\" isn't enabled in the Project Settings, nor if it isn't supported."
 msgstr ""
 
 #: scene/gui/range.cpp
@@ -24171,11 +25910,6 @@ msgid "Default Color"
 msgstr "בחירת מחדל"
 
 #: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Filter"
-msgstr "מסננים..."
-
-#: scene/resources/visual_shader_nodes.cpp
 msgid "Repeat"
 msgstr ""
 
@@ -24197,6 +25931,14 @@ msgstr "עקוב אחר פני השטח"
 #, fuzzy
 msgid "Surface Index"
 msgstr "הזחה אוטומטית"
+
+#: servers/rendering/shader_language.cpp
+msgid "Division by zero error."
+msgstr ""
+
+#: servers/rendering/shader_language.cpp
+msgid "Modulo by zero error."
+msgstr ""
 
 #: servers/rendering/shader_language.cpp
 msgid ""
@@ -24286,20 +26028,13 @@ msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
 
 #: servers/rendering/shader_language.cpp
 #, fuzzy
-msgid ""
-"Varying with '%s' data type may only be assigned in the 'fragment' function."
+msgid "Varying with '%s' data type may only be assigned in the '%s' function."
 msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
 
 #: servers/rendering/shader_language.cpp
 msgid ""
-"Varyings which assigned in 'vertex' function may not be reassigned in "
-"'fragment' or 'light'."
-msgstr ""
-
-#: servers/rendering/shader_language.cpp
-msgid ""
-"Varyings which assigned in 'fragment' function may not be reassigned in "
-"'vertex' or 'light'."
+"Varyings which assigned in '%s' function may not be reassigned in '%s' or "
+"'%s'."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
@@ -24358,10 +26093,6 @@ msgid "Unknown array size is forbidden in that context."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
-msgid "Array size expressions are not supported."
-msgstr ""
-
-#: servers/rendering/shader_language.cpp
 msgid "Expected a positive integer constant."
 msgstr ""
 
@@ -24371,7 +26102,7 @@ msgid "Invalid data type for the array."
 msgstr "מקור לא תקין ל-shader."
 
 #: servers/rendering/shader_language.cpp
-msgid "Array size mismatch."
+msgid "Array size mismatch. Expected %d elements (found %d)."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
@@ -24403,13 +26134,13 @@ msgid "No matching constructor found for: '%s'."
 msgstr "הנפשה לא נמצאה: '%s'"
 
 #: servers/rendering/shader_language.cpp
-msgid "Built-in function '%s' is not supported for the '%s' shader type."
-msgstr ""
-
-#: servers/rendering/shader_language.cpp
 #, fuzzy
 msgid "Expected a function name."
 msgstr "יצירת פונקציה חדשה."
+
+#: servers/rendering/shader_language.cpp
+msgid "Built-in function '%s' is not supported for the '%s' shader type."
+msgstr ""
 
 #: servers/rendering/shader_language.cpp
 #, fuzzy
@@ -24441,20 +26172,13 @@ msgstr ""
 
 #: servers/rendering/shader_language.cpp
 #, fuzzy
-msgid ""
-"Varying with '%s' data type may only be used in the 'fragment' function."
+msgid "Varying with '%s' data type may only be used in the '%s' function."
 msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
 
 #: servers/rendering/shader_language.cpp
 #, fuzzy
-msgid "Varying '%s' must be assigned in the 'fragment' function first."
+msgid "Varying '%s' must be assigned in the '%s' function first."
 msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
-
-#: servers/rendering/shader_language.cpp
-msgid ""
-"Varying with integer data type must be declared with `flat` interpolation "
-"qualifier."
-msgstr ""
 
 #: servers/rendering/shader_language.cpp
 msgid "Can't use function as identifier: '%s'."
@@ -24577,8 +26301,9 @@ msgid "Expected a boolean expression."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
-msgid "Expected an integer expression."
-msgstr ""
+#, fuzzy
+msgid "Expected an integer or unsigned integer expression."
+msgstr "היתה צפויה מחרוזת באורך 1 (תו)."
 
 #: servers/rendering/shader_language.cpp
 msgid "Cases must be defined before default case."
@@ -24589,17 +26314,22 @@ msgid "Default case must be defined only once."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
-#, fuzzy
-msgid "Duplicated case label: %d."
-msgstr "שכפול מהרצועה שנבחרה"
-
-#: servers/rendering/shader_language.cpp
 msgid "'%s' must be placed within a '%s' block."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
+#, fuzzy
+msgid "Expected an unsigned integer constant."
+msgstr "היתה צפויה מחרוזת באורך 1 (תו)."
+
+#: servers/rendering/shader_language.cpp
 msgid "Expected an integer constant."
 msgstr ""
+
+#: servers/rendering/shader_language.cpp
+#, fuzzy
+msgid "Duplicated case label: %d."
+msgstr "שכפול מהרצועה שנבחרה"
 
 #: servers/rendering/shader_language.cpp
 msgid "Using '%s' in the '%s' processor function is incorrect."
@@ -24610,12 +26340,16 @@ msgid "Expected '%s' with an expression of type '%s'."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
+msgid "'%s' function cannot return a value."
+msgstr ""
+
+#: servers/rendering/shader_language.cpp
 msgid "Expected return with an expression of type '%s'."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
 #, fuzzy
-msgid "Use of '%s' is not allowed here."
+msgid "Use of '%s' is not supported for the '%s' shader type."
 msgstr "התו '%s' אינו מותר במזהה."
 
 #: servers/rendering/shader_language.cpp
@@ -24627,7 +26361,7 @@ msgid "'%s' is not allowed outside of a loop."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
-msgid "The middle expression is expected to be a boolean operator."
+msgid "The middle expression is expected to have a boolean data type."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
@@ -24713,10 +26447,6 @@ msgid "Uniform instances are not yet implemented for '%s' shaders."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
-msgid "Uniform instances are not supported in gl_compatibility shaders."
-msgstr ""
-
-#: servers/rendering/shader_language.cpp
 #, fuzzy
 msgid "Varyings cannot be used in '%s' shaders."
 msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
@@ -24794,6 +26524,20 @@ msgid "Expected an integer constant after ','."
 msgstr "היתה צפויה מחרוזת באורך 1 (תו)."
 
 #: servers/rendering/shader_language.cpp
+msgid "Enum hint is for '%s' only."
+msgstr ""
+
+#: servers/rendering/shader_language.cpp
+#, fuzzy
+msgid "Expected a string constant."
+msgstr "היתה צפויה מחרוזת באורך 1 (תו)."
+
+#: servers/rendering/shader_language.cpp
+#, fuzzy
+msgid "Expected ',' or ')' after string constant."
+msgstr "סוף קובץ בלתי צפוי '%s'."
+
+#: servers/rendering/shader_language.cpp
 msgid "Can only specify '%s' once."
 msgstr ""
 
@@ -24808,7 +26552,7 @@ msgstr ""
 #: servers/rendering/shader_language.cpp
 msgid ""
 "'hint_normal_roughness_texture' is only available when using the Forward+ "
-"backend."
+"renderer."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
@@ -24919,6 +26663,11 @@ msgid "Expected an identifier after type."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
+#, fuzzy
+msgid "'%s' qualifier cannot be used with a function return type."
+msgstr "ניתן להקצות שינויים רק בפונקצית vertex."
+
+#: servers/rendering/shader_language.cpp
 msgid ""
 "The '%s' qualifier cannot be used within a function parameter declared with "
 "'%s'."
@@ -24955,6 +26704,12 @@ msgstr "יצירת פונקציה חדשה."
 
 #: servers/rendering/shader_language.cpp
 msgid "Expected at least one '%s' statement in a non-void function."
+msgstr ""
+
+#: servers/rendering/shader_language.cpp
+msgid ""
+"Varying with integer data type must be declared with `%s` interpolation "
+"qualifier."
 msgstr ""
 
 #: servers/rendering/shader_language.cpp
@@ -25013,8 +26768,9 @@ msgid "'##' must not appear at end of macro expansion."
 msgstr ""
 
 #: servers/rendering/shader_preprocessor.cpp
-msgid "Unmatched elif."
-msgstr ""
+#, fuzzy
+msgid "Unmatched '%s' directive."
+msgstr "%d התאמות."
 
 #: servers/rendering/shader_preprocessor.cpp
 #, fuzzy
@@ -25028,31 +26784,7 @@ msgstr "שגיאת חיבור"
 
 #: servers/rendering/shader_preprocessor.cpp
 #, fuzzy
-msgid "Unmatched else."
-msgstr "%d התאמות."
-
-#: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid else."
-msgstr "שם שגוי."
-
-#: servers/rendering/shader_preprocessor.cpp
-msgid "Unmatched endif."
-msgstr ""
-
-#: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid endif."
-msgstr "שם שגוי."
-
-#: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid ifdef."
-msgstr "שם שגוי."
-
-#: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid ifndef."
+msgid "Invalid '%s' directive."
 msgstr "שם שגוי."
 
 #: servers/rendering/shader_preprocessor.cpp
@@ -25079,14 +26811,8 @@ msgid "Shader max include depth exceeded."
 msgstr ""
 
 #: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid pragma directive."
-msgstr "שם שגוי."
-
-#: servers/rendering/shader_preprocessor.cpp
-#, fuzzy
-msgid "Invalid undef."
-msgstr "שם שגוי."
+msgid "Cannot use '%s' on built-in define."
+msgstr ""
 
 #: servers/rendering/shader_preprocessor.cpp
 msgid "Macro expansion limit exceeded."
