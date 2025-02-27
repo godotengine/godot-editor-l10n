@@ -50,15 +50,15 @@ msgstr ""
 message_patterns = {
     re.compile(r'_initial_set\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
     re.compile(r'GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
-    re.compile(r'EDITOR_DEF(_RST)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'(?P<editor_setting>EDITOR_DEF(_RST)?)\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
     re.compile(
-        r'EDITOR_SETTING(_USAGE)?\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
+        r'(?P<editor_setting>EDITOR_SETTING(_USAGE)?)\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
     ): ExtractType.PROPERTY_PATH,
     re.compile(
         r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
-        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, (?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
+        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, \(?(?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
     ): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
@@ -175,6 +175,8 @@ def process_file(f, fname):
                                 continue
 
                             # Ignore properties that are not meant to be displayed in the editor.
+                            if captures.get("editor_setting") and msg.startswith("_"):
+                                continue
                             if "PROPERTY_USAGE_NO_EDITOR" in usages:
                                 continue
                             if "PROPERTY_USAGE_DEFAULT" not in usages and "PROPERTY_USAGE_EDITOR" not in usages:
