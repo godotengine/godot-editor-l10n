@@ -50,9 +50,9 @@ msgstr ""
 message_patterns = {
     re.compile(r'_initial_set\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
     re.compile(r'GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
-    re.compile(r'(?P<editor_setting>EDITOR_DEF(_RST)?)\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'(?P<editor_setting>EDITOR_DEF(_RST|_BASIC)?)\("(?P<message>[^"]+?)",'): ExtractType.PROPERTY_PATH,
     re.compile(
-        r'(?P<editor_setting>EDITOR_SETTING(_USAGE)?)\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
+        r'(?P<editor_setting>EDITOR_SETTING(_USAGE|_BASIC)?)\(Variant::[_A-Z0-9]+, [_A-Z0-9]+, "(?P<message>[^"]+?)",'
     ): ExtractType.PROPERTY_PATH,
     re.compile(
         r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
