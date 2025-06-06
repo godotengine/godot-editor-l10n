@@ -114,9 +114,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/config/project_settings.cpp main/main.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
+#: platform/visionos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Application"
 msgstr "Uygulama"
@@ -129,8 +131,9 @@ msgstr "Yapılandırma"
 #: editor/animation_track_editor.cpp
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
-#: scene/3d/physics/area_3d.cpp scene/resources/3d/mesh_library.cpp
-#: scene/resources/3d/skin.cpp servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
+#: scene/3d/physics/area_3d.cpp scene/main/node.cpp
+#: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "İsim"
 
@@ -144,8 +147,9 @@ msgstr "Yerelleştirilmiş İsim"
 msgid "Description"
 msgstr "Tanım"
 
-#: core/config/project_settings.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 msgid "Version"
 msgstr "Sürüm"
@@ -202,6 +206,25 @@ msgstr "Çıkışı Otomatik Kabul Et"
 #: core/config/project_settings.cpp scene/main/scene_tree.cpp
 msgid "Quit on Go Back"
 msgstr "Geri Dönüşte Çık"
+
+#: core/config/project_settings.cpp scene/main/node.cpp
+#, fuzzy
+msgid "Accessibility"
+msgstr "Görünürlük"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+msgid "General"
+msgstr "Genel"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Accessibility Support"
+msgstr "Betik Desteği"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Updates per Second"
+msgstr "Gücelleme Hızı"
 
 #: core/config/project_settings.cpp main/main.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -301,6 +324,16 @@ msgstr "Odak Yok"
 msgid "Sharp Corners"
 msgstr "Keskin Köşeler"
 
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Minimize Disabled"
+msgstr "Belirsiz Devredışı"
+
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Maximize Disabled"
+msgstr "Sekme Devre Dışı"
+
 #: core/config/project_settings.cpp
 msgid "Window Width Override"
 msgstr "Pencere Genişliğinin Üzerine Yaz"
@@ -352,10 +385,6 @@ msgstr "Veri Yolları"
 #: core/config/project_settings.cpp
 msgid "Default Bus Layout"
 msgstr "Varsayılan Veriyolu Düzeni"
-
-#: core/config/project_settings.cpp editor/editor_settings.cpp
-msgid "General"
-msgstr "Genel"
 
 #: core/config/project_settings.cpp
 msgid "Default Playback Type"
@@ -413,14 +442,14 @@ msgstr "Swappy Modu"
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
 #: modules/jolt_physics/jolt_project_settings.cpp scene/2d/tile_map_layer.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/main/scene_tree.cpp scene/main/scene_tree_fti.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "Fizik"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: scene/main/scene_tree.cpp servers/navigation_server_2d.cpp
 #: servers/physics_server_2d.cpp servers/rendering_server.cpp
 msgid "2D"
 msgstr "2B"
@@ -430,7 +459,8 @@ msgid "Run on Separate Thread"
 msgstr "Ayrı İş Parçasında Çalıştır"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: servers/navigation_server_3d.cpp servers/physics_server_3d.cpp
+#: scene/main/scene_tree_fti.cpp servers/navigation_server_3d.cpp
+#: servers/physics_server_3d.cpp
 msgid "3D"
 msgstr "3B"
 
@@ -464,20 +494,24 @@ msgid "Scale Mode"
 msgstr "Ölçek Kipi"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp scene/2d/navigation_agent_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/main/scene_tree.cpp
-#: servers/navigation_server_3d.cpp servers/rendering/renderer_canvas_cull.cpp
-#: servers/rendering_server.cpp
+#: platform/web/export/export_plugin.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp scene/main/scene_tree.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#: servers/rendering/renderer_canvas_cull.cpp servers/rendering_server.cpp
 msgid "Debug"
 msgstr "Hata Ayıklama"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/gdscript/gdscript.cpp scene/3d/spring_bone_simulator_3d.cpp
+#: modules/gdscript/gdscript.cpp scene/3d/aim_modifier_3d.cpp
+#: scene/3d/convert_transform_modifier_3d.cpp
+#: scene/3d/copy_transform_modifier_3d.cpp
+#: scene/3d/spring_bone_simulator_3d.cpp
 msgid "Settings"
 msgstr "Ayarlar"
 
@@ -511,7 +545,7 @@ msgstr "Zstd"
 msgid "Long Distance Matching"
 msgstr "Uzun Mesafe Eşleşmesi"
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp modules/zip/zip_packer.cpp
 msgid "Compression Level"
 msgstr "Sıkıştırma Seviyesi"
 
@@ -538,6 +572,7 @@ msgstr "Message"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
+#: modules/basis_universal/register_types.cpp
 #: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
 #: scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
@@ -698,8 +733,8 @@ msgstr "Çerçeve Başına En Fazla Çeşitli Tanımlayıcılar"
 msgid "Agility SDK Version"
 msgstr "Agility SDK Sürümü"
 
-#: core/config/project_settings.cpp modules/gltf/gltf_state.cpp
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
+#: core/config/project_settings.cpp modules/basis_universal/register_types.cpp
+#: modules/gltf/gltf_state.cpp scene/3d/decal.cpp scene/gui/texture_button.cpp
 #: scene/gui/texture_progress_bar.cpp servers/rendering_server.cpp
 msgid "Textures"
 msgstr "Dokular"
@@ -743,6 +778,77 @@ msgstr "Kaydırma ve Ölçekleme Parmak Hareketlerini Etkileştir"
 #: core/config/project_settings.cpp
 msgid "Rotary Input Scroll Axis"
 msgstr "Döner Giriş Kaydırma Ekseni"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Override Volume Buttons"
+msgstr "Yörünge Fare Düğmesi"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Disable Scroll Deadzone"
+msgstr "Varsayılan Kaydırma Ölü bölgesi"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: main/performance.cpp modules/gridmap/grid_map.cpp
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Navigation"
+msgstr "Gezinti"
+
+#: core/config/project_settings.cpp
+msgid "World"
+msgstr "Dünya"
+
+#: core/config/project_settings.cpp
+msgid "Map Use Async Iterations"
+msgstr "Harita Eşzamansız Yinelemeler Kullan"
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_2d.cpp
+#: servers/navigation_server_3d.cpp
+msgid "Avoidance"
+msgstr "Kaçınma"
+
+#: core/config/project_settings.cpp main/main.cpp
+msgid "Thread Model"
+msgstr "İş Parçası Modeli"
+
+#: core/config/project_settings.cpp
+msgid "Avoidance Use Multiple Threads"
+msgstr "Kaçınma için Çoklu İş Parcacıkları Kullan"
+
+#: core/config/project_settings.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr "Kaçınma için Yüksek Öncelikli İş Parcacıkları Kullan"
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+msgid "Pathfinding"
+msgstr "Yol bulma"
+
+#: core/config/project_settings.cpp core/register_core_types.cpp
+msgid "Max Threads"
+msgstr "En Fazla İş parçacıkları"
+
+#: core/config/project_settings.cpp
+msgid "Baking"
+msgstr "Fırınlama"
+
+#: core/config/project_settings.cpp
+msgid "Use Crash Prevention Checks"
+msgstr "Çarpışma Önleme Kontrollerini Kullan"
+
+#: core/config/project_settings.cpp
+msgid "Baking Use Multiple Threads"
+msgstr "Fırınlama Çoklu İş Parçacıklarını Kullan"
+
+#: core/config/project_settings.cpp
+msgid "Baking Use High Priority Threads"
+msgstr "Fırınlama Yüksek Öncelikli İş Parçacıklarını Kullan"
 
 #: core/core_bind.cpp
 msgid "Low Processor Usage Mode"
@@ -966,7 +1072,7 @@ msgstr "Çift Dokunma"
 
 #: core/input/input_event.cpp
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
-#: scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/touch_screen_button.cpp
 msgid "Action"
 msgstr "Eylem"
 
@@ -1086,7 +1192,7 @@ msgstr "Bölge"
 #: scene/2d/parallax_background.cpp scene/2d/parallax_layer.cpp
 #: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/3d/label_3d.cpp
 #: scene/3d/look_at_modifier_3d.cpp scene/3d/physics/physical_bone_3d.cpp
-#: scene/3d/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
+#: scene/3d/physics/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
 #: scene/3d/sprite_3d.cpp scene/3d/visual_instance_3d.cpp
 #: scene/gui/rich_text_effect.cpp scene/gui/split_container.cpp
 #: scene/main/canvas_layer.cpp scene/resources/3d/primitive_meshes.cpp
@@ -1190,10 +1296,6 @@ msgstr "İş Parçacıklı"
 #: core/register_core_types.cpp
 msgid "Worker Pool"
 msgstr "İşçi Havuzu"
-
-#: core/register_core_types.cpp servers/navigation_server_3d.cpp
-msgid "Max Threads"
-msgstr "En Fazla İş parçacıkları"
 
 #: core/register_core_types.cpp
 msgid "Low Priority Thread Ratio"
@@ -1448,6 +1550,11 @@ msgid "Editor Screen"
 msgstr "Düzenleyici Ekranı"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Tablet Driver"
+msgstr "Metin Sürücüsü"
+
+#: editor/editor_settings.cpp
 msgid "Project Manager Screen"
 msgstr "Proje Yöneticisi Ekranı"
 
@@ -1456,8 +1563,8 @@ msgid "Connection"
 msgstr "Bağlantı"
 
 #: editor/editor_settings.cpp
-msgid "Engine Version Update Mode"
-msgstr "Motor Sürümü Güncelleme Modu"
+msgid "Check for Updates"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
@@ -1580,6 +1687,10 @@ msgid "Update Continuously"
 msgstr "Sürekli Güncelle"
 
 #: editor/editor_settings.cpp
+msgid "Collapse Main Menu"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #: editor/plugins/gizmos/particles_3d_emission_shape_gizmo_plugin.cpp
 msgid "Editors"
 msgstr "Düzenleyiciler"
@@ -1668,6 +1779,11 @@ msgstr "Varsayılan Renk Seçici Modu"
 msgid "Default Color Picker Shape"
 msgstr "Varsayılan Renk Seçici Şekli"
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Color Picker Show Intensity"
+msgstr "Varsayılan Renk Seçici Şekli"
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1743,12 +1859,17 @@ msgid "Touchscreen"
 msgstr "Dokunmatik Ekran"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Enable Touch Optimizations"
+msgstr "Nvidia İş Parçacıklı En İyileştirmeyi Kapat"
+
+#: editor/editor_settings.cpp
 msgid "Scale Gizmo Handles"
 msgstr "Alet Tutamaçlarını Ölçekle"
 
 #: editor/editor_settings.cpp
-msgid "Increase Scrollbar Touch Area"
-msgstr "Kaydırma Çubuğu Dokunma Alanını Arttır"
+msgid "Touch Actions Panel"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Scene Tabs"
@@ -1867,10 +1988,11 @@ msgid "Show Hidden Files"
 msgstr "Gizli Dosyaları Göster"
 
 #: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
 msgid "Display Mode"
 msgstr "Görüntüleme Kipi"
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Thumbnail Size"
 msgstr "Küçük Resim Boyutu"
 
@@ -1966,6 +2088,11 @@ msgid "Hide Filtered Out Parents"
 msgstr "Filtrelenmiş Üst Öğeleri Gizle"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Accessibility Warnings"
+msgstr "Görünürlük Aralığı"
+
+#: editor/editor_settings.cpp
 msgid "Always Show Folders"
 msgstr "Klasörleri Her Zaman Göster"
 
@@ -1993,12 +2120,6 @@ msgstr "Alt Kaynak Renk Tonu"
 msgid "Text Editor"
 msgstr "Metin Düzenleyici"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "Satır Aralığı"
-
 #: editor/editor_settings.cpp
 msgid "Color Theme"
 msgstr "Renk Teması"
@@ -2006,6 +2127,10 @@ msgstr "Renk Teması"
 #: editor/editor_settings.cpp
 msgid "Appearance"
 msgstr "Dış görünüş"
+
+#: editor/editor_settings.cpp
+msgid "Enable Inline Color Picker"
+msgstr ""
 
 #: editor/editor_settings.cpp scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Caret"
@@ -2105,6 +2230,12 @@ msgstr "Sekme Karakterlerini Çiz"
 msgid "Draw Spaces"
 msgstr "Boşluk Karakterlerini Çiz"
 
+#: editor/editor_settings.cpp scene/3d/label_3d.cpp
+#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
+#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "Satır Aralığı"
+
 #: editor/editor_settings.cpp
 msgid "Behavior"
 msgstr "Davranış"
@@ -2112,12 +2243,6 @@ msgstr "Davranış"
 #: editor/editor_settings.cpp
 msgid "Empty Selection Clipboard"
 msgstr "Seçim Panosunu Boşalt"
-
-#: editor/editor_settings.cpp main/performance.cpp modules/gridmap/grid_map.cpp
-#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
-msgid "Navigation"
-msgstr "Gezinti"
 
 #: editor/editor_settings.cpp
 msgid "Move Caret on Right Click"
@@ -2206,6 +2331,10 @@ msgstr "Kaydederken Betikleri Otomatik Tekrar Yükle ve Çözümle"
 #: editor/editor_settings.cpp
 msgid "Open Dominant Script on Scene Change"
 msgstr "Sahne Değişiminde Baskın Betiği Aç"
+
+#: editor/editor_settings.cpp
+msgid "Drop Preload Resources as UID"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Documentation"
@@ -2373,6 +2502,11 @@ msgstr "İkincil Izgara Rengi"
 
 #: editor/editor_settings.cpp
 msgid "Selection Box Color"
+msgstr "Seçim Kutusu Rengi"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Active Selection Box Color"
 msgstr "Seçim Kutusu Rengi"
 
 #: editor/editor_settings.cpp
@@ -2716,6 +2850,11 @@ msgid "Zoom Speed Factor"
 msgstr "Yakınlaştırma Hız Çarpanı"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Ruler Width"
+msgstr "Kenarlık Genişliği"
+
+#: editor/editor_settings.cpp
 msgid "Bone Mapper"
 msgstr "Kemik Haritalayıcı"
 
@@ -2790,6 +2929,21 @@ msgstr "Önceki Anahatı Göster"
 #: editor/editor_settings.cpp
 msgid "Auto Bake Delay"
 msgstr "Otomatik Fırınlama Gecikmesi"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default Animation Step"
+msgstr "Varsayılan Eylem Haritası"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Mode"
+msgstr "Varsayılan Görüntü Modu"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Compatibility"
+msgstr "Uyumluluk"
 
 #: editor/editor_settings.cpp
 msgid "Autorename Animation Tracks"
@@ -2975,6 +3129,11 @@ msgstr "Uzak Sahne Ağacına Otomatik Geçiş"
 #: editor/editor_settings.cpp
 msgid "Auto Switch to Stack Trace"
 msgstr "Yığın İzlemeye Otomatik Geçiş"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Max Node Selection"
+msgstr "Metin Seçimi"
 
 #: editor/editor_settings.cpp
 msgid "Profiler Frame History Size"
@@ -3177,6 +3336,10 @@ msgstr "Üye Değişken Rengi"
 msgid "Mark Color"
 msgstr "İşaretleme Rengi"
 
+#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
+msgid "Warning Color"
+msgstr "Uyarı Rengi"
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Bookmark Color"
 msgstr "Yer İmi Rengi"
@@ -3277,22 +3440,251 @@ msgstr "Özel Rengi"
 msgid "Particle Color"
 msgstr "Parçacık Rengi"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 msgid "Custom Template"
 msgstr "Özel Şablon"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "Yayınla"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+msgid "Architectures"
+msgstr "Mimariler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "App Store Team ID"
+msgstr "Uygulama Mağazası Takım Kimliği"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Export Method Debug"
+msgstr "Dışa Aktarma Yöntemi Hata Ayıklama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Debug"
+msgstr "Kod İmzası Kimliği Hata Ayıklama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Release"
+msgstr "Kod İmzalama Kimliği Yayınlama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Debug"
+msgstr "Önhazırlık Profili Benzersiz Kimliği Hata Ayıklama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Release"
+msgstr "Ön hazırlık Profil Benzersiz Kimliği Yayınlama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile Specifier Debug"
+msgstr "ÖnHazırlık Profili Belirleyicisi Hata Ayıklama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile Specifier Release"
+msgstr "ÖnHazırlık Profili Belirleyicisi Yayın"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Export Method Release"
+msgstr "Dışa Aktarma Yöntemi Yayınlama"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Bundle Identifier"
+msgstr "Paket Tanımlayıcı"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Signature"
+msgstr "İmza"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Short Version"
+msgstr "Kısa Sürüm"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Additional Plist Content"
+msgstr "Ek Plist İçeriği"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+msgid "Icon Interpolation"
+msgstr "Simge Ara Değerleme"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Export Project Only"
+msgstr "Yalnızca Projeyi Dışa Aktar"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr "Eski Dışa Aktarma Dosyalarını Koşulsuz Sil"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+msgid "Plugins"
+msgstr "Eklentiler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Entitlements"
+msgstr "Yetkilendirmeler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Increased Memory Limit"
+msgstr "Artırılmış Bellek Sınırı"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Game Center"
+msgstr "Oyun Merkezi"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Push Notifications"
+msgstr "Anlık Bildirimler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Additional"
+msgstr "Ek"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Capabilities"
+msgstr "Yetenekler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Access Wi-Fi"
+msgstr "Wi-Fi'ye Eriş"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Performance Gaming Tier"
+msgstr "Performans Oyun Sınıfı"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Performance A 12"
+msgstr "Performans A 12"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: platform/android/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Shader Baker"
+msgstr "Gölgelendirici Ön Belleği"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
+#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
+#: modules/noise/fastnoise_lite.cpp platform/android/export/export_plugin.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/web/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
+#: scene/2d/light_2d.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/2d/physics/joints/pin_joint_2d.cpp scene/2d/physics/ray_cast_2d.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/tile_map_layer.cpp
+#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
+#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
+#: scene/resources/curve.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: servers/rendering_server.cpp
+msgid "Enabled"
+msgstr "Etkin"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "User Data"
+msgstr "Kullanıcı Verisi"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From Files App"
+msgstr "Dosya Uygulamasından Erişilebilir"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From iTunes Sharing"
+msgstr "iTunes Paylaşımından Erişilebilir"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Privacy"
+msgstr "Gizlilik"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Camera Usage Description"
+msgstr "Kamera Kullanım Açıklaması"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Camera Usage Description Localized"
+msgstr "Kamera Kullanım Açıklaması Yerelleştirilmiş"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Microphone Usage Description"
+msgstr "Mikrofon Kullanım Açıklaması"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Microphone Usage Description Localized"
+msgstr "Mikrofon Kullanım Açıklaması Yerelleştirilmiş"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Photolibrary Usage Description"
+msgstr "Fotoğraf Kitaplığı Kullanım Açıklaması"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Photolibrary Usage Description Localized"
+msgstr "Fotoğraf Kitaplığı Kullanım Açıklaması Yerelleştirilmiş"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Tracking Enabled"
+msgstr "İzleme Etkinleştirildi"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Tracking Domains"
+msgstr "İzleme Etki Alanları"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
+#: scene/main/window.cpp
+msgid "Icons"
+msgstr "Simgeler"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024"
+msgstr "Simge 1024 X 1024"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024 Dark"
+msgstr "Simge 1024 X 1024 Koyu"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024 Tinted"
+msgstr "Simge 1024 X 1024 Renkli"
 
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -3528,14 +3920,14 @@ msgstr "Fizik Malzemenin Üzerine Yaz"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/canvas_layer.cpp
 msgid "Layer"
 msgstr "Katman"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr "Maske"
@@ -3644,7 +4036,8 @@ msgstr "İlkel"
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
 #: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
@@ -3659,10 +4052,12 @@ msgstr "Yükseklik"
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 #: modules/openxr/scene/openxr_composition_layer_equirect.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/vehicle_body_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/3d/occluder_instance_3d.cpp scene/3d/physics/vehicle_body_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 #: scene/animation/root_motion_view.cpp scene/resources/2d/capsule_shape_2d.cpp
@@ -3684,34 +4079,6 @@ msgstr "Basitleştirme Mesafesi"
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Save to File"
 msgstr "Dosyaya Kaydet"
-
-#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
-#: modules/noise/fastnoise_lite.cpp platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
-#: scene/2d/gpu_particles_2d.cpp scene/2d/light_2d.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
-#: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
-#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
-#: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
-#: scene/3d/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
-#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
-#: scene/main/canvas_layer.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
-#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
-#: scene/resources/curve.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
-#: servers/rendering_server.cpp
-msgid "Enabled"
-msgstr "Etkin"
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Shadow Meshes"
@@ -3833,6 +4200,11 @@ msgid "Import as Skeleton Bones"
 msgstr "İskelet Kemikleri Olarak İçe Aktar"
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Use Name Suffixes"
+msgstr "Düğüm Türü Son-eklerini Kullan"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Use Node Type Suffixes"
 msgstr "Düğüm Türü Son-eklerini Kullan"
 
@@ -3932,6 +4304,11 @@ msgstr "Oto-İpucunu Zorla"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+msgid "Modulate Color Glyphs"
+msgstr ""
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Hinting"
 msgstr "İpucu"
 
@@ -3944,12 +4321,6 @@ msgstr "Alt-Piksel Konumlandırma"
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Keep Rounding Remainders"
 msgstr "Kalanları Yuvarlamaya Devam Et"
-
-#: editor/import/dynamic_font_import_settings.cpp
-#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
-#: servers/audio/effects/audio_effect_pitch_shift.cpp
-msgid "Oversampling"
-msgstr "Sıkörnekleme"
 
 #: editor/import/dynamic_font_import_settings.cpp
 msgid "Metadata Overrides"
@@ -3980,14 +4351,15 @@ msgstr "Sonçareler"
 #: editor/import/resource_importer_dynamic_font.cpp
 #: editor/import/resource_importer_imagefont.cpp
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_svg.cpp
 #: editor/import/resource_importer_texture.cpp
 #: editor/import/resource_importer_wav.cpp servers/rendering_server.cpp
 msgid "Compress"
 msgstr "Sıkıştır"
 
 #: editor/import/dynamic_font_import_settings.cpp scene/3d/label_3d.cpp
-#: scene/gui/button.cpp scene/gui/label.cpp scene/gui/line_edit.cpp
-#: scene/gui/link_button.cpp scene/gui/menu_bar.cpp
+#: scene/gui/button.cpp scene/gui/foldable_container.cpp scene/gui/label.cpp
+#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
 #: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: servers/rendering/rendering_device_binds.h
@@ -4083,6 +4455,18 @@ msgstr "Kayıplı Kalite"
 
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "UASTC Level"
+msgstr "Üst Seviye"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "RDO Quality Loss"
+msgstr "Kalite"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
 msgid "HDR Compression"
 msgstr "HDR Sıkıştırma"
 
@@ -4127,6 +4511,21 @@ msgstr "Yerleştirme"
 msgid "Layout"
 msgstr "Yerleşim Düzeni"
 
+#: editor/import/resource_importer_svg.cpp scene/2d/parallax_background.cpp
+#: scene/resources/svg_texture.cpp scene/theme/theme_db.cpp
+msgid "Base Scale"
+msgstr "Temel Ölçek"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/environment.cpp
+#: scene/resources/svg_texture.cpp
+msgid "Saturation"
+msgstr "Doygunluk"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/svg_texture.cpp
+#, fuzzy
+msgid "Color Map"
+msgstr "Renk Yokuşu"
+
 #: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
 msgid "Normal Map"
 msgstr "Normal Haritası"
@@ -4143,6 +4542,30 @@ msgstr "Normal Kaynağı"
 #: scene/animation/animation_mixer.cpp scene/main/node.cpp
 msgid "Process"
 msgstr "İşlem"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Channel Remap"
+msgstr "Kanal Paketi"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Red"
+msgstr "Yeniden Yükle"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Green"
+msgstr "Ekran"
+
+#: editor/import/resource_importer_texture.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Alpha"
+msgstr "Alfa Kesme"
 
 #: editor/import/resource_importer_texture.cpp
 msgid "Fix Alpha Border"
@@ -4405,7 +4828,7 @@ msgid "Verbose stdout"
 msgstr "Ayrıntılı stdout"
 
 #: main/main.cpp scene/main/node.cpp scene/main/scene_tree.cpp
-#: scene/resources/multimesh.cpp
+#: scene/main/scene_tree_fti.cpp scene/resources/multimesh.cpp
 msgid "Physics Interpolation"
 msgstr "Fizik Ara Değerleme"
 
@@ -4515,12 +4938,13 @@ msgid "Allowed"
 msgstr "İzin Verildi"
 
 #: main/main.cpp
+#, fuzzy
+msgid "Load Shell Environment"
+msgstr "Sonçare Ortamı"
+
+#: main/main.cpp
 msgid "Threads"
 msgstr "İş parçacıkları"
-
-#: main/main.cpp servers/navigation_server_3d.cpp
-msgid "Thread Model"
-msgstr "İş Parçası Modeli"
 
 #: main/main.cpp
 msgid "Display Server"
@@ -4913,6 +5337,35 @@ msgstr "Derlemeler Çizim"
 msgid "Compilations Specialization"
 msgstr "Derlemeler Uzmanlık"
 
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 2D"
+msgstr "Gezinti"
+
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 3D"
+msgstr "Gezinti"
+
+#: modules/basis_universal/register_types.cpp
+msgid "Basis Universal"
+msgstr ""
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "RDO Dict Size"
+msgstr "Sekizlik Boyutu"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression"
+msgstr "Zstd Sıkıştırması Kullan"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression Level"
+msgstr "Sıkıştırma Seviyesi"
+
 #: modules/csg/csg_shape.cpp
 msgid "Operation"
 msgstr "İşlem"
@@ -4925,7 +5378,7 @@ msgstr "Teğetleri Hesapla"
 #: scene/2d/gpu_particles_2d.cpp scene/2d/physics/character_body_2d.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/gpu_particles_3d.cpp
 #: scene/3d/physics/character_body_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/scene_tree.cpp scene/resources/particle_process_material.cpp
 msgid "Collision"
 msgstr "Çarpışma"
@@ -5118,10 +5571,6 @@ msgid "Critical Color"
 msgstr "Kritik Renk"
 
 #: modules/gdscript/editor/gdscript_highlighter.cpp
-msgid "Warning Color"
-msgstr "Uyarı Rengi"
-
-#: modules/gdscript/editor/gdscript_highlighter.cpp
 msgid "Notice Color"
 msgstr "Bildirme Rengi"
 
@@ -5140,6 +5589,15 @@ msgstr "Bildirme Listesi"
 #: modules/gdscript/gdscript.cpp
 msgid "Max Call Stack"
 msgstr "En Fazla Çağrı Yığını"
+
+#: modules/gdscript/gdscript.cpp
+#, fuzzy
+msgid "Always Track Call Stacks"
+msgstr "En Fazla Çağrı Yığını"
+
+#: modules/gdscript/gdscript.cpp
+msgid "Always Track Local Variables"
+msgstr ""
 
 #: modules/gdscript/gdscript.cpp
 msgid "Exclude Addons"
@@ -5301,8 +5759,23 @@ msgid "Image Format"
 msgstr "Resim Formatı"
 
 #: modules/gltf/gltf_document.cpp
+#, fuzzy
+msgid "Fallback Image Format"
+msgstr "Resim Formatı"
+
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
+msgid "Fallback Image Quality"
+msgstr "Fırınlama Kalitesi"
+
+#: modules/gltf/gltf_document.cpp
 msgid "Root Node Mode"
 msgstr "Kök Düğüm Kipi"
+
+#: modules/gltf/gltf_document.cpp scene/2d/physics/touch_screen_button.cpp
+#: scene/2d/tile_map_layer.cpp
+msgid "Visibility Mode"
+msgstr "Görünürlük Kipi"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -5540,6 +6013,13 @@ msgstr "Alt-ögeler"
 msgid "Light"
 msgstr "Işık"
 
+#: modules/gltf/structures/gltf_node.cpp scene/3d/node_3d.cpp
+#: scene/gui/rich_text_effect.cpp scene/gui/tree.cpp scene/main/canvas_item.cpp
+#: scene/main/canvas_layer.cpp scene/main/status_indicator.cpp
+#: scene/main/window.cpp
+msgid "Visible"
+msgstr "Görünür"
+
 #: modules/gltf/structures/gltf_object_model_property.cpp
 msgid "glTF to Godot Expression"
 msgstr "glTF'den Godot İfadesi'ne"
@@ -5604,10 +6084,12 @@ msgid "Sampler"
 msgstr "Örnekleyici"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 msgid "Mag Filter"
 msgstr "Büyütme Filtresi"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 msgid "Min Filter"
 msgstr "Küçültme Filtresi"
 
@@ -5698,10 +6180,6 @@ msgstr "Konum Adımları"
 #: modules/jolt_physics/jolt_project_settings.cpp
 msgid "Use Enhanced Internal Edge Removal"
 msgstr "Geliştirilmiş Dahili Kenar Kaldırmayı Kullan"
-
-#: modules/jolt_physics/jolt_project_settings.cpp
-msgid "Areas Detect Static Bodies"
-msgstr "Alanlar Statik Cisimleri Tespit Et"
 
 #: modules/jolt_physics/jolt_project_settings.cpp
 msgid "Generate All Kinematic Contacts"
@@ -6237,6 +6715,54 @@ msgstr "Alfa Karışımı"
 msgid "Enable Hole Punch"
 msgstr "Delgeçi Etkinleştir"
 
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Swapchain State"
+msgstr "Swapchain (Takas Zinciri) Görüntü Sayısı"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Mipmap Mode"
+msgstr "Karıştırma Kipi"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Horizontal Wrap"
+msgstr "Yatay"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Vertical Wrap"
+msgstr "Dikey Solma"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Red Swizzle"
+msgstr "Sabit Boyut"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Green Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Blue Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Swizzle"
+msgstr "Alfa Karışımı"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Max Anisotropy"
+msgstr "Eşyönsüzlük"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#: scene/gui/reference_rect.cpp
+msgid "Border Color"
+msgstr "Kenarlık Rengi"
+
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 msgid "Aspect Ratio"
 msgstr "En Boy Oranı"
@@ -6282,8 +6808,8 @@ msgstr "El İskeleti"
 msgid "Skeleton Rig"
 msgstr "İskelet Teçhizatı"
 
-#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 msgid "Bone Update"
 msgstr "Kemik Güncellemesi"
 
@@ -6489,10 +7015,6 @@ msgid "Android Source Template"
 msgstr "Android Kaynak Şablonu"
 
 #: platform/android/export/export_plugin.cpp
-msgid "Compress Native Libraries"
-msgstr "Yerel Kütüphaneleri Sıkıştır"
-
-#: platform/android/export/export_plugin.cpp
 msgid "Export Format"
 msgstr "Dışa Aktarım Biçimi"
 
@@ -6505,14 +7027,9 @@ msgid "Target SDK"
 msgstr "Hedef SDK"
 
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
-msgid "Plugins"
-msgstr "Eklentiler"
-
-#: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
-msgid "Architectures"
-msgstr "Mimariler"
+#, fuzzy
+msgid "Custom Theme Attributes"
+msgstr "Kamera Öznitelikleri"
 
 #: platform/android/export/export_plugin.cpp
 msgid "Keystore"
@@ -6659,10 +7176,37 @@ msgstr "Özel İzinler"
 msgid "iOS Deploy"
 msgstr "iOS Dağıtım"
 
-#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
-#: scene/main/window.cpp
-msgid "Icons"
-msgstr "Simgeler"
+#: platform/ios/export/export_plugin.cpp
+msgid "Targeted Device Family"
+msgstr "Hedeflenen Cihaz Ailesi"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Min iOS Version"
+msgstr "En düşük iOS Sürümü"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Storyboard"
+msgstr "Hikaye tahtası"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Image Scale Mode"
+msgstr "Resim Ölçek Kipi"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Custom Image @2x"
+msgstr "Özel Resim @2x"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Custom Image @3x"
+msgstr "Özel Resim @3x"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Use Custom BG Color"
+msgstr "Özel Arkaplan Rengi Kullan"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Custom BG Color"
+msgstr "Özel Arkaplan Rengi"
 
 #: platform/ios/export/export_plugin.cpp
 msgid "Settings 58 X 58"
@@ -6727,213 +7271,6 @@ msgstr "iOS 136 X 136"
 #: platform/ios/export/export_plugin.cpp
 msgid "App Store 1024 X 1024"
 msgstr "App Store 1024 X 1024"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "App Store Team ID"
-msgstr "Uygulama Mağazası Takım Kimliği"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Export Method Debug"
-msgstr "Dışa Aktarma Yöntemi Hata Ayıklama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Debug"
-msgstr "Kod İmzası Kimliği Hata Ayıklama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Release"
-msgstr "Kod İmzalama Kimliği Yayınlama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Debug"
-msgstr "Önhazırlık Profili Benzersiz Kimliği Hata Ayıklama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Release"
-msgstr "Ön hazırlık Profil Benzersiz Kimliği Yayınlama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile Specifier Debug"
-msgstr "ÖnHazırlık Profili Belirleyicisi Hata Ayıklama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile Specifier Release"
-msgstr "ÖnHazırlık Profili Belirleyicisi Yayın"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Export Method Release"
-msgstr "Dışa Aktarma Yöntemi Yayınlama"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Targeted Device Family"
-msgstr "Hedeflenen Cihaz Ailesi"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Bundle Identifier"
-msgstr "Paket Tanımlayıcı"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Signature"
-msgstr "İmza"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Short Version"
-msgstr "Kısa Sürüm"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Min iOS Version"
-msgstr "En düşük iOS Sürümü"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Additional Plist Content"
-msgstr "Ek Plist İçeriği"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-msgid "Icon Interpolation"
-msgstr "Simge Ara Değerleme"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Export Project Only"
-msgstr "Yalnızca Projeyi Dışa Aktar"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Delete Old Export Files Unconditionally"
-msgstr "Eski Dışa Aktarma Dosyalarını Koşulsuz Sil"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Entitlements"
-msgstr "Yetkilendirmeler"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Increased Memory Limit"
-msgstr "Artırılmış Bellek Sınırı"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Game Center"
-msgstr "Oyun Merkezi"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Push Notifications"
-msgstr "Anlık Bildirimler"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Additional"
-msgstr "Ek"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Capabilities"
-msgstr "Yetenekler"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Access Wi-Fi"
-msgstr "Wi-Fi'ye Eriş"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Performance Gaming Tier"
-msgstr "Performans Oyun Sınıfı"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Performance A 12"
-msgstr "Performans A 12"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "User Data"
-msgstr "Kullanıcı Verisi"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From Files App"
-msgstr "Dosya Uygulamasından Erişilebilir"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From iTunes Sharing"
-msgstr "iTunes Paylaşımından Erişilebilir"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Privacy"
-msgstr "Gizlilik"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Camera Usage Description"
-msgstr "Kamera Kullanım Açıklaması"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Camera Usage Description Localized"
-msgstr "Kamera Kullanım Açıklaması Yerelleştirilmiş"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Microphone Usage Description"
-msgstr "Mikrofon Kullanım Açıklaması"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Microphone Usage Description Localized"
-msgstr "Mikrofon Kullanım Açıklaması Yerelleştirilmiş"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Photolibrary Usage Description"
-msgstr "Fotoğraf Kitaplığı Kullanım Açıklaması"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Photolibrary Usage Description Localized"
-msgstr "Fotoğraf Kitaplığı Kullanım Açıklaması Yerelleştirilmiş"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Tracking Enabled"
-msgstr "İzleme Etkinleştirildi"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Tracking Domains"
-msgstr "İzleme Etki Alanları"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024"
-msgstr "Simge 1024 X 1024"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024 Dark"
-msgstr "Simge 1024 X 1024 Koyu"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024 Tinted"
-msgstr "Simge 1024 X 1024 Renkli"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Storyboard"
-msgstr "Hikaye tahtası"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Image Scale Mode"
-msgstr "Resim Ölçek Kipi"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Custom Image @2x"
-msgstr "Özel Resim @2x"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Custom Image @3x"
-msgstr "Özel Resim @3x"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Use Custom BG Color"
-msgstr "Özel Arkaplan Rengi Kullan"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Custom BG Color"
-msgstr "Özel Arkaplan Rengi"
 
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -7250,6 +7587,11 @@ msgstr "Çıkarılabilir Diskler Kullanım Açıklaması"
 msgid "Removable Volumes Usage Description Localized"
 msgstr "Çıkarılabilir Diskler Kullanım Açıklaması Yerelleştirilmiş"
 
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min Visionos Version"
+msgstr "En düşük iOS Sürümü"
+
 #: platform/web/export/export.cpp
 msgid "Web"
 msgstr "Web"
@@ -7285,6 +7627,15 @@ msgstr "Uzantılar Desteği"
 #: platform/web/export/export_plugin.cpp
 msgid "Thread Support"
 msgstr "İş Parçaları Desteği"
+
+#: platform/web/export/export_plugin.cpp
+msgid "Emscripten Pool Size"
+msgstr ""
+
+#: platform/web/export/export_plugin.cpp
+#, fuzzy
+msgid "Godot Pool Size"
+msgstr "Godot Kaplaması"
 
 #: platform/web/export/export_plugin.cpp
 msgid "VRAM Texture Compression"
@@ -7355,20 +7706,12 @@ msgid "Windows"
 msgstr "Windows"
 
 #: platform/windows/export/export.cpp
-msgid "rcedit"
-msgstr "rcedit"
-
-#: platform/windows/export/export.cpp
 msgid "signtool"
 msgstr "signtool"
 
 #: platform/windows/export/export.cpp
 msgid "osslsigncode"
 msgstr "osslsigncode"
-
-#: platform/windows/export/export.cpp
-msgid "wine"
-msgstr "wine"
 
 #: platform/windows/export/export_plugin.cpp
 msgid "Identity Type"
@@ -7438,7 +7781,8 @@ msgstr "Kare"
 #: scene/2d/animated_sprite_2d.cpp scene/2d/cpu_particles_2d.cpp
 #: scene/2d/gpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/sprite_3d.cpp
-#: scene/animation/animation_player.cpp scene/resources/animated_texture.cpp
+#: scene/animation/animation_player.cpp scene/gui/video_stream_player.cpp
+#: scene/resources/animated_texture.cpp
 msgid "Speed Scale"
 msgstr "Hız Ölçeği"
 
@@ -7460,7 +7804,7 @@ msgid "Flip V"
 msgstr "Ters Çevir Dikey"
 
 #: scene/2d/audio_listener_2d.cpp scene/3d/audio_listener_3d.cpp
-#: scene/3d/camera_3d.cpp scene/3d/xr_nodes.cpp
+#: scene/3d/camera_3d.cpp scene/3d/xr/xr_nodes.cpp
 msgid "Current"
 msgstr "Mevcut"
 
@@ -7716,7 +8060,7 @@ msgid "Emission Shape"
 msgstr "Yayılma Şekli"
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/physics/collision_shape_2d.cpp
-#: scene/2d/physics/shape_cast_2d.cpp scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/physics/touch_screen_button.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/fog_volume.cpp
 #: scene/3d/physics/collision_shape_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/primitive_meshes.cpp
@@ -8114,166 +8458,192 @@ msgstr "Alet Uzanımları"
 msgid "Multimesh"
 msgstr "Çokluörgü"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: servers/navigation_server_3d.cpp
-msgid "Pathfinding"
-msgstr "Yol bulma"
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Desired Distance"
 msgstr "Yol İstenilen Mesafe"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Target Desired Distance"
 msgstr "Hedef İstenilen Mesafe"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Max Distance"
 msgstr "Yol En Uzun Mesafe"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
-#: scene/resources/2d/tile_set.cpp scene/resources/3d/mesh_library.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
+#: scene/resources/3d/mesh_library.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Navigation Layers"
 msgstr "Gezinim Katmanları"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Pathfinding Algorithm"
 msgstr "Yol bulucu Algoritmaları"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Path Postprocessing"
 msgstr "Yol Sonİşlemeler"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Metadata Flags"
 msgstr "Yol Metaveri Bayrakları"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Simplify Path"
 msgstr "Yolu Basitleştir"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Simplify Epsilon"
 msgstr "Epsilon'u basitleştir"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
-#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
-msgid "Avoidance"
-msgstr "Kaçınma"
-
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Avoidance Enabled"
 msgstr "Kaçınma Etkin"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Neighbor Distance"
 msgstr "Komşu Mesafesi"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Max Neighbors"
 msgstr "En Fazla Komşular"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Time Horizon Agents"
 msgstr "Zaman Ufuk Çizgisi Vekilleri"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Time Horizon Obstacles"
 msgstr "Zaman Ufuk Çizgisi Engelleri"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Max Speed"
 msgstr "En Fazla Hız"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Avoidance Layers"
 msgstr "Kaçınma Katmanları"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Avoidance Mask"
 msgstr "Kaçınma Maskesi"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Avoidance Priority"
 msgstr "Kaçınma Önceliği"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Use Custom"
 msgstr "Özel Kullan"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Custom Color"
 msgstr "Yol Özel Renk"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Custom Point Size"
 msgstr "Yol Özel Nokta Boyutu"
 
-#: scene/2d/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
 msgid "Path Custom Line Width"
 msgstr "Yol Özel Çizgi Genişliği"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 msgid "Bidirectional"
 msgstr "İkiyönlü"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Start Position"
 msgstr "Başlama Konumu"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 msgid "End Position"
 msgstr "Bitiş Konumu"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 msgid "Enter Cost"
 msgstr "Maliyeti Gir"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 msgid "Travel Cost"
 msgstr "Seyahat Maliyeti"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Vertices"
 msgstr "Köşeler"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "NavigationMesh"
 msgstr "GezintiÖrgüsü"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Affect Navigation Mesh"
 msgstr "Gezinti Örgüsünü Etkile"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Carve Navigation Mesh"
 msgstr "Gezinti Örgüsünü Kazı"
 
-#: scene/2d/navigation_region_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
 msgid "Navigation Polygon"
 msgstr "Gezinim Çokgeni"
 
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
-#: servers/navigation_server_3d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Use Edge Connections"
 msgstr "Kenar Bağlantılarını Kullan"
 
@@ -8337,10 +8707,6 @@ msgstr "Kaydır"
 #: scene/2d/parallax_background.cpp
 msgid "Base Offset"
 msgstr "Temel Kayma"
-
-#: scene/2d/parallax_background.cpp scene/theme/theme_db.cpp
-msgid "Base Scale"
-msgstr "Temel Ölçek"
 
 #: scene/2d/parallax_background.cpp
 msgid "Limit Begin"
@@ -8512,7 +8878,7 @@ msgid "Safe Margin"
 msgstr "Güvenli Kenar Boşluğu"
 
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 msgid "Disable Mode"
 msgstr "Etkisizleştirme Kipi"
 
@@ -8538,9 +8904,13 @@ msgid "One Way Collision"
 msgstr "Tek Yönlü Çarpışma"
 
 #: scene/2d/physics/collision_polygon_2d.cpp
-#: scene/2d/physics/collision_shape_2d.cpp
-msgid "One Way Collision Margin"
-msgstr "Tek Yönlü Çarpışma Kenar Boşluğu"
+#: scene/2d/physics/collision_shape_2d.cpp scene/2d/physics/shape_cast_2d.cpp
+#: scene/3d/physics/collision_polygon_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/shape_3d.cpp
+#: scene/resources/atlas_texture.cpp scene/theme/default_theme.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
+msgid "Margin"
+msgstr "Kenar Boşluğu"
 
 #: scene/2d/physics/collision_shape_2d.cpp
 #: scene/3d/physics/collision_polygon_3d.cpp
@@ -8776,14 +9146,6 @@ msgstr "Kuvvet"
 msgid "Torque"
 msgstr "Dönme Kuvveti"
 
-#: scene/2d/physics/shape_cast_2d.cpp scene/3d/physics/collision_polygon_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp scene/3d/physics/spring_arm_3d.cpp
-#: scene/resources/3d/shape_3d.cpp scene/resources/atlas_texture.cpp
-#: scene/theme/default_theme.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
-msgid "Margin"
-msgstr "Kenar Boşluğu"
-
 #: scene/2d/physics/static_body_2d.cpp scene/3d/physics/static_body_3d.cpp
 msgid "Constant Linear Velocity"
 msgstr "Sabit Doğrusal Hız"
@@ -8791,6 +9153,30 @@ msgstr "Sabit Doğrusal Hız"
 #: scene/2d/physics/static_body_2d.cpp scene/3d/physics/static_body_3d.cpp
 msgid "Constant Angular Velocity"
 msgstr "Sabit Açısal Hız"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Texture Normal"
+msgstr "Doku Normali"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Texture Pressed"
+msgstr "Doku Basıldı"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Bitmask"
+msgstr "Bitmaskesi"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Shape Centered"
+msgstr "Şekil Merkeze Hizalı"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Shape Visible"
+msgstr "Şakil Görünebilir"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Passby Press"
+msgstr "Geçerken Basma"
 
 #: scene/2d/polygon_2d.cpp
 msgid "UV"
@@ -8872,7 +9258,7 @@ msgstr "Çarpışma Canlandırılabilir"
 msgid "Collision Visibility Mode"
 msgstr "Çarpışma Görünürlük Kipi"
 
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/2d/tile_map.cpp
 msgid "Navigation Visibility Mode"
 msgstr "Gezinti Görünürlük Kipi"
 
@@ -8897,36 +9283,14 @@ msgid "Use Kinematic Bodies"
 msgstr "Kinematik Cisimleri Kullan"
 
 #: scene/2d/tile_map_layer.cpp
-msgid "Navigation Enabled"
-msgstr "Gezinme Etkinleştirildi"
+#, fuzzy
+msgid "Physics Quadrant Size"
+msgstr "Çeyreğin Boyutu İşleniyor"
 
-#: scene/2d/touch_screen_button.cpp
-msgid "Texture Normal"
-msgstr "Doku Normali"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Texture Pressed"
-msgstr "Doku Basıldı"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Bitmask"
-msgstr "Bitmaskesi"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Shape Centered"
-msgstr "Şekil Merkeze Hizalı"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Shape Visible"
-msgstr "Şakil Görünebilir"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Passby Press"
-msgstr "Geçerken Basma"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Visibility Mode"
-msgstr "Görünürlük Kipi"
+#: scene/2d/visible_on_screen_notifier_2d.cpp
+#, fuzzy
+msgid "Show Rect"
+msgstr "Şekil Dikdörtgen"
 
 #: scene/2d/visible_on_screen_notifier_2d.cpp
 #: scene/3d/visible_on_screen_notifier_3d.cpp
@@ -8997,6 +9361,16 @@ msgstr "Kemik İndeksi"
 #: scene/3d/bone_attachment_3d.cpp
 msgid "Override Pose"
 msgstr "Üzerine Yazma Duruşu"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "Use External Skeleton"
+msgstr "Harici Düzenleyici Kullan"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "External Skeleton"
+msgstr "Orijinal İskelet İsmi"
 
 #: scene/3d/camera_3d.cpp
 msgid "Keep Aspect"
@@ -9295,14 +9669,19 @@ msgstr "Dikey Hizalama"
 msgid "Uppercase"
 msgstr "Büyük harf"
 
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
+#: scene/gui/rich_text_label.cpp
+msgid "Autowrap Trim Flags"
+msgstr ""
+
 #: scene/3d/label_3d.cpp scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #: scene/resources/3d/primitive_meshes.cpp scene/resources/text_paragraph.cpp
 msgid "Justification Flags"
 msgstr "Kenar Hizalama Bayrakları"
 
-#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
-#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
-#: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/foldable_container.cpp
+#: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
+#: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 msgid "BiDi"
 msgstr "İkiYönlü"
@@ -9508,8 +9887,8 @@ msgstr "En Büyük Doku Boyutu"
 msgid "Custom Sky"
 msgstr "Özel Gökyüzü"
 
-#: scene/3d/lightmap_gi.cpp scene/3d/physics/ray_cast_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/lightmap_gi.cpp scene/3d/path_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 msgid "Custom Color"
 msgstr "Özel Renk"
 
@@ -9639,19 +10018,21 @@ msgstr "İkincil Negatif Yavaşlatma Eşiği"
 msgid "Surface Material Override"
 msgstr "Yüzey Malzemesi Üzerine Yaz"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Height Offset"
 msgstr "Yol Yüksekliği Kayması"
 
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 msgid "Use 3D Avoidance"
 msgstr "3B Kaçınma Kullan"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Keep Y Velocity"
 msgstr "Y Hızını Koru"
 
-#: scene/3d/navigation_region_3d.cpp scene/resources/3d/mesh_library.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: scene/resources/3d/mesh_library.cpp
 msgid "Navigation Mesh"
 msgstr "Gezinti Örgüsü"
 
@@ -9679,12 +10060,6 @@ msgstr "Üst Seviye"
 msgid "Visibility"
 msgstr "Görünürlük"
 
-#: scene/3d/node_3d.cpp scene/gui/rich_text_effect.cpp scene/gui/tree.cpp
-#: scene/main/canvas_item.cpp scene/main/canvas_layer.cpp
-#: scene/main/status_indicator.cpp scene/main/window.cpp
-msgid "Visible"
-msgstr "Görünür"
-
 #: scene/3d/node_3d.cpp
 msgid "Visibility Parent"
 msgstr "Görünürlük Üst Öğesi"
@@ -9692,6 +10067,11 @@ msgstr "Görünürlük Üst Öğesi"
 #: scene/3d/occluder_instance_3d.cpp
 msgid "Bake"
 msgstr "Fırınla"
+
+#: scene/3d/path_3d.cpp scene/3d/physics/ray_cast_3d.cpp
+#: scene/3d/physics/shape_cast_3d.cpp
+msgid "Debug Shape"
+msgstr "Hata Ayıklayıcı Şekil"
 
 #: scene/3d/path_3d.cpp
 msgid "Rotation Mode"
@@ -9729,7 +10109,7 @@ msgstr "Yankılama Veriyolu"
 msgid "Uniformity"
 msgstr "Tekdüzelik"
 
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 msgid "Ray Pickable"
 msgstr "Işın Seçilebilir"
 
@@ -10034,9 +10414,54 @@ msgstr "Açısal Z"
 msgid "Hit Back Faces"
 msgstr "Geri Çarpma Yüzleri"
 
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
-msgid "Debug Shape"
-msgstr "Hata Ayıklayıcı Şekil"
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Pinned Points"
+msgstr "Sabitlenmiş Noktalar"
+
+#: scene/3d/physics/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
+msgid "Attachments"
+msgstr "Eklentiler"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Point Index"
+msgstr "Nokta İndeksi"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Spatial Attachment Path"
+msgstr "Uzaysal Eklenti Yolu"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Parent Collision Ignore"
+msgstr "Üst-öge Çarpışmayı Yoksay"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Simulation Precision"
+msgstr "Benzetim Hassasiyeti"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Total Mass"
+msgstr "Toplam Kütle"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Linear Stiffness"
+msgstr "Doğrusal Eğilmezlik"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Shrinking Factor"
+msgstr "Süper Örnekleme Çarpanı"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Pressure Coefficient"
+msgstr "Basınç Katsayısı"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Damping Coefficient"
+msgstr "Yavaşlatma Katsayısı"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Drag Coefficient"
+msgstr "Sürükleme Katsayısı"
 
 #: scene/3d/physics/spring_arm_3d.cpp
 msgid "Spring Length"
@@ -10163,7 +10588,7 @@ msgstr "Kök Kemik"
 msgid "Tip Bone"
 msgstr "Tepe Kemik"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "Hedef"
 
@@ -10197,50 +10622,6 @@ msgstr "Etkin"
 msgid "Influence"
 msgstr "Etki"
 
-#: scene/3d/soft_body_3d.cpp
-msgid "Pinned Points"
-msgstr "Sabitlenmiş Noktalar"
-
-#: scene/3d/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
-msgid "Attachments"
-msgstr "Eklentiler"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Point Index"
-msgstr "Nokta İndeksi"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Spatial Attachment Path"
-msgstr "Uzaysal Eklenti Yolu"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Parent Collision Ignore"
-msgstr "Üst-öge Çarpışmayı Yoksay"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Simulation Precision"
-msgstr "Benzetim Hassasiyeti"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Total Mass"
-msgstr "Toplam Kütle"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Linear Stiffness"
-msgstr "Doğrusal Eğilmezlik"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Pressure Coefficient"
-msgstr "Basınç Katsayısı"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Damping Coefficient"
-msgstr "Yavaşlatma Katsayısı"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Drag Coefficient"
-msgstr "Sürükleme Katsayısı"
-
 #: scene/3d/spring_bone_collision_3d.cpp scene/gui/graph_element.cpp
 msgid "Position Offset"
 msgstr "Konum Kayması"
@@ -10253,6 +10634,11 @@ msgstr "Döndürme Kayması"
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 msgid "Inside"
 msgstr "İçinde"
+
+#: scene/3d/spring_bone_simulator_3d.cpp
+#, fuzzy
+msgid "External Force"
+msgstr "Harici Düğüm"
 
 #: scene/3d/velocity_tracker_3d.cpp
 msgid "Track Physics Step"
@@ -10324,35 +10710,35 @@ msgstr "Yayılma"
 msgid "Use Two Bounces"
 msgstr "İki Sekmeli Kullan"
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 msgid "Body Tracker"
 msgstr "Cisim İzleyici"
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 msgid "Body Update"
 msgstr "Cisim Güncellemesi"
 
-#: scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/xr/xr_face_modifier_3d.cpp
 msgid "Face Tracker"
 msgstr "Yüz İzleyici"
 
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 msgid "Hand Tracker"
 msgstr "El İzleyici"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 msgid "Tracker"
 msgstr "İzleyici"
 
-#: scene/3d/xr_nodes.cpp scene/resources/3d/skin.cpp
+#: scene/3d/xr/xr_nodes.cpp scene/resources/3d/skin.cpp
 msgid "Pose"
 msgstr "Duruş"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 msgid "Show When Tracked"
 msgstr "İzlendiğinde Göster"
 
-#: scene/3d/xr_nodes.cpp servers/xr_server.cpp
+#: scene/3d/xr/xr_nodes.cpp servers/xr_server.cpp
 msgid "World Scale"
 msgstr "Dünya Ölçeği"
 
@@ -10781,6 +11167,11 @@ msgid "Edit Alpha"
 msgstr "Alfayı Düzenle"
 
 #: scene/gui/color_picker.cpp
+#, fuzzy
+msgid "Edit Intensity"
+msgstr "Yoğunluk"
+
+#: scene/gui/color_picker.cpp
 msgid "Color Mode"
 msgstr "Renk Kipi"
 
@@ -10925,6 +11316,11 @@ msgid "Previous"
 msgstr "Önceki"
 
 #: scene/gui/control.cpp
+#, fuzzy
+msgid "Behavior Recursive"
+msgstr "Davranış"
+
+#: scene/gui/control.cpp
 msgid "Mouse"
 msgstr "Fare"
 
@@ -10992,6 +11388,46 @@ msgstr "Son Sargı Hizalaması"
 msgid "Reverse Fill"
 msgstr "Ters Dolgu"
 
+#: scene/gui/foldable_container.cpp scene/theme/default_theme.cpp
+msgid "Folded"
+msgstr "Katlanmış"
+
+#: scene/gui/foldable_container.cpp scene/gui/graph_frame.cpp
+#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/resources/visual_shader.cpp
+msgid "Title"
+msgstr "Başlık"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Alignment"
+msgstr "Sekme Hizalaması"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Position"
+msgstr "Başlangıç Konumu"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Overrun Behavior"
+msgstr "Metin Taşması Davranışı"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Foldable Group"
+msgstr "Katlanmış Ok"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Direction"
+msgstr "Metin Yönü"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Allow Folding All"
+msgstr "Kod Katlama Rengi"
+
 #: scene/gui/graph_edit.cpp
 msgid "Show Grid"
 msgstr "Izgarayı Göster"
@@ -11011,6 +11447,11 @@ msgstr "Kaydırma Düzeni"
 #: scene/gui/graph_edit.cpp
 msgid "Right Disconnects"
 msgstr "Sağ Basma Bağlantıyı Keser"
+
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Type Names"
+msgstr "Katman İsimleri"
 
 #: scene/gui/graph_edit.cpp
 msgid "Connection Lines"
@@ -11072,11 +11513,6 @@ msgstr "Sürüklenebilir"
 #: scene/theme/default_theme.cpp
 msgid "Selected"
 msgstr "Seçili"
-
-#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
-#: scene/resources/visual_shader.cpp
-msgid "Title"
-msgstr "Başlık"
 
 #: scene/gui/graph_frame.cpp
 msgid "Autoshrink Enabled"
@@ -11230,7 +11666,16 @@ msgid "Emoji Menu Enabled"
 msgstr "Emoji Menüsü Etkinleştirildi"
 
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+msgid "Backspace Deletes Composite Character Enabled"
+msgstr ""
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Virtual Keyboard Enabled"
+msgstr "Sanal Klavye Etkin"
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Virtual Keyboard Show on Focus"
 msgstr "Sanal Klavye Etkin"
 
 #: scene/gui/line_edit.cpp
@@ -11301,8 +11746,9 @@ msgid "Secret"
 msgstr "Gizli"
 
 #: scene/gui/line_edit.cpp
-msgid "Secret Character"
-msgstr "Gizli Karakter"
+#, fuzzy
+msgid "Character"
+msgstr "Karakter Aralıkları"
 
 #: scene/gui/link_button.cpp
 msgid "Underline"
@@ -11418,10 +11864,6 @@ msgstr "Daha Büyüğe İzin Ver"
 #: scene/gui/range.cpp
 msgid "Allow Lesser"
 msgstr "Daha Azına İzin Ver"
-
-#: scene/gui/reference_rect.cpp
-msgid "Border Color"
-msgstr "Kenarlık Rengi"
 
 #: scene/gui/reference_rect.cpp scene/resources/style_box_flat.cpp
 msgid "Border Width"
@@ -11580,6 +12022,11 @@ msgid "Dragger Visibility"
 msgstr "Sürükleyici Görünürlüğü"
 
 #: scene/gui/split_container.cpp
+#, fuzzy
+msgid "Touch Dragger Enabled"
+msgstr "Sürükleme Etkin"
+
+#: scene/gui/split_container.cpp
 msgid "Drag Area"
 msgstr "Sürükleme Alanı"
 
@@ -11614,6 +12061,10 @@ msgstr "Sekme Hizalaması"
 #: scene/gui/tab_bar.cpp scene/gui/tab_container.cpp
 msgid "Clip Tabs"
 msgstr "Sekmeleri Kes"
+
+#: scene/gui/tab_bar.cpp
+msgid "Close With Middle Mouse"
+msgstr ""
 
 #: scene/gui/tab_bar.cpp
 msgid "Tab Close Display Policy"
@@ -11678,6 +12129,11 @@ msgstr "Seçim Panosu Boşaltma Etkin"
 #: scene/gui/text_edit.cpp
 msgid "Wrap Mode"
 msgstr "Sarma Kipi"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Tab Input Mode"
+msgstr "Sekme Odak Kipi"
 
 #: scene/gui/text_edit.cpp
 msgid "Smooth"
@@ -11972,6 +12428,28 @@ msgstr "Otomatik Çeviri"
 msgid "Editor Description"
 msgstr "Düzenleyici Açıklaması"
 
+#: scene/main/node.cpp
+msgid "Live"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Controls Nodes"
+msgstr "Denetim Karakterleri"
+
+#: scene/main/node.cpp
+msgid "Described by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+msgid "Labeled by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Flow to Nodes"
+msgstr "Kök Düğümler"
+
 #: scene/main/scene_tree.cpp
 msgid "Time Left"
 msgstr "Kala Süre"
@@ -11993,7 +12471,7 @@ msgid "Multiplayer Poll"
 msgstr "Çokluoyuncu Sorgulama"
 
 #: scene/main/scene_tree.cpp scene/resources/3d/mesh_library.cpp
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Shapes"
 msgstr "Şekiller"
 
@@ -12128,6 +12606,11 @@ msgstr "Varsayılan Ortam"
 #: scene/main/scene_tree.cpp
 msgid "Enable Object Picking"
 msgstr "Nesne Seçmeyi Etkinleştir"
+
+#: scene/main/scene_tree_fti.cpp
+#, fuzzy
+msgid "Scene Traversal"
+msgstr "Sahne Ağacı"
 
 #: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
 msgid "Menu"
@@ -12281,6 +12764,15 @@ msgstr "Çeyrek 3"
 msgid "Canvas Cull Mask"
 msgstr "Kanvas Kaldırma Maskesi"
 
+#: scene/main/viewport.cpp servers/audio/effects/audio_effect_pitch_shift.cpp
+msgid "Oversampling"
+msgstr "Sıkörnekleme"
+
+#: scene/main/viewport.cpp
+#, fuzzy
+msgid "Oversampling Override"
+msgstr "Sıkörnekleme"
+
 #: scene/main/viewport.cpp
 msgid "Size 2D Override"
 msgstr "2B Boyutun Üzerine Yaz"
@@ -12340,6 +12832,11 @@ msgstr "Fare İçindengeçmesi"
 #: scene/main/window.cpp
 msgid "Exclude From Capture"
 msgstr "Yakalamanın Dışında Tut"
+
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Popup Wm Hint"
+msgstr "Açılır Pencere"
 
 #: scene/main/window.cpp
 msgid "Force Native"
@@ -13380,10 +13877,6 @@ msgid "Brightness"
 msgstr "Aydınlık"
 
 #: scene/resources/environment.cpp
-msgid "Saturation"
-msgstr "Doygunluk"
-
-#: scene/resources/environment.cpp
 msgid "Color Correction"
 msgstr "Renk Düzeltme"
 
@@ -13456,6 +13949,21 @@ msgstr "Şuraya"
 msgid "Paragraph Spacing"
 msgstr "Paragraf Aralığı"
 
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Effects"
+msgstr "Gökyüzü Etkisi"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Outlines"
+msgstr "Gölge Anahat Boyutu"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Shadows"
+msgstr "Gölgeleri Enkinleştir"
+
 #: scene/resources/material.cpp
 msgid "Next Pass"
 msgstr "Sonraki Geçiş"
@@ -13491,6 +13999,11 @@ msgstr "Çevresel Işık Devre Dışı"
 #: scene/resources/material.cpp servers/rendering/shader_types.cpp
 msgid "Disable Fog"
 msgstr "Sisi Devre Dışı Bırak"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Disable Specular Occlusion"
+msgstr "Çarpışmayı Devredışı Bırak"
 
 #: scene/resources/material.cpp
 msgid "Vertex Color"
@@ -13533,6 +14046,11 @@ msgid "On UV2"
 msgstr "UV2 de"
 
 #: scene/resources/material.cpp
+#, fuzzy
+msgid "Bent Normal Map"
+msgstr "Normal Haritası"
+
+#: scene/resources/material.cpp
 msgid "Rim"
 msgstr "Kenar"
 
@@ -13572,8 +14090,9 @@ msgstr "İkili-Normali Ters Çevir"
 msgid "Flip Texture"
 msgstr "Dokuyu Ters Çevir"
 
-#: scene/resources/material.cpp servers/rendering_server.cpp
-msgid "Subsurface Scattering"
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Subsurf Scatter"
 msgstr "Yüzeyaltı Saçılması"
 
 #: scene/resources/material.cpp
@@ -13667,6 +14186,26 @@ msgstr "Nokta Boyutu"
 #: scene/resources/material.cpp
 msgid "Use Particle Trails"
 msgstr "Parçacık Kuyruk İzleri Kullan"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use Z Clip Scale"
+msgstr "Ölçek Kullan"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Z Clip Scale"
+msgstr "Bölünme Ölçeği"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use FOV Override"
+msgstr "Boyut Üzerine Yazma"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "FOV Override"
+msgstr "Üzerine Yaz"
 
 #: scene/resources/material.cpp
 msgid "Proximity Fade"
@@ -14318,6 +14857,16 @@ msgid "Check V Offset"
 msgstr "Dikey Kayması Denetle"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Checkbox Checked Color"
+msgstr "Seçili Metin Rengi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Checkbox Unchecked Color"
+msgstr "Font Seçimi Kaldırıldı Rengi"
+
+#: scene/theme/default_theme.cpp
 msgid "Checked Mirrored"
 msgstr "Seçilmiş Ayna Yansıtılmış"
 
@@ -14332,6 +14881,16 @@ msgstr "Seçilmemiş Ayna Yansıtılmış"
 #: scene/theme/default_theme.cpp
 msgid "Unchecked Disabled Mirrored"
 msgstr "Seçilmemiş Devre Dışı Ayna Yansıtılmış"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Checked Color"
+msgstr "Kemik Seçilme Rengi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Unchecked Color"
+msgstr "Font Seçimi Kaldırıldı Rengi"
 
 #: scene/theme/default_theme.cpp
 msgid "Font Shadow Color"
@@ -14404,10 +14963,6 @@ msgstr "Yürütülen Satır"
 #: scene/theme/default_theme.cpp
 msgid "Can Fold"
 msgstr "Katlanabilir"
-
-#: scene/theme/default_theme.cpp
-msgid "Folded"
-msgstr "Katlanmış"
 
 #: scene/theme/default_theme.cpp
 msgid "Can Fold Code Region"
@@ -14710,6 +15265,10 @@ msgid "Reload"
 msgstr "Yeniden Yükle"
 
 #: scene/theme/default_theme.cpp
+msgid "Favorite"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
 msgid "Toggle Hidden"
 msgstr "Gizlileri Aç/Kapat"
 
@@ -14722,8 +15281,41 @@ msgid "Folder"
 msgstr "Klasör"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Thumbnail Mode"
+msgstr "Küçük Resim Boyutu"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "List Mode"
+msgstr "Işık Kipi"
+
+#: scene/theme/default_theme.cpp
 msgid "Create Folder"
 msgstr "Klasör Oluştur"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Sort"
+msgstr "Sıralama"
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Up"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Down"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "File Thumbnail"
+msgstr "Küçük Resim Boyutu"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folder Thumbnail"
+msgstr "Küçük Resim Boyutu"
 
 #: scene/theme/default_theme.cpp
 msgid "Folder Icon Color"
@@ -14798,6 +15390,11 @@ msgid "Panel Selected"
 msgstr "Panel Seçildi"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Panel Focus"
+msgstr "Sekme Odağı"
+
+#: scene/theme/default_theme.cpp
 msgid "Titlebar"
 msgstr "Başlık çubuğu"
 
@@ -14808,6 +15405,11 @@ msgstr "Başlık Çubuğu Seçildi"
 #: scene/theme/default_theme.cpp
 msgid "Slot"
 msgstr "Yuva"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Slot Selected"
+msgstr "Seçilene Kaydır"
 
 #: scene/theme/default_theme.cpp
 msgid "Resizer"
@@ -14828,6 +15430,14 @@ msgstr "Üzerine Gelindi"
 #: scene/theme/default_theme.cpp
 msgid "Hovered Dimmed"
 msgstr "Üzerine Gelindi Solgun"
+
+#: scene/theme/default_theme.cpp
+msgid "Hovered Selected"
+msgstr "Üzerine Gelindi Seçili"
+
+#: scene/theme/default_theme.cpp
+msgid "Hovered Selected Focus"
+msgstr "Üzerine Gelindi Seçili Odaklı"
 
 #: scene/theme/default_theme.cpp
 msgid "Selected Focus"
@@ -14904,6 +15514,10 @@ msgstr "Yazı Tipi Üzerine Gelindi Rengi"
 #: scene/theme/default_theme.cpp
 msgid "Font Hovered Dimmed Color"
 msgstr "Yazı Tipi Üzerine Gelindi Solgun Rengi"
+
+#: scene/theme/default_theme.cpp
+msgid "Font Hovered Selected Color"
+msgstr "Yazı Tipi Üzerine Gelindi Seçili Renk"
 
 #: scene/theme/default_theme.cpp
 msgid "Guide Color"
@@ -15014,18 +15628,6 @@ msgid "Icon Margin"
 msgstr "Simge Kenar Boşluğu"
 
 #: scene/theme/default_theme.cpp
-msgid "Font Hovered Selected Color"
-msgstr "Yazı Tipi Üzerine Gelindi Seçili Renk"
-
-#: scene/theme/default_theme.cpp
-msgid "Hovered Selected"
-msgstr "Üzerine Gelindi Seçili"
-
-#: scene/theme/default_theme.cpp
-msgid "Hovered Selected Focus"
-msgstr "Üzerine Gelindi Seçili Odaklı"
-
-#: scene/theme/default_theme.cpp
 msgid "Tab Selected"
 msgstr "Sekme Seçildi"
 
@@ -15098,6 +15700,24 @@ msgid "Center Slider Grabbers"
 msgstr "Kaydırıcı Tutamaçlarını Ortala"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Sample Focus"
+msgstr "Seçili Odak"
+
+#: scene/theme/default_theme.cpp
+msgid "Picker Focus Rectangle"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Picker Focus Circle"
+msgstr "Seçici İmleci"
+
+#: scene/theme/default_theme.cpp
+msgid "Focused not Editing Cursor Color"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
 msgid "Menu Option"
 msgstr "Menü Seçeneği"
 
@@ -15154,6 +15774,11 @@ msgid "Picker Cursor BG"
 msgstr "Seçici İmleci Arka Plan"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Color Script"
+msgstr "Betiği İçe Aktar"
+
+#: scene/theme/default_theme.cpp
 msgid "Color Hue"
 msgstr "Renk Tonu"
 
@@ -15163,6 +15788,11 @@ msgstr "BG"
 
 #: scene/theme/default_theme.cpp
 msgid "Preset FG"
+msgstr "Hazırayar Önplan"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Preset Focus"
 msgstr "Hazırayar Önplan"
 
 #: scene/theme/default_theme.cpp
@@ -15236,6 +15866,27 @@ msgstr "Metin Vurgulama Yatay Dolgulaması"
 #: scene/theme/default_theme.cpp
 msgid "Text Highlight V Padding"
 msgstr "Metin Vurgulama Dikey Dolgulaması"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Underline Alpha"
+msgstr "Altçizgi Boşluğu"
+
+#: scene/theme/default_theme.cpp
+msgid "Strikethrough Alpha"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "H Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "V Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Touch Dragger"
+msgstr ""
 
 #: scene/theme/default_theme.cpp
 msgid "H Grabber"
@@ -15336,6 +15987,45 @@ msgstr "Bağlantı Geçerli Hedef Tonlama Rengi"
 #: scene/theme/default_theme.cpp
 msgid "Connection Rim Color"
 msgstr "Bağlantı Kenar Rengi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Panel"
+msgstr "Başlık Yazı Tipi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Hover Panel"
+msgstr "Başlık Düğmesi Üzerine Gelme"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Collapsed Panel"
+msgstr "Daraltılmış"
+
+#: scene/theme/default_theme.cpp
+msgid "Title Collapsed Hover Panel"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hover Font Color"
+msgstr "Ufuk Çizgisi Rengi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Collapsed Font Color"
+msgstr "Tamamlanma Yazı Tipi Rengi"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Expanded Arrow Mirrored"
+msgstr "Genişletilmiş Ok"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folded Arrow Mirrored"
+msgstr "Katlanmış Ok"
 
 #: scene/theme/default_theme.cpp
 msgid "Port Hotzone Inner Extent"
@@ -15615,6 +16305,11 @@ msgstr "Besleme"
 msgid "Is Active"
 msgstr "Aktif mi"
 
+#: servers/camera_server.cpp
+#, fuzzy
+msgid "Monitoring Feeds"
+msgstr "İzleme"
+
 #: servers/movie_writer/movie_writer.cpp
 msgid "Movie Writer"
 msgstr "Film Yazarı"
@@ -15640,6 +16335,18 @@ msgstr "Dikey-Eşleme Devre Dışı Bırak"
 msgid "Metadata Flags"
 msgstr "Metaveri Bayrakları"
 
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Excluded Regions"
+msgstr "Eklentileri Hariç Tut"
+
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Included Regions"
+msgstr "Eklentileri Dahil Et"
+
 #: servers/navigation/navigation_path_query_result_2d.cpp
 #: servers/navigation/navigation_path_query_result_3d.cpp
 msgid "Path Types"
@@ -15655,17 +16362,109 @@ msgstr "Yol Kaynak Kimliği (RID)"
 msgid "Path Owner IDs"
 msgstr "Yol Sahip Kimlikleri"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Default Cell Size"
 msgstr "Varsayılan Hücre Boyutu"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Default Edge Connection Margin"
 msgstr "Varsayılan Kenar Bağlantısı Kenar Boşluğu"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Default Link Connection Radius"
 msgstr "Varsayılan Bağlantıyı Bağlama Yarıçapı"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Edge Connection Color"
+msgstr "Kenar Bağlantısı Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Geometry Edge Color"
+msgstr "Geometri Kenar Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Geometry Face Color"
+msgstr "Geometri Yüz Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Geometry Edge Disabled Color"
+msgstr "Geometri Kenar Devre Dışı Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Geometry Face Disabled Color"
+msgstr "Geometri Yüz Devre Dışı Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Link Connection Color"
+msgstr "Bağlantıyı Bağlama Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Link Connection Disabled Color"
+msgstr "Bağlantı Bağlama Devre Dışı Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Agent Path Color"
+msgstr "Vekil Yolu Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Edge Connections"
+msgstr "Kenar Bağlantılarını Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Edge Lines"
+msgstr "Kenar Çizgileri Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Geometry Face Random Color"
+msgstr "Geometri Yüzü Rastgele Rengi Etkileştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Link Connections"
+msgstr "Bağlatıları Bağlamayı Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Agent Paths"
+msgstr "Vekil Yollarını Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Agent Path Point Size"
+msgstr "Vekil Yolu Nokta Boyutu"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Agents Radius Color"
+msgstr "Vekiller Yarıçap Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr "Engeller Yarıçap Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr "Engeller Durağan Yüz İçe İtme Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr "Engeller Durağan Kenar İçe İtme Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr "Engeller Durağan Yüz Dışa İtme Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr "Engeller Durağan Kenar Dışa İtme Rengi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Agents Radius"
+msgstr "Vekiller Yarıçapını Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Radius"
+msgstr "Engeller Yarıçapını Etkinleştir"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr "Engeller Durağan Etkinleştir"
 
 #: servers/navigation_server_3d.cpp
 msgid "Default Cell Height"
@@ -15680,144 +16479,20 @@ msgid "Merge Rasterizer Cell Scale"
 msgstr "Pikselleştirici Hücre Ölçeğini Birleştir"
 
 #: servers/navigation_server_3d.cpp
-msgid "World"
-msgstr "Dünya"
-
-#: servers/navigation_server_3d.cpp
-msgid "Map Use Async Iterations"
-msgstr "Harita Eşzamansız Yinelemeler Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Avoidance Use Multiple Threads"
-msgstr "Kaçınma için Çoklu İş Parcacıkları Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Avoidance Use High Priority Threads"
-msgstr "Kaçınma için Yüksek Öncelikli İş Parcacıkları Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Baking"
-msgstr "Fırınlama"
-
-#: servers/navigation_server_3d.cpp
-msgid "Use Crash Prevention Checks"
-msgstr "Çarpışma Önleme Kontrollerini Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Baking Use Multiple Threads"
-msgstr "Fırınlama Çoklu İş Parçacıklarını Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Baking Use High Priority Threads"
-msgstr "Fırınlama Yüksek Öncelikli İş Parçacıklarını Kullan"
-
-#: servers/navigation_server_3d.cpp
-msgid "Edge Connection Color"
-msgstr "Kenar Bağlantısı Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Geometry Edge Color"
-msgstr "Geometri Kenar Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Geometry Face Color"
-msgstr "Geometri Yüz Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Geometry Edge Disabled Color"
-msgstr "Geometri Kenar Devre Dışı Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Geometry Face Disabled Color"
-msgstr "Geometri Yüz Devre Dışı Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Link Connection Color"
-msgstr "Bağlantıyı Bağlama Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Link Connection Disabled Color"
-msgstr "Bağlantı Bağlama Devre Dışı Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Agent Path Color"
-msgstr "Vekil Yolu Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Edge Connections"
-msgstr "Kenar Bağlantılarını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
 msgid "Enable Edge Connections X-Ray"
 msgstr "Kenar Bağlantıları X-Işını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Edge Lines"
-msgstr "Kenar Çizgileri Etkinleştir"
 
 #: servers/navigation_server_3d.cpp
 msgid "Enable Edge Lines X-Ray"
 msgstr "Kenar Çizgileri X-Işını Etkinleştir"
 
 #: servers/navigation_server_3d.cpp
-msgid "Enable Geometry Face Random Color"
-msgstr "Geometri Yüzü Rastgele Rengi Etkileştir"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Link Connections"
-msgstr "Bağlatıları Bağlamayı Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
 msgid "Enable Link Connections X-Ray"
 msgstr "Bağlantıları Bağlama X-Işını Etkinleştir"
 
 #: servers/navigation_server_3d.cpp
-msgid "Enable Agent Paths"
-msgstr "Vekil Yollarını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
 msgid "Enable Agent Paths X-Ray"
 msgstr "Vekil Yolları X-Işını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
-msgid "Agent Path Point Size"
-msgstr "Vekil Yolu Nokta Boyutu"
-
-#: servers/navigation_server_3d.cpp
-msgid "Agents Radius Color"
-msgstr "Vekiller Yarıçap Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Radius Color"
-msgstr "Engeller Yarıçap Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushin Color"
-msgstr "Engeller Durağan Yüz İçe İtme Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushin Color"
-msgstr "Engeller Durağan Kenar İçe İtme Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushout Color"
-msgstr "Engeller Durağan Yüz Dışa İtme Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushout Color"
-msgstr "Engeller Durağan Kenar Dışa İtme Rengi"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Agents Radius"
-msgstr "Vekiller Yarıçapını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Obstacles Radius"
-msgstr "Engeller Yarıçapını Etkinleştir"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Obstacles Static"
-msgstr "Engeller Durağan Etkinleştir"
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -16080,6 +16755,11 @@ msgid "Fog Disabled"
 msgstr "Sis Devre Dışı"
 
 #: servers/rendering/shader_types.cpp
+#, fuzzy
+msgid "Specular Occlusion Disabled"
+msgstr "Perdeleme Etkin"
+
+#: servers/rendering/shader_types.cpp
 msgid "Light Only"
 msgstr "Sadece Işık"
 
@@ -16248,6 +16928,11 @@ msgid "Reflection Count"
 msgstr "Yansıma Sayısı"
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "Specular Occlusion"
+msgstr "Perdeleme Kullan"
+
+#: servers/rendering_server.cpp
 msgid "GI"
 msgstr "GI"
 
@@ -16328,6 +17013,11 @@ msgid "Screen Space Roughness Limiter"
 msgstr "Ekran Uzayı Pürüzlülük Limitleyici"
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "SMAA Edge Detection Threshold"
+msgstr "Aktif Kenar Eşik Değeri"
+
+#: servers/rendering_server.cpp
 msgid "Decals"
 msgstr "Çıkartmalar"
 
@@ -16350,6 +17040,10 @@ msgstr "Ekran Uzayı Yansıması"
 #: servers/rendering_server.cpp
 msgid "Roughness Quality"
 msgstr "Pürüzlülük Kalitesi"
+
+#: servers/rendering_server.cpp
+msgid "Subsurface Scattering"
+msgstr "Yüzeyaltı Saçılması"
 
 #: servers/rendering_server.cpp
 msgid "Subsurface Scattering Quality"

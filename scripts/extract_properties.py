@@ -58,7 +58,7 @@ message_patterns = {
         r"(ADD_PROPERTYI?|GLOBAL_DEF(_RST)?(_NOVAL)?(_BASIC)?|ImportOption|ExportOption)\(PropertyInfo\("
         + r"Variant::[_A-Z0-9]+"  # Name
         + r', "(?P<message>[^"]+)"'  # Type
-        + r'(, [_A-Z0-9]+(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, \(?(?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
+        + r'(, (?P<hint>[_A-Z0-9]+)(, "(?P<hint_string>(?:[^"\\]|\\.)*)"(, \(?(?P<usage>[_A-Z0-9 |]+))?)?|\))'  # [, hint[, hint string[, usage]]].
     ): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
     re.compile(r'ADD_ARRAY_COUNT(_WITH_USAGE_FLAGS)?\("(?P<message>[^"]+)", '): ExtractType.TEXT,
@@ -165,6 +165,7 @@ def process_file(f, fname):
                         if extract_type == ExtractType.TEXT:
                             _add_message(msg, msg_plural, msgctx, location, translator_comment)
                         elif extract_type == ExtractType.PROPERTY_PATH:
+                            hint = captures.get("hint") or "PROPERTY_HINT_NONE"
                             usage_string = captures.get("usage") or "PROPERTY_USAGE_DEFAULT"
                             usages = [e.strip() for e in usage_string.split("|")]
 
@@ -172,6 +173,10 @@ def process_file(f, fname):
                                 _add_message(msg, msg_plural, msgctx, location, translator_comment)
                                 current_group = captures["hint_string"]
                                 current_subgroup = ""
+                                continue
+
+                            # Property name matches an existing group name.
+                            if hint == "PROPERTY_HINT_GROUP_ENABLE":
                                 continue
 
                             # Ignore properties that are not meant to be displayed in the editor.

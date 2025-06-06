@@ -46,9 +46,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.9-dev\n"
 
-#: core/config/project_settings.cpp main/main.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
+#: platform/visionos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Application"
 msgstr "Ứng dụng"
@@ -61,8 +63,9 @@ msgstr "Cấu hình"
 #: editor/animation_track_editor.cpp
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
-#: scene/3d/physics/area_3d.cpp scene/resources/3d/mesh_library.cpp
-#: scene/resources/3d/skin.cpp servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
+#: scene/3d/physics/area_3d.cpp scene/main/node.cpp
+#: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "Tên"
 
@@ -76,8 +79,9 @@ msgstr "Tên được bản địa hóa"
 msgid "Description"
 msgstr "Mô tả"
 
-#: core/config/project_settings.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 msgid "Version"
 msgstr "Phiên bản"
@@ -134,6 +138,25 @@ msgstr "Tự động Đồng ý Thoát"
 #: core/config/project_settings.cpp scene/main/scene_tree.cpp
 msgid "Quit on Go Back"
 msgstr "Trở lại"
+
+#: core/config/project_settings.cpp scene/main/node.cpp
+#, fuzzy
+msgid "Accessibility"
+msgstr "Khả năng hiển thị"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+msgid "General"
+msgstr "Tổng quan"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Accessibility Support"
+msgstr "Trình soạn tập lệnh"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Updates per Second"
+msgstr "Chế độ Xoay"
 
 #: core/config/project_settings.cpp main/main.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -234,6 +257,16 @@ msgstr "Đường dẫn Tập trung"
 msgid "Sharp Corners"
 msgstr "Độ sắc nét"
 
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Minimize Disabled"
+msgstr "Thụt lề"
+
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Maximize Disabled"
+msgstr "Các mục tắt"
+
 #: core/config/project_settings.cpp
 msgid "Window Width Override"
 msgstr "Ghi đè chiều rộng cửa sổ"
@@ -285,10 +318,6 @@ msgstr "Xe buýt"
 #: core/config/project_settings.cpp
 msgid "Default Bus Layout"
 msgstr "Bố trí xe buýt mặc định"
-
-#: core/config/project_settings.cpp editor/editor_settings.cpp
-msgid "General"
-msgstr "Tổng quan"
 
 #: core/config/project_settings.cpp
 msgid "Default Playback Type"
@@ -349,14 +378,14 @@ msgstr "Chế độ chọn"
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
 #: modules/jolt_physics/jolt_project_settings.cpp scene/2d/tile_map_layer.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/main/scene_tree.cpp scene/main/scene_tree_fti.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "Vật lí"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: scene/main/scene_tree.cpp servers/navigation_server_2d.cpp
 #: servers/physics_server_2d.cpp servers/rendering_server.cpp
 msgid "2D"
 msgstr "2D"
@@ -366,7 +395,8 @@ msgid "Run on Separate Thread"
 msgstr "Chạy trên luồng riêng biệt"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: servers/navigation_server_3d.cpp servers/physics_server_3d.cpp
+#: scene/main/scene_tree_fti.cpp servers/navigation_server_3d.cpp
+#: servers/physics_server_3d.cpp
 msgid "3D"
 msgstr "3D"
 
@@ -400,20 +430,24 @@ msgid "Scale Mode"
 msgstr "Chế độ tỷ lệ"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp scene/2d/navigation_agent_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/main/scene_tree.cpp
-#: servers/navigation_server_3d.cpp servers/rendering/renderer_canvas_cull.cpp
-#: servers/rendering_server.cpp
+#: platform/web/export/export_plugin.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp scene/main/scene_tree.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#: servers/rendering/renderer_canvas_cull.cpp servers/rendering_server.cpp
 msgid "Debug"
 msgstr "Gỡ lỗi"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/gdscript/gdscript.cpp scene/3d/spring_bone_simulator_3d.cpp
+#: modules/gdscript/gdscript.cpp scene/3d/aim_modifier_3d.cpp
+#: scene/3d/convert_transform_modifier_3d.cpp
+#: scene/3d/copy_transform_modifier_3d.cpp
+#: scene/3d/spring_bone_simulator_3d.cpp
 msgid "Settings"
 msgstr "Thiết đặt"
 
@@ -447,7 +481,7 @@ msgstr "Zstd"
 msgid "Long Distance Matching"
 msgstr "Thêm vào Cảnh"
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp modules/zip/zip_packer.cpp
 msgid "Compression Level"
 msgstr "Nén"
 
@@ -475,6 +509,7 @@ msgstr "Thông điệp"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
+#: modules/basis_universal/register_types.cpp
 #: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
 #: scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
@@ -655,8 +690,8 @@ msgstr "Khung hình Vật lý %"
 msgid "Agility SDK Version"
 msgstr "Phiên bản"
 
-#: core/config/project_settings.cpp modules/gltf/gltf_state.cpp
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
+#: core/config/project_settings.cpp modules/basis_universal/register_types.cpp
+#: modules/gltf/gltf_state.cpp scene/3d/decal.cpp scene/gui/texture_button.cpp
 #: scene/gui/texture_progress_bar.cpp servers/rendering_server.cpp
 msgid "Textures"
 msgstr "Hình kết cấu"
@@ -705,6 +740,86 @@ msgstr "Kích hoạt Cử chỉ Xoay và Thu phóng"
 #: core/config/project_settings.cpp
 msgid "Rotary Input Scroll Axis"
 msgstr "Trục cuộn đầu vào quay"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Override Volume Buttons"
+msgstr "Tắt"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Disable Scroll Deadzone"
+msgstr "Vùng chết cuộn mặc định"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: main/performance.cpp modules/gridmap/grid_map.cpp
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Navigation"
+msgstr "Điều hướng"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "World"
+msgstr "Thu phóng ngẫu nhiên:"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Map Use Async Iterations"
+msgstr "Tạo Hàm"
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_2d.cpp
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Avoidance"
+msgstr "Nâng cao"
+
+#: core/config/project_settings.cpp main/main.cpp
+#, fuzzy
+msgid "Thread Model"
+msgstr "Bật tắt Chức năng"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Avoidance Use Multiple Threads"
+msgstr "Gán nhiều:"
+
+#: core/config/project_settings.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr "Tránh sử dụng luồng có mức độ ưu tiên cao"
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Pathfinding"
+msgstr "Đệm"
+
+#: core/config/project_settings.cpp core/register_core_types.cpp
+#, fuzzy
+msgid "Max Threads"
+msgstr "Luồng"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Baking"
+msgstr "Đóng gói"
+
+#: core/config/project_settings.cpp
+msgid "Use Crash Prevention Checks"
+msgstr "Sử dụng Kiểm tra phòng ngừa sự cố"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Baking Use Multiple Threads"
+msgstr "Gán nhiều:"
+
+#: core/config/project_settings.cpp
+msgid "Baking Use High Priority Threads"
+msgstr "Baking Sử dụng luồng có mức độ ưu tiên cao"
 
 #: core/core_bind.cpp
 msgid "Low Processor Usage Mode"
@@ -952,7 +1067,7 @@ msgstr "Nhấn đúp"
 
 #: core/input/input_event.cpp
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
-#: scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/touch_screen_button.cpp
 msgid "Action"
 msgstr "Hành động"
 
@@ -1081,7 +1196,7 @@ msgstr "Khu vực"
 #: scene/2d/parallax_background.cpp scene/2d/parallax_layer.cpp
 #: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/3d/label_3d.cpp
 #: scene/3d/look_at_modifier_3d.cpp scene/3d/physics/physical_bone_3d.cpp
-#: scene/3d/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
+#: scene/3d/physics/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
 #: scene/3d/sprite_3d.cpp scene/3d/visual_instance_3d.cpp
 #: scene/gui/rich_text_effect.cpp scene/gui/split_container.cpp
 #: scene/main/canvas_layer.cpp scene/resources/3d/primitive_meshes.cpp
@@ -1196,11 +1311,6 @@ msgstr "Luồng"
 #: core/register_core_types.cpp
 msgid "Worker Pool"
 msgstr "Nhóm công nhân"
-
-#: core/register_core_types.cpp servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Max Threads"
-msgstr "Luồng"
 
 #: core/register_core_types.cpp
 msgid "Low Priority Thread Ratio"
@@ -1480,6 +1590,11 @@ msgstr "Trình chỉnh sửa"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Tablet Driver"
+msgstr "Trình điều khiển màn hình"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Project Manager Screen"
 msgstr "Trình quản lý Dự án"
 
@@ -1489,9 +1604,8 @@ msgid "Connection"
 msgstr "Tự hoàn thành"
 
 #: editor/editor_settings.cpp
-#, fuzzy
-msgid "Engine Version Update Mode"
-msgstr "Chế độ Ưu tiên"
+msgid "Check for Updates"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
@@ -1631,6 +1745,10 @@ msgid "Update Continuously"
 msgstr "Cập nhật Liên tục"
 
 #: editor/editor_settings.cpp
+msgid "Collapse Main Menu"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #: editor/plugins/gizmos/particles_3d_emission_shape_gizmo_plugin.cpp
 msgid "Editors"
 msgstr "Trình chỉnh sửa"
@@ -1727,6 +1845,11 @@ msgstr "Mặc định"
 msgid "Default Color Picker Shape"
 msgstr "Nạp bố cục Bus mặc định."
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Color Picker Show Intensity"
+msgstr "Nạp bố cục Bus mặc định."
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1812,12 +1935,17 @@ msgid "Touchscreen"
 msgstr "Màn hình cảm ứng"
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Enable Touch Optimizations"
+msgstr "Nvidia Tắt tối ưu hóa luồng"
+
+#: editor/editor_settings.cpp
 msgid "Scale Gizmo Handles"
 msgstr "Tay cầm Gizmo Thu phóng"
 
 #: editor/editor_settings.cpp
-msgid "Increase Scrollbar Touch Area"
-msgstr "Tăng Vùng cảm ứng Thanh cuộn"
+msgid "Touch Actions Panel"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Scene Tabs"
@@ -1952,10 +2080,11 @@ msgid "Show Hidden Files"
 msgstr "Hiện các tệp ẩn"
 
 #: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
 msgid "Display Mode"
 msgstr "Chế độ hiển thị"
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp scene/theme/default_theme.cpp
 msgid "Thumbnail Size"
 msgstr "Cỡ ảnh thu nhỏ"
 
@@ -2065,6 +2194,11 @@ msgid "Hide Filtered Out Parents"
 msgstr ""
 
 #: editor/editor_settings.cpp
+#, fuzzy
+msgid "Accessibility Warnings"
+msgstr "Chế độ Ưu tiên"
+
+#: editor/editor_settings.cpp
 msgid "Always Show Folders"
 msgstr "Luôn hiện thư mục"
 
@@ -2095,12 +2229,6 @@ msgstr "Tài nguyên phụ"
 msgid "Text Editor"
 msgstr "Trình soạn thảo"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr "Khoảng cách dòng"
-
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Color Theme"
@@ -2109,6 +2237,10 @@ msgstr "Chỉnh Tông màu"
 #: editor/editor_settings.cpp
 msgid "Appearance"
 msgstr "Ngoại hình"
+
+#: editor/editor_settings.cpp
+msgid "Enable Inline Color Picker"
+msgstr ""
 
 #: editor/editor_settings.cpp scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Caret"
@@ -2216,6 +2348,12 @@ msgstr "Lượt gọi"
 msgid "Draw Spaces"
 msgstr "Lượt gọi"
 
+#: editor/editor_settings.cpp scene/3d/label_3d.cpp
+#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
+#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr "Khoảng cách dòng"
+
 #: editor/editor_settings.cpp
 msgid "Behavior"
 msgstr "Hành vi"
@@ -2224,12 +2362,6 @@ msgstr "Hành vi"
 #, fuzzy
 msgid "Empty Selection Clipboard"
 msgstr "Chỉ chọn"
-
-#: editor/editor_settings.cpp main/performance.cpp modules/gridmap/grid_map.cpp
-#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
-msgid "Navigation"
-msgstr "Điều hướng"
 
 #: editor/editor_settings.cpp
 msgid "Move Caret on Right Click"
@@ -2327,6 +2459,10 @@ msgstr "Tự động nạp lại"
 #: editor/editor_settings.cpp
 msgid "Open Dominant Script on Scene Change"
 msgstr "Mở tập lệnh chiếm ưu thế khi thay đổi cảnh"
+
+#: editor/editor_settings.cpp
+msgid "Drop Preload Resources as UID"
+msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -2519,6 +2655,11 @@ msgstr "Chọn màu"
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Selection Box Color"
+msgstr "Chỉ chọn"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Active Selection Box Color"
 msgstr "Chỉ chọn"
 
 #: editor/editor_settings.cpp
@@ -2908,6 +3049,11 @@ msgstr "Nhân tố"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Ruler Width"
+msgstr "Điểm ảnh viền"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Bone Mapper"
 msgstr "Tên Node:"
 
@@ -2994,6 +3140,21 @@ msgstr "Mặt phẳng trước đó"
 #, fuzzy
 msgid "Auto Bake Delay"
 msgstr "Chuyển đổi Tự động chạy"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default Animation Step"
+msgstr "Chỉnh sửa kết nối:"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Mode"
+msgstr "Chế độ hiển thị"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Compatibility"
+msgstr "Chế độ Ưu tiên"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -3203,6 +3364,11 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Auto Switch to Stack Trace"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Max Node Selection"
+msgstr "Cắt lựa chọn"
 
 #: editor/editor_settings.cpp
 msgid "Profiler Frame History Size"
@@ -3428,6 +3594,11 @@ msgstr "Đổi tên Biến"
 msgid "Mark Color"
 msgstr "Chọn màu"
 
+#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
+#, fuzzy
+msgid "Warning Color"
+msgstr "Lưu trữ tệp tin:"
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Bookmark Color"
@@ -3551,22 +3722,280 @@ msgstr "Chỉ chọn"
 msgid "Particle Color"
 msgstr "Tắt"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 msgid "Custom Template"
 msgstr "Bản mẫu tuỳ chỉnh"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "Phát hành"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Architectures"
+msgstr "Thêm mục kiến trúc máy"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "App Store Team ID"
+msgstr "ID nhóm App Store"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Method Debug"
+msgstr "Xuất cùng gỡ lỗi"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Debug"
+msgstr "Gỡ lỗi nhận dạng ký hiệu mã"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Release"
+msgstr "Phát hành nhận dạng ký hiệu mã"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Debug"
+msgstr "Gỡ lỗi UUID hồ sơ cung cấp"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Release"
+msgstr "Phát hành UUID hồ sơ cung cấp"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Provisioning Profile Specifier Debug"
+msgstr "Gỡ lỗi UUID hồ sơ cung cấp"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Provisioning Profile Specifier Release"
+msgstr "Phát hành UUID hồ sơ cung cấp"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Method Release"
+msgstr "Chế độ xuất:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Bundle Identifier"
+msgstr "Định danh không hợp lệ:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Signature"
+msgstr "Tín hiệu"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Short Version"
+msgstr "Phiên bản"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Additional Plist Content"
+msgstr "Khoảng cách bổ sung"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#, fuzzy
+msgid "Icon Interpolation"
+msgstr "Nội suy"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Project Only"
+msgstr "Dự Án"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr "Xóa các tệp xuất cũ vô điều kiện"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+msgid "Plugins"
+msgstr "Tiện ích"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Entitlements"
+msgstr "Nội dung:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Increased Memory Limit"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Game Center"
+msgstr "Giữa"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Push Notifications"
+msgstr "Xoay ngẫu nhiên:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Additional"
+msgstr "Khoảng cách bổ sung"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Capabilities"
+msgstr "Thuộc tính"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Access Wi-Fi"
+msgstr "Thành công!"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Performance Gaming Tier"
+msgstr "Hiệu suất chơi game Cấp độ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Performance A 12"
+msgstr "Hiệu suất A 12"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: platform/android/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Shader Baker"
+msgstr "Những thay đổi"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
+#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
+#: modules/noise/fastnoise_lite.cpp platform/android/export/export_plugin.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/web/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
+#: scene/2d/light_2d.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/2d/physics/joints/pin_joint_2d.cpp scene/2d/physics/ray_cast_2d.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/tile_map_layer.cpp
+#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
+#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
+#: scene/resources/curve.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: servers/rendering_server.cpp
+msgid "Enabled"
+msgstr "Bật"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "User Data"
+msgstr "Giao diện người dùng"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From Files App"
+msgstr "Có thể truy cập từ ứng dụng Tệp"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From iTunes Sharing"
+msgstr "Có thể truy cập từ iTunes Chia sẻ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Privacy"
+msgstr "Quyền riêng tư"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Camera Usage Description"
+msgstr "Nội dung"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Camera Usage Description Localized"
+msgstr "Nội dung"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Microphone Usage Description"
+msgstr "Nội dung Thuộc tính"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Microphone Usage Description Localized"
+msgstr "Nội dung Thuộc tính"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Photolibrary Usage Description"
+msgstr "Nội dung Thuộc tính"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Photolibrary Usage Description Localized"
+msgstr "Nội dung Thuộc tính"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "Mở"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "Đóng gói"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
+#: scene/main/window.cpp
+msgid "Icons"
+msgstr "Biểu tượng"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Icon 1024 X 1024"
+msgstr "Biểu tượng 512 X 512"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Icon 1024 X 1024 Dark"
+msgstr "Biểu tượng 512 X 512"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Icon 1024 X 1024 Tinted"
+msgstr "Biểu tượng 512 X 512"
 
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -3836,14 +4265,14 @@ msgstr "Kiểu hình dạng"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/canvas_layer.cpp
 msgid "Layer"
 msgstr "Lớp"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr "Vật lý Ghi đè vật liệu"
@@ -3969,7 +4398,8 @@ msgstr "Chế độ Ưu tiên"
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
 #: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
@@ -3984,10 +4414,12 @@ msgstr "Chiều cao"
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 #: modules/openxr/scene/openxr_composition_layer_equirect.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/vehicle_body_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/3d/occluder_instance_3d.cpp scene/3d/physics/vehicle_body_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 #: scene/animation/root_motion_view.cpp scene/resources/2d/capsule_shape_2d.cpp
@@ -4011,34 +4443,6 @@ msgstr "Đơn giản hóa: "
 #, fuzzy
 msgid "Save to File"
 msgstr "Lưu thành tệp tin"
-
-#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
-#: modules/noise/fastnoise_lite.cpp platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
-#: scene/2d/gpu_particles_2d.cpp scene/2d/light_2d.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
-#: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
-#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
-#: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
-#: scene/3d/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
-#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
-#: scene/main/canvas_layer.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
-#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
-#: scene/resources/curve.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
-#: servers/rendering_server.cpp
-msgid "Enabled"
-msgstr "Bật"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -4183,6 +4587,11 @@ msgid "Import as Skeleton Bones"
 msgstr "Root Scale"
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Use Name Suffixes"
+msgstr "Dính theo bước tỉ lệ"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Use Node Type Suffixes"
 msgstr ""
 
@@ -4298,6 +4707,11 @@ msgstr "Lưới nguồn:"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+msgid "Modulate Color Glyphs"
+msgstr ""
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Hinting"
 msgstr "Buộc tự động gợi ý"
 
@@ -4311,12 +4725,6 @@ msgstr "Phân vùng ..."
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Keep Rounding Remainders"
 msgstr ""
-
-#: editor/import/dynamic_font_import_settings.cpp
-#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
-#: servers/audio/effects/audio_effect_pitch_shift.cpp
-msgid "Oversampling"
-msgstr "Định vị điểm ảnh phụ"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #, fuzzy
@@ -4351,6 +4759,7 @@ msgstr "Fallbacks"
 #: editor/import/resource_importer_dynamic_font.cpp
 #: editor/import/resource_importer_imagefont.cpp
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_svg.cpp
 #: editor/import/resource_importer_texture.cpp
 #: editor/import/resource_importer_wav.cpp servers/rendering_server.cpp
 #, fuzzy
@@ -4358,8 +4767,8 @@ msgid "Compress"
 msgstr "Thành phần"
 
 #: editor/import/dynamic_font_import_settings.cpp scene/3d/label_3d.cpp
-#: scene/gui/button.cpp scene/gui/label.cpp scene/gui/line_edit.cpp
-#: scene/gui/link_button.cpp scene/gui/menu_bar.cpp
+#: scene/gui/button.cpp scene/gui/foldable_container.cpp scene/gui/label.cpp
+#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
 #: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: servers/rendering/rendering_device_binds.h
@@ -4469,6 +4878,18 @@ msgstr "Chất lượng mất mát"
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp
 #, fuzzy
+msgid "UASTC Level"
+msgstr "Góc trên trái"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "RDO Quality Loss"
+msgstr "Chất lượng"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
 msgid "HDR Compression"
 msgstr "Nén"
 
@@ -4518,6 +4939,23 @@ msgstr "Mảnh"
 msgid "Layout"
 msgstr "Bố cục"
 
+#: editor/import/resource_importer_svg.cpp scene/2d/parallax_background.cpp
+#: scene/resources/svg_texture.cpp scene/theme/theme_db.cpp
+#, fuzzy
+msgid "Base Scale"
+msgstr "Dính theo bước tỉ lệ"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/environment.cpp
+#: scene/resources/svg_texture.cpp
+#, fuzzy
+msgid "Saturation"
+msgstr "Thu phóng (theo tỉ lệ):"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/svg_texture.cpp
+#, fuzzy
+msgid "Color Map"
+msgstr "Màu"
+
 #: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
 msgid "Normal Map"
 msgstr "Bản đồ chuẩn"
@@ -4536,6 +4974,30 @@ msgstr "Hỗ trợ"
 #, fuzzy
 msgid "Process"
 msgstr "Hậu xử lí"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Channel Remap"
+msgstr "Kênh"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Red"
+msgstr "Tải lại"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Green"
+msgstr "Màn hình"
+
+#: editor/import/resource_importer_texture.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Alpha"
+msgstr "Cắt alpha"
 
 #: editor/import/resource_importer_texture.cpp
 msgid "Fix Alpha Border"
@@ -4837,7 +5299,7 @@ msgid "Verbose stdout"
 msgstr "Verbose stdout"
 
 #: main/main.cpp scene/main/node.cpp scene/main/scene_tree.cpp
-#: scene/resources/multimesh.cpp
+#: scene/main/scene_tree_fti.cpp scene/resources/multimesh.cpp
 #, fuzzy
 msgid "Physics Interpolation"
 msgstr "Nội suy"
@@ -4962,13 +5424,13 @@ msgid "Allowed"
 msgstr "Được phép"
 
 #: main/main.cpp
+#, fuzzy
+msgid "Load Shell Environment"
+msgstr "Môi trường dự phòng"
+
+#: main/main.cpp
 msgid "Threads"
 msgstr "Luồng"
-
-#: main/main.cpp servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Thread Model"
-msgstr "Bật tắt Chức năng"
 
 #: main/main.cpp
 #, fuzzy
@@ -5420,6 +5882,35 @@ msgstr "Tự hoàn thành"
 msgid "Compilations Specialization"
 msgstr "Nhập cảnh"
 
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 2D"
+msgstr "Điều hướng"
+
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 3D"
+msgstr "Điều hướng"
+
+#: modules/basis_universal/register_types.cpp
+msgid "Basis Universal"
+msgstr ""
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "RDO Dict Size"
+msgstr "Góc nhìn trực diện"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression"
+msgstr "Nén"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression Level"
+msgstr "Nén"
+
 #: modules/csg/csg_shape.cpp
 msgid "Operation"
 msgstr "Thao tác"
@@ -5432,7 +5923,7 @@ msgstr "Tính toán đường tiếp tuyến"
 #: scene/2d/gpu_particles_2d.cpp scene/2d/physics/character_body_2d.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/gpu_particles_3d.cpp
 #: scene/3d/physics/character_body_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/scene_tree.cpp scene/resources/particle_process_material.cpp
 msgid "Collision"
 msgstr "Va chạm"
@@ -5652,11 +6143,6 @@ msgstr "Tọa độ tiếp theo"
 
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 #, fuzzy
-msgid "Warning Color"
-msgstr "Lưu trữ tệp tin:"
-
-#: modules/gdscript/editor/gdscript_highlighter.cpp
-#, fuzzy
 msgid "Notice Color"
 msgstr "Chọn màu"
 
@@ -5678,6 +6164,15 @@ msgstr "Lượt gọi"
 #: modules/gdscript/gdscript.cpp
 msgid "Max Call Stack"
 msgstr "Ngăn xếp cuộc gọi tối đa"
+
+#: modules/gdscript/gdscript.cpp
+#, fuzzy
+msgid "Always Track Call Stacks"
+msgstr "Ngăn xếp cuộc gọi tối đa"
+
+#: modules/gdscript/gdscript.cpp
+msgid "Always Track Local Variables"
+msgstr ""
 
 #: modules/gdscript/gdscript.cpp
 msgid "Exclude Addons"
@@ -5857,8 +6352,24 @@ msgstr "Định dạng"
 
 #: modules/gltf/gltf_document.cpp
 #, fuzzy
+msgid "Fallback Image Format"
+msgstr "Định dạng"
+
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
+msgid "Fallback Image Quality"
+msgstr "Chất lượng"
+
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
 msgid "Root Node Mode"
 msgstr "Nút gốc"
+
+#: modules/gltf/gltf_document.cpp scene/2d/physics/touch_screen_button.cpp
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Visibility Mode"
+msgstr "Chế độ Ưu tiên"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -6130,6 +6641,14 @@ msgstr "Các nút Con có thể sửa"
 msgid "Light"
 msgstr "Ánh sáng"
 
+#: modules/gltf/structures/gltf_node.cpp scene/3d/node_3d.cpp
+#: scene/gui/rich_text_effect.cpp scene/gui/tree.cpp scene/main/canvas_item.cpp
+#: scene/main/canvas_layer.cpp scene/main/status_indicator.cpp
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Visible"
+msgstr "Xóa lịch sử Tệp gần đây"
+
 #: modules/gltf/structures/gltf_object_model_property.cpp
 msgid "glTF to Godot Expression"
 msgstr ""
@@ -6203,11 +6722,13 @@ msgid "Sampler"
 msgstr "Trình lấy mẫu"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 #, fuzzy
 msgid "Mag Filter"
 msgstr "Đổi bộ lọc"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 #, fuzzy
 msgid "Min Filter"
 msgstr "Lọc:"
@@ -6313,11 +6834,6 @@ msgstr "Vị trí"
 #: modules/jolt_physics/jolt_project_settings.cpp
 msgid "Use Enhanced Internal Edge Removal"
 msgstr ""
-
-#: modules/jolt_physics/jolt_project_settings.cpp
-#, fuzzy
-msgid "Areas Detect Static Bodies"
-msgstr "Sử dụng Vật thể động học"
 
 #: modules/jolt_physics/jolt_project_settings.cpp
 msgid "Generate All Kinematic Contacts"
@@ -6931,6 +7447,55 @@ msgstr "Chia đường Curve"
 msgid "Enable Hole Punch"
 msgstr "Kích hoạt lọc"
 
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Swapchain State"
+msgstr "Thêm vào Cảnh"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Mipmap Mode"
+msgstr "Nút Mix"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Horizontal Wrap"
+msgstr "Ngang:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Vertical Wrap"
+msgstr "Dọc:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Red Swizzle"
+msgstr "Góc nhìn trực diện"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Green Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Blue Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Swizzle"
+msgstr "Chia đường Curve"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Max Anisotropy"
+msgstr "Độ dị hướng"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#: scene/gui/reference_rect.cpp
+#, fuzzy
+msgid "Border Color"
+msgstr "Xóa mục Lớp"
+
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 #, fuzzy
 msgid "Aspect Ratio"
@@ -6987,8 +7552,8 @@ msgstr "Khung xương"
 msgid "Skeleton Rig"
 msgstr "Khung xương"
 
-#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 #, fuzzy
 msgid "Bone Update"
 msgstr "Cập nhật"
@@ -7221,10 +7786,6 @@ msgid "Android Source Template"
 msgstr "Mẫu nguồn Android"
 
 #: platform/android/export/export_plugin.cpp
-msgid "Compress Native Libraries"
-msgstr "Nén thư viện gốc"
-
-#: platform/android/export/export_plugin.cpp
 #, fuzzy
 msgid "Export Format"
 msgstr "Đường dẫn xuất"
@@ -7240,15 +7801,9 @@ msgid "Target SDK"
 msgstr "Bề mặt mục tiêu:"
 
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
-msgid "Plugins"
-msgstr "Tiện ích"
-
-#: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #, fuzzy
-msgid "Architectures"
-msgstr "Thêm mục kiến trúc máy"
+msgid "Custom Theme Attributes"
+msgstr "Phân biệt hoa thường"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -7422,10 +7977,43 @@ msgstr "Chạy Cảnh Tuỳ Chọn"
 msgid "iOS Deploy"
 msgstr "Triển khai iOS"
 
-#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
-#: scene/main/window.cpp
-msgid "Icons"
-msgstr "Biểu tượng"
+#: platform/ios/export/export_plugin.cpp
+msgid "Targeted Device Family"
+msgstr "Họ thiết bị mục tiêu"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Min iOS Version"
+msgstr "Phiên bản"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Storyboard"
+msgstr "Storyboard"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Image Scale Mode"
+msgstr "Chế độ căn Tỉ lệ"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Image @2x"
+msgstr "Cắt các nút"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Image @3x"
+msgstr "Cắt các nút"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Use Custom BG Color"
+msgstr "Cắt các nút"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom BG Color"
+msgstr "Cắt các nút"
 
 #: platform/ios/export/export_plugin.cpp
 #, fuzzy
@@ -7500,247 +8088,6 @@ msgstr "iPad 167 X 167"
 #: platform/ios/export/export_plugin.cpp
 msgid "App Store 1024 X 1024"
 msgstr "App Store 1024 X 1024"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "App Store Team ID"
-msgstr "ID nhóm App Store"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Method Debug"
-msgstr "Xuất cùng gỡ lỗi"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Debug"
-msgstr "Gỡ lỗi nhận dạng ký hiệu mã"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Release"
-msgstr "Phát hành nhận dạng ký hiệu mã"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Debug"
-msgstr "Gỡ lỗi UUID hồ sơ cung cấp"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Release"
-msgstr "Phát hành UUID hồ sơ cung cấp"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Provisioning Profile Specifier Debug"
-msgstr "Gỡ lỗi UUID hồ sơ cung cấp"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Provisioning Profile Specifier Release"
-msgstr "Phát hành UUID hồ sơ cung cấp"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Method Release"
-msgstr "Chế độ xuất:"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Targeted Device Family"
-msgstr "Họ thiết bị mục tiêu"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Bundle Identifier"
-msgstr "Định danh không hợp lệ:"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Signature"
-msgstr "Tín hiệu"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Short Version"
-msgstr "Phiên bản"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Min iOS Version"
-msgstr "Phiên bản"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Additional Plist Content"
-msgstr "Khoảng cách bổ sung"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#, fuzzy
-msgid "Icon Interpolation"
-msgstr "Nội suy"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Project Only"
-msgstr "Dự Án"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Delete Old Export Files Unconditionally"
-msgstr "Xóa các tệp xuất cũ vô điều kiện"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Entitlements"
-msgstr "Nội dung:"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Increased Memory Limit"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Game Center"
-msgstr "Giữa"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Push Notifications"
-msgstr "Xoay ngẫu nhiên:"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Additional"
-msgstr "Khoảng cách bổ sung"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Capabilities"
-msgstr "Thuộc tính"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Access Wi-Fi"
-msgstr "Thành công!"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Performance Gaming Tier"
-msgstr "Hiệu suất chơi game Cấp độ"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Performance A 12"
-msgstr "Hiệu suất A 12"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "User Data"
-msgstr "Giao diện người dùng"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From Files App"
-msgstr "Có thể truy cập từ ứng dụng Tệp"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From iTunes Sharing"
-msgstr "Có thể truy cập từ iTunes Chia sẻ"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Privacy"
-msgstr "Quyền riêng tư"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Camera Usage Description"
-msgstr "Nội dung"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Camera Usage Description Localized"
-msgstr "Nội dung"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Microphone Usage Description"
-msgstr "Nội dung Thuộc tính"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Microphone Usage Description Localized"
-msgstr "Nội dung Thuộc tính"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Photolibrary Usage Description"
-msgstr "Nội dung Thuộc tính"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Photolibrary Usage Description Localized"
-msgstr "Nội dung Thuộc tính"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Tracking Enabled"
-msgstr "Mở"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Tracking Domains"
-msgstr "Đóng gói"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Icon 1024 X 1024"
-msgstr "Biểu tượng 512 X 512"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Icon 1024 X 1024 Dark"
-msgstr "Biểu tượng 512 X 512"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Icon 1024 X 1024 Tinted"
-msgstr "Biểu tượng 512 X 512"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Storyboard"
-msgstr "Storyboard"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Image Scale Mode"
-msgstr "Chế độ căn Tỉ lệ"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom Image @2x"
-msgstr "Cắt các nút"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom Image @3x"
-msgstr "Cắt các nút"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Use Custom BG Color"
-msgstr "Cắt các nút"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom BG Color"
-msgstr "Cắt các nút"
 
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -8111,6 +8458,11 @@ msgstr "Web"
 msgid "Removable Volumes Usage Description Localized"
 msgstr "Mô tả phương thức"
 
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min Visionos Version"
+msgstr "Phiên bản"
+
 #: platform/web/export/export.cpp
 msgid "Web"
 msgstr "Cổng HTTP"
@@ -8150,6 +8502,15 @@ msgstr "Nén kết cấu VRAM"
 #, fuzzy
 msgid "Thread Support"
 msgstr "Bật tắt Chức năng"
+
+#: platform/web/export/export_plugin.cpp
+msgid "Emscripten Pool Size"
+msgstr ""
+
+#: platform/web/export/export_plugin.cpp
+#, fuzzy
+msgid "Godot Pool Size"
+msgstr "Godot Skin"
 
 #: platform/web/export/export_plugin.cpp
 #, fuzzy
@@ -8225,19 +8586,11 @@ msgid "Windows"
 msgstr "Cửa sổ"
 
 #: platform/windows/export/export.cpp
-msgid "rcedit"
-msgstr ""
-
-#: platform/windows/export/export.cpp
 msgid "signtool"
 msgstr ""
 
 #: platform/windows/export/export.cpp
 msgid "osslsigncode"
-msgstr ""
-
-#: platform/windows/export/export.cpp
-msgid "wine"
 msgstr ""
 
 #: platform/windows/export/export_plugin.cpp
@@ -8319,7 +8672,8 @@ msgstr "Khung hình %"
 #: scene/2d/animated_sprite_2d.cpp scene/2d/cpu_particles_2d.cpp
 #: scene/2d/gpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/sprite_3d.cpp
-#: scene/animation/animation_player.cpp scene/resources/animated_texture.cpp
+#: scene/animation/animation_player.cpp scene/gui/video_stream_player.cpp
+#: scene/resources/animated_texture.cpp
 #, fuzzy
 msgid "Speed Scale"
 msgstr "Tỷ lệ:"
@@ -8343,7 +8697,7 @@ msgid "Flip V"
 msgstr "Âm lượng dB"
 
 #: scene/2d/audio_listener_2d.cpp scene/3d/audio_listener_3d.cpp
-#: scene/3d/camera_3d.cpp scene/3d/xr_nodes.cpp
+#: scene/3d/camera_3d.cpp scene/3d/xr/xr_nodes.cpp
 #, fuzzy
 msgid "Current"
 msgstr "Hiện tại:"
@@ -8639,7 +8993,7 @@ msgid "Emission Shape"
 msgstr "Nguồn phát ra: "
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/physics/collision_shape_2d.cpp
-#: scene/2d/physics/shape_cast_2d.cpp scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/physics/touch_screen_button.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/fog_volume.cpp
 #: scene/3d/physics/collision_shape_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/primitive_meshes.cpp
@@ -9097,195 +9451,219 @@ msgstr "Khoảng cách mong muốn của đường dẫn"
 msgid "Multimesh"
 msgstr "Khoảng cách mong muốn của mục tiêu"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Pathfinding"
-msgstr "Đệm"
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Desired Distance"
 msgstr "Chọn ô"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Target Desired Distance"
 msgstr "Thuật toán tìm đường"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Max Distance"
 msgstr "Hậu xử lý đường dẫn"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
-#: scene/resources/2d/tile_set.cpp scene/resources/3d/mesh_library.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
+#: scene/resources/3d/mesh_library.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Navigation Layers"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Pathfinding Algorithm"
 msgstr "Đệm"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Path Postprocessing"
 msgstr "Hậu xử lí"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Metadata Flags"
 msgstr "Tránh"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Simplify Path"
 msgstr "Tách đường"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Simplify Epsilon"
 msgstr "Khoảng cách hàng xóm"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
-#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Avoidance"
-msgstr "Nâng cao"
-
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Enabled"
 msgstr "Mở"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Neighbor Distance"
 msgstr "Thêm vào Cảnh"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Max Neighbors"
 msgstr "Tốc độ tối đa"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Time Horizon Agents"
 msgstr "Lật Ngang"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Time Horizon Obstacles"
 msgstr "Lật Ngang"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Max Speed"
 msgstr "Tốc độ:"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Layers"
 msgstr "Mở"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Avoidance Mask"
 msgstr "Nâng cao"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Avoidance Priority"
 msgstr "Chế độ va chạm"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Use Custom"
 msgstr "Giao diện người dùng"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Custom Color"
 msgstr "Cắt các nút"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Custom Point Size"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
 #, fuzzy
 msgid "Path Custom Line Width"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #, fuzzy
 msgid "Bidirectional"
 msgstr "Hướng đi"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Start Position"
 msgstr "Đặt vị trí điểm uốn"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #, fuzzy
 msgid "End Position"
 msgstr "Vị trí"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 #, fuzzy
 msgid "Enter Cost"
 msgstr "Dưới giữa"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 #, fuzzy
 msgid "Travel Cost"
 msgstr "Di chuyển"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Vertices"
 msgstr "Dọc:"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "NavigationMesh"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Affect Navigation Mesh"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Carve Navigation Mesh"
 msgstr "Chế độ di chuyển"
 
-#: scene/2d/navigation_region_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
 msgstr "Chỉnh đa giác điều hướng"
 
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
-#: servers/navigation_server_3d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Use Edge Connections"
 msgstr "Chỉnh sửa kết nối:"
@@ -9359,11 +9737,6 @@ msgstr "Cuộn"
 #, fuzzy
 msgid "Base Offset"
 msgstr "Độ dời:"
-
-#: scene/2d/parallax_background.cpp scene/theme/theme_db.cpp
-#, fuzzy
-msgid "Base Scale"
-msgstr "Dính theo bước tỉ lệ"
 
 #: scene/2d/parallax_background.cpp
 msgid "Limit Begin"
@@ -9564,7 +9937,7 @@ msgid "Safe Margin"
 msgstr "Đặt Lề"
 
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #, fuzzy
 msgid "Disable Mode"
 msgstr "Các mục tắt"
@@ -9594,10 +9967,14 @@ msgid "One Way Collision"
 msgstr "Tạo đa giác va chạm"
 
 #: scene/2d/physics/collision_polygon_2d.cpp
-#: scene/2d/physics/collision_shape_2d.cpp
+#: scene/2d/physics/collision_shape_2d.cpp scene/2d/physics/shape_cast_2d.cpp
+#: scene/3d/physics/collision_polygon_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/shape_3d.cpp
+#: scene/resources/atlas_texture.cpp scene/theme/default_theme.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 #, fuzzy
-msgid "One Way Collision Margin"
-msgstr "Tạo đa giác va chạm"
+msgid "Margin"
+msgstr "Đặt Lề"
 
 #: scene/2d/physics/collision_shape_2d.cpp
 #: scene/3d/physics/collision_polygon_3d.cpp
@@ -9861,15 +10238,6 @@ msgstr "Lưới nguồn:"
 msgid "Torque"
 msgstr "Mô men xoắn"
 
-#: scene/2d/physics/shape_cast_2d.cpp scene/3d/physics/collision_polygon_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp scene/3d/physics/spring_arm_3d.cpp
-#: scene/resources/3d/shape_3d.cpp scene/resources/atlas_texture.cpp
-#: scene/theme/default_theme.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
-#, fuzzy
-msgid "Margin"
-msgstr "Đặt Lề"
-
 #: scene/2d/physics/static_body_2d.cpp scene/3d/physics/static_body_3d.cpp
 #, fuzzy
 msgid "Constant Linear Velocity"
@@ -9879,6 +10247,34 @@ msgstr "Khởi tạo"
 #, fuzzy
 msgid "Constant Angular Velocity"
 msgstr "Khởi tạo"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Texture Normal"
+msgstr "Định dạng hình kết cấu"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Texture Pressed"
+msgstr "Được ấn"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Bitmask"
+msgstr "Bitmask"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Shape Centered"
+msgstr "Dính vào tâm Nút"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Shape Visible"
+msgstr "Xóa lịch sử Tệp gần đây"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Passby Press"
+msgstr "Nhấn qua"
 
 #: scene/2d/polygon_2d.cpp
 msgid "UV"
@@ -9974,7 +10370,7 @@ msgstr "Chế độ va chạm"
 msgid "Collision Visibility Mode"
 msgstr "Chế độ Ưu tiên"
 
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/2d/tile_map.cpp
 #, fuzzy
 msgid "Navigation Visibility Mode"
 msgstr "Chế độ Ưu tiên"
@@ -10004,41 +10400,13 @@ msgstr "Sử dụng Vật thể động học"
 
 #: scene/2d/tile_map_layer.cpp
 #, fuzzy
-msgid "Navigation Enabled"
-msgstr "Chế độ di chuyển"
+msgid "Physics Quadrant Size"
+msgstr "Kích cỡ viền:"
 
-#: scene/2d/touch_screen_button.cpp
+#: scene/2d/visible_on_screen_notifier_2d.cpp
 #, fuzzy
-msgid "Texture Normal"
-msgstr "Định dạng hình kết cấu"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Texture Pressed"
-msgstr "Được ấn"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Bitmask"
-msgstr "Bitmask"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Shape Centered"
-msgstr "Dính vào tâm Nút"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Shape Visible"
-msgstr "Xóa lịch sử Tệp gần đây"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Passby Press"
-msgstr "Nhấn qua"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Visibility Mode"
-msgstr "Chế độ Ưu tiên"
+msgid "Show Rect"
+msgstr "Độ dời:"
 
 #: scene/2d/visible_on_screen_notifier_2d.cpp
 #: scene/3d/visible_on_screen_notifier_3d.cpp
@@ -10121,6 +10489,16 @@ msgstr "Xương"
 #, fuzzy
 msgid "Override Pose"
 msgstr "Ghi đè"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "Use External Skeleton"
+msgstr "Gỡ lỗi bằng Trình chỉnh sửa bên ngoài"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "External Skeleton"
+msgstr "Khung xương"
 
 #: scene/3d/camera_3d.cpp
 msgid "Keep Aspect"
@@ -10468,15 +10846,20 @@ msgstr "Lọc tín hiệu"
 msgid "Uppercase"
 msgstr "Chữ hoa"
 
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
+#: scene/gui/rich_text_label.cpp
+msgid "Autowrap Trim Flags"
+msgstr ""
+
 #: scene/3d/label_3d.cpp scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #: scene/resources/3d/primitive_meshes.cpp scene/resources/text_paragraph.cpp
 #, fuzzy
 msgid "Justification Flags"
 msgstr "Xoay ngẫu nhiên:"
 
-#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
-#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
-#: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/foldable_container.cpp
+#: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
+#: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 msgid "BiDi"
 msgstr "BiDi"
@@ -10716,8 +11099,8 @@ msgstr "Gộp từ Scene"
 msgid "Custom Sky"
 msgstr "Cắt các nút"
 
-#: scene/3d/lightmap_gi.cpp scene/3d/physics/ray_cast_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/lightmap_gi.cpp scene/3d/path_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #, fuzzy
 msgid "Custom Color"
 msgstr "Cắt các nút"
@@ -10868,22 +11251,24 @@ msgstr ""
 msgid "Surface Material Override"
 msgstr "Ghi đè"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Height Offset"
 msgstr "Độ lệch lưới:"
 
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Use 3D Avoidance"
 msgstr "Nâng cao"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Keep Y Velocity"
 msgstr "Vận tốc"
 
-#: scene/3d/navigation_region_3d.cpp scene/resources/3d/mesh_library.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: scene/resources/3d/mesh_library.cpp
 #, fuzzy
 msgid "Navigation Mesh"
 msgstr "Chế độ di chuyển"
@@ -10915,13 +11300,6 @@ msgstr "Góc trên trái"
 msgid "Visibility"
 msgstr "Khả năng hiển thị"
 
-#: scene/3d/node_3d.cpp scene/gui/rich_text_effect.cpp scene/gui/tree.cpp
-#: scene/main/canvas_item.cpp scene/main/canvas_layer.cpp
-#: scene/main/status_indicator.cpp scene/main/window.cpp
-#, fuzzy
-msgid "Visible"
-msgstr "Xóa lịch sử Tệp gần đây"
-
 #: scene/3d/node_3d.cpp
 #, fuzzy
 msgid "Visibility Parent"
@@ -10931,6 +11309,12 @@ msgstr "Chế độ Ưu tiên"
 #, fuzzy
 msgid "Bake"
 msgstr "Chế độ Bitmask"
+
+#: scene/3d/path_3d.cpp scene/3d/physics/ray_cast_3d.cpp
+#: scene/3d/physics/shape_cast_3d.cpp
+#, fuzzy
+msgid "Debug Shape"
+msgstr "Trình gỡ lỗi"
 
 #: scene/3d/path_3d.cpp
 #, fuzzy
@@ -10975,7 +11359,7 @@ msgstr "Xe buýt hồi âm"
 msgid "Uniformity"
 msgstr "Đối số đã thay đổi"
 
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 msgid "Ray Pickable"
 msgstr "Có thể chọn tia"
 
@@ -11335,10 +11719,60 @@ msgstr "Góc Z"
 msgid "Hit Back Faces"
 msgstr "Đánh mặt sau"
 
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/physics/soft_body_3d.cpp
 #, fuzzy
-msgid "Debug Shape"
-msgstr "Trình gỡ lỗi"
+msgid "Pinned Points"
+msgstr "Đã ghim %s"
+
+#: scene/3d/physics/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Attachments"
+msgstr "Nội dung:"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Point Index"
+msgstr "Chỉ số Z"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Spatial Attachment Path"
+msgstr "Đường dẫn tệp đính kèm không gian"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Parent Collision Ignore"
+msgstr "Tạo đa giác va chạm"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Simulation Precision"
+msgstr "Animation tree vô hiệu."
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Total Mass"
+msgstr "Tổng:"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Linear Stiffness"
+msgstr "Độ cứng tuyến tính"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Shrinking Factor"
+msgstr "Toán tử vô hướng."
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Pressure Coefficient"
+msgstr "Hệ số áp suất"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Damping Coefficient"
+msgstr "Hệ số giảm chấn"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Drag Coefficient"
+msgstr "Hệ số kéo"
 
 #: scene/3d/physics/spring_arm_3d.cpp
 msgid "Spring Length"
@@ -11488,7 +11922,7 @@ msgstr "Tên nút gốc"
 msgid "Tip Bone"
 msgstr "Xương"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "Mục tiêu"
 
@@ -11526,56 +11960,6 @@ msgstr "Chọn tất cả"
 msgid "Influence"
 msgstr "Ảnh hưởng"
 
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Pinned Points"
-msgstr "Đã ghim %s"
-
-#: scene/3d/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
-#, fuzzy
-msgid "Attachments"
-msgstr "Nội dung:"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Point Index"
-msgstr "Chỉ số Z"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Spatial Attachment Path"
-msgstr "Đường dẫn tệp đính kèm không gian"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Parent Collision Ignore"
-msgstr "Tạo đa giác va chạm"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Simulation Precision"
-msgstr "Animation tree vô hiệu."
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Total Mass"
-msgstr "Tổng:"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Linear Stiffness"
-msgstr "Độ cứng tuyến tính"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Pressure Coefficient"
-msgstr "Hệ số áp suất"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Damping Coefficient"
-msgstr "Hệ số giảm chấn"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Drag Coefficient"
-msgstr "Hệ số kéo"
-
 #: scene/3d/spring_bone_collision_3d.cpp scene/gui/graph_element.cpp
 #, fuzzy
 msgid "Position Offset"
@@ -11590,6 +11974,11 @@ msgstr "Độ lệch xoay:"
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 msgid "Inside"
 msgstr ""
+
+#: scene/3d/spring_bone_simulator_3d.cpp
+#, fuzzy
+msgid "External Force"
+msgstr "Bên ngoài"
 
 #: scene/3d/velocity_tracker_3d.cpp
 #, fuzzy
@@ -11673,41 +12062,41 @@ msgstr "Điều hướng"
 msgid "Use Two Bounces"
 msgstr "Sử dụng hai lần nảy"
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 #, fuzzy
 msgid "Body Tracker"
 msgstr "Rãnh"
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 #, fuzzy
 msgid "Body Update"
 msgstr "Cập nhật"
 
-#: scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/xr/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
 msgstr "Rãnh"
 
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 #, fuzzy
 msgid "Hand Tracker"
 msgstr "Đóng gói"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 #, fuzzy
 msgid "Tracker"
 msgstr "Rãnh"
 
-#: scene/3d/xr_nodes.cpp scene/resources/3d/skin.cpp
+#: scene/3d/xr/xr_nodes.cpp scene/resources/3d/skin.cpp
 #, fuzzy
 msgid "Pose"
 msgstr "Sao chép Tư thế"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 msgid "Show When Tracked"
 msgstr "Hiển thị khi được theo dõi"
 
-#: scene/3d/xr_nodes.cpp servers/xr_server.cpp
+#: scene/3d/xr/xr_nodes.cpp servers/xr_server.cpp
 #, fuzzy
 msgid "World Scale"
 msgstr "Thu phóng ngẫu nhiên:"
@@ -12214,6 +12603,11 @@ msgstr "Sửa Poly"
 
 #: scene/gui/color_picker.cpp
 #, fuzzy
+msgid "Edit Intensity"
+msgstr "Cường độ"
+
+#: scene/gui/color_picker.cpp
+#, fuzzy
 msgid "Color Mode"
 msgstr "Đã sửa đổi"
 
@@ -12387,6 +12781,11 @@ msgid "Previous"
 msgstr "Trước đó"
 
 #: scene/gui/control.cpp
+#, fuzzy
+msgid "Behavior Recursive"
+msgstr "Hành vi"
+
+#: scene/gui/control.cpp
 msgid "Mouse"
 msgstr "Neighbor Bottom"
 
@@ -12468,6 +12867,47 @@ msgstr "Lọc tín hiệu"
 msgid "Reverse Fill"
 msgstr "Đặt lại âm lượng Bus"
 
+#: scene/gui/foldable_container.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folded"
+msgstr "Thư mục:"
+
+#: scene/gui/foldable_container.cpp scene/gui/graph_frame.cpp
+#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/resources/visual_shader.cpp
+msgid "Title"
+msgstr "Đã chọn"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Alignment"
+msgstr "Lọc tín hiệu"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Position"
+msgstr "Vị trí toàn cục"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Overrun Behavior"
+msgstr "Hành vi tràn văn bản"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Foldable Group"
+msgstr "Thư mục:"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Direction"
+msgstr "Hướng đi"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Allow Folding All"
+msgstr "Màu đường thực thi"
+
 #: scene/gui/graph_edit.cpp
 msgid "Show Grid"
 msgstr "Điền ngược"
@@ -12491,6 +12931,11 @@ msgstr "Lưu cảnh"
 #, fuzzy
 msgid "Right Disconnects"
 msgstr "Hủy kết nối"
+
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Type Names"
+msgstr "Tên"
 
 #: scene/gui/graph_edit.cpp
 #, fuzzy
@@ -12566,11 +13011,6 @@ msgstr "Đặt Lề"
 #, fuzzy
 msgid "Selected"
 msgstr "Chọn"
-
-#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
-#: scene/resources/visual_shader.cpp
-msgid "Title"
-msgstr "Đã chọn"
 
 #: scene/gui/graph_frame.cpp
 #, fuzzy
@@ -12744,8 +13184,17 @@ msgid "Emoji Menu Enabled"
 msgstr "Menu ngữ cảnh được bật"
 
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+msgid "Backspace Deletes Composite Character Enabled"
+msgstr ""
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 #, fuzzy
 msgid "Virtual Keyboard Enabled"
+msgstr "Lọc tín hiệu"
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Virtual Keyboard Show on Focus"
 msgstr "Lọc tín hiệu"
 
 #: scene/gui/line_edit.cpp
@@ -12829,7 +13278,7 @@ msgstr "Bí mật"
 
 #: scene/gui/line_edit.cpp
 #, fuzzy
-msgid "Secret Character"
+msgid "Character"
 msgstr "Ký tự hợp lệ:"
 
 #: scene/gui/link_button.cpp
@@ -12963,11 +13412,6 @@ msgstr "Cho phép lớn hơn"
 #: scene/gui/range.cpp
 msgid "Allow Lesser"
 msgstr "Cho phép nhỏ hơn"
-
-#: scene/gui/reference_rect.cpp
-#, fuzzy
-msgid "Border Color"
-msgstr "Xóa mục Lớp"
 
 #: scene/gui/reference_rect.cpp scene/resources/style_box_flat.cpp
 #, fuzzy
@@ -13156,6 +13600,11 @@ msgstr "Khả năng hiển thị của trình kéo"
 
 #: scene/gui/split_container.cpp
 #, fuzzy
+msgid "Touch Dragger Enabled"
+msgstr "Mở"
+
+#: scene/gui/split_container.cpp
+#, fuzzy
 msgid "Drag Area"
 msgstr "Khu vực Grabber"
 
@@ -13198,6 +13647,10 @@ msgstr "Lọc tín hiệu"
 #, fuzzy
 msgid "Clip Tabs"
 msgstr "Các đoạn hoạt ảnh"
+
+#: scene/gui/tab_bar.cpp
+msgid "Close With Middle Mouse"
+msgstr ""
 
 #: scene/gui/tab_bar.cpp
 msgid "Tab Close Display Policy"
@@ -13274,6 +13727,11 @@ msgstr "Chỉ chọn"
 #, fuzzy
 msgid "Wrap Mode"
 msgstr "Chế độ Dính:"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Tab Input Mode"
+msgstr "Chế độ Di chuyển"
 
 #: scene/gui/text_edit.cpp
 #, fuzzy
@@ -13616,6 +14074,28 @@ msgstr "Bản dịch"
 msgid "Editor Description"
 msgstr "Nội dung"
 
+#: scene/main/node.cpp
+msgid "Live"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Controls Nodes"
+msgstr "Giữa"
+
+#: scene/main/node.cpp
+msgid "Described by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+msgid "Labeled by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Flow to Nodes"
+msgstr "Tên nút gốc"
+
 #: scene/main/scene_tree.cpp
 #, fuzzy
 msgid "Time Left"
@@ -13642,7 +14122,7 @@ msgid "Multiplayer Poll"
 msgstr "Gán nhiều:"
 
 #: scene/main/scene_tree.cpp scene/resources/3d/mesh_library.cpp
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Shapes"
 msgstr "Hình dạng"
 
@@ -13798,6 +14278,11 @@ msgstr "Môi trường"
 #, fuzzy
 msgid "Enable Object Picking"
 msgstr "Xem Khung hình Liên tiếp"
+
+#: scene/main/scene_tree_fti.cpp
+#, fuzzy
+msgid "Scene Traversal"
+msgstr "Cây chứa cảnh"
 
 #: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
 msgid "Menu"
@@ -13976,6 +14461,15 @@ msgstr "Quad 3"
 msgid "Canvas Cull Mask"
 msgstr "Mặt nạ loại bỏ Canvas"
 
+#: scene/main/viewport.cpp servers/audio/effects/audio_effect_pitch_shift.cpp
+msgid "Oversampling"
+msgstr "Định vị điểm ảnh phụ"
+
+#: scene/main/viewport.cpp
+#, fuzzy
+msgid "Oversampling Override"
+msgstr "Định vị điểm ảnh phụ"
+
 #: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
@@ -14047,6 +14541,11 @@ msgstr "Di chuyển chuột"
 #, fuzzy
 msgid "Exclude From Capture"
 msgstr "Xoá các nút"
+
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Popup Wm Hint"
+msgstr "Cửa sổ"
 
 #: scene/main/window.cpp
 #, fuzzy
@@ -15262,11 +15761,6 @@ msgstr "Ánh sáng"
 
 #: scene/resources/environment.cpp
 #, fuzzy
-msgid "Saturation"
-msgstr "Thu phóng (theo tỉ lệ):"
-
-#: scene/resources/environment.cpp
-#, fuzzy
 msgid "Color Correction"
 msgstr "hàm màu"
 
@@ -15353,6 +15847,21 @@ msgstr "Trên đầu"
 msgid "Paragraph Spacing"
 msgstr "Tuỳ chọn bổ sung:"
 
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Effects"
+msgstr "Rộng bên phải"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Outlines"
+msgstr "Kích cỡ viền:"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Shadows"
+msgstr "Bật Dính"
+
 #: scene/resources/material.cpp
 #, fuzzy
 msgid "Next Pass"
@@ -15399,6 +15908,11 @@ msgstr "Tắt gập"
 
 #: scene/resources/material.cpp
 #, fuzzy
+msgid "Disable Specular Occlusion"
+msgstr "Tắt"
+
+#: scene/resources/material.cpp
+#, fuzzy
 msgid "Vertex Color"
 msgstr "Đỉnh"
 
@@ -15440,6 +15954,11 @@ msgstr "Toán tử"
 #: scene/resources/material.cpp
 msgid "On UV2"
 msgstr "Trên UV2"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Bent Normal Map"
+msgstr "Bản đồ chuẩn"
 
 #: scene/resources/material.cpp
 msgid "Rim"
@@ -15487,8 +16006,9 @@ msgstr "Lật Ngang"
 msgid "Flip Texture"
 msgstr "Sao chép văn bản"
 
-#: scene/resources/material.cpp servers/rendering_server.cpp
-msgid "Subsurface Scattering"
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Subsurf Scatter"
 msgstr "Phân tán dưới bề mặt"
 
 #: scene/resources/material.cpp
@@ -15600,6 +16120,26 @@ msgstr "Góc nhìn trực diện"
 #, fuzzy
 msgid "Use Particle Trails"
 msgstr "Hạt"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use Z Clip Scale"
+msgstr "Dính theo bước tỉ lệ"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Z Clip Scale"
+msgstr "Dính theo bước tỉ lệ"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use FOV Override"
+msgstr "Ghi đè"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "FOV Override"
+msgstr "Ghi đè"
 
 #: scene/resources/material.cpp
 #, fuzzy
@@ -16381,6 +16921,16 @@ msgstr "Độ lệch lưới:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Checkbox Checked Color"
+msgstr "Xoá lựa chọn"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Checkbox Unchecked Color"
+msgstr "Cấu hình hồ sơ được chọn:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Checked Mirrored"
 msgstr "Tích được"
 
@@ -16398,6 +16948,16 @@ msgstr "Các mục tắt"
 #, fuzzy
 msgid "Unchecked Disabled Mirrored"
 msgstr "Các mục tắt"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Checked Color"
+msgstr "Cấu hình hồ sơ được chọn:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Unchecked Color"
+msgstr "Cấu hình hồ sơ được chọn:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16486,11 +17046,6 @@ msgstr "Tự hoàn thành"
 #, fuzzy
 msgid "Can Fold"
 msgstr "Tạo thư mục"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Folded"
-msgstr "Thư mục:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16851,6 +17406,10 @@ msgid "Reload"
 msgstr "Tải lại"
 
 #: scene/theme/default_theme.cpp
+msgid "Favorite"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Toggle Hidden"
 msgstr "Bật tắt File ẩn"
@@ -16866,8 +17425,41 @@ msgstr "Thư mục:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Thumbnail Mode"
+msgstr "Cỡ ảnh thu nhỏ"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "List Mode"
+msgstr "Rộng bên phải"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Create Folder"
 msgstr "Tạo thư mục"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Sort"
+msgstr "Sắp xếp"
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Up"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Down"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "File Thumbnail"
+msgstr "Cỡ ảnh thu nhỏ"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folder Thumbnail"
+msgstr "Cỡ ảnh thu nhỏ"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16958,6 +17550,11 @@ msgstr "Chọn"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Panel Focus"
+msgstr "Đường dẫn Tập trung"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Titlebar"
 msgstr "Tọa độ tiếp theo"
 
@@ -16969,6 +17566,11 @@ msgstr "Chọn"
 #: scene/theme/default_theme.cpp
 msgid "Slot"
 msgstr "Khe"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Slot Selected"
+msgstr "Độ lệch lưới:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16994,6 +17596,16 @@ msgstr "Được ấn"
 #, fuzzy
 msgid "Hovered Dimmed"
 msgstr "Được ấn"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered Selected"
+msgstr "Chọn"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered Selected Focus"
+msgstr "Chọn"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17087,6 +17699,11 @@ msgstr "Chọn màu"
 #, fuzzy
 msgid "Font Hovered Dimmed Color"
 msgstr "Chọn màu"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Font Hovered Selected Color"
+msgstr "Cấu hình hồ sơ được chọn:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17223,21 +17840,6 @@ msgstr "Đặt Lề"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
-msgid "Font Hovered Selected Color"
-msgstr "Cấu hình hồ sơ được chọn:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Hovered Selected"
-msgstr "Chọn"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Hovered Selected Focus"
-msgstr "Chọn"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
 msgid "Tab Selected"
 msgstr "Chọn"
 
@@ -17327,6 +17929,24 @@ msgstr "Thanh trượt Grabber ở giữa"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Sample Focus"
+msgstr "Chọn"
+
+#: scene/theme/default_theme.cpp
+msgid "Picker Focus Rectangle"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Picker Focus Circle"
+msgstr "Chọn màu"
+
+#: scene/theme/default_theme.cpp
+msgid "Focused not Editing Cursor Color"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Menu Option"
 msgstr "Thao tác"
 
@@ -17393,6 +18013,11 @@ msgstr "Chọn màu"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Color Script"
+msgstr "Nhập cảnh"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Color Hue"
 msgstr "Chỉnh Tông màu"
 
@@ -17404,6 +18029,11 @@ msgstr "B"
 #: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Preset FG"
+msgstr "Cài sẵn"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Preset Focus"
 msgstr "Cài sẵn"
 
 #: scene/theme/default_theme.cpp
@@ -17492,6 +18122,27 @@ msgstr "Tô sáng"
 #, fuzzy
 msgid "Text Highlight V Padding"
 msgstr "Tô sáng"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Underline Alpha"
+msgstr "Khoảng cách bổ sung"
+
+#: scene/theme/default_theme.cpp
+msgid "Strikethrough Alpha"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "H Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "V Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Touch Dragger"
+msgstr ""
 
 #: scene/theme/default_theme.cpp
 msgid "H Grabber"
@@ -17612,6 +18263,45 @@ msgstr "Nhập cảnh"
 #, fuzzy
 msgid "Connection Rim Color"
 msgstr "Chỉnh sửa kết nối:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Panel"
+msgstr "Phông mã"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Hover Panel"
+msgstr "Bật tắt Chức năng"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Collapsed Panel"
+msgstr "Thu gọn Tất cả"
+
+#: scene/theme/default_theme.cpp
+msgid "Title Collapsed Hover Panel"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hover Font Color"
+msgstr "Lưu trữ tệp tin:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Collapsed Font Color"
+msgstr "Màu phông chữ hoàn thành"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Expanded Arrow Mirrored"
+msgstr "Mở rộng Tất cả"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folded Arrow Mirrored"
+msgstr "Thư mục:"
 
 #: scene/theme/default_theme.cpp
 msgid "Port Hotzone Inner Extent"
@@ -17921,6 +18611,11 @@ msgstr "Feed"
 msgid "Is Active"
 msgstr "Phối cảnh"
 
+#: servers/camera_server.cpp
+#, fuzzy
+msgid "Monitoring Feeds"
+msgstr "Màn hình"
+
 #: servers/movie_writer/movie_writer.cpp
 #, fuzzy
 msgid "Movie Writer"
@@ -17951,6 +18646,18 @@ msgstr "Sử dụng Dính"
 msgid "Metadata Flags"
 msgstr "Cờ siêu dữ liệu"
 
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Excluded Regions"
+msgstr "Loại trừ tiện ích bổ sung"
+
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Included Regions"
+msgstr "Loại trừ tiện ích bổ sung"
+
 #: servers/navigation/navigation_path_query_result_2d.cpp
 #: servers/navigation/navigation_path_query_result_3d.cpp
 #, fuzzy
@@ -17968,20 +18675,129 @@ msgstr "Xoay ngẫu nhiên:"
 msgid "Path Owner IDs"
 msgstr "ID chủ sở hữu đường dẫn"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Cell Size"
 msgstr "Cập nhật bản xem trước"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Edge Connection Margin"
 msgstr "Chỉnh sửa kết nối:"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Link Connection Radius"
 msgstr "Chỉnh sửa kết nối:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Edge Connection Color"
+msgstr "Chỉnh sửa kết nối:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Edge Color"
+msgstr "Các mục tắt"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Face Color"
+msgstr "Các mục tắt"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Edge Disabled Color"
+msgstr "Đổi tên Biến"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Face Disabled Color"
+msgstr "Đổi tên Biến"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Link Connection Color"
+msgstr "Kết nối bị lỗi"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Link Connection Disabled Color"
+msgstr "Nhập cảnh"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agent Path Color"
+msgstr "Sao chép đường dẫn nút"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Edge Connections"
+msgstr "Chỉnh sửa kết nối:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Edge Lines"
+msgstr "Kích hoạt lọc"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Geometry Face Random Color"
+msgstr "Các mục tắt"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Link Connections"
+msgstr "Chỉnh sửa kết nối:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agent Paths"
+msgstr "Kích hoạt lọc"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agent Path Point Size"
+msgstr "Góc nhìn trực diện"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agents Radius Color"
+msgstr "Sao chép đường dẫn nút"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr "Màu bán kính chướng ngại vật"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr "Màu đẩy mặt tĩnh chướng ngại vật"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr "Màu đẩy cạnh tĩnh chướng ngại vật"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr "Màu đẩy mặt tĩnh chướng ngại vật"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr "Màu đẩy cạnh tĩnh chướng ngại vật"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agents Radius"
+msgstr "Kích hoạt lọc"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Obstacles Radius"
+msgstr "Thay Đổi Bán Kính Ngoài Của Hình Xuyến"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr "Bật Chướng ngại vật tĩnh"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -17999,109 +18815,12 @@ msgstr "Hợp nhất Tỷ lệ ô Rasterizer"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
-msgid "World"
-msgstr "Thu phóng ngẫu nhiên:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Map Use Async Iterations"
-msgstr "Tạo Hàm"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Avoidance Use Multiple Threads"
-msgstr "Gán nhiều:"
-
-#: servers/navigation_server_3d.cpp
-msgid "Avoidance Use High Priority Threads"
-msgstr "Tránh sử dụng luồng có mức độ ưu tiên cao"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Baking"
-msgstr "Đóng gói"
-
-#: servers/navigation_server_3d.cpp
-msgid "Use Crash Prevention Checks"
-msgstr "Sử dụng Kiểm tra phòng ngừa sự cố"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Baking Use Multiple Threads"
-msgstr "Gán nhiều:"
-
-#: servers/navigation_server_3d.cpp
-msgid "Baking Use High Priority Threads"
-msgstr "Baking Sử dụng luồng có mức độ ưu tiên cao"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Edge Connection Color"
-msgstr "Chỉnh sửa kết nối:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Edge Color"
-msgstr "Các mục tắt"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Face Color"
-msgstr "Các mục tắt"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Edge Disabled Color"
-msgstr "Đổi tên Biến"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Face Disabled Color"
-msgstr "Đổi tên Biến"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Link Connection Color"
-msgstr "Kết nối bị lỗi"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Link Connection Disabled Color"
-msgstr "Nhập cảnh"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agent Path Color"
-msgstr "Sao chép đường dẫn nút"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Edge Connections"
-msgstr "Chỉnh sửa kết nối:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
 msgid "Enable Edge Connections X-Ray"
 msgstr "Chỉnh sửa kết nối:"
 
 #: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Edge Lines"
-msgstr "Kích hoạt lọc"
-
-#: servers/navigation_server_3d.cpp
 msgid "Enable Edge Lines X-Ray"
 msgstr "Bật đường cạnh X-Ray"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Geometry Face Random Color"
-msgstr "Các mục tắt"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Link Connections"
-msgstr "Chỉnh sửa kết nối:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -18110,57 +18829,8 @@ msgstr "Chỉnh sửa kết nối:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
-msgid "Enable Agent Paths"
-msgstr "Kích hoạt lọc"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
 msgid "Enable Agent Paths X-Ray"
 msgstr "Chỉnh sửa kết nối:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agent Path Point Size"
-msgstr "Góc nhìn trực diện"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agents Radius Color"
-msgstr "Sao chép đường dẫn nút"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Radius Color"
-msgstr "Màu bán kính chướng ngại vật"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushin Color"
-msgstr "Màu đẩy mặt tĩnh chướng ngại vật"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushin Color"
-msgstr "Màu đẩy cạnh tĩnh chướng ngại vật"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushout Color"
-msgstr "Màu đẩy mặt tĩnh chướng ngại vật"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushout Color"
-msgstr "Màu đẩy cạnh tĩnh chướng ngại vật"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Agents Radius"
-msgstr "Kích hoạt lọc"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Obstacles Radius"
-msgstr "Thay Đổi Bán Kính Ngoài Của Hình Xuyến"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Obstacles Static"
-msgstr "Bật Chướng ngại vật tĩnh"
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -18465,6 +19135,11 @@ msgstr "Vô hiệu"
 
 #: servers/rendering/shader_types.cpp
 #, fuzzy
+msgid "Specular Occlusion Disabled"
+msgstr "Chế độ va chạm"
+
+#: servers/rendering/shader_types.cpp
+#, fuzzy
 msgid "Light Only"
 msgstr "Ánh sáng"
 
@@ -18666,6 +19341,11 @@ msgid "Reflection Count"
 msgstr "Chọn Thuộc tính"
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "Specular Occlusion"
+msgstr "Tạo"
+
+#: servers/rendering_server.cpp
 msgid "GI"
 msgstr "GI"
 
@@ -18757,6 +19437,11 @@ msgid "Screen Space Roughness Limiter"
 msgstr "Bộ giới hạn độ nhám không gian màn hình"
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "SMAA Edge Detection Threshold"
+msgstr "Mạng lưới Ngưỡng LOD"
+
+#: servers/rendering_server.cpp
 msgid "Decals"
 msgstr "Hình dán"
 
@@ -18783,6 +19468,10 @@ msgstr "Chọn Scale"
 #, fuzzy
 msgid "Roughness Quality"
 msgstr "Lớp"
+
+#: servers/rendering_server.cpp
+msgid "Subsurface Scattering"
+msgstr "Phân tán dưới bề mặt"
 
 #: servers/rendering_server.cpp
 msgid "Subsurface Scattering Quality"

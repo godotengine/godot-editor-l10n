@@ -35,9 +35,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.12-dev\n"
 
-#: core/config/project_settings.cpp main/main.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp main/main.cpp
 #: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
+#: platform/visionos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Application"
 msgstr "แอปพลิเคชัน"
@@ -50,8 +52,9 @@ msgstr "ตั้งค่า"
 #: editor/animation_track_editor.cpp
 #: editor/plugins/tiles/tile_set_atlas_source_editor.cpp
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
-#: scene/3d/physics/area_3d.cpp scene/resources/3d/mesh_library.cpp
-#: scene/resources/3d/skin.cpp servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
+#: scene/3d/physics/area_3d.cpp scene/main/node.cpp
+#: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
+#: servers/xr/xr_pose.cpp servers/xr/xr_tracker.cpp
 msgid "Name"
 msgstr "ชื่อ"
 
@@ -65,8 +68,9 @@ msgstr "ชื่อเฉพาะที่"
 msgid "Description"
 msgstr "รายละเอียด"
 
-#: core/config/project_settings.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
+#: core/config/project_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 msgid "Version"
 msgstr "เวอร์ชั่น"
@@ -126,6 +130,25 @@ msgstr "ยอมออกอัตโนมัติ"
 #: core/config/project_settings.cpp scene/main/scene_tree.cpp
 msgid "Quit on Go Back"
 msgstr "ออกเมื่อกดกลับ"
+
+#: core/config/project_settings.cpp scene/main/node.cpp
+#, fuzzy
+msgid "Accessibility"
+msgstr "ซ่อน/แสดง"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+msgid "General"
+msgstr "ทั่วไป"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Accessibility Support"
+msgstr "ตัวแก้ไขสคริปต์"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Updates per Second"
+msgstr "ความเร็วในการประมวลผล"
 
 #: core/config/project_settings.cpp main/main.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -226,6 +249,16 @@ msgstr "ไม่มีโฟกัส"
 msgid "Sharp Corners"
 msgstr "ไปชั้นบน"
 
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Minimize Disabled"
+msgstr "ย่อหน้าซ้าย"
+
+#: core/config/project_settings.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Maximize Disabled"
+msgstr "รายการที่ปิดใช้งาน"
+
 #: core/config/project_settings.cpp
 msgid "Window Width Override"
 msgstr "แทนที่ขนาดความกว้างหน้าต่าง"
@@ -277,10 +310,6 @@ msgstr "บัส"
 #: core/config/project_settings.cpp
 msgid "Default Bus Layout"
 msgstr "เลย์เอาต์บัสค่าเริ่มต้น"
-
-#: core/config/project_settings.cpp editor/editor_settings.cpp
-msgid "General"
-msgstr "ทั่วไป"
 
 #: core/config/project_settings.cpp
 #, fuzzy
@@ -345,14 +374,14 @@ msgstr "โหมดเลือก"
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
 #: modules/jolt_physics/jolt_project_settings.cpp scene/2d/tile_map_layer.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
+#: scene/main/scene_tree.cpp scene/main/scene_tree_fti.cpp
+#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Physics"
 msgstr "ฟิสิกส์"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: scene/main/scene_tree.cpp servers/navigation_server_3d.cpp
+#: scene/main/scene_tree.cpp servers/navigation_server_2d.cpp
 #: servers/physics_server_2d.cpp servers/rendering_server.cpp
 msgid "2D"
 msgstr "2 มิติ"
@@ -363,7 +392,8 @@ msgid "Run on Separate Thread"
 msgstr "รันบนเทรดแยก"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
-#: servers/navigation_server_3d.cpp servers/physics_server_3d.cpp
+#: scene/main/scene_tree_fti.cpp servers/navigation_server_3d.cpp
+#: servers/physics_server_3d.cpp
 msgid "3D"
 msgstr "3 มิติ"
 
@@ -399,20 +429,24 @@ msgid "Scale Mode"
 msgstr "โหมดปรับขนาด"
 
 #: core/config/project_settings.cpp editor/editor_settings.cpp
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp main/main.cpp
 #: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp scene/2d/navigation_agent_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/main/scene_tree.cpp
-#: servers/navigation_server_3d.cpp servers/rendering/renderer_canvas_cull.cpp
-#: servers/rendering_server.cpp
+#: platform/web/export/export_plugin.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp scene/main/scene_tree.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#: servers/rendering/renderer_canvas_cull.cpp servers/rendering_server.cpp
 msgid "Debug"
 msgstr "ดีบัก"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/gdscript/gdscript.cpp scene/3d/spring_bone_simulator_3d.cpp
+#: modules/gdscript/gdscript.cpp scene/3d/aim_modifier_3d.cpp
+#: scene/3d/convert_transform_modifier_3d.cpp
+#: scene/3d/copy_transform_modifier_3d.cpp
+#: scene/3d/spring_bone_simulator_3d.cpp
 #, fuzzy
 msgid "Settings"
 msgstr "ตั้งค่า:"
@@ -451,7 +485,7 @@ msgstr "Zstd"
 msgid "Long Distance Matching"
 msgstr "การจับคู่ระยะไกล"
 
-#: core/config/project_settings.cpp
+#: core/config/project_settings.cpp modules/zip/zip_packer.cpp
 #, fuzzy
 msgid "Compression Level"
 msgstr "ตั้งค่านิพจน์"
@@ -480,6 +514,7 @@ msgstr "ข้อความ"
 #: core/config/project_settings.cpp
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
+#: modules/basis_universal/register_types.cpp
 #: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
 #: scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
@@ -655,8 +690,8 @@ msgstr "คำอธิบายมากที่สุดต่อพูล"
 msgid "Agility SDK Version"
 msgstr "รุ่น:"
 
-#: core/config/project_settings.cpp modules/gltf/gltf_state.cpp
-#: scene/3d/decal.cpp scene/gui/texture_button.cpp
+#: core/config/project_settings.cpp modules/basis_universal/register_types.cpp
+#: modules/gltf/gltf_state.cpp scene/3d/decal.cpp scene/gui/texture_button.cpp
 #: scene/gui/texture_progress_bar.cpp servers/rendering_server.cpp
 msgid "Textures"
 msgstr "เท็กซ์เจอร์"
@@ -702,6 +737,85 @@ msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Rotary Input Scroll Axis"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Override Volume Buttons"
+msgstr "ปิดการทำงานปุ่ม"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Disable Scroll Deadzone"
+msgstr "Deadzone"
+
+#: core/config/project_settings.cpp editor/editor_settings.cpp
+#: main/performance.cpp modules/gridmap/grid_map.cpp
+#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Navigation"
+msgstr "ตัวนำทาง"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "World"
+msgstr "สุ่มขนาด:"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Map Use Async Iterations"
+msgstr "สร้างฟังก์ชัน"
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/register_scene_types.cpp servers/navigation_server_2d.cpp
+#: servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Avoidance"
+msgstr "ขั้นสูง"
+
+#: core/config/project_settings.cpp main/main.cpp
+#, fuzzy
+msgid "Thread Model"
+msgstr "สลับโหมด"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Avoidance Use Multiple Threads"
+msgstr "กำหนด หลายอย่าง:"
+
+#: core/config/project_settings.cpp
+msgid "Avoidance Use High Priority Threads"
+msgstr ""
+
+#: core/config/project_settings.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#, fuzzy
+msgid "Pathfinding"
+msgstr "ปุ่มลัด"
+
+#: core/config/project_settings.cpp core/register_core_types.cpp
+msgid "Max Threads"
+msgstr "เทรดสูงสุด"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Baking"
+msgstr "กำลังรวบรวม"
+
+#: core/config/project_settings.cpp
+msgid "Use Crash Prevention Checks"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Baking Use Multiple Threads"
+msgstr "กำหนด หลายอย่าง:"
+
+#: core/config/project_settings.cpp
+msgid "Baking Use High Priority Threads"
 msgstr ""
 
 #: core/core_bind.cpp
@@ -956,7 +1070,7 @@ msgstr "ดับเบิลเท็บ"
 
 #: core/input/input_event.cpp
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
-#: scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/touch_screen_button.cpp
 msgid "Action"
 msgstr "การกระทำ"
 
@@ -1078,7 +1192,7 @@ msgstr "ขอบเขต"
 #: scene/2d/parallax_background.cpp scene/2d/parallax_layer.cpp
 #: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/3d/label_3d.cpp
 #: scene/3d/look_at_modifier_3d.cpp scene/3d/physics/physical_bone_3d.cpp
-#: scene/3d/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
+#: scene/3d/physics/soft_body_3d.cpp scene/3d/spring_bone_collision_3d.cpp
 #: scene/3d/sprite_3d.cpp scene/3d/visual_instance_3d.cpp
 #: scene/gui/rich_text_effect.cpp scene/gui/split_container.cpp
 #: scene/main/canvas_layer.cpp scene/resources/3d/primitive_meshes.cpp
@@ -1188,10 +1302,6 @@ msgstr "การเทรดดิ้ง"
 #: core/register_core_types.cpp
 msgid "Worker Pool"
 msgstr "พูลทำงาน"
-
-#: core/register_core_types.cpp servers/navigation_server_3d.cpp
-msgid "Max Threads"
-msgstr "เทรดสูงสุด"
 
 #: core/register_core_types.cpp
 msgid "Low Priority Thread Ratio"
@@ -1476,6 +1586,11 @@ msgstr "ตัวแก้ไข"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Tablet Driver"
+msgstr "ตัวอักษร"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Project Manager Screen"
 msgstr "ตัวจัดการโปรเจกต์"
 
@@ -1485,9 +1600,8 @@ msgid "Connection"
 msgstr "คัดลอกที่เลือก"
 
 #: editor/editor_settings.cpp
-#, fuzzy
-msgid "Engine Version Update Mode"
-msgstr "โหมดการจัดลำดับความสำคัญ"
+msgid "Check for Updates"
+msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Use Embedded Menu"
@@ -1629,6 +1743,10 @@ msgid "Update Continuously"
 msgstr "อัพเดทอย่างต่อเนื่อง"
 
 #: editor/editor_settings.cpp
+msgid "Collapse Main Menu"
+msgstr ""
+
+#: editor/editor_settings.cpp
 #: editor/plugins/gizmos/particles_3d_emission_shape_gizmo_plugin.cpp
 #, fuzzy
 msgid "Editors"
@@ -1728,6 +1846,11 @@ msgstr "ค่าเริ่มต้น"
 msgid "Default Color Picker Shape"
 msgstr "โหลดค่าเริ่มต้นเลย์เอาต์บัส"
 
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Color Picker Show Intensity"
+msgstr "โหลดค่าเริ่มต้นเลย์เอาต์บัส"
+
 #: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
 #: scene/gui/control.cpp scene/main/window.cpp scene/theme/theme_db.cpp
 msgid "Theme"
@@ -1816,11 +1939,15 @@ msgid "Touchscreen"
 msgstr ""
 
 #: editor/editor_settings.cpp
+msgid "Enable Touch Optimizations"
+msgstr ""
+
+#: editor/editor_settings.cpp
 msgid "Scale Gizmo Handles"
 msgstr ""
 
 #: editor/editor_settings.cpp
-msgid "Increase Scrollbar Touch Area"
+msgid "Touch Actions Panel"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -1960,11 +2087,12 @@ msgid "Show Hidden Files"
 msgstr "เปิด/ปิดไฟล์ที่ซ่อน"
 
 #: editor/editor_settings.cpp editor/gui/editor_file_dialog.cpp
+#: scene/gui/file_dialog.cpp
 #, fuzzy
 msgid "Display Mode"
 msgstr "โหมดการเล่น:"
 
-#: editor/editor_settings.cpp
+#: editor/editor_settings.cpp scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Thumbnail Size"
 msgstr "รูปตัวอย่าง..."
@@ -2075,6 +2203,11 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Accessibility Warnings"
+msgstr "โหมดการจัดลำดับความสำคัญ"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Always Show Folders"
 msgstr "แสดงเส้นกริด"
 
@@ -2107,12 +2240,6 @@ msgstr "รีซอร์สย่อย"
 msgid "Text Editor"
 msgstr "เปิดตัวแก้ไข"
 
-#: editor/editor_settings.cpp scene/3d/label_3d.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
-#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
-msgid "Line Spacing"
-msgstr ""
-
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Color Theme"
@@ -2120,6 +2247,10 @@ msgstr "แก้ไขธีม"
 
 #: editor/editor_settings.cpp
 msgid "Appearance"
+msgstr ""
+
+#: editor/editor_settings.cpp
+msgid "Enable Inline Color Picker"
 msgstr ""
 
 #: editor/editor_settings.cpp scene/gui/line_edit.cpp scene/gui/text_edit.cpp
@@ -2228,6 +2359,12 @@ msgstr "จำนวนครั้งในการวาด"
 msgid "Draw Spaces"
 msgstr "จำนวนครั้งในการวาด"
 
+#: editor/editor_settings.cpp scene/3d/label_3d.cpp
+#: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
+#: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
+msgid "Line Spacing"
+msgstr ""
+
 #: editor/editor_settings.cpp
 msgid "Behavior"
 msgstr ""
@@ -2236,12 +2373,6 @@ msgstr ""
 #, fuzzy
 msgid "Empty Selection Clipboard"
 msgstr "เฉพาะที่กำลังเลือก"
-
-#: editor/editor_settings.cpp main/performance.cpp modules/gridmap/grid_map.cpp
-#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
-#: servers/navigation_server_3d.cpp
-msgid "Navigation"
-msgstr "ตัวนำทาง"
 
 #: editor/editor_settings.cpp
 msgid "Move Caret on Right Click"
@@ -2337,6 +2468,10 @@ msgstr ""
 
 #: editor/editor_settings.cpp
 msgid "Open Dominant Script on Scene Change"
+msgstr ""
+
+#: editor/editor_settings.cpp
+msgid "Drop Preload Resources as UID"
 msgstr ""
 
 #: editor/editor_settings.cpp
@@ -2531,6 +2666,11 @@ msgstr "เลือกสี"
 #: editor/editor_settings.cpp
 #, fuzzy
 msgid "Selection Box Color"
+msgstr "เฉพาะที่กำลังเลือก"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Active Selection Box Color"
 msgstr "เฉพาะที่กำลังเลือก"
 
 #: editor/editor_settings.cpp
@@ -2928,6 +3068,11 @@ msgstr "เวกเตอร์"
 
 #: editor/editor_settings.cpp
 #, fuzzy
+msgid "Ruler Width"
+msgstr "พิกเซลขอบ"
+
+#: editor/editor_settings.cpp
+#, fuzzy
 msgid "Bone Mapper"
 msgstr "ชื่อโนด:"
 
@@ -3015,6 +3160,21 @@ msgstr "ระนาบก่อนหน้า"
 #, fuzzy
 msgid "Auto Bake Delay"
 msgstr "เปิดปิดการเล่นอัตโนมัติ"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default Animation Step"
+msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Mode"
+msgstr "โหมดการเล่น:"
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Default FPS Compatibility"
+msgstr "โหมดการจัดลำดับความสำคัญ"
 
 #: editor/editor_settings.cpp
 #, fuzzy
@@ -3225,6 +3385,11 @@ msgstr ""
 #: editor/editor_settings.cpp
 msgid "Auto Switch to Stack Trace"
 msgstr ""
+
+#: editor/editor_settings.cpp
+#, fuzzy
+msgid "Max Node Selection"
+msgstr "ตัดที่เลือก"
 
 #: editor/editor_settings.cpp
 msgid "Profiler Frame History Size"
@@ -3451,6 +3616,11 @@ msgstr "เปลี่ยนชื่อตัวแปร"
 msgid "Mark Color"
 msgstr "เลือกสี"
 
+#: editor/editor_settings.cpp modules/gdscript/editor/gdscript_highlighter.cpp
+#, fuzzy
+msgid "Warning Color"
+msgstr "เก็บไฟล์:"
+
 #: editor/editor_settings.cpp scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Bookmark Color"
@@ -3574,23 +3744,281 @@ msgstr "เฉพาะที่กำลังเลือก"
 msgid "Particle Color"
 msgstr "ปิดการทำงานปุ่ม"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #, fuzzy
 msgid "Custom Template"
 msgstr "แก้ไขธีม"
 
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #: servers/audio/effects/audio_effect_hard_limiter.cpp
 msgid "Release"
 msgstr "เผยแพร่"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Architectures"
+msgstr "เพิ่มรายการแพลตฟอร์ม"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "App Store Team ID"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Method Debug"
+msgstr "ส่งออกพร้อมการแก้ไขจุดบกพร่อง"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Debug"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Code Sign Identity Release"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Debug"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Provisioning Profile UUID Release"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Provisioning Profile Specifier Debug"
+msgstr "โปรไฟล์ปัจจุบัน:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Provisioning Profile Specifier Release"
+msgstr "โปรไฟล์ปัจจุบัน:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Method Release"
+msgstr "วิธีการส่งออก:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Bundle Identifier"
+msgstr "ระบุไม่ถูกต้อง:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Signature"
+msgstr "สัญญาณ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Short Version"
+msgstr "รุ่น:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Additional Plist Content"
+msgstr "การวนซ้ำแอนิเมชัน"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp
+#, fuzzy
+msgid "Icon Interpolation"
+msgstr "โหมดการแก้ไข"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Export Project Only"
+msgstr "โปรเจกต์"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Delete Old Export Files Unconditionally"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/android/export/export_plugin.cpp
+msgid "Plugins"
+msgstr "ปลั๊กอิน"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Entitlements"
+msgstr "กิสโม"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Increased Memory Limit"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Game Center"
+msgstr "กลาง"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Push Notifications"
+msgstr "สุ่มการหมุน:"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Additional"
+msgstr "การวนซ้ำแอนิเมชัน"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Capabilities"
+msgstr "คุณสมบัติ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Access Wi-Fi"
+msgstr "สำเร็จ!"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Performance Gaming Tier"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Performance A 12"
+msgstr "สร้าง GI Probe"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: platform/android/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Shader Baker"
+msgstr "จำนวนครั้งที่เปลี่ยน Shader"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/export/editor_export_platform_pc.cpp
+#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
+#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
+#: modules/noise/fastnoise_lite.cpp platform/android/export/export_plugin.cpp
+#: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
+#: platform/web/export/export_plugin.cpp
+#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
+#: scene/2d/light_2d.cpp scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/2d/physics/joints/pin_joint_2d.cpp scene/2d/physics/ray_cast_2d.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/tile_map_layer.cpp
+#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
+#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
+#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
+#: scene/resources/curve.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
+#: servers/rendering_server.cpp
+#, fuzzy
+msgid "Enabled"
+msgstr "เปิด"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "User Data"
+msgstr "อินเตอร์เฟส"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From Files App"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Accessible From iTunes Sharing"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+msgid "Privacy"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Camera Usage Description"
+msgstr "รายละเอียด"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Camera Usage Description Localized"
+msgstr "รายละเอียด"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Microphone Usage Description"
+msgstr "รายละเอียดของคุณสมบัติ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Microphone Usage Description Localized"
+msgstr "รายละเอียดของคุณสมบัติ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Photolibrary Usage Description"
+msgstr "รายละเอียดของคุณสมบัติ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Photolibrary Usage Description Localized"
+msgstr "รายละเอียดของคุณสมบัติ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Enabled"
+msgstr "เปิดการกระโดด"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Tracking Domains"
+msgstr "กำลังรวบรวม"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Icons"
+msgstr "รูปย่อ"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024 Dark"
+msgstr ""
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+msgid "Icon 1024 X 1024 Tinted"
+msgstr ""
 
 #: editor/export/editor_export_platform_pc.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -3865,14 +4293,14 @@ msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/canvas_layer.cpp
 msgid "Layer"
 msgstr "เลเยอร์"
 
 #: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/resources/material.cpp
 msgid "Mask"
 msgstr ""
@@ -3998,7 +4426,8 @@ msgstr "โหมดการจัดลำดับความสำคัญ
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/gltf/structures/gltf_node.cpp modules/noise/noise_texture_2d.cpp
 #: modules/noise/noise_texture_3d.cpp scene/2d/light_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/resources/2d/capsule_shape_2d.cpp
 #: scene/resources/3d/capsule_shape_3d.cpp
@@ -4014,10 +4443,12 @@ msgstr "แสง"
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 #: modules/openxr/scene/openxr_composition_layer_equirect.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/gpu_particles_collision_3d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_obstacle_3d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/physics/vehicle_body_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
+#: scene/3d/occluder_instance_3d.cpp scene/3d/physics/vehicle_body_3d.cpp
 #: scene/3d/spring_bone_collision_capsule_3d.cpp
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 #: scene/animation/root_motion_view.cpp scene/resources/2d/capsule_shape_2d.cpp
@@ -4042,35 +4473,6 @@ msgstr "ลดความซับซ้อน: "
 #, fuzzy
 msgid "Save to File"
 msgstr "บันทึกไฟล์"
-
-#: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
-#: modules/noise/fastnoise_lite.cpp platform/linuxbsd/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp scene/2d/camera_2d.cpp
-#: scene/2d/gpu_particles_2d.cpp scene/2d/light_2d.cpp
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/2d/physics/joints/pin_joint_2d.cpp
-#: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/polygon_2d.cpp scene/2d/sprite_2d.cpp scene/2d/tile_map_layer.cpp
-#: scene/3d/audio_stream_player_3d.cpp scene/3d/decal.cpp
-#: scene/3d/gpu_particles_3d.cpp scene/3d/light_3d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_link_3d.cpp
-#: scene/3d/navigation_region_3d.cpp scene/3d/physics/area_3d.cpp
-#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/code_edit.cpp scene/gui/graph_edit.cpp
-#: scene/main/canvas_layer.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
-#: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
-#: scene/resources/camera_attributes.cpp scene/resources/compositor.cpp
-#: scene/resources/curve.cpp scene/resources/environment.cpp
-#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
-#: servers/rendering_server.cpp
-#, fuzzy
-msgid "Enabled"
-msgstr "เปิด"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -4217,6 +4619,11 @@ msgid "Import as Skeleton Bones"
 msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Use Name Suffixes"
+msgstr "ใช้สแนปขนาด"
+
+#: editor/import/3d/resource_importer_scene.cpp
 msgid "Use Node Type Suffixes"
 msgstr ""
 
@@ -4332,6 +4739,11 @@ msgstr "Mesh ต้นฉบับ:"
 
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
+msgid "Modulate Color Glyphs"
+msgstr ""
+
+#: editor/import/dynamic_font_import_settings.cpp
+#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Hinting"
 msgstr ""
 
@@ -4344,12 +4756,6 @@ msgstr "กำลังแบ่งส่วน..."
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
 msgid "Keep Rounding Remainders"
-msgstr ""
-
-#: editor/import/dynamic_font_import_settings.cpp
-#: editor/import/resource_importer_dynamic_font.cpp scene/resources/font.cpp
-#: servers/audio/effects/audio_effect_pitch_shift.cpp
-msgid "Oversampling"
 msgstr ""
 
 #: editor/import/dynamic_font_import_settings.cpp
@@ -4385,6 +4791,7 @@ msgstr ""
 #: editor/import/resource_importer_dynamic_font.cpp
 #: editor/import/resource_importer_imagefont.cpp
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_svg.cpp
 #: editor/import/resource_importer_texture.cpp
 #: editor/import/resource_importer_wav.cpp servers/rendering_server.cpp
 #, fuzzy
@@ -4392,8 +4799,8 @@ msgid "Compress"
 msgstr "ไลบรารี"
 
 #: editor/import/dynamic_font_import_settings.cpp scene/3d/label_3d.cpp
-#: scene/gui/button.cpp scene/gui/label.cpp scene/gui/line_edit.cpp
-#: scene/gui/link_button.cpp scene/gui/menu_bar.cpp
+#: scene/gui/button.cpp scene/gui/foldable_container.cpp scene/gui/label.cpp
+#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
 #: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 #: servers/rendering/rendering_device_binds.h
@@ -4503,6 +4910,17 @@ msgstr ""
 #: editor/import/resource_importer_layered_texture.cpp
 #: editor/import/resource_importer_texture.cpp
 #, fuzzy
+msgid "UASTC Level"
+msgstr "บนซ้าย"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+msgid "RDO Quality Loss"
+msgstr ""
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
 msgid "HDR Compression"
 msgstr "ตั้งค่านิพจน์"
 
@@ -4552,6 +4970,23 @@ msgstr "แฟรกเมนต์"
 msgid "Layout"
 msgstr "เลย์เอาต์"
 
+#: editor/import/resource_importer_svg.cpp scene/2d/parallax_background.cpp
+#: scene/resources/svg_texture.cpp scene/theme/theme_db.cpp
+#, fuzzy
+msgid "Base Scale"
+msgstr "ใช้สแนปขนาด"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/environment.cpp
+#: scene/resources/svg_texture.cpp
+#, fuzzy
+msgid "Saturation"
+msgstr "เว้น:"
+
+#: editor/import/resource_importer_svg.cpp scene/resources/svg_texture.cpp
+#, fuzzy
+msgid "Color Map"
+msgstr "สี"
+
 #: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
 msgid "Normal Map"
 msgstr ""
@@ -4570,6 +5005,29 @@ msgstr "สนับสนุน..."
 #, fuzzy
 msgid "Process"
 msgstr "หลังประมวลผล"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Channel Remap"
+msgstr "เปลี่ยน"
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Red"
+msgstr "โหลดใหม่"
+
+#: editor/import/resource_importer_texture.cpp
+msgid "Green"
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+msgid "Blue"
+msgstr ""
+
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Alpha"
+msgstr "แก้ไขรูปหลายเหลี่ยม"
 
 #: editor/import/resource_importer_texture.cpp
 msgid "Fix Alpha Border"
@@ -4871,7 +5329,7 @@ msgid "Verbose stdout"
 msgstr ""
 
 #: main/main.cpp scene/main/node.cpp scene/main/scene_tree.cpp
-#: scene/resources/multimesh.cpp
+#: scene/main/scene_tree_fti.cpp scene/resources/multimesh.cpp
 #, fuzzy
 msgid "Physics Interpolation"
 msgstr "โหมดการแก้ไข"
@@ -4996,13 +5454,13 @@ msgid "Allowed"
 msgstr ""
 
 #: main/main.cpp
+#, fuzzy
+msgid "Load Shell Environment"
+msgstr "แสดงสภาพแวดล้อม"
+
+#: main/main.cpp
 msgid "Threads"
 msgstr ""
-
-#: main/main.cpp servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Thread Model"
-msgstr "สลับโหมด"
 
 #: main/main.cpp
 #, fuzzy
@@ -5456,6 +5914,35 @@ msgstr "คัดลอกที่เลือก"
 msgid "Compilations Specialization"
 msgstr "นำเข้าฉาก"
 
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 2D"
+msgstr "ตัวนำทาง"
+
+#: main/performance.cpp
+#, fuzzy
+msgid "Navigation 3D"
+msgstr "ตัวนำทาง"
+
+#: modules/basis_universal/register_types.cpp
+msgid "Basis Universal"
+msgstr ""
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "RDO Dict Size"
+msgstr "มุมหน้า"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression"
+msgstr "ตั้งค่านิพจน์"
+
+#: modules/basis_universal/register_types.cpp
+#, fuzzy
+msgid "Zstd Supercompression Level"
+msgstr "ตั้งค่านิพจน์"
+
 #: modules/csg/csg_shape.cpp
 #, fuzzy
 msgid "Operation"
@@ -5469,7 +5956,7 @@ msgstr ""
 #: scene/2d/gpu_particles_2d.cpp scene/2d/physics/character_body_2d.cpp
 #: scene/2d/physics/collision_object_2d.cpp scene/3d/gpu_particles_3d.cpp
 #: scene/3d/physics/character_body_3d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #: scene/main/scene_tree.cpp scene/resources/particle_process_material.cpp
 msgid "Collision"
 msgstr "ขอบเขตการชน"
@@ -5693,11 +6180,6 @@ msgstr "ไปชั้นบน"
 
 #: modules/gdscript/editor/gdscript_highlighter.cpp
 #, fuzzy
-msgid "Warning Color"
-msgstr "เก็บไฟล์:"
-
-#: modules/gdscript/editor/gdscript_highlighter.cpp
-#, fuzzy
 msgid "Notice Color"
 msgstr "เลือกสี"
 
@@ -5718,6 +6200,14 @@ msgstr "จำนวนครั้งในการวาด"
 
 #: modules/gdscript/gdscript.cpp
 msgid "Max Call Stack"
+msgstr ""
+
+#: modules/gdscript/gdscript.cpp
+msgid "Always Track Call Stacks"
+msgstr ""
+
+#: modules/gdscript/gdscript.cpp
+msgid "Always Track Local Variables"
 msgstr ""
 
 #: modules/gdscript/gdscript.cpp
@@ -5898,8 +6388,24 @@ msgstr "รูปแบบ"
 
 #: modules/gltf/gltf_document.cpp
 #, fuzzy
+msgid "Fallback Image Format"
+msgstr "รูปแบบ"
+
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
+msgid "Fallback Image Quality"
+msgstr "สร้าง Lightmaps"
+
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
 msgid "Root Node Mode"
 msgstr "ชื่อโหนดแม่"
+
+#: modules/gltf/gltf_document.cpp scene/2d/physics/touch_screen_button.cpp
+#: scene/2d/tile_map_layer.cpp
+#, fuzzy
+msgid "Visibility Mode"
+msgstr "โหมดการจัดลำดับความสำคัญ"
 
 #: modules/gltf/gltf_state.cpp
 msgid "Json"
@@ -6175,6 +6681,14 @@ msgstr "แก้ไขโหนดลูกได้"
 msgid "Light"
 msgstr "แสง"
 
+#: modules/gltf/structures/gltf_node.cpp scene/3d/node_3d.cpp
+#: scene/gui/rich_text_effect.cpp scene/gui/tree.cpp scene/main/canvas_item.cpp
+#: scene/main/canvas_layer.cpp scene/main/status_indicator.cpp
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Visible"
+msgstr "ซ่อน/แสดง"
+
 #: modules/gltf/structures/gltf_object_model_property.cpp
 msgid "glTF to Godot Expression"
 msgstr ""
@@ -6248,11 +6762,13 @@ msgid "Sampler"
 msgstr "ตัวอย่าง"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 #, fuzzy
 msgid "Mag Filter"
 msgstr "แก้ไขตัวกรอง"
 
 #: modules/gltf/structures/gltf_texture_sampler.cpp
+#: modules/openxr/scene/openxr_composition_layer.cpp
 #, fuzzy
 msgid "Min Filter"
 msgstr "ตัวกรอง:"
@@ -6357,10 +6873,6 @@ msgstr "ตำแหน่งแผง"
 
 #: modules/jolt_physics/jolt_project_settings.cpp
 msgid "Use Enhanced Internal Edge Removal"
-msgstr ""
-
-#: modules/jolt_physics/jolt_project_settings.cpp
-msgid "Areas Detect Static Bodies"
 msgstr ""
 
 #: modules/jolt_physics/jolt_project_settings.cpp
@@ -6973,6 +7485,54 @@ msgstr "แยกเส้นโค้ง"
 msgid "Enable Hole Punch"
 msgstr "เปิดการใช้งานตัวกรอง"
 
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Swapchain State"
+msgstr "อินสแตนซ์"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Mipmap Mode"
+msgstr "โหนด Mix"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Horizontal Wrap"
+msgstr "แนวนอน:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Vertical Wrap"
+msgstr "แนวตั้ง:"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Red Swizzle"
+msgstr "มุมหน้า"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Green Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Blue Swizzle"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Alpha Swizzle"
+msgstr "แยกเส้นโค้ง"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+msgid "Max Anisotropy"
+msgstr ""
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#: scene/gui/reference_rect.cpp
+#, fuzzy
+msgid "Border Color"
+msgstr "ลบไอเทมคลาส"
+
 #: modules/openxr/scene/openxr_composition_layer_cylinder.cpp
 #, fuzzy
 msgid "Aspect Ratio"
@@ -7029,8 +7589,8 @@ msgstr "โครงหลัก"
 msgid "Skeleton Rig"
 msgstr "โครงหลัก"
 
-#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr_body_modifier_3d.cpp
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: modules/openxr/scene/openxr_hand.cpp scene/3d/xr/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 #, fuzzy
 msgid "Bone Update"
 msgstr "อัปเดต"
@@ -7260,10 +7820,6 @@ msgid "Android Source Template"
 msgstr ""
 
 #: platform/android/export/export_plugin.cpp
-msgid "Compress Native Libraries"
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
 #, fuzzy
 msgid "Export Format"
 msgstr "ไดเรกทอรีส่งออก"
@@ -7279,15 +7835,9 @@ msgid "Target SDK"
 msgstr "เป้าหมาย"
 
 #: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
-msgid "Plugins"
-msgstr "ปลั๊กอิน"
-
-#: platform/android/export/export_plugin.cpp
-#: platform/ios/export/export_plugin.cpp
 #, fuzzy
-msgid "Architectures"
-msgstr "เพิ่มรายการแพลตฟอร์ม"
+msgid "Custom Theme Attributes"
+msgstr "ตรงตามอักษรพิมพ์เล็ก-ใหญ่"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -7461,11 +8011,43 @@ msgstr "เลือกเล่นฉาก"
 msgid "iOS Deploy"
 msgstr ""
 
-#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
-#: scene/main/window.cpp
+#: platform/ios/export/export_plugin.cpp
+msgid "Targeted Device Family"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
-msgid "Icons"
-msgstr "รูปย่อ"
+msgid "Min iOS Version"
+msgstr "รุ่น:"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Storyboard"
+msgstr ""
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Image Scale Mode"
+msgstr "โหมดปรับขนาด"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Image @2x"
+msgstr "ตัดโหนด"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom Image @3x"
+msgstr "ตัดโหนด"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Use Custom BG Color"
+msgstr "ตัดโหนด"
+
+#: platform/ios/export/export_plugin.cpp
+#, fuzzy
+msgid "Custom BG Color"
+msgstr "ตัดโหนด"
 
 #: platform/ios/export/export_plugin.cpp
 #, fuzzy
@@ -7536,245 +8118,6 @@ msgstr ""
 #: platform/ios/export/export_plugin.cpp
 msgid "App Store 1024 X 1024"
 msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "App Store Team ID"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Method Debug"
-msgstr "ส่งออกพร้อมการแก้ไขจุดบกพร่อง"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Debug"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Code Sign Identity Release"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Debug"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Provisioning Profile UUID Release"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Provisioning Profile Specifier Debug"
-msgstr "โปรไฟล์ปัจจุบัน:"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Provisioning Profile Specifier Release"
-msgstr "โปรไฟล์ปัจจุบัน:"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Method Release"
-msgstr "วิธีการส่งออก:"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Targeted Device Family"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Bundle Identifier"
-msgstr "ระบุไม่ถูกต้อง:"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Signature"
-msgstr "สัญญาณ"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Short Version"
-msgstr "รุ่น:"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Min iOS Version"
-msgstr "รุ่น:"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Additional Plist Content"
-msgstr "การวนซ้ำแอนิเมชัน"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#: platform/windows/export/export_plugin.cpp
-#, fuzzy
-msgid "Icon Interpolation"
-msgstr "โหมดการแก้ไข"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Export Project Only"
-msgstr "โปรเจกต์"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Delete Old Export Files Unconditionally"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Entitlements"
-msgstr "กิสโม"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Increased Memory Limit"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Game Center"
-msgstr "กลาง"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Push Notifications"
-msgstr "สุ่มการหมุน:"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Additional"
-msgstr "การวนซ้ำแอนิเมชัน"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Capabilities"
-msgstr "คุณสมบัติ"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Access Wi-Fi"
-msgstr "สำเร็จ!"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Performance Gaming Tier"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Performance A 12"
-msgstr "สร้าง GI Probe"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "User Data"
-msgstr "อินเตอร์เฟส"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From Files App"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Accessible From iTunes Sharing"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Privacy"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Camera Usage Description"
-msgstr "รายละเอียด"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Camera Usage Description Localized"
-msgstr "รายละเอียด"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Microphone Usage Description"
-msgstr "รายละเอียดของคุณสมบัติ"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Microphone Usage Description Localized"
-msgstr "รายละเอียดของคุณสมบัติ"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Photolibrary Usage Description"
-msgstr "รายละเอียดของคุณสมบัติ"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Photolibrary Usage Description Localized"
-msgstr "รายละเอียดของคุณสมบัติ"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Tracking Enabled"
-msgstr "เปิดการกระโดด"
-
-#: platform/ios/export/export_plugin.cpp
-#: platform/macos/export/export_plugin.cpp
-#, fuzzy
-msgid "Tracking Domains"
-msgstr "กำลังรวบรวม"
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024 Dark"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Icon 1024 X 1024 Tinted"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-msgid "Storyboard"
-msgstr ""
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Image Scale Mode"
-msgstr "โหมดปรับขนาด"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom Image @2x"
-msgstr "ตัดโหนด"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom Image @3x"
-msgstr "ตัดโหนด"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Use Custom BG Color"
-msgstr "ตัดโหนด"
-
-#: platform/ios/export/export_plugin.cpp
-#, fuzzy
-msgid "Custom BG Color"
-msgstr "ตัดโหนด"
 
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -8145,6 +8488,11 @@ msgstr ""
 msgid "Removable Volumes Usage Description Localized"
 msgstr "รายละเอียดเมท็อด"
 
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Min Visionos Version"
+msgstr "รุ่น:"
+
 #: platform/web/export/export.cpp
 msgid "Web"
 msgstr ""
@@ -8184,6 +8532,15 @@ msgstr ""
 #, fuzzy
 msgid "Thread Support"
 msgstr "สลับโหมด"
+
+#: platform/web/export/export_plugin.cpp
+msgid "Emscripten Pool Size"
+msgstr ""
+
+#: platform/web/export/export_plugin.cpp
+#, fuzzy
+msgid "Godot Pool Size"
+msgstr "มุมหน้า"
 
 #: platform/web/export/export_plugin.cpp
 #, fuzzy
@@ -8259,19 +8616,11 @@ msgid "Windows"
 msgstr "หน้าต่าง"
 
 #: platform/windows/export/export.cpp
-msgid "rcedit"
-msgstr ""
-
-#: platform/windows/export/export.cpp
 msgid "signtool"
 msgstr ""
 
 #: platform/windows/export/export.cpp
 msgid "osslsigncode"
-msgstr ""
-
-#: platform/windows/export/export.cpp
-msgid "wine"
 msgstr ""
 
 #: platform/windows/export/export_plugin.cpp
@@ -8353,7 +8702,8 @@ msgstr "เฟรม %"
 #: scene/2d/animated_sprite_2d.cpp scene/2d/cpu_particles_2d.cpp
 #: scene/2d/gpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 #: scene/3d/gpu_particles_3d.cpp scene/3d/sprite_3d.cpp
-#: scene/animation/animation_player.cpp scene/resources/animated_texture.cpp
+#: scene/animation/animation_player.cpp scene/gui/video_stream_player.cpp
+#: scene/resources/animated_texture.cpp
 #, fuzzy
 msgid "Speed Scale"
 msgstr "อัตราส่วน:"
@@ -8377,7 +8727,7 @@ msgid "Flip V"
 msgstr ""
 
 #: scene/2d/audio_listener_2d.cpp scene/3d/audio_listener_3d.cpp
-#: scene/3d/camera_3d.cpp scene/3d/xr_nodes.cpp
+#: scene/3d/camera_3d.cpp scene/3d/xr/xr_nodes.cpp
 #, fuzzy
 msgid "Current"
 msgstr "ปัจจุบัน:"
@@ -8673,7 +9023,7 @@ msgid "Emission Shape"
 msgstr "Mask การปะทุ"
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/physics/collision_shape_2d.cpp
-#: scene/2d/physics/shape_cast_2d.cpp scene/2d/touch_screen_button.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/2d/physics/touch_screen_button.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/fog_volume.cpp
 #: scene/3d/physics/collision_shape_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/primitive_meshes.cpp
@@ -9135,196 +9485,220 @@ msgstr "กิสโม"
 msgid "Multimesh"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Pathfinding"
-msgstr "ปุ่มลัด"
-
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Desired Distance"
 msgstr "ระยะการเลือก:"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Target Desired Distance"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Max Distance"
 msgstr "ระยะการเลือก:"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_link_2d.cpp
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_agent_3d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
-#: scene/resources/2d/tile_set.cpp scene/resources/3d/mesh_library.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
+#: scene/resources/3d/mesh_library.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Navigation Layers"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Pathfinding Algorithm"
 msgstr "ปุ่มลัด"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Path Postprocessing"
 msgstr "หลังประมวลผล"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Path Metadata Flags"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Simplify Path"
 msgstr "ตัดเส้น"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 msgid "Simplify Epsilon"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
-#: scene/register_scene_types.cpp servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Avoidance"
-msgstr "ขั้นสูง"
-
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Enabled"
 msgstr "เปิด"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Neighbor Distance"
 msgstr "ระยะการเลือก:"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 msgid "Max Neighbors"
 msgstr ""
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Time Horizon Agents"
 msgstr "พลิกแนวนอน"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Time Horizon Obstacles"
 msgstr "พลิกแนวนอน"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Max Speed"
 msgstr "ความเร็ว:"
 
-#: scene/2d/navigation_agent_2d.cpp scene/2d/navigation_obstacle_2d.cpp
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Avoidance Layers"
 msgstr "เปิด"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Avoidance Mask"
 msgstr "ขั้นสูง"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Avoidance Priority"
 msgstr "โหมดขอบเขตการชน"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Use Custom"
 msgstr "อินเตอร์เฟส"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Custom Color"
 msgstr "ตัดโหนด"
 
-#: scene/2d/navigation_agent_2d.cpp scene/3d/navigation_agent_3d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Custom Point Size"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
 #, fuzzy
 msgid "Path Custom Line Width"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #, fuzzy
 msgid "Bidirectional"
 msgstr "ทิศทาง"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #: servers/navigation/navigation_path_query_parameters_2d.cpp
 #: servers/navigation/navigation_path_query_parameters_3d.cpp
 #, fuzzy
 msgid "Start Position"
 msgstr "กำหนดเส้นโค้งขาเข้า"
 
-#: scene/2d/navigation_link_2d.cpp scene/3d/navigation_link_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #, fuzzy
 msgid "End Position"
 msgstr "ตำแหน่งแผง"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 #, fuzzy
 msgid "Enter Cost"
 msgstr "ล่าง"
 
-#: scene/2d/navigation_link_2d.cpp scene/2d/navigation_region_2d.cpp
-#: scene/3d/navigation_link_3d.cpp scene/3d/navigation_region_3d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 #, fuzzy
 msgid "Travel Cost"
 msgstr "การเคลื่อนที่"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Vertices"
 msgstr "แนวตั้ง:"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "NavigationMesh"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Affect Navigation Mesh"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_obstacle_2d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/2d/navigation/navigation_obstacle_2d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Carve Navigation Mesh"
 msgstr "โหมด Navigation"
 
-#: scene/2d/navigation_region_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
 #, fuzzy
 msgid "Navigation Polygon"
 msgstr "แก้ไขโพลีกอนนำทาง"
 
-#: scene/2d/navigation_region_2d.cpp scene/3d/navigation_region_3d.cpp
-#: servers/navigation_server_3d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Use Edge Connections"
 msgstr "แก้ไขการเชื่อมต่อ:"
@@ -9398,11 +9772,6 @@ msgstr ""
 #, fuzzy
 msgid "Base Offset"
 msgstr "เลื่อน:"
-
-#: scene/2d/parallax_background.cpp scene/theme/theme_db.cpp
-#, fuzzy
-msgid "Base Scale"
-msgstr "ใช้สแนปขนาด"
 
 #: scene/2d/parallax_background.cpp
 msgid "Limit Begin"
@@ -9603,7 +9972,7 @@ msgid "Safe Margin"
 msgstr "ตั้งระยะขอบ"
 
 #: scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 #, fuzzy
 msgid "Disable Mode"
 msgstr "รายการที่ปิดใช้งาน"
@@ -9634,10 +10003,14 @@ msgid "One Way Collision"
 msgstr "สร้างรูปหลายเหลี่ยมของเขตการชน"
 
 #: scene/2d/physics/collision_polygon_2d.cpp
-#: scene/2d/physics/collision_shape_2d.cpp
+#: scene/2d/physics/collision_shape_2d.cpp scene/2d/physics/shape_cast_2d.cpp
+#: scene/3d/physics/collision_polygon_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/shape_3d.cpp
+#: scene/resources/atlas_texture.cpp scene/theme/default_theme.cpp
+#: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 #, fuzzy
-msgid "One Way Collision Margin"
-msgstr "สร้างรูปหลายเหลี่ยมของเขตการชน"
+msgid "Margin"
+msgstr "ตั้งระยะขอบ"
 
 #: scene/2d/physics/collision_shape_2d.cpp
 #: scene/3d/physics/collision_polygon_3d.cpp
@@ -9901,15 +10274,6 @@ msgstr "Mesh ต้นฉบับ:"
 msgid "Torque"
 msgstr ""
 
-#: scene/2d/physics/shape_cast_2d.cpp scene/3d/physics/collision_polygon_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp scene/3d/physics/spring_arm_3d.cpp
-#: scene/resources/3d/shape_3d.cpp scene/resources/atlas_texture.cpp
-#: scene/theme/default_theme.cpp servers/physics_server_2d.cpp
-#: servers/physics_server_3d.cpp
-#, fuzzy
-msgid "Margin"
-msgstr "ตั้งระยะขอบ"
-
 #: scene/2d/physics/static_body_2d.cpp scene/3d/physics/static_body_3d.cpp
 #, fuzzy
 msgid "Constant Linear Velocity"
@@ -9919,6 +10283,34 @@ msgstr "เริ่มต้น"
 #, fuzzy
 msgid "Constant Angular Velocity"
 msgstr "เริ่มต้น"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Texture Normal"
+msgstr "ขอบเขตเทกเจอร์"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Texture Pressed"
+msgstr "พรีเซ็ต"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Bitmask"
+msgstr "บิทมาร์ก"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Shape Centered"
+msgstr "สแนปจุดกลางโหนด"
+
+#: scene/2d/physics/touch_screen_button.cpp
+#, fuzzy
+msgid "Shape Visible"
+msgstr "ซ่อน/แสดง"
+
+#: scene/2d/physics/touch_screen_button.cpp
+msgid "Passby Press"
+msgstr ""
 
 #: scene/2d/polygon_2d.cpp
 msgid "UV"
@@ -10014,7 +10406,7 @@ msgstr "โหมดขอบเขตการชน"
 msgid "Collision Visibility Mode"
 msgstr "โหมดการจัดลำดับความสำคัญ"
 
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
+#: scene/2d/tile_map.cpp
 #, fuzzy
 msgid "Navigation Visibility Mode"
 msgstr "โหมดการจัดลำดับความสำคัญ"
@@ -10044,41 +10436,13 @@ msgstr ""
 
 #: scene/2d/tile_map_layer.cpp
 #, fuzzy
-msgid "Navigation Enabled"
-msgstr "โหมด Navigation"
+msgid "Physics Quadrant Size"
+msgstr "เปลี่ยนขนาดกล้อง"
 
-#: scene/2d/touch_screen_button.cpp
+#: scene/2d/visible_on_screen_notifier_2d.cpp
 #, fuzzy
-msgid "Texture Normal"
-msgstr "ขอบเขตเทกเจอร์"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Texture Pressed"
-msgstr "พรีเซ็ต"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Bitmask"
-msgstr "บิทมาร์ก"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Shape Centered"
-msgstr "สแนปจุดกลางโหนด"
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Shape Visible"
-msgstr "ซ่อน/แสดง"
-
-#: scene/2d/touch_screen_button.cpp
-msgid "Passby Press"
-msgstr ""
-
-#: scene/2d/touch_screen_button.cpp
-#, fuzzy
-msgid "Visibility Mode"
-msgstr "โหมดการจัดลำดับความสำคัญ"
+msgid "Show Rect"
+msgstr "เลื่อน:"
 
 #: scene/2d/visible_on_screen_notifier_2d.cpp
 #: scene/3d/visible_on_screen_notifier_3d.cpp
@@ -10161,6 +10525,16 @@ msgstr "โครง"
 #, fuzzy
 msgid "Override Pose"
 msgstr "แทนที่"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "Use External Skeleton"
+msgstr "ดีบั๊กด้วยโปรแกรมภายนอก"
+
+#: scene/3d/bone_attachment_3d.cpp
+#, fuzzy
+msgid "External Skeleton"
+msgstr "โครงหลัก"
 
 #: scene/3d/camera_3d.cpp
 msgid "Keep Aspect"
@@ -10508,15 +10882,20 @@ msgstr "กรองสัญญาณ"
 msgid "Uppercase"
 msgstr "ตัวพิมพ์ใหญ่"
 
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
+#: scene/gui/rich_text_label.cpp
+msgid "Autowrap Trim Flags"
+msgstr ""
+
 #: scene/3d/label_3d.cpp scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #: scene/resources/3d/primitive_meshes.cpp scene/resources/text_paragraph.cpp
 #, fuzzy
 msgid "Justification Flags"
 msgstr "สุ่มการหมุน:"
 
-#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/label.cpp
-#: scene/gui/line_edit.cpp scene/gui/link_button.cpp scene/gui/menu_bar.cpp
-#: scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
+#: scene/3d/label_3d.cpp scene/gui/button.cpp scene/gui/foldable_container.cpp
+#: scene/gui/label.cpp scene/gui/line_edit.cpp scene/gui/link_button.cpp
+#: scene/gui/menu_bar.cpp scene/gui/rich_text_label.cpp scene/gui/text_edit.cpp
 #: scene/resources/3d/primitive_meshes.cpp
 msgid "BiDi"
 msgstr ""
@@ -10757,8 +11136,8 @@ msgstr "รวมจากฉาก"
 msgid "Custom Sky"
 msgstr "ตัดโหนด"
 
-#: scene/3d/lightmap_gi.cpp scene/3d/physics/ray_cast_3d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/lightmap_gi.cpp scene/3d/path_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #, fuzzy
 msgid "Custom Color"
 msgstr "ตัดโหนด"
@@ -10907,22 +11286,24 @@ msgstr ""
 msgid "Surface Material Override"
 msgstr "แทนที่"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Path Height Offset"
 msgstr "จุดกำเนิดตาราง:"
 
-#: scene/3d/navigation_agent_3d.cpp scene/3d/navigation_obstacle_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "Use 3D Avoidance"
 msgstr "ขั้นสูง"
 
-#: scene/3d/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
 #, fuzzy
 msgid "Keep Y Velocity"
 msgstr "เริ่มต้น"
 
-#: scene/3d/navigation_region_3d.cpp scene/resources/3d/mesh_library.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: scene/resources/3d/mesh_library.cpp
 #, fuzzy
 msgid "Navigation Mesh"
 msgstr "โหมด Navigation"
@@ -10955,13 +11336,6 @@ msgstr "บนซ้าย"
 msgid "Visibility"
 msgstr "ซ่อน/แสดง"
 
-#: scene/3d/node_3d.cpp scene/gui/rich_text_effect.cpp scene/gui/tree.cpp
-#: scene/main/canvas_item.cpp scene/main/canvas_layer.cpp
-#: scene/main/status_indicator.cpp scene/main/window.cpp
-#, fuzzy
-msgid "Visible"
-msgstr "ซ่อน/แสดง"
-
 #: scene/3d/node_3d.cpp
 #, fuzzy
 msgid "Visibility Parent"
@@ -10971,6 +11345,12 @@ msgstr "โหมดการจัดลำดับความสำคัญ
 #, fuzzy
 msgid "Bake"
 msgstr "โหมดบิทมาร์ก"
+
+#: scene/3d/path_3d.cpp scene/3d/physics/ray_cast_3d.cpp
+#: scene/3d/physics/shape_cast_3d.cpp
+#, fuzzy
+msgid "Debug Shape"
+msgstr "ตัวดีบัก"
 
 #: scene/3d/path_3d.cpp
 #, fuzzy
@@ -11015,7 +11395,7 @@ msgstr ""
 msgid "Uniformity"
 msgstr "ตั้งชื่อยูนิฟอร์ม"
 
-#: scene/3d/physics/collision_object_3d.cpp scene/3d/soft_body_3d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/3d/physics/soft_body_3d.cpp
 msgid "Ray Pickable"
 msgstr ""
 
@@ -11376,10 +11756,60 @@ msgstr ""
 msgid "Hit Back Faces"
 msgstr "สแตค"
 
-#: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
+#: scene/3d/physics/soft_body_3d.cpp
 #, fuzzy
-msgid "Debug Shape"
-msgstr "ตัวดีบัก"
+msgid "Pinned Points"
+msgstr "ย้ายจุด"
+
+#: scene/3d/physics/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Attachments"
+msgstr "กิสโม"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Point Index"
+msgstr "Z Index"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Spatial Attachment Path"
+msgstr ""
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Parent Collision Ignore"
+msgstr "สร้างรูปหลายเหลี่ยมของเขตการชน"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Simulation Precision"
+msgstr "ผังแอนิเมชันไม่ถูกต้อง"
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Total Mass"
+msgstr "ทั้งหมด:"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Linear Stiffness"
+msgstr ""
+
+#: scene/3d/physics/soft_body_3d.cpp
+#, fuzzy
+msgid "Shrinking Factor"
+msgstr "ตัวดำเนินการสเกลาร์"
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Pressure Coefficient"
+msgstr ""
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Damping Coefficient"
+msgstr ""
+
+#: scene/3d/physics/soft_body_3d.cpp
+msgid "Drag Coefficient"
+msgstr ""
 
 #: scene/3d/physics/spring_arm_3d.cpp
 msgid "Spring Length"
@@ -11529,7 +11959,7 @@ msgstr "ชื่อโหนดแม่"
 msgid "Tip Bone"
 msgstr "โครง"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr/xr_face_modifier_3d.cpp
 msgid "Target"
 msgstr "เป้าหมาย"
 
@@ -11567,56 +11997,6 @@ msgstr "การกระทำ"
 msgid "Influence"
 msgstr ""
 
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Pinned Points"
-msgstr "ย้ายจุด"
-
-#: scene/3d/soft_body_3d.cpp servers/rendering/rendering_device_binds.h
-#, fuzzy
-msgid "Attachments"
-msgstr "กิสโม"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Point Index"
-msgstr "Z Index"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Spatial Attachment Path"
-msgstr ""
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Parent Collision Ignore"
-msgstr "สร้างรูปหลายเหลี่ยมของเขตการชน"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Simulation Precision"
-msgstr "ผังแอนิเมชันไม่ถูกต้อง"
-
-#: scene/3d/soft_body_3d.cpp
-#, fuzzy
-msgid "Total Mass"
-msgstr "ทั้งหมด:"
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Linear Stiffness"
-msgstr ""
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Pressure Coefficient"
-msgstr ""
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Damping Coefficient"
-msgstr ""
-
-#: scene/3d/soft_body_3d.cpp
-msgid "Drag Coefficient"
-msgstr ""
-
 #: scene/3d/spring_bone_collision_3d.cpp scene/gui/graph_element.cpp
 #, fuzzy
 msgid "Position Offset"
@@ -11631,6 +12011,11 @@ msgstr "องศาเริ่มต้น:"
 #: scene/3d/spring_bone_collision_sphere_3d.cpp
 msgid "Inside"
 msgstr ""
+
+#: scene/3d/spring_bone_simulator_3d.cpp
+#, fuzzy
+msgid "External Force"
+msgstr "เปิดไฟล์"
 
 #: scene/3d/velocity_tracker_3d.cpp
 #, fuzzy
@@ -11714,41 +12099,41 @@ msgstr "ตัวนำทาง"
 msgid "Use Two Bounces"
 msgstr ""
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 #, fuzzy
 msgid "Body Tracker"
 msgstr "เพิ่มแทร็ก"
 
-#: scene/3d/xr_body_modifier_3d.cpp
+#: scene/3d/xr/xr_body_modifier_3d.cpp
 #, fuzzy
 msgid "Body Update"
 msgstr "อัปเดต"
 
-#: scene/3d/xr_face_modifier_3d.cpp
+#: scene/3d/xr/xr_face_modifier_3d.cpp
 #, fuzzy
 msgid "Face Tracker"
 msgstr "เพิ่มแทร็ก"
 
-#: scene/3d/xr_hand_modifier_3d.cpp
+#: scene/3d/xr/xr_hand_modifier_3d.cpp
 #, fuzzy
 msgid "Hand Tracker"
 msgstr "กำลังรวบรวม"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 #, fuzzy
 msgid "Tracker"
 msgstr "เพิ่มแทร็ก"
 
-#: scene/3d/xr_nodes.cpp scene/resources/3d/skin.cpp
+#: scene/3d/xr/xr_nodes.cpp scene/resources/3d/skin.cpp
 #, fuzzy
 msgid "Pose"
 msgstr "คัดลอกท่าทาง"
 
-#: scene/3d/xr_nodes.cpp
+#: scene/3d/xr/xr_nodes.cpp
 msgid "Show When Tracked"
 msgstr ""
 
-#: scene/3d/xr_nodes.cpp servers/xr_server.cpp
+#: scene/3d/xr/xr_nodes.cpp servers/xr_server.cpp
 #, fuzzy
 msgid "World Scale"
 msgstr "สุ่มขนาด:"
@@ -12263,6 +12648,11 @@ msgstr "แก้ไขรูปหลายเหลี่ยม"
 
 #: scene/gui/color_picker.cpp
 #, fuzzy
+msgid "Edit Intensity"
+msgstr "แสง"
+
+#: scene/gui/color_picker.cpp
+#, fuzzy
 msgid "Color Mode"
 msgstr "ปรับความเร็วมุมมองอิสระ"
 
@@ -12436,6 +12826,10 @@ msgid "Previous"
 msgstr "ก่อนหน้า"
 
 #: scene/gui/control.cpp
+msgid "Behavior Recursive"
+msgstr ""
+
+#: scene/gui/control.cpp
 msgid "Mouse"
 msgstr ""
 
@@ -12518,6 +12912,46 @@ msgstr "กรองสัญญาณ"
 msgid "Reverse Fill"
 msgstr "รีเซ็ตระดับเสียงบัส"
 
+#: scene/gui/foldable_container.cpp scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folded"
+msgstr "โฟลเดอร์:"
+
+#: scene/gui/foldable_container.cpp scene/gui/graph_frame.cpp
+#: scene/gui/graph_node.cpp scene/main/window.cpp
+#: scene/resources/visual_shader.cpp
+msgid "Title"
+msgstr ""
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Alignment"
+msgstr "กรองสัญญาณ"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Position"
+msgstr "ตำแหน่งแรกเริ่ม"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Overrun Behavior"
+msgstr "เปิดตัวแก้ไข"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Foldable Group"
+msgstr "โฟลเดอร์:"
+
+#: scene/gui/foldable_container.cpp
+#, fuzzy
+msgid "Title Text Direction"
+msgstr "ทิศทาง"
+
+#: scene/gui/foldable_container.cpp
+msgid "Allow Folding All"
+msgstr ""
+
 #: scene/gui/graph_edit.cpp
 msgid "Show Grid"
 msgstr ""
@@ -12541,6 +12975,11 @@ msgstr "บันทึกฉาก"
 #, fuzzy
 msgid "Right Disconnects"
 msgstr "ลบการเชื่อมโยง"
+
+#: scene/gui/graph_edit.cpp
+#, fuzzy
+msgid "Type Names"
+msgstr "ชื่อ"
 
 #: scene/gui/graph_edit.cpp
 #, fuzzy
@@ -12616,11 +13055,6 @@ msgstr "ตั้งระยะขอบ"
 #, fuzzy
 msgid "Selected"
 msgstr "เลือก"
-
-#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
-#: scene/resources/visual_shader.cpp
-msgid "Title"
-msgstr ""
 
 #: scene/gui/graph_frame.cpp
 #, fuzzy
@@ -12796,8 +13230,17 @@ msgid "Emoji Menu Enabled"
 msgstr "ค้นหาคำที่เลือกในคู่มือ"
 
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+msgid "Backspace Deletes Composite Character Enabled"
+msgstr ""
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 #, fuzzy
 msgid "Virtual Keyboard Enabled"
+msgstr "กรองสัญญาณ"
+
+#: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Virtual Keyboard Show on Focus"
 msgstr "กรองสัญญาณ"
 
 #: scene/gui/line_edit.cpp
@@ -12881,7 +13324,7 @@ msgstr ""
 
 #: scene/gui/line_edit.cpp
 #, fuzzy
-msgid "Secret Character"
+msgid "Character"
 msgstr "ตัวอักษรที่ใช้ได้:"
 
 #: scene/gui/link_button.cpp
@@ -13015,11 +13458,6 @@ msgstr ""
 #: scene/gui/range.cpp
 msgid "Allow Lesser"
 msgstr ""
-
-#: scene/gui/reference_rect.cpp
-#, fuzzy
-msgid "Border Color"
-msgstr "ลบไอเทมคลาส"
 
 #: scene/gui/reference_rect.cpp scene/resources/style_box_flat.cpp
 #, fuzzy
@@ -13210,6 +13648,11 @@ msgstr "ซ่อน/แสดง"
 
 #: scene/gui/split_container.cpp
 #, fuzzy
+msgid "Touch Dragger Enabled"
+msgstr "เปิดการกระโดด"
+
+#: scene/gui/split_container.cpp
+#, fuzzy
 msgid "Drag Area"
 msgstr "ตั้งระยะขอบ"
 
@@ -13252,6 +13695,10 @@ msgstr "กรองสัญญาณ"
 #, fuzzy
 msgid "Clip Tabs"
 msgstr "ตัดด้านบน"
+
+#: scene/gui/tab_bar.cpp
+msgid "Close With Middle Mouse"
+msgstr ""
 
 #: scene/gui/tab_bar.cpp
 msgid "Tab Close Display Policy"
@@ -13329,6 +13776,11 @@ msgstr "เฉพาะที่กำลังเลือก"
 #, fuzzy
 msgid "Wrap Mode"
 msgstr "โหมดสแนป:"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Tab Input Mode"
+msgstr "โหมดเคลื่อนย้าย"
 
 #: scene/gui/text_edit.cpp
 #, fuzzy
@@ -13673,6 +14125,28 @@ msgstr "เคลื่อนย้าย:"
 msgid "Editor Description"
 msgstr "รายละเอียด"
 
+#: scene/main/node.cpp
+msgid "Live"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Controls Nodes"
+msgstr "กลาง"
+
+#: scene/main/node.cpp
+msgid "Described by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+msgid "Labeled by Nodes"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Flow to Nodes"
+msgstr "ชื่อโหนดแม่"
+
 #: scene/main/scene_tree.cpp
 #, fuzzy
 msgid "Time Left"
@@ -13699,7 +14173,7 @@ msgid "Multiplayer Poll"
 msgstr "กำหนด หลายอย่าง:"
 
 #: scene/main/scene_tree.cpp scene/resources/3d/mesh_library.cpp
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 msgid "Shapes"
 msgstr ""
 
@@ -13856,6 +14330,11 @@ msgstr "แสดงสภาพแวดล้อม"
 #, fuzzy
 msgid "Enable Object Picking"
 msgstr "เปิดภาพเงาการเคลื่อนไหว"
+
+#: scene/main/scene_tree_fti.cpp
+#, fuzzy
+msgid "Scene Traversal"
+msgstr "แก้ไขผังฉาก"
 
 #: scene/main/status_indicator.cpp scene/theme/default_theme.cpp
 msgid "Menu"
@@ -14032,6 +14511,15 @@ msgstr ""
 msgid "Canvas Cull Mask"
 msgstr ""
 
+#: scene/main/viewport.cpp servers/audio/effects/audio_effect_pitch_shift.cpp
+msgid "Oversampling"
+msgstr ""
+
+#: scene/main/viewport.cpp
+#, fuzzy
+msgid "Oversampling Override"
+msgstr "แทนที่"
+
 #: scene/main/viewport.cpp
 #, fuzzy
 msgid "Size 2D Override"
@@ -14104,6 +14592,11 @@ msgstr ""
 #, fuzzy
 msgid "Exclude From Capture"
 msgstr "ลบโหนด"
+
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Popup Wm Hint"
+msgstr "หน้าต่างใหม่"
 
 #: scene/main/window.cpp
 #, fuzzy
@@ -15327,11 +15820,6 @@ msgstr "แสง"
 
 #: scene/resources/environment.cpp
 #, fuzzy
-msgid "Saturation"
-msgstr "เว้น:"
-
-#: scene/resources/environment.cpp
-#, fuzzy
 msgid "Color Correction"
 msgstr "ฟังก์ชันสี"
 
@@ -15418,6 +15906,21 @@ msgstr "บนสุด"
 msgid "Paragraph Spacing"
 msgstr "ตัวเลือก Texture"
 
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Effects"
+msgstr "ความกว้างขวา"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Outlines"
+msgstr "ขนาดเส้นรอบรูป:"
+
+#: scene/resources/label_settings.cpp
+#, fuzzy
+msgid "Stacked Shadows"
+msgstr "จำกัดการเคลื่อนย้าย"
+
 #: scene/resources/material.cpp
 #, fuzzy
 msgid "Next Pass"
@@ -15460,6 +15963,11 @@ msgstr "ย่อหน้าขวา"
 #: scene/resources/material.cpp servers/rendering/shader_types.cpp
 #, fuzzy
 msgid "Disable Fog"
+msgstr "ปิดการทำงานปุ่ม"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Disable Specular Occlusion"
 msgstr "ปิดการทำงานปุ่ม"
 
 #: scene/resources/material.cpp
@@ -15507,6 +16015,11 @@ msgid "On UV2"
 msgstr ""
 
 #: scene/resources/material.cpp
+#, fuzzy
+msgid "Bent Normal Map"
+msgstr "สุ่มขนาด:"
+
+#: scene/resources/material.cpp
 msgid "Rim"
 msgstr ""
 
@@ -15552,9 +16065,10 @@ msgstr "พลิกแนวนอน"
 msgid "Flip Texture"
 msgstr "คัดลอกข้อความ"
 
-#: scene/resources/material.cpp servers/rendering_server.cpp
-msgid "Subsurface Scattering"
-msgstr ""
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Subsurf Scatter"
+msgstr "แทนที่"
 
 #: scene/resources/material.cpp
 #, fuzzy
@@ -15665,6 +16179,26 @@ msgstr "มุมหน้า"
 #, fuzzy
 msgid "Use Particle Trails"
 msgstr "อนุภาค"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use Z Clip Scale"
+msgstr "ใช้สแนปขนาด"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Z Clip Scale"
+msgstr "ใช้สแนปขนาด"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Use FOV Override"
+msgstr "แทนที่"
+
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "FOV Override"
+msgstr "แทนที่"
 
 #: scene/resources/material.cpp
 #, fuzzy
@@ -16449,6 +16983,16 @@ msgstr "จุดกำเนิดตาราง:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Checkbox Checked Color"
+msgstr "ลบสิ่งที่เลือก"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Checkbox Unchecked Color"
+msgstr "โปรไฟล์ปัจจุบัน:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Checked Mirrored"
 msgstr "ทำเครื่องหมายไอเทม"
 
@@ -16466,6 +17010,16 @@ msgstr "รายการที่ปิดใช้งาน"
 #, fuzzy
 msgid "Unchecked Disabled Mirrored"
 msgstr "รายการที่ปิดใช้งาน"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Checked Color"
+msgstr "โปรไฟล์ปัจจุบัน:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Button Unchecked Color"
+msgstr "โปรไฟล์ปัจจุบัน:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16554,11 +17108,6 @@ msgstr "คัดลอกที่เลือก"
 #, fuzzy
 msgid "Can Fold"
 msgstr "สร้างโฟลเดอร์"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Folded"
-msgstr "โฟลเดอร์:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -16918,6 +17467,10 @@ msgid "Reload"
 msgstr "โหลดใหม่"
 
 #: scene/theme/default_theme.cpp
+msgid "Favorite"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Toggle Hidden"
 msgstr "เปิด/ปิดไฟล์ที่ซ่อน"
@@ -16933,8 +17486,41 @@ msgstr "โฟลเดอร์:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Thumbnail Mode"
+msgstr "รูปตัวอย่าง..."
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "List Mode"
+msgstr "ความกว้างขวา"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Create Folder"
 msgstr "สร้างโฟลเดอร์"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Sort"
+msgstr "เรียง"
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Up"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Favorite Down"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "File Thumbnail"
+msgstr "รูปตัวอย่าง..."
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folder Thumbnail"
+msgstr "รูปตัวอย่าง..."
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17027,6 +17613,11 @@ msgstr "เลือก"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Panel Focus"
+msgstr "โฟกัส"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Titlebar"
 msgstr "ไปชั้นบน"
 
@@ -17038,6 +17629,11 @@ msgstr "เลือก"
 #: scene/theme/default_theme.cpp
 msgid "Slot"
 msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Slot Selected"
+msgstr "จุดกำเนิดตาราง:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17063,6 +17659,16 @@ msgstr "พรีเซ็ต"
 #, fuzzy
 msgid "Hovered Dimmed"
 msgstr "พรีเซ็ต"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered Selected"
+msgstr "เลือก"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hovered Selected Focus"
+msgstr "เลือก"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17156,6 +17762,11 @@ msgstr "เลือกสี"
 #, fuzzy
 msgid "Font Hovered Dimmed Color"
 msgstr "เลือกสี"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Font Hovered Selected Color"
+msgstr "โปรไฟล์ปัจจุบัน:"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -17292,21 +17903,6 @@ msgstr "ตั้งระยะขอบ"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
-msgid "Font Hovered Selected Color"
-msgstr "โปรไฟล์ปัจจุบัน:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Hovered Selected"
-msgstr "เลือก"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Hovered Selected Focus"
-msgstr "เลือก"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
 msgid "Tab Selected"
 msgstr "เลือก"
 
@@ -17396,6 +17992,24 @@ msgstr ""
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Sample Focus"
+msgstr "เลือก"
+
+#: scene/theme/default_theme.cpp
+msgid "Picker Focus Rectangle"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Picker Focus Circle"
+msgstr "เลือกสี"
+
+#: scene/theme/default_theme.cpp
+msgid "Focused not Editing Cursor Color"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Menu Option"
 msgstr "ตัวเลือก"
 
@@ -17464,6 +18078,11 @@ msgstr "เลือกสี"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Color Script"
+msgstr "นำเข้าฉาก"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Color Hue"
 msgstr "แก้ไขธีม"
 
@@ -17475,6 +18094,11 @@ msgstr "B"
 #: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "Preset FG"
+msgstr "พรีเซ็ต"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Preset Focus"
 msgstr "พรีเซ็ต"
 
 #: scene/theme/default_theme.cpp
@@ -17563,6 +18187,27 @@ msgstr "lighting แบบตรง"
 #, fuzzy
 msgid "Text Highlight V Padding"
 msgstr "lighting แบบตรง"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Underline Alpha"
+msgstr "การวนซ้ำแอนิเมชัน"
+
+#: scene/theme/default_theme.cpp
+msgid "Strikethrough Alpha"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "H Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "V Touch Dragger"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+msgid "Touch Dragger"
+msgstr ""
 
 #: scene/theme/default_theme.cpp
 msgid "H Grabber"
@@ -17683,6 +18328,45 @@ msgstr "นำเข้าฉาก"
 #, fuzzy
 msgid "Connection Rim Color"
 msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Panel"
+msgstr "เพิ่มจุดโหนด"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Hover Panel"
+msgstr "สลับปุ่ม"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Title Collapsed Panel"
+msgstr "ยุบเข้า"
+
+#: scene/theme/default_theme.cpp
+msgid "Title Collapsed Hover Panel"
+msgstr ""
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Hover Font Color"
+msgstr "เก็บไฟล์:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Collapsed Font Color"
+msgstr "เลือกสี"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Expanded Arrow Mirrored"
+msgstr "ขยายออก"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Folded Arrow Mirrored"
+msgstr "โฟลเดอร์:"
 
 #: scene/theme/default_theme.cpp
 msgid "Port Hotzone Inner Extent"
@@ -17993,6 +18677,11 @@ msgstr ""
 msgid "Is Active"
 msgstr "เพอร์สเปกทีฟ"
 
+#: servers/camera_server.cpp
+#, fuzzy
+msgid "Monitoring Feeds"
+msgstr "ข้อมูล"
+
 #: servers/movie_writer/movie_writer.cpp
 #, fuzzy
 msgid "Movie Writer"
@@ -18023,6 +18712,18 @@ msgstr "ใช้สแนป"
 msgid "Metadata Flags"
 msgstr ""
 
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Excluded Regions"
+msgstr "ลบโหนด"
+
+#: servers/navigation/navigation_path_query_parameters_2d.cpp
+#: servers/navigation/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Included Regions"
+msgstr "รวมไฟล์ที่ซ่อน"
+
 #: servers/navigation/navigation_path_query_result_2d.cpp
 #: servers/navigation/navigation_path_query_result_3d.cpp
 #, fuzzy
@@ -18040,20 +18741,129 @@ msgstr "สุ่มการหมุน:"
 msgid "Path Owner IDs"
 msgstr ""
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Cell Size"
 msgstr "อัพเดทการดูตัวอย่าง"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Edge Connection Margin"
 msgstr "แก้ไขการเชื่อมต่อ:"
 
-#: servers/navigation_server_3d.cpp
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
 #, fuzzy
 msgid "Default Link Connection Radius"
 msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Edge Connection Color"
+msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Edge Color"
+msgstr "รายการที่ปิดใช้งาน"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Face Color"
+msgstr "รายการที่ปิดใช้งาน"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Edge Disabled Color"
+msgstr "เปลี่ยนชื่อตัวแปร"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Geometry Face Disabled Color"
+msgstr "เปลี่ยนชื่อตัวแปร"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Link Connection Color"
+msgstr "เชื่อมต่อผิดพลาด"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Link Connection Disabled Color"
+msgstr "นำเข้าฉาก"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agent Path Color"
+msgstr "คัดลอกตำแหน่งโหนด"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Edge Connections"
+msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Edge Lines"
+msgstr "เปิดการใช้งานตัวกรอง"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Geometry Face Random Color"
+msgstr "รายการที่ปิดใช้งาน"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Link Connections"
+msgstr "แก้ไขการเชื่อมต่อ:"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agent Paths"
+msgstr "เปิดการใช้งานตัวกรอง"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agent Path Point Size"
+msgstr "มุมหน้า"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Agents Radius Color"
+msgstr "คัดลอกตำแหน่งโหนด"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Radius Color"
+msgstr ""
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushin Color"
+msgstr ""
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Face Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Obstacles Static Edge Pushout Color"
+msgstr ""
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Agents Radius"
+msgstr "เปิดการใช้งานตัวกรอง"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+#, fuzzy
+msgid "Enable Obstacles Radius"
+msgstr "แก้ไขรัศมีภายนอกของวงแหวน"
+
+#: servers/navigation_server_2d.cpp servers/navigation_server_3d.cpp
+msgid "Enable Obstacles Static"
+msgstr ""
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -18071,109 +18881,12 @@ msgstr ""
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
-msgid "World"
-msgstr "สุ่มขนาด:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Map Use Async Iterations"
-msgstr "สร้างฟังก์ชัน"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Avoidance Use Multiple Threads"
-msgstr "กำหนด หลายอย่าง:"
-
-#: servers/navigation_server_3d.cpp
-msgid "Avoidance Use High Priority Threads"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Baking"
-msgstr "กำลังรวบรวม"
-
-#: servers/navigation_server_3d.cpp
-msgid "Use Crash Prevention Checks"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Baking Use Multiple Threads"
-msgstr "กำหนด หลายอย่าง:"
-
-#: servers/navigation_server_3d.cpp
-msgid "Baking Use High Priority Threads"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Edge Connection Color"
-msgstr "แก้ไขการเชื่อมต่อ:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Edge Color"
-msgstr "รายการที่ปิดใช้งาน"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Face Color"
-msgstr "รายการที่ปิดใช้งาน"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Edge Disabled Color"
-msgstr "เปลี่ยนชื่อตัวแปร"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Geometry Face Disabled Color"
-msgstr "เปลี่ยนชื่อตัวแปร"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Link Connection Color"
-msgstr "เชื่อมต่อผิดพลาด"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Link Connection Disabled Color"
-msgstr "นำเข้าฉาก"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agent Path Color"
-msgstr "คัดลอกตำแหน่งโหนด"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Edge Connections"
-msgstr "แก้ไขการเชื่อมต่อ:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
 msgid "Enable Edge Connections X-Ray"
 msgstr "แก้ไขการเชื่อมต่อ:"
 
 #: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Edge Lines"
-msgstr "เปิดการใช้งานตัวกรอง"
-
-#: servers/navigation_server_3d.cpp
 msgid "Enable Edge Lines X-Ray"
 msgstr ""
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Geometry Face Random Color"
-msgstr "รายการที่ปิดใช้งาน"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Link Connections"
-msgstr "แก้ไขการเชื่อมต่อ:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
@@ -18182,57 +18895,8 @@ msgstr "แก้ไขการเชื่อมต่อ:"
 
 #: servers/navigation_server_3d.cpp
 #, fuzzy
-msgid "Enable Agent Paths"
-msgstr "เปิดการใช้งานตัวกรอง"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
 msgid "Enable Agent Paths X-Ray"
 msgstr "แก้ไขการเชื่อมต่อ:"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agent Path Point Size"
-msgstr "มุมหน้า"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Agents Radius Color"
-msgstr "คัดลอกตำแหน่งโหนด"
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Radius Color"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushin Color"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushin Color"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Face Pushout Color"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-msgid "Obstacles Static Edge Pushout Color"
-msgstr ""
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Agents Radius"
-msgstr "เปิดการใช้งานตัวกรอง"
-
-#: servers/navigation_server_3d.cpp
-#, fuzzy
-msgid "Enable Obstacles Radius"
-msgstr "แก้ไขรัศมีภายนอกของวงแหวน"
-
-#: servers/navigation_server_3d.cpp
-msgid "Enable Obstacles Static"
-msgstr ""
 
 #: servers/physics_server_2d.cpp servers/physics_server_3d.cpp
 msgid "Inverse Mass"
@@ -18540,6 +19204,11 @@ msgstr "รายการที่ปิดใช้งาน"
 
 #: servers/rendering/shader_types.cpp
 #, fuzzy
+msgid "Specular Occlusion Disabled"
+msgstr "โหมดขอบเขตการชน"
+
+#: servers/rendering/shader_types.cpp
+#, fuzzy
 msgid "Light Only"
 msgstr "แสง"
 
@@ -18740,6 +19409,11 @@ msgid "Reflection Count"
 msgstr "เลือกคุณสมบัติ"
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "Specular Occlusion"
+msgstr "ตัวบังแสง"
+
+#: servers/rendering_server.cpp
 msgid "GI"
 msgstr ""
 
@@ -18831,6 +19505,11 @@ msgid "Screen Space Roughness Limiter"
 msgstr ""
 
 #: servers/rendering_server.cpp
+#, fuzzy
+msgid "SMAA Edge Detection Threshold"
+msgstr "เริ่มต้น"
+
+#: servers/rendering_server.cpp
 msgid "Decals"
 msgstr ""
 
@@ -18857,6 +19536,10 @@ msgstr "ดำเนินการ Screen"
 #, fuzzy
 msgid "Roughness Quality"
 msgstr "เลเยอร์"
+
+#: servers/rendering_server.cpp
+msgid "Subsurface Scattering"
+msgstr ""
 
 #: servers/rendering_server.cpp
 msgid "Subsurface Scattering Quality"
