@@ -54,6 +54,7 @@ msgstr "Configuració"
 #: core/config/project_settings.cpp core/io/resource.cpp
 #: editor/animation/animation_track_editor.cpp
 #: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/gui/control.cpp scene/main/window.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
@@ -66,9 +67,9 @@ msgstr "Nom"
 msgid "Name Localized"
 msgstr "Format"
 
-#: core/config/project_settings.cpp platform/windows/export/export_plugin.cpp
-#: scene/gui/control.cpp scene/main/node.cpp scene/main/window.cpp
-#: scene/resources/visual_shader.cpp servers/xr/xr_tracker.cpp
+#: core/config/project_settings.cpp modules/visual_shader/visual_shader.cpp
+#: platform/windows/export/export_plugin.cpp scene/gui/control.cpp
+#: scene/main/node.cpp scene/main/window.cpp servers/xr/xr_tracker.cpp
 msgid "Description"
 msgstr "Descripció"
 
@@ -157,8 +158,13 @@ msgstr "Assistència d'accessibilitat"
 msgid "Updates per Second"
 msgstr "Mode de Rotació"
 
-#: core/config/project_settings.cpp main/main.cpp
-#: platform/macos/export/export_plugin.cpp
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Accessibility Driver"
+msgstr "Accessibilitat"
+
+#: core/config/project_settings.cpp editor/settings/editor_settings.cpp
+#: main/main.cpp platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
@@ -174,16 +180,17 @@ msgstr "Finestra"
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/settings/editor_settings.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/extensions/physics/gltf_physics_shape.cpp
-#: modules/gridmap/grid_map.cpp scene/3d/camera_3d.cpp scene/3d/decal.cpp
-#: scene/3d/fog_volume.cpp scene/3d/gpu_particles_collision_3d.cpp
-#: scene/3d/light_3d.cpp scene/3d/occluder_instance_3d.cpp
-#: scene/3d/reflection_probe.cpp scene/3d/voxel_gi.cpp scene/gui/code_edit.cpp
-#: scene/gui/control.cpp scene/gui/graph_edit.cpp scene/main/viewport.cpp
-#: scene/main/window.cpp scene/resources/2d/rectangle_shape_2d.cpp
+#: modules/gridmap/grid_map.cpp modules/visual_shader/visual_shader.cpp
+#: scene/3d/camera_3d.cpp scene/3d/decal.cpp scene/3d/fog_volume.cpp
+#: scene/3d/gpu_particles_collision_3d.cpp scene/3d/light_3d.cpp
+#: scene/3d/occluder_instance_3d.cpp scene/3d/reflection_probe.cpp
+#: scene/3d/voxel_gi.cpp scene/gui/code_edit.cpp scene/gui/control.cpp
+#: scene/gui/graph_edit.cpp scene/main/viewport.cpp scene/main/window.cpp
+#: scene/resources/2d/rectangle_shape_2d.cpp
 #: scene/resources/3d/box_shape_3d.cpp scene/resources/3d/primitive_meshes.cpp
 #: scene/resources/external_texture.cpp scene/resources/label_settings.cpp
 #: scene/resources/placeholder_textures.cpp scene/resources/style_box_flat.cpp
-#: scene/resources/visual_shader.cpp servers/rendering/rendering_server.cpp
+#: servers/rendering/rendering_server.cpp
 msgid "Size"
 msgstr "Mida"
 
@@ -201,16 +208,16 @@ msgstr "Alçada de la subàrea de visualització"
 #: editor/import/resource_importer_texture.cpp
 #: editor/import/resource_importer_wav.cpp
 #: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: modules/csg/csg_shape.cpp scene/2d/visible_on_screen_notifier_2d.cpp
-#: scene/3d/light_3d.cpp scene/3d/lightmap_gi.cpp scene/3d/reflection_probe.cpp
+#: modules/csg/csg_shape.cpp modules/visual_shader/visual_shader.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#: scene/2d/visible_on_screen_notifier_2d.cpp scene/3d/light_3d.cpp
+#: scene/3d/lightmap_gi.cpp scene/3d/reflection_probe.cpp
 #: scene/3d/visible_on_screen_notifier_3d.cpp scene/3d/visual_instance_3d.cpp
 #: scene/animation/animation_node_state_machine.cpp scene/gui/control.cpp
 #: scene/main/node.cpp scene/main/scene_tree.cpp scene/main/viewport.cpp
 #: scene/main/window.cpp scene/resources/environment.cpp
 #: scene/resources/gradient.cpp scene/resources/material.cpp
 #: scene/resources/mesh.cpp scene/resources/particle_process_material.cpp
-#: scene/resources/visual_shader.cpp
-#: scene/resources/visual_shader_particle_nodes.cpp
 #: servers/audio/effects/audio_effect_distortion.cpp
 #: servers/rendering/rendering_server.cpp
 msgid "Mode"
@@ -279,6 +286,15 @@ msgid "Window Height Override"
 msgstr "Sobreescriu alçada de la finestra"
 
 #: core/config/project_settings.cpp
+msgid "HDR"
+msgstr ""
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Request HDR Output"
+msgstr "La sol·licitud ha fallat, s'ha esgotat el temps d'espera"
+
+#: core/config/project_settings.cpp
 #, fuzzy
 msgid "Energy Saving"
 msgstr "Error en Desar"
@@ -302,6 +318,11 @@ msgstr "Animació"
 #: servers/rendering/rendering_server.cpp
 msgid "Warnings"
 msgstr "Avisos"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Check Invalid Skeleton Modifier Node Paths"
+msgstr "Comprova Camins de Pista No Vàlids"
 
 #: core/config/project_settings.cpp
 msgid "Check Invalid Track Paths"
@@ -597,8 +618,8 @@ msgstr "Translació"
 msgid "GUI"
 msgstr ""
 
-#: core/config/project_settings.cpp scene/gui/base_button.cpp
-#: scene/gui/text_edit.cpp
+#: core/config/project_settings.cpp editor/settings/editor_settings.cpp
+#: scene/gui/base_button.cpp scene/gui/text_edit.cpp
 #, fuzzy
 msgid "Timers"
 msgstr "Temps"
@@ -632,7 +653,8 @@ msgstr "Ajustar als costats del node"
 msgid "Show Focus State on Pointer Event"
 msgstr ""
 
-#: core/config/project_settings.cpp scene/gui/control.cpp scene/main/window.cpp
+#: core/config/project_settings.cpp editor/settings/editor_settings.cpp
+#: scene/gui/control.cpp scene/main/window.cpp
 #, fuzzy
 msgid "Fonts"
 msgstr "Lletra"
@@ -697,7 +719,6 @@ msgstr ""
 #: core/config/project_settings.cpp
 #: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
 #: editor/settings/editor_settings.cpp modules/gdscript/gdscript.cpp
-#: platform/android/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 #: scene/3d/physics/joints/hinge_joint_3d.cpp scene/3d/retarget_modifier_3d.cpp
 #: servers/rendering/rendering_server.cpp
@@ -949,6 +970,10 @@ msgid "Emulate Touch From Mouse"
 msgstr ""
 
 #: core/input/input.cpp
+msgid "Ignore Joypad on Unfocused Application"
+msgstr ""
+
+#: core/input/input.cpp
 msgid "Legacy Just Pressed Behavior"
 msgstr ""
 
@@ -972,6 +997,10 @@ msgstr "No es pot resoldre"
 
 #: core/input/input.cpp
 msgid "Enable Magnetometer"
+msgstr ""
+
+#: core/input/input.cpp
+msgid "Joypads"
 msgstr ""
 
 #: core/input/input_event.cpp
@@ -1117,7 +1146,7 @@ msgstr "Eix"
 msgid "Axis Value"
 msgstr "(valor)"
 
-#: core/input/input_event.cpp
+#: core/input/input_event.cpp scene/resources/font.cpp
 msgid "Index"
 msgstr "Índex"
 
@@ -1196,6 +1225,11 @@ msgstr "Endian gran"
 msgid "Blocking Mode Enabled"
 msgstr "Mode de bloqueig activat"
 
+#: core/io/http_client.cpp editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Connection"
+msgstr "Copiar Selecció"
+
 #: core/io/http_client.cpp
 msgid "Read Chunk Size"
 msgstr "Llegeix la mida del fragment"
@@ -1220,6 +1254,11 @@ msgstr "Mida màxima del buffer d'entrada"
 #: core/io/packet_peer.cpp
 msgid "Output Buffer Max Size"
 msgstr "Mida màxima del buffer de sortida"
+
+#: core/io/packet_peer.cpp
+#, fuzzy
+msgid "Stream Peer"
+msgstr "Reproductor de Flux 3D"
 
 #: core/io/resource.cpp
 msgid "Resource"
@@ -1336,7 +1375,6 @@ msgstr "Pas"
 #: core/register_core_types.cpp
 #: editor/debugger/debug_adapter/debug_adapter_server.cpp
 #: editor/settings/editor_settings.cpp main/main.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
 #: modules/mbedtls/register_types.cpp modules/webrtc/register_types.cpp
 msgid "Network"
 msgstr "Xarxa"
@@ -1478,9 +1516,9 @@ msgstr ""
 
 #: editor/animation/animation_track_editor.cpp
 #: editor/settings/editor_settings.cpp modules/noise/fastnoise_lite.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #: scene/3d/physics/physical_bone_3d.cpp scene/gui/line_edit.cpp
-#: scene/gui/text_edit.cpp scene/resources/visual_shader_nodes.cpp
-#: servers/xr/xr_tracker.cpp
+#: scene/gui/text_edit.cpp servers/xr/xr_tracker.cpp
 msgid "Type"
 msgstr "Tipus"
 
@@ -1519,15 +1557,6 @@ msgstr "Desplaçament final"
 msgid "Easing"
 msgstr "Esmorteeix Entrada-Sortida"
 
-#: editor/asset_library/asset_library_editor_plugin.cpp
-#: editor/settings/editor_settings.cpp
-msgid "Asset Library"
-msgstr "Biblioteca d'Actius"
-
-#: editor/asset_library/asset_library_editor_plugin.cpp
-msgid "Available URLs"
-msgstr "URL disponibles"
-
 #: editor/debugger/debug_adapter/debug_adapter_server.cpp
 #, fuzzy
 msgid "Debug Adapter"
@@ -1535,7 +1564,6 @@ msgstr "Depurador"
 
 #: editor/debugger/debug_adapter/debug_adapter_server.cpp
 #: editor/settings/editor_settings.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
 #, fuzzy
 msgid "Remote Port"
 msgstr "Elimina Punt"
@@ -1550,9 +1578,9 @@ msgstr "La sol·licitud ha fallat, s'ha esgotat el temps d'espera"
 msgid "Sync Breakpoints"
 msgstr "Punts d’interrupció"
 
-#: editor/docks/editor_dock.cpp scene/gui/foldable_container.cpp
-#: scene/gui/graph_frame.cpp scene/gui/graph_node.cpp scene/main/window.cpp
-#: scene/resources/visual_shader.cpp
+#: editor/docks/editor_dock.cpp modules/visual_shader/visual_shader.cpp
+#: scene/gui/foldable_container.cpp scene/gui/graph_frame.cpp
+#: scene/gui/graph_node.cpp scene/main/window.cpp
 msgid "Title"
 msgstr ""
 
@@ -1724,6 +1752,18 @@ msgid "Delete Old Export Files Unconditionally"
 msgstr ""
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
+#, fuzzy
+msgid "Modules"
+msgstr "Omple"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
+#: editor/settings/editor_settings.cpp modules/gltf/structures/gltf_node.cpp
+#: platform/macos/export/export_plugin.cpp scene/theme/default_theme.cpp
+#: servers/rendering/rendering_server.cpp
+msgid "Camera"
+msgstr "Càmera"
+
+#: editor/export/editor_export_platform_apple_embedded.cpp
 #: platform/android/export/export_plugin.cpp
 msgid "Plugins"
 msgstr "Connectors"
@@ -1786,6 +1826,7 @@ msgstr "Canvis del Shader:"
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
 #: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
 #: modules/openxr/extensions/openxr_frame_synthesis_extension.cpp
+#: modules/visual_shader/visual_shader.cpp
 #: platform/android/export/export_plugin.cpp
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -1801,9 +1842,9 @@ msgstr "Canvis del Shader:"
 #: scene/resources/2d/skeleton/skeleton_modification_2d.cpp
 #: scene/resources/2d/skeleton/skeleton_modification_stack_2d.cpp
 #: scene/resources/compositor.cpp scene/resources/curve.cpp
-#: scene/resources/environment.cpp scene/resources/material.cpp
+#: scene/resources/environment.cpp
 #: scene/resources/particle_process_material.cpp
-#: scene/resources/visual_shader.cpp servers/rendering/rendering_server.cpp
+#: servers/rendering/rendering_server.cpp
 #, fuzzy
 msgid "Enabled"
 msgstr "Activar"
@@ -1956,6 +1997,11 @@ msgstr "Mode Col·lisió"
 #: editor/gui/editor_spin_slider.cpp
 msgid "Editing Integer"
 msgstr ""
+
+#: editor/gui/editor_spin_slider.cpp
+#, fuzzy
+msgid "Deferred Drag Mode"
+msgstr "Diferit"
 
 #: editor/gui/editor_zoom_widget.cpp scene/2d/camera_2d.cpp
 #: scene/gui/graph_edit.cpp
@@ -2232,12 +2278,12 @@ msgstr "Crear node Shader"
 msgid "Decomposition"
 msgstr "Posició de l'Acoblador"
 
-#: editor/import/3d/resource_importer_scene.cpp
+#: editor/import/3d/resource_importer_scene.cpp scene/3d/gpu_particles_3d.cpp
 msgid "Advanced"
 msgstr "Avançat"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: scene/resources/visual_shader_nodes.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #, fuzzy
 msgid "Precision"
 msgstr "Canviar Expressió"
@@ -2490,6 +2536,24 @@ msgstr "Nom de l'arrel"
 #, fuzzy
 msgid "Root Script"
 msgstr "Importa Escena"
+
+#: editor/import/3d/resource_importer_scene.cpp modules/gridmap/grid_map.cpp
+msgid "Mesh Library"
+msgstr "Biblioteca de Malles"
+
+#: editor/import/3d/resource_importer_scene.cpp
+msgid "Use Node Names as Mesh Names"
+msgstr ""
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Array Mesh"
+msgstr "Mode d'importació"
+
+#: editor/import/3d/resource_importer_scene.cpp
+#, fuzzy
+msgid "Deduplicate Surfaces"
+msgstr "Segueix la superfície"
 
 #: editor/import/3d/resource_importer_scene.cpp
 #, fuzzy
@@ -2908,6 +2972,17 @@ msgstr "Separació:"
 msgid "Color Map"
 msgstr "Color"
 
+#: editor/import/resource_importer_svg.cpp
+#: editor/import/resource_importer_texture.cpp scene/resources/dpi_texture.cpp
+msgid "Fix Alpha Border"
+msgstr ""
+
+#: editor/import/resource_importer_svg.cpp
+#: editor/import/resource_importer_texture.cpp scene/resources/dpi_texture.cpp
+#, fuzzy
+msgid "Premult Alpha"
+msgstr "Edita Polígon"
+
 #: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
 msgid "Normal Map"
 msgstr ""
@@ -2948,15 +3023,6 @@ msgstr ""
 #: editor/import/resource_importer_texture.cpp
 #, fuzzy
 msgid "Alpha"
-msgstr "Edita Polígon"
-
-#: editor/import/resource_importer_texture.cpp
-msgid "Fix Alpha Border"
-msgstr ""
-
-#: editor/import/resource_importer_texture.cpp
-#, fuzzy
-msgid "Premult Alpha"
 msgstr "Edita Polígon"
 
 #: editor/import/resource_importer_texture.cpp
@@ -3126,6 +3192,11 @@ msgstr ""
 msgid "Base Type"
 msgstr "Modifica el Tipus de Base"
 
+#: editor/inspector/editor_resource_picker.cpp
+#, fuzzy
+msgid "Edited Resource"
+msgstr "Copia el Recurs"
+
 #: editor/inspector/editor_resource_picker.cpp scene/gui/line_edit.cpp
 #: scene/gui/slider.cpp scene/gui/spin_box.cpp scene/gui/text_edit.cpp
 #, fuzzy
@@ -3135,6 +3206,11 @@ msgstr "Element Editable"
 #: editor/inspector/editor_resource_picker.cpp scene/gui/base_button.cpp
 msgid "Toggle Mode"
 msgstr "Commuta Mode"
+
+#: editor/inspector/editor_resource_picker.cpp
+#, fuzzy
+msgid "Script Owner"
+msgstr "Script"
 
 #: editor/register_editor_types.cpp
 msgid "Main Run Args"
@@ -3212,15 +3288,16 @@ msgid "ID"
 msgstr ""
 
 #: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #: scene/2d/cpu_particles_2d.cpp scene/2d/gpu_particles_2d.cpp
 #: scene/2d/light_2d.cpp scene/2d/line_2d.cpp scene/2d/mesh_instance_2d.cpp
 #: scene/2d/multimesh_instance_2d.cpp scene/2d/polygon_2d.cpp
 #: scene/2d/sprite_2d.cpp scene/3d/gpu_particles_collision_3d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/nine_patch_rect.cpp
+#: scene/3d/light_3d.cpp scene/3d/sprite_3d.cpp scene/gui/nine_patch_rect.cpp
 #: scene/gui/texture_rect.cpp scene/main/canvas_item.cpp
 #: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/material.cpp scene/resources/style_box_texture.cpp
-#: scene/resources/visual_shader_nodes.cpp
+#: scene/resources/2d/tile_set.cpp scene/resources/material.cpp
+#: scene/resources/style_box_texture.cpp
 #, fuzzy
 msgid "Texture"
 msgstr "Text"
@@ -3307,24 +3384,101 @@ msgstr "Colors dels Manipuladors"
 msgid "Particles Emission Shape"
 msgstr "Màscara d'Emissió"
 
+#: editor/scene/3d/mesh_library_editor_plugin.cpp modules/csg/csg_shape.cpp
+#: modules/gltf/structures/gltf_mesh.cpp modules/gltf/structures/gltf_node.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#: scene/2d/mesh_instance_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/3d/importer_mesh_instance_3d.cpp scene/3d/mesh_instance_3d.cpp
+#: scene/resources/3d/mesh_library.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/mesh_texture.cpp scene/resources/multimesh.cpp
+msgid "Mesh"
+msgstr "Malla"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/resources/3d/mesh_library.cpp
+#, fuzzy
+msgid "Mesh Transform"
+msgstr "Transformar"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/resources/3d/mesh_library.cpp
+#, fuzzy
+msgid "Mesh Cast Shadow"
+msgstr "Crear node Shader"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp scene/main/scene_tree.cpp
+#: scene/resources/3d/mesh_library.cpp
+#: servers/navigation_2d/navigation_server_2d.cpp
+#: servers/navigation_3d/navigation_server_3d.cpp
+msgid "Shapes"
+msgstr ""
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
+#: scene/resources/3d/mesh_library.cpp
+#, fuzzy
+msgid "Navigation Mesh"
+msgstr "Mode Navegació"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/resources/3d/mesh_library.cpp
+#, fuzzy
+msgid "Navigation Mesh Transform"
+msgstr "Restablir Transformació"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/2d/navigation/navigation_agent_2d.cpp
+#: scene/2d/navigation/navigation_link_2d.cpp
+#: scene/2d/navigation/navigation_region_2d.cpp
+#: scene/3d/navigation/navigation_agent_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
+#: scene/resources/3d/mesh_library.cpp
+#: servers/navigation_2d/navigation_path_query_parameters_2d.cpp
+#: servers/navigation_3d/navigation_path_query_parameters_3d.cpp
+#, fuzzy
+msgid "Navigation Layers"
+msgstr "Mode Navegació"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/resources/3d/mesh_library.cpp
+msgid "Preview"
+msgstr "Previsualització"
+
 #: editor/settings/editor_settings.cpp servers/xr/xr_interface.cpp
 #, fuzzy
 msgid "Interface"
 msgstr "Interfície d'usuari"
+
+#: editor/settings/editor_settings.cpp scene/gui/control.cpp
+msgid "Localization"
+msgstr "Localització"
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Editor Language"
 msgstr "Disseny de l'Editor"
 
+#: editor/settings/editor_settings.cpp
+msgid "Asset Store"
+msgstr ""
+
 #: editor/settings/editor_settings.cpp scene/main/http_request.cpp
 msgid "Use Threads"
 msgstr ""
 
 #: editor/settings/editor_settings.cpp
+msgid "Available URLs"
+msgstr "URL disponibles"
+
+#: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Localize Settings"
 msgstr "Localització"
+
+#: editor/settings/editor_settings.cpp
+msgid "Docks"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Dock Tab Style"
@@ -3340,6 +3494,10 @@ msgid "UI Layout Direction"
 msgstr "Direccions"
 
 #: editor/settings/editor_settings.cpp
+msgid "Appearance"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Display Scale"
 msgstr "Mostra-ho tot"
@@ -3353,6 +3511,11 @@ msgstr ""
 msgid "Editor Screen"
 msgstr "Editor"
 
+#: editor/settings/editor_settings.cpp scene/2d/physics/collision_object_2d.cpp
+#: scene/3d/physics/collision_object_3d.cpp scene/gui/control.cpp
+msgid "Input"
+msgstr "Entrada"
+
 #: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Tablet Driver"
@@ -3362,11 +3525,6 @@ msgstr "Controlador de tauleta"
 #, fuzzy
 msgid "Project Manager Screen"
 msgstr "Gestor del Projecte"
-
-#: editor/settings/editor_settings.cpp
-#, fuzzy
-msgid "Connection"
-msgstr "Copiar Selecció"
 
 #: editor/settings/editor_settings.cpp
 msgid "Check for Updates"
@@ -3457,6 +3615,10 @@ msgid "Dragging Hover Wait Seconds"
 msgstr ""
 
 #: editor/settings/editor_settings.cpp
+msgid "Behavior"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Separate Distraction Mode"
 msgstr "Mode Lliure de Distraccions"
@@ -3526,15 +3688,11 @@ msgstr ""
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
-msgid "Show Scene Tree Root Selection"
+msgid "Show Renderer Selector"
 msgstr "Centra la Selecció"
 
 #: editor/settings/editor_settings.cpp
 msgid "Derive Script Globals by Name"
-msgstr ""
-
-#: editor/settings/editor_settings.cpp
-msgid "Docks"
 msgstr ""
 
 #: editor/settings/editor_settings.cpp
@@ -3611,6 +3769,11 @@ msgstr "Obre en l'Inspector"
 #, fuzzy
 msgid "Resources to Open in New Inspector"
 msgstr "Obre en l'Inspector"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Property Descriptions"
+msgstr "Descripció"
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
@@ -3716,6 +3879,10 @@ msgid "Additional Spacing"
 msgstr "Bucle de l'Animació"
 
 #: editor/settings/editor_settings.cpp
+msgid "Use Monospace Font for Editor Symbols"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Custom Theme"
 msgstr "Editar Tema"
@@ -3726,6 +3893,10 @@ msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Enable Touch Optimizations"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
+msgid "Haptic on Long Press"
 msgstr ""
 
 #: editor/settings/editor_settings.cpp
@@ -4010,6 +4181,14 @@ msgid "Other File Extensions"
 msgstr "Direccions"
 
 #: editor/settings/editor_settings.cpp
+msgid "Automatically Open Created Scripts"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
+msgid "Ask Before Moving Files"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Property Editor"
 msgstr "Editor de scripts"
@@ -4056,10 +4235,6 @@ msgstr "Avisos"
 #, fuzzy
 msgid "Notice List"
 msgstr "Crides de Dibuix:"
-
-#: editor/settings/editor_settings.cpp
-msgid "Appearance"
-msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Enable Inline Color Picker"
@@ -4140,6 +4315,16 @@ msgstr ""
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
+msgid "Drag and Drop Info"
+msgstr "Elimina la Selecció del GridMap"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Show Drag and Drop Info"
+msgstr "Elimina la Selecció del GridMap"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
 msgid "Lines"
 msgstr "Línia"
 
@@ -4174,10 +4359,6 @@ msgstr "Dibuixa espais"
 #: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
 #: scene/resources/text_paragraph.cpp scene/theme/default_theme.cpp
 msgid "Line Spacing"
-msgstr ""
-
-#: editor/settings/editor_settings.cpp
-msgid "Behavior"
 msgstr ""
 
 #: editor/settings/editor_settings.cpp
@@ -4478,12 +4659,6 @@ msgstr "AABB"
 msgid "Stream Player 3D"
 msgstr "Reproductor de Flux 3D"
 
-#: editor/settings/editor_settings.cpp modules/gltf/structures/gltf_node.cpp
-#: platform/macos/export/export_plugin.cpp scene/theme/default_theme.cpp
-#: servers/rendering/rendering_server.cpp
-msgid "Camera"
-msgstr "Càmera"
-
 #: editor/settings/editor_settings.cpp
 msgid "Decal"
 msgstr "Calcomania"
@@ -4591,6 +4766,10 @@ msgstr "Mida del Disc d'Inclinació del Camí 3D"
 #, fuzzy
 msgid "Lightmap GI Probe Size"
 msgstr "Precalcular Lightmaps"
+
+#: editor/settings/editor_settings.cpp
+msgid "Show Collision Shapes Only When Selected"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Primary Grid Steps"
@@ -4739,6 +4918,11 @@ msgstr "Modificador de l'Activació de la Vista Lliure"
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
+msgid "Freelook Invert Y Axis"
+msgstr "Inèrcia de la Vista Lliure"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
 msgid "Freelook Speed Zoom Link"
 msgstr "Enllaç de la Velocitat del Zoom en Vista Lliure"
 
@@ -4757,6 +4941,11 @@ msgstr "Mostra el Manipulador de Rotació de la Vista"
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
+msgid "View Plane Rotation Gizmo Scale"
+msgstr "Mostra el Manipulador de Rotació de la Vista"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
 msgid "Grid Color"
 msgstr "Tria un Color"
 
@@ -4769,6 +4958,16 @@ msgstr "Tria un Color"
 #, fuzzy
 msgid "Smart Snapping Line Color"
 msgstr "Ajustament Intel·ligent"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Selection Rectangle Color"
+msgstr "Selecció Només"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Locked Selection Rectangle Color"
+msgstr "Color del Quadre de Selecció Actiu"
 
 #: editor/settings/editor_settings.cpp
 msgid "Bone Width"
@@ -4960,6 +5159,51 @@ msgstr ""
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
+msgid "Audio Buses"
+msgstr "Afegeix un Bus d'Àudio"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Active Max dB Color"
+msgstr "Color del Quadre de Selecció Actiu"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Active Min dB Color"
+msgstr "Color del Quadre de Selecció Actiu"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Active Normalized dB Color"
+msgstr "Color del Quadre de Selecció Actiu"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Inactive Max dB Color"
+msgstr "Color seleccionat de l'os"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Inactive Min dB Color"
+msgstr "Color del Quadre de Selecció Actiu"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Inactive Normalized dB Color"
+msgstr "Marcadors"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Tint over Color"
+msgstr "Tria un Color"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Tint Under Color"
+msgstr "Planta Següent"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
 msgid "Shader Editor"
 msgstr "Editor de Text"
 
@@ -5103,7 +5347,7 @@ msgstr "Xarxa"
 msgid "HTTP Proxy"
 msgstr ""
 
-#: editor/settings/editor_settings.cpp
+#: editor/settings/editor_settings.cpp modules/enet/enet_multiplayer_peer.cpp
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -5121,9 +5365,30 @@ msgid "Enable TLS V 1"
 msgstr "Activar"
 
 #: editor/settings/editor_settings.cpp
-#: modules/gdscript/language_server/gdscript_language_server.cpp
 msgid "Remote Host"
 msgstr "Amfitrió remot"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Language Server"
+msgstr "Llengua:"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Enable Smart Resolve"
+msgstr "No es pot resoldre"
+
+#: editor/settings/editor_settings.cpp
+msgid "Show Native Symbols in Editor"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
+msgid "Use Thread"
+msgstr ""
+
+#: editor/settings/editor_settings.cpp
+msgid "Poll Limit (µsec)"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp main/main.cpp
 msgid "Debugger"
@@ -5179,11 +5444,6 @@ msgstr ""
 #: editor/settings/editor_settings.cpp
 msgid "SSH Private Key Path"
 msgstr ""
-
-#: editor/settings/editor_settings.cpp scene/2d/physics/collision_object_2d.cpp
-#: scene/3d/physics/collision_object_3d.cpp scene/gui/control.cpp
-msgid "Input"
-msgstr "Entrada"
 
 #: editor/settings/editor_settings.cpp main/main.cpp
 msgid "Buffering"
@@ -5547,6 +5807,15 @@ msgid "Foveation Dynamic"
 msgstr ""
 
 #: main/main.cpp
+#, fuzzy
+msgid "Foveation Eye Tracked"
+msgstr "Compressió"
+
+#: main/main.cpp modules/openxr/openxr_interface.cpp
+msgid "Foveation with Subsampled Images"
+msgstr ""
+
+#: main/main.cpp
 msgid "Submit Depth Buffer"
 msgstr ""
 
@@ -5655,6 +5924,11 @@ msgstr "Node Mescla2"
 
 #: main/main.cpp
 #, fuzzy
+msgid "User Presence"
+msgstr "Premut"
+
+#: main/main.cpp modules/openxr/action_map/openxr_interaction_profile.cpp
+#, fuzzy
 msgid "Binding Modifiers"
 msgstr "Mode d'Escombratge lateral"
 
@@ -5697,10 +5971,11 @@ msgstr "Predeterminat"
 msgid "Default Clear Color"
 msgstr ""
 
-#: main/main.cpp platform/macos/export/export_plugin.cpp
+#: main/main.cpp platform/android/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp scene/gui/button.cpp
 #: scene/gui/item_list.cpp scene/gui/line_edit.cpp
-#: scene/main/status_indicator.cpp
+#: scene/main/status_indicator.cpp scene/theme/theme_db.cpp
 msgid "Icon"
 msgstr "Icona"
 
@@ -5757,7 +6032,7 @@ msgstr "Mode de selecció"
 msgid "Use Filter"
 msgstr "Filtre:"
 
-#: main/main.cpp
+#: main/main.cpp scene/resources/image_texture.cpp
 msgid "Image"
 msgstr ""
 
@@ -6003,6 +6278,16 @@ msgstr "Compressió"
 
 #: modules/csg/csg_shape.cpp
 #, fuzzy
+msgid "Autosmooth"
+msgstr "Eines"
+
+#: modules/csg/csg_shape.cpp
+#, fuzzy
+msgid "Smoothing Angle"
+msgstr "Minúscula"
+
+#: modules/csg/csg_shape.cpp
+#, fuzzy
 msgid "Operation"
 msgstr "Opcions"
 
@@ -6049,16 +6334,6 @@ msgstr "Mode Col·lisió"
 #, fuzzy
 msgid "Flip Faces"
 msgstr "Invertir Horitzontalment"
-
-#: modules/csg/csg_shape.cpp modules/gltf/structures/gltf_mesh.cpp
-#: modules/gltf/structures/gltf_node.cpp scene/2d/mesh_instance_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/3d/importer_mesh_instance_3d.cpp
-#: scene/3d/mesh_instance_3d.cpp scene/resources/3d/mesh_library.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/mesh_texture.cpp
-#: scene/resources/multimesh.cpp
-#: scene/resources/visual_shader_particle_nodes.cpp
-msgid "Mesh"
-msgstr "Malla"
 
 #: modules/csg/csg_shape.cpp scene/3d/fog_volume.cpp scene/main/canvas_item.cpp
 #: scene/resources/2d/tile_set.cpp scene/resources/3d/primitive_meshes.cpp
@@ -6400,6 +6675,11 @@ msgid "Confusable Capture Reassignment"
 msgstr ""
 
 #: modules/gdscript/gdscript_warning.cpp
+#, fuzzy
+msgid "Confusable Temporary Modification"
+msgstr "Separació:"
+
+#: modules/gdscript/gdscript_warning.cpp
 msgid "Inference On Variant"
 msgstr ""
 
@@ -6414,28 +6694,6 @@ msgstr ""
 
 #: modules/gdscript/gdscript_warning.cpp
 msgid "Onready With Export"
-msgstr ""
-
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-#, fuzzy
-msgid "Language Server"
-msgstr "Llengua:"
-
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-#, fuzzy
-msgid "Enable Smart Resolve"
-msgstr "No es pot resoldre"
-
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-msgid "Show Native Symbols in Editor"
-msgstr ""
-
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-msgid "Use Thread"
-msgstr ""
-
-#: modules/gdscript/language_server/gdscript_language_server.cpp
-msgid "Poll Limit (µsec)"
 msgstr ""
 
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
@@ -6455,6 +6713,13 @@ msgstr "Mida:"
 #: modules/gltf/editor/editor_scene_importer_gltf.cpp
 msgid "glTF"
 msgstr ""
+
+#: modules/gltf/editor/editor_scene_importer_blend.cpp
+#: modules/gltf/editor/editor_scene_importer_gltf.cpp
+#: modules/gltf/gltf_document.cpp
+#, fuzzy
+msgid "Texture Map Mode"
+msgstr "Regió de Textura"
 
 #: modules/gltf/extensions/gltf_light.cpp scene/2d/canvas_modulate.cpp
 #: scene/2d/cpu_particles_2d.cpp scene/2d/light_2d.cpp scene/2d/polygon_2d.cpp
@@ -6597,8 +6862,9 @@ msgstr "Qualitat"
 msgid "Root Node Mode"
 msgstr "Node Arrel"
 
-#: modules/gltf/gltf_document.cpp scene/2d/physics/touch_screen_button.cpp
-#: scene/2d/tile_map_layer.cpp
+#: modules/gltf/gltf_document.cpp modules/gridmap/grid_map.cpp
+#: scene/2d/physics/touch_screen_button.cpp scene/2d/tile_map_layer.cpp
+#: scene/gui/virtual_joystick.cpp
 #, fuzzy
 msgid "Visibility Mode"
 msgstr "Mode Prioritat"
@@ -6738,13 +7004,13 @@ msgid "Accessor Type"
 msgstr "Mode Icona"
 
 #: modules/gltf/structures/gltf_accessor.cpp
-#: scene/resources/visual_shader_nodes.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #, fuzzy
 msgid "Min"
 msgstr "MiB"
 
 #: modules/gltf/structures/gltf_accessor.cpp
-#: scene/resources/visual_shader_nodes.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #, fuzzy
 msgid "Max"
 msgstr "Mesclar"
@@ -6973,10 +7239,6 @@ msgstr ""
 #: modules/gltf/structures/gltf_texture_sampler.cpp
 msgid "Wrap T"
 msgstr ""
-
-#: modules/gridmap/grid_map.cpp
-msgid "Mesh Library"
-msgstr "Biblioteca de Malles"
 
 #: modules/gridmap/grid_map.cpp
 msgid "Physics Material"
@@ -7385,6 +7647,11 @@ msgstr "Traduccions"
 
 #: modules/multiplayer/multiplayer_synchronizer.cpp
 #, fuzzy
+msgid "Replication Config"
+msgstr "Selecciona una Propietat"
+
+#: modules/multiplayer/multiplayer_synchronizer.cpp
+#, fuzzy
 msgid "Visibility Update Mode"
 msgstr "Mode Prioritat"
 
@@ -7572,6 +7839,21 @@ msgstr "Mode Icona"
 msgid "Toplevel Paths"
 msgstr "Copia el Camí del Node"
 
+#: modules/openxr/action_map/openxr_action_map.cpp
+#, fuzzy
+msgid "Action Sets"
+msgstr "Mode Icona"
+
+#: modules/openxr/action_map/openxr_action_map.cpp
+#, fuzzy
+msgid "Interaction Profiles"
+msgstr "Mode d'Interpolació"
+
+#: modules/openxr/action_map/openxr_action_set.cpp
+#, fuzzy
+msgid "Actions"
+msgstr "Acció"
+
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
 #, fuzzy
 msgid "Binding Path"
@@ -7581,6 +7863,11 @@ msgstr "Camí de l'Escena:"
 #, fuzzy
 msgid "Interaction Profile Path"
 msgstr "Mode d'Interpolació"
+
+#: modules/openxr/action_map/openxr_interaction_profile.cpp
+#, fuzzy
+msgid "Bindings"
+msgstr "Vinculació"
 
 #: modules/openxr/editor/openxr_select_runtime.cpp
 #, fuzzy
@@ -7730,6 +8017,11 @@ msgstr "Partir Corba"
 #, fuzzy
 msgid "Enable Hole Punch"
 msgstr "Habilitar Filtració"
+
+#: modules/openxr/scene/openxr_composition_layer.cpp
+#, fuzzy
+msgid "Eye Visibility"
+msgstr "Visibilitat"
 
 #: modules/openxr/scene/openxr_composition_layer.cpp
 #, fuzzy
@@ -7906,6 +8198,214 @@ msgstr ""
 msgid "IGD Status"
 msgstr "Estat"
 
+#: modules/visual_shader/visual_shader.cpp
+msgid "Output Port for Preview"
+msgstr ""
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Modes"
+msgstr "Mode d'Escombratge lateral"
+
+#: modules/visual_shader/visual_shader.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#: scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp scene/main/window.cpp
+#: scene/resources/material.cpp scene/resources/text_line.cpp
+msgid "Flags"
+msgstr ""
+
+#: modules/visual_shader/visual_shader.cpp scene/resources/material.cpp
+msgid "Stencil"
+msgstr ""
+
+#: modules/visual_shader/visual_shader.cpp scene/resources/material.cpp
+#, fuzzy
+msgid "Reference"
+msgstr "Espai de referència"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Stencil Modes"
+msgstr "Mode de selecció"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Stencil Flags"
+msgstr "Partícules"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Input Name"
+msgstr "Mapa d'Entrades"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Parameter Name"
+msgstr "Paràmetre canviat:"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Qualifier"
+msgstr "Qualitat"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Instance Index"
+msgstr "Índex"
+
+#: modules/visual_shader/visual_shader.cpp scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Tint Color Enabled"
+msgstr "Filtrat de senyals"
+
+#: modules/visual_shader/visual_shader.cpp scene/gui/graph_frame.cpp
+#, fuzzy
+msgid "Tint Color"
+msgstr "Planta Següent"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Autoshrink"
+msgstr "Auto Tall"
+
+#: modules/visual_shader/visual_shader.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Expression"
+msgstr "Canviar Expressió"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Varying Name"
+msgstr "Nom"
+
+#: modules/visual_shader/visual_shader.cpp
+#, fuzzy
+msgid "Varying Type"
+msgstr "Modifica el Tipus"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#, fuzzy
+msgid "Op Type"
+msgstr "Tipus"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+msgid "Constant"
+msgstr "Constant"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: scene/resources/environment.cpp servers/rendering/rendering_device_binds.h
+msgid "Source"
+msgstr "Font"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Texture Type"
+msgstr "Regió de Textura"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Texture Array"
+msgstr "Regió de Textura"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+msgid "Cube Map"
+msgstr ""
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Operator"
+msgstr "Operador de superposició."
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+msgid "Function"
+msgstr "Funció"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+msgid "Hint"
+msgstr ""
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp scene/gui/range.cpp
+#: scene/resources/animation.cpp servers/physics_2d/physics_server_2d.cpp
+#: servers/physics_3d/physics_server_3d.cpp
+msgid "Step"
+msgstr "Pas"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Default Value Enabled"
+msgstr "Perfil de les funcionalitats del Godot"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Default Value"
+msgstr "Modifica el Valor de l'Entrada"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Enum Names"
+msgstr "Nom de l'arrel"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Color Default"
+msgstr "Carrega Valors predeterminats"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp scene/3d/label_3d.cpp
+#: scene/3d/sprite_3d.cpp
+#, fuzzy
+msgid "Texture Filter"
+msgstr "Regió de Textura"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Texture Repeat"
+msgstr "Regió de Textura"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Texture Source"
+msgstr "Regió de Textura"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: scene/animation/animation_node_state_machine.cpp
+#, fuzzy
+msgid "Condition"
+msgstr "animació"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#, fuzzy
+msgid "Billboard Type"
+msgstr "Mode Regla"
+
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: scene/resources/material.cpp
+#, fuzzy
+msgid "Keep Scale"
+msgstr "Escala"
+
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#, fuzzy
+msgid "Mode 2D"
+msgstr "Mode d'Escombratge lateral"
+
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#, fuzzy
+msgid "Use All Surfaces"
+msgstr "Segueix la superfície"
+
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#, fuzzy
+msgid "Surface Index"
+msgstr "Índex"
+
+#: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
+#, fuzzy
+msgid "Degrees Mode"
+msgstr "Rotació de %s graus."
+
 #: modules/webrtc/register_types.cpp
 msgid "WebRTC"
 msgstr ""
@@ -8063,6 +8563,25 @@ msgstr ""
 #, fuzzy
 msgid "Wi-Fi Remote Debug Host"
 msgstr "Amfitrió remot"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Splash Screen"
+msgstr "Crides de Dibuix:"
+
+#: platform/android/export/export_plugin.cpp
+msgid "Disable Godot Boot Splash"
+msgstr ""
+
+#: platform/android/export/export_plugin.cpp
+#: platform/web/export/export_plugin.cpp scene/theme/default_theme.cpp
+msgid "Background Color"
+msgstr "Color de fons"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Branding Image"
+msgstr "Camí de l'Escena:"
 
 #: platform/android/export/export_plugin.cpp
 msgid "Launcher Icons"
@@ -8255,11 +8774,6 @@ msgid "Support Xlarge"
 msgstr "Assistència"
 
 #: platform/android/export/export_plugin.cpp
-#: platform/web/export/export_plugin.cpp scene/theme/default_theme.cpp
-msgid "Background Color"
-msgstr "Color de fons"
-
-#: platform/android/export/export_plugin.cpp
 #, fuzzy
 msgid "User Data Backup"
 msgstr "Interfície d'usuari"
@@ -8277,20 +8791,6 @@ msgstr "Comunitat"
 #, fuzzy
 msgid "Extra Args"
 msgstr "Arguments de Crida addicionals:"
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "APK Expansion"
-msgstr "Canviar Expressió"
-
-#: platform/android/export/export_plugin.cpp
-msgid "Salt"
-msgstr ""
-
-#: platform/android/export/export_plugin.cpp
-#, fuzzy
-msgid "Public Key"
-msgstr "Duplica les Claus"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -9121,6 +9621,11 @@ msgstr "Mode Icona"
 msgid "Ignore Rotation"
 msgstr "Rotació aleatòria:"
 
+#: scene/2d/camera_2d.cpp scene/main/canvas_layer.cpp
+#, fuzzy
+msgid "Custom Viewport"
+msgstr "1 Vista"
+
 #: scene/2d/camera_2d.cpp scene/main/timer.cpp
 #, fuzzy
 msgid "Process Callback"
@@ -9387,9 +9892,10 @@ msgid "Align Y"
 msgstr "Assigna"
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/physics/area_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/3d/physics/area_3d.cpp
-#: scene/resources/particle_process_material.cpp scene/resources/text_line.cpp
-#: scene/resources/text_paragraph.cpp
+#: scene/2d/physics/collision_polygon_2d.cpp
+#: scene/2d/physics/collision_shape_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/3d/physics/area_3d.cpp scene/resources/particle_process_material.cpp
+#: scene/resources/text_line.cpp scene/resources/text_paragraph.cpp
 #, fuzzy
 msgid "Direction"
 msgstr "Direccions"
@@ -9663,8 +10169,9 @@ msgstr "Editor"
 msgid "Energy"
 msgstr ""
 
-#: scene/2d/light_2d.cpp scene/resources/canvas_item_material.cpp
-#: scene/resources/environment.cpp scene/resources/material.cpp
+#: scene/2d/light_2d.cpp scene/resources/blit_material.cpp
+#: scene/resources/canvas_item_material.cpp scene/resources/environment.cpp
+#: scene/resources/material.cpp
 #, fuzzy
 msgid "Blend Mode"
 msgstr "Node Mescla2"
@@ -9816,19 +10323,6 @@ msgstr ""
 #, fuzzy
 msgid "Path Max Distance"
 msgstr "Trieu la distància:"
-
-#: scene/2d/navigation/navigation_agent_2d.cpp
-#: scene/2d/navigation/navigation_link_2d.cpp
-#: scene/2d/navigation/navigation_region_2d.cpp
-#: scene/3d/navigation/navigation_agent_3d.cpp
-#: scene/3d/navigation/navigation_link_3d.cpp
-#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
-#: scene/resources/3d/mesh_library.cpp
-#: servers/navigation_2d/navigation_path_query_parameters_2d.cpp
-#: servers/navigation_3d/navigation_path_query_parameters_3d.cpp
-#, fuzzy
-msgid "Navigation Layers"
-msgstr "Mode Navegació"
 
 #: scene/2d/navigation/navigation_agent_2d.cpp
 #: scene/3d/navigation/navigation_agent_3d.cpp
@@ -11041,6 +11535,16 @@ msgstr "Transformar Polígon"
 
 #: scene/3d/gpu_particles_3d.cpp
 #, fuzzy
+msgid "Transform Align Axis"
+msgstr "Transformar Polígon"
+
+#: scene/3d/gpu_particles_3d.cpp
+#, fuzzy
+msgid "Transform Align Channel Filter"
+msgstr "Transformar Polígon"
+
+#: scene/3d/gpu_particles_3d.cpp
+#, fuzzy
 msgid "Draw Passes"
 msgstr "Crides de Dibuix:"
 
@@ -11137,13 +11641,6 @@ msgstr "Sagnia Esquerra"
 msgid "Pixel Size"
 msgstr "Ajustament de Píxels"
 
-#: scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp scene/main/window.cpp
-#: scene/resources/material.cpp scene/resources/text_line.cpp
-#: scene/resources/visual_shader.cpp
-#: scene/resources/visual_shader_particle_nodes.cpp
-msgid "Flags"
-msgstr ""
-
 #: scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp scene/resources/material.cpp
 msgid "Billboard"
 msgstr ""
@@ -11187,12 +11684,6 @@ msgstr ""
 msgid "Alpha Antialiasing Edge"
 msgstr ""
 
-#: scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Texture Filter"
-msgstr "Regió de Textura"
-
 #: scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp scene/resources/material.cpp
 #, fuzzy
 msgid "Render Priority"
@@ -11217,6 +11708,7 @@ msgstr "Força modulació blanca"
 
 #: scene/3d/label_3d.cpp scene/gui/rich_text_effect.cpp
 #: scene/resources/3d/primitive_meshes.cpp scene/resources/label_settings.cpp
+#: scene/theme/theme_db.cpp
 #, fuzzy
 msgid "Font"
 msgstr "Lletra"
@@ -11410,6 +11902,16 @@ msgstr ""
 msgid "Angle Attenuation"
 msgstr "Animació"
 
+#: scene/3d/light_3d.cpp
+#, fuzzy
+msgid "Area"
+msgstr "Establir Marge"
+
+#: scene/3d/light_3d.cpp
+#, fuzzy
+msgid "Normalize Energy"
+msgstr "Format"
+
 #: scene/3d/lightmap_gi.cpp
 #, fuzzy
 msgid "Lightmap Textures"
@@ -11419,6 +11921,11 @@ msgstr "Punts d'Emissió:"
 #, fuzzy
 msgid "Shadowmask Textures"
 msgstr "Eliminar Textura"
+
+#: scene/3d/lightmap_gi.cpp
+#, fuzzy
+msgid "Light Texture"
+msgstr "Punts d'Emissió:"
 
 #: scene/3d/lightmap_gi.cpp scene/main/scene_tree.cpp
 #: scene/resources/multimesh.cpp servers/rendering/rendering_server.cpp
@@ -11673,12 +12180,6 @@ msgstr "Converteix a Majúscules"
 #: scene/3d/navigation/navigation_obstacle_3d.cpp
 #, fuzzy
 msgid "NavigationMesh"
-msgstr "Mode Navegació"
-
-#: scene/3d/navigation/navigation_region_3d.cpp
-#: scene/resources/3d/mesh_library.cpp
-#, fuzzy
-msgid "Navigation Mesh"
 msgstr "Mode Navegació"
 
 #: scene/3d/node_3d.cpp
@@ -12703,18 +13204,6 @@ msgid "Advance"
 msgstr "Avançat"
 
 #: scene/animation/animation_node_state_machine.cpp
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Condition"
-msgstr "animació"
-
-#: scene/animation/animation_node_state_machine.cpp
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Expression"
-msgstr "Canviar Expressió"
-
-#: scene/animation/animation_node_state_machine.cpp
 #, fuzzy
 msgid "State Machine Type"
 msgstr "Estableix el Tipus de Variable"
@@ -13049,6 +13538,11 @@ msgstr "Visibilitat"
 msgid "Presets Visible"
 msgstr "Visibilitat"
 
+#: scene/gui/container.cpp
+#, fuzzy
+msgid "Accessibility Region"
+msgstr "Accessibilitat"
+
 #: scene/gui/control.cpp scene/main/window.cpp
 #, fuzzy
 msgid "Theme Overrides"
@@ -13071,18 +13565,23 @@ msgstr "Allunya"
 
 #: scene/gui/control.cpp
 #, fuzzy
-msgid "Clip Contents"
-msgstr "Constant"
-
-#: scene/gui/control.cpp
-#, fuzzy
 msgid "Custom Minimum Size"
 msgstr "Talla els Nodes"
 
 #: scene/gui/control.cpp
 #, fuzzy
-msgid "Layout Direction"
-msgstr "Direccions"
+msgid "Custom Maximum Size"
+msgstr "Talla els Nodes"
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Propagate Maximum Size"
+msgstr "Trieu la distància:"
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Clip Contents"
+msgstr "Constant"
 
 #: scene/gui/control.cpp
 #, fuzzy
@@ -13130,12 +13629,42 @@ msgid "Stretch Ratio"
 msgstr "Mode de selecció"
 
 #: scene/gui/control.cpp
-msgid "Localization"
-msgstr "Localització"
+#, fuzzy
+msgid "Offset Transform"
+msgstr "Transformar"
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Position Ratio"
+msgstr "Posició"
+
+#: scene/gui/control.cpp
+msgid "Pivot"
+msgstr ""
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Pivot Ratio"
+msgstr "òfset de la quadrícula:"
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Visual Only"
+msgstr "Mostra-ho tot"
 
 #: scene/gui/control.cpp
 msgid "Localize Numeral System"
 msgstr ""
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Layout Direction"
+msgstr "Direccions"
+
+#: scene/gui/control.cpp
+#, fuzzy
+msgid "Translation Context"
+msgstr "Inèrcia de la Translació"
 
 #: scene/gui/control.cpp scene/main/status_indicator.cpp
 #, fuzzy
@@ -13506,16 +14035,6 @@ msgstr "Botó"
 msgid "Drag Margin"
 msgstr "Establir Marge"
 
-#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Tint Color Enabled"
-msgstr "Filtrat de senyals"
-
-#: scene/gui/graph_frame.cpp scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Tint Color"
-msgstr "Planta Següent"
-
 #: scene/gui/graph_node.cpp
 msgid "Ignore Invalid Connection Type"
 msgstr ""
@@ -13828,6 +14347,25 @@ msgstr ""
 msgid "Fit to Longest Item"
 msgstr ""
 
+#: scene/gui/option_button.cpp scene/gui/popup_menu.cpp
+msgid "Search Bar"
+msgstr ""
+
+#: scene/gui/option_button.cpp scene/gui/popup_menu.cpp
+#, fuzzy
+msgid "Min Item Count"
+msgstr "Afegeix una Entrada"
+
+#: scene/gui/option_button.cpp scene/gui/popup_menu.cpp
+#, fuzzy
+msgid "Fuzzy Search Enabled"
+msgstr "Activar"
+
+#: scene/gui/option_button.cpp scene/gui/popup_menu.cpp
+#, fuzzy
+msgid "Fuzzy Search Max Misses"
+msgstr "Trieu la distància:"
+
 #: scene/gui/popup_menu.cpp
 #, fuzzy
 msgid "Hide on Item Selection"
@@ -13894,13 +14432,6 @@ msgstr "(valor)"
 #, fuzzy
 msgid "Max Value"
 msgstr "Valor"
-
-#: scene/gui/range.cpp scene/resources/animation.cpp
-#: scene/resources/visual_shader_nodes.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-msgid "Step"
-msgstr "Pas"
 
 #: scene/gui/range.cpp
 #, fuzzy
@@ -14076,6 +14607,11 @@ msgstr "Filtrat de senyals"
 
 #: scene/gui/scroll_container.cpp
 #, fuzzy
+msgid "Scroll Horizontal by Default"
+msgstr "Horitzontal:"
+
+#: scene/gui/scroll_container.cpp
+#, fuzzy
 msgid "Scroll Deadzone"
 msgstr "Zona morta"
 
@@ -14146,6 +14682,11 @@ msgstr "Visibilitat"
 #, fuzzy
 msgid "Touch Dragger Enabled"
 msgstr "Activar"
+
+#: scene/gui/split_container.cpp
+#, fuzzy
+msgid "Drag Nested Intersections"
+msgstr "Reanomena Funció"
 
 #: scene/gui/split_container.cpp
 #, fuzzy
@@ -14258,11 +14799,6 @@ msgstr "Estableix la Posició d'Entrada de la Corba"
 #, fuzzy
 msgid "Tabs Visible"
 msgstr "Visibilitat"
-
-#: scene/gui/tab_container.cpp
-#, fuzzy
-msgid "All Tabs in Front"
-msgstr "Escena Principal"
 
 #: scene/gui/tab_container.cpp
 msgid "Use Hidden Tabs for Min Size"
@@ -14496,6 +15032,56 @@ msgstr "Expandir tot"
 msgid "Buffering Msec"
 msgstr "Vista Posterior"
 
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Joystick Mode"
+msgstr "Mode Icona"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Joystick Size"
+msgstr "Vista Frontal"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Tip Size"
+msgstr "Conjunt de rajoles"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Deadzone Ratio"
+msgstr "Canviar Expressió"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Clampzone Ratio"
+msgstr "Quantitat"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Initial Offset Ratio"
+msgstr "Converteix a Majúscules"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Action Left"
+msgstr "Mode Icona"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Action Right"
+msgstr "Mode Icona"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Action Up"
+msgstr "Mode Icona"
+
+#: scene/gui/virtual_joystick.cpp
+#, fuzzy
+msgid "Action Down"
+msgstr "Mode Icona"
+
 #: scene/main/canvas_item.cpp
 #, fuzzy
 msgid "Self Modulate"
@@ -14583,6 +15169,11 @@ msgstr ""
 msgid "Timeout"
 msgstr "Temps d'espera esgotat."
 
+#: scene/main/multiplayer_api.cpp
+#, fuzzy
+msgid "Multiplayer Peer"
+msgstr "Estableix Múltiples:"
+
 #: scene/main/multiplayer_peer.cpp
 msgid "Transfer Mode"
 msgstr "Mode de transferència"
@@ -14599,6 +15190,15 @@ msgstr ""
 #: scene/main/node.cpp
 msgid "Node Name Casing"
 msgstr ""
+
+#: scene/main/node.cpp
+msgid "Owner"
+msgstr ""
+
+#: scene/main/node.cpp
+#, fuzzy
+msgid "Multiplayer"
+msgstr "Estableix Múltiples:"
 
 #: scene/main/node.cpp
 #, fuzzy
@@ -14657,14 +15257,23 @@ msgstr "Mode Navegació"
 
 #: scene/main/scene_tree.cpp
 #, fuzzy
+msgid "Edited Scene Root"
+msgstr "Crear Node Arrel:"
+
+#: scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Current Scene"
+msgstr "Escena Actual"
+
+#: scene/main/scene_tree.cpp
+#, fuzzy
+msgid "Root"
+msgstr "Tipus de Membre"
+
+#: scene/main/scene_tree.cpp
+#, fuzzy
 msgid "Multiplayer Poll"
 msgstr "Estableix Múltiples:"
-
-#: scene/main/scene_tree.cpp scene/resources/3d/mesh_library.cpp
-#: servers/navigation_2d/navigation_server_2d.cpp
-#: servers/navigation_3d/navigation_server_3d.cpp
-msgid "Shapes"
-msgstr ""
 
 #: scene/main/scene_tree.cpp
 msgid "Shape Color"
@@ -14865,6 +15474,11 @@ msgstr "Escala aleatòria:"
 
 #: scene/main/viewport.cpp
 #, fuzzy
+msgid "World 2D"
+msgstr "Escala aleatòria:"
+
+#: scene/main/viewport.cpp
+#, fuzzy
 msgid "Transparent BG"
 msgstr "Transposa"
 
@@ -15017,6 +15631,11 @@ msgstr "Sobreescriu"
 
 #: scene/main/viewport.cpp servers/rendering/storage/render_scene_buffers.cpp
 #, fuzzy
+msgid "View Count"
+msgstr "Afegeix una Entrada"
+
+#: scene/main/viewport.cpp servers/rendering/storage/render_scene_buffers.cpp
+#, fuzzy
 msgid "Render Target"
 msgstr "Renderitzador:"
 
@@ -15105,6 +15724,16 @@ msgstr "Visibilitat"
 #, fuzzy
 msgid "Content Scale"
 msgstr "Escala"
+
+#: scene/main/window.cpp
+#, fuzzy
+msgid "HDR Output"
+msgstr "Sortida"
+
+#: scene/main/window.cpp
+#, fuzzy
+msgid "Requested"
+msgstr "Sol·licitud en marxa..."
 
 #: scene/register_scene_types.cpp
 #, fuzzy
@@ -15530,25 +16159,6 @@ msgstr "Profunditat"
 msgid "Item"
 msgstr "Element"
 
-#: scene/resources/3d/mesh_library.cpp
-#, fuzzy
-msgid "Mesh Transform"
-msgstr "Transformar"
-
-#: scene/resources/3d/mesh_library.cpp
-#, fuzzy
-msgid "Mesh Cast Shadow"
-msgstr "Crear node Shader"
-
-#: scene/resources/3d/mesh_library.cpp
-#, fuzzy
-msgid "Navigation Mesh Transform"
-msgstr "Restablir Transformació"
-
-#: scene/resources/3d/mesh_library.cpp
-msgid "Preview"
-msgstr "Previsualització"
-
 #: scene/resources/3d/primitive_meshes.cpp
 #, fuzzy
 msgid "Add UV2"
@@ -15733,6 +16343,10 @@ msgstr "Llum"
 #, fuzzy
 msgid "Fallback Environment"
 msgstr "Mostra l'Entorn"
+
+#: scene/resources/3d/world_3d.cpp scene/resources/world_2d.cpp
+msgid "Direct Space State"
+msgstr ""
 
 #: scene/resources/3d/world_boundary_shape_3d.cpp
 #, fuzzy
@@ -16010,11 +16624,6 @@ msgstr "Talla els Nodes"
 #, fuzzy
 msgid "Ambient Light"
 msgstr "Sagnia Dreta"
-
-#: scene/resources/environment.cpp scene/resources/visual_shader_nodes.cpp
-#: servers/rendering/rendering_device_binds.h
-msgid "Source"
-msgstr "Font"
 
 #: scene/resources/environment.cpp
 #, fuzzy
@@ -16342,6 +16951,15 @@ msgid "Baseline"
 msgstr "Mida de la Pàgina"
 
 #: scene/resources/font.cpp
+msgid "Palette"
+msgstr ""
+
+#: scene/resources/font.cpp
+#, fuzzy
+msgid "Custom Colors"
+msgstr "Talla els Nodes"
+
+#: scene/resources/font.cpp
 #, fuzzy
 msgid "Font Names"
 msgstr "Nom de l'arrel"
@@ -16502,11 +17120,6 @@ msgstr ""
 msgid "Texture Channel"
 msgstr "Regió de Textura"
 
-#: scene/resources/material.cpp scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Operator"
-msgstr "Operador de superposició."
-
 #: scene/resources/material.cpp
 msgid "On UV2"
 msgstr ""
@@ -16638,11 +17251,6 @@ msgstr "Activar Ajustament"
 msgid "Shadow to Opacity"
 msgstr "Carrega Valors predeterminats"
 
-#: scene/resources/material.cpp scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Keep Scale"
-msgstr "Escala"
-
 #: scene/resources/material.cpp
 #, fuzzy
 msgid "Particles Anim"
@@ -16711,19 +17319,10 @@ msgstr ""
 msgid "Pixel Range"
 msgstr "Ajustament de Píxels"
 
-#: scene/resources/material.cpp scene/resources/visual_shader.cpp
-msgid "Stencil"
-msgstr ""
-
 #: scene/resources/material.cpp servers/rendering/shader_types.cpp
 #, fuzzy
 msgid "Compare"
 msgstr "Components"
-
-#: scene/resources/material.cpp scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Reference"
-msgstr "Espai de referència"
 
 #: scene/resources/material.cpp
 #, fuzzy
@@ -16866,6 +17465,11 @@ msgstr "Partir Corba"
 
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
+msgid "Inherit Emitter Scale"
+msgstr "Editor de scripts"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
 msgid "Spawn"
 msgstr "Parteix el Camí"
 
@@ -16936,6 +17540,21 @@ msgstr "Colors d'Emissió"
 
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
+msgid "Rotation 3D"
+msgstr "Rotació"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Rotation 3D Min"
+msgstr "Mode de Rotació"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Rotation 3D Max"
+msgstr "Mode de Rotació"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
 msgid "Inherit Velocity Ratio"
 msgstr "Converteix a Majúscules"
 
@@ -16971,6 +17590,26 @@ msgstr "Converteix a Majúscules"
 
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
+msgid "Rotation Velocity 3D"
+msgstr "Converteix a Majúscules"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Rotation Velocity 3D Min"
+msgstr "Converteix a Majúscules"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Rotation Velocity 3D Max"
+msgstr "Converteix a Majúscules"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Rotation Velocity 3D Curve"
+msgstr "Converteix a Majúscules"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
 msgid "Accelerations"
 msgstr "Direccions"
 
@@ -16978,6 +17617,21 @@ msgstr "Direccions"
 #, fuzzy
 msgid "Attractor Interaction"
 msgstr "Reanomena Funció"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Use Scale 3D"
+msgstr "Utilitzar Ajustament d'Escalat"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Scale 3D Min"
+msgstr "Quantitat:"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Scale 3D Max"
+msgstr "Quantitat:"
 
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
@@ -17236,147 +17890,6 @@ msgstr "Predeterminat"
 #: scene/resources/video_stream.cpp scene/theme/default_theme.cpp
 msgid "File"
 msgstr "Fitxer"
-
-#: scene/resources/visual_shader.cpp
-msgid "Output Port for Preview"
-msgstr ""
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Modes"
-msgstr "Mode d'Escombratge lateral"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Stencil Modes"
-msgstr "Mode de selecció"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Stencil Flags"
-msgstr "Partícules"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Input Name"
-msgstr "Mapa d'Entrades"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Parameter Name"
-msgstr "Paràmetre canviat:"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Qualifier"
-msgstr "Qualitat"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Instance Index"
-msgstr "Índex"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Autoshrink"
-msgstr "Auto Tall"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Varying Name"
-msgstr "Nom"
-
-#: scene/resources/visual_shader.cpp
-#, fuzzy
-msgid "Varying Type"
-msgstr "Modifica el Tipus"
-
-#: scene/resources/visual_shader_nodes.cpp
-#: scene/resources/visual_shader_particle_nodes.cpp
-#, fuzzy
-msgid "Op Type"
-msgstr "Tipus"
-
-#: scene/resources/visual_shader_nodes.cpp
-msgid "Constant"
-msgstr "Constant"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Texture Type"
-msgstr "Regió de Textura"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Texture Array"
-msgstr "Regió de Textura"
-
-#: scene/resources/visual_shader_nodes.cpp
-msgid "Cube Map"
-msgstr ""
-
-#: scene/resources/visual_shader_nodes.cpp
-msgid "Function"
-msgstr "Funció"
-
-#: scene/resources/visual_shader_nodes.cpp
-msgid "Hint"
-msgstr ""
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Default Value Enabled"
-msgstr "Perfil de les funcionalitats del Godot"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Default Value"
-msgstr "Modifica el Valor de l'Entrada"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Enum Names"
-msgstr "Nom de l'arrel"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Color Default"
-msgstr "Carrega Valors predeterminats"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Texture Repeat"
-msgstr "Regió de Textura"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Texture Source"
-msgstr "Regió de Textura"
-
-#: scene/resources/visual_shader_nodes.cpp
-#, fuzzy
-msgid "Billboard Type"
-msgstr "Mode Regla"
-
-#: scene/resources/visual_shader_particle_nodes.cpp
-#, fuzzy
-msgid "Mode 2D"
-msgstr "Mode d'Escombratge lateral"
-
-#: scene/resources/visual_shader_particle_nodes.cpp
-#, fuzzy
-msgid "Use All Surfaces"
-msgstr "Segueix la superfície"
-
-#: scene/resources/visual_shader_particle_nodes.cpp
-#, fuzzy
-msgid "Surface Index"
-msgstr "Índex"
-
-#: scene/resources/visual_shader_particle_nodes.cpp
-#, fuzzy
-msgid "Degrees Mode"
-msgstr "Rotació de %s graus."
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -18046,6 +18559,26 @@ msgid "Scroll Hint Horizontal Color"
 msgstr "Horitzontal:"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Normal Joystick"
+msgstr "Format"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Normal Tip"
+msgstr "Format"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Pressed Joystick"
+msgstr "Premut"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Pressed Tip"
+msgstr "Premut"
+
+#: scene/theme/default_theme.cpp
 msgid "Embedded Border"
 msgstr ""
 
@@ -18232,6 +18765,11 @@ msgstr "Submenú"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Search"
+msgstr "Cerca"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Font Separator"
 msgstr "Operador Color."
 
@@ -18258,6 +18796,11 @@ msgstr "Operador Color."
 #: scene/theme/default_theme.cpp
 #, fuzzy
 msgid "V Separation"
+msgstr "Separació:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Search Bar Separation"
 msgstr "Separació:"
 
 #: scene/theme/default_theme.cpp
@@ -18445,6 +18988,11 @@ msgstr "Color seleccionat de l'os"
 #, fuzzy
 msgid "Guide Color"
 msgstr "Tria un Color"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Drop on Item Color"
+msgstr "Posició de l'Acoblador"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -18790,6 +19338,11 @@ msgstr "Importa Escena"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Color Copy"
+msgstr "Marcadors"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Color Hue"
 msgstr "Editar Tema"
 
@@ -19123,6 +19676,11 @@ msgstr "Talla els Nodes"
 msgid "Fallback values"
 msgstr "Mostra l'Entorn"
 
+#: scene/theme/theme_db.cpp
+#, fuzzy
+msgid "Stylebox"
+msgstr "Allunya"
+
 #: servers/audio/audio_server.cpp
 #, fuzzy
 msgid "Enable Input"
@@ -19340,10 +19898,6 @@ msgstr ""
 #, fuzzy
 msgid "High-pass"
 msgstr "Derivació"
-
-#: servers/audio/effects/audio_effect_spectrum_analyzer.cpp
-msgid "Tap Back Pos"
-msgstr ""
 
 #: servers/audio/effects/audio_effect_stereo_enhance.cpp
 msgid "Pan Pullout"
@@ -19866,6 +20420,29 @@ msgid "Compute"
 msgstr "Components"
 
 #: servers/rendering/rendering_device_binds.h
+msgid "Raygen"
+msgstr ""
+
+#: servers/rendering/rendering_device_binds.h
+msgid "Any Hit"
+msgstr ""
+
+#: servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Closest Hit"
+msgstr "òfset de la quadrícula:"
+
+#: servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Miss"
+msgstr "Suprimeix els que falten"
+
+#: servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Intersection"
+msgstr "Mode d'Interpolació"
+
+#: servers/rendering/rendering_device_binds.h
 msgid "Syntax"
 msgstr ""
 
@@ -19896,6 +20473,11 @@ msgstr "Constant"
 #, fuzzy
 msgid "Sample Masks"
 msgstr "Mostra d'Àudio"
+
+#: servers/rendering/rendering_device_binds.h
+#, fuzzy
+msgid "Specialization Constants"
+msgstr "Simplificació:"
 
 #: servers/rendering/rendering_server.cpp
 #, fuzzy
@@ -20505,11 +21087,6 @@ msgstr "Perspectiva"
 #, fuzzy
 msgid "Target Size"
 msgstr "Mida de la Pàgina"
-
-#: servers/rendering/storage/render_scene_buffers.cpp
-#, fuzzy
-msgid "View Count"
-msgstr "Afegeix una Entrada"
 
 #: servers/text/text_server.cpp
 #, fuzzy
