@@ -703,11 +703,11 @@ msgstr "バックスペースをすべて左に"
 #: core/input/input_map.cpp
 #: editor/animation/animation_blend_tree_editor_plugin.cpp
 #: editor/docks/filesystem_dock.cpp editor/docks/groups_editor.cpp
-#: editor/docks/scene_tree_dock.cpp editor/editor_node.cpp
-#: editor/export/project_export.cpp editor/file_system/dependency_editor.cpp
-#: editor/gui/touch_actions_panel.cpp
+#: editor/docks/scene_tree_dock.cpp editor/export/project_export.cpp
+#: editor/file_system/dependency_editor.cpp editor/gui/touch_actions_panel.cpp
 #: editor/scene/2d/tiles/tile_set_scenes_collection_source_editor.cpp
 #: editor/scene/2d/tiles/tiles_editor_plugin.cpp
+#: editor/settings/editor_layouts_dialog.cpp
 #: editor/settings/project_settings_editor.cpp
 #: editor/shader/visual_shader_editor_plugin.cpp
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
@@ -1659,12 +1659,13 @@ msgid "Pasted Animation"
 msgstr "貼り付けたアニメーション"
 
 #: editor/animation/animation_library_editor.cpp
-#: editor/docks/inspector_dock.cpp editor/editor_node.cpp
-#: editor/gui/touch_actions_panel.cpp editor/import/import_defaults_editor.cpp
+#: editor/docks/inspector_dock.cpp editor/gui/touch_actions_panel.cpp
+#: editor/import/import_defaults_editor.cpp
 #: editor/inspector/editor_resource_picker.cpp
 #: editor/scene/gui/theme_editor_plugin.cpp
 #: editor/script/script_editor_plugin.cpp
 #: editor/settings/editor_build_profile.cpp
+#: editor/settings/editor_layouts_dialog.cpp
 #: modules/openxr/editor/openxr_action_map_editor.cpp
 msgid "Save"
 msgstr "保存"
@@ -5928,6 +5929,7 @@ msgid "%d Files"
 msgstr "%d ファイル"
 
 #: editor/docks/import_dock.cpp editor/editor_node.cpp
+#: editor/settings/editor_layouts_dialog.cpp
 #: editor/shader/shader_create_dialog.cpp
 msgid "Default"
 msgstr "デフォルト"
@@ -6900,11 +6902,11 @@ msgid ""
 "This warning can be disabled in the Editor Settings (FileSystem > On Save > "
 "Warn on Saving Large Text Resources)."
 msgstr ""
-"パス \"%s\" にあるテキストベースのリソースはディスク上のサイズが大きく（%s）"
-"、バイナリデータが埋め込まれている可能性があります。\n"
+"パス \"%s\" にあるテキストベースのリソースはディスク上のサイズが大きく"
+"（%s）、バイナリデータが埋め込まれている可能性があります。\n"
 "これにより、リソースの保存と読み込みが遅くなります。\n"
-"バイナリサブリソースをバイナリ `.res` ファイルに保存するか、リソース自体を"
-"バイナリ `.res` ファイルとして保存することを検討してください。\n"
+"バイナリサブリソースをバイナリ `.res` ファイルに保存するか、リソース自体をバ"
+"イナリ `.res` ファイルとして保存することを検討してください。\n"
 "この警告は、エディタ設定（ファイルシステム > 保存時 > 大きなテキストリソース"
 "の保存時に警告）で無効にできます。"
 
@@ -7015,8 +7017,8 @@ msgstr ""
 "パス \"%s\" にあるテキストベースのシーンはディスク上のサイズが大きく（%s）、"
 "バイナリデータが埋め込まれている可能性があります。\n"
 "これにより、シーンの保存と読み込みが遅くなります。\n"
-"バイナリサブリソースをバイナリ `.res` ファイルに保存するか、シーン自体を"
-"バイナリ `.scn` ファイルとして保存することを検討してください。\n"
+"バイナリサブリソースをバイナリ `.res` ファイルに保存するか、シーン自体をバイ"
+"ナリ `.scn` ファイルとして保存することを検討してください。\n"
 "この警告は、エディタ設定（ファイルシステム > 保存時 > 大きなテキストリソース"
 "の保存時に警告）で無効にできます。"
 
@@ -7496,12 +7498,9 @@ msgid "Delete Layout..."
 msgstr "レイアウトを削除…"
 
 #: editor/editor_node.cpp
-msgid "Save Layout"
-msgstr "レイアウトを保存"
-
-#: editor/editor_node.cpp
-msgid "Delete Layout"
-msgstr "レイアウトを削除"
+#, fuzzy
+msgid "Default (Overridden)"
+msgstr "%s (オーバーライド)"
 
 #: editor/editor_node.cpp
 msgid "This scene was never saved."
@@ -11095,8 +11094,8 @@ msgid ""
 "Hold %s while drag-and-dropping from the FileSystem dock or another resource "
 "picker to automatically make a dropped resource unique."
 msgstr ""
-"%s を押しながらファイルシステムドックや他のリソースピッカーからドラッグ＆"
-"ドロップすると、ドロップしたリソースが自動的にユニークになります。"
+"%s を押しながらファイルシステムドックや他のリソースピッカーからドラッグ＆ド"
+"ロップすると、ドロップしたリソースが自動的にユニークになります。"
 
 #: editor/inspector/editor_resource_picker.cpp
 #, fuzzy
@@ -11217,7 +11216,8 @@ msgstr "メソッドの選択"
 
 #: editor/inspector/tool_button_editor_plugin.cpp
 msgid "The assigned tool button callback can't be used with multiple nodes."
-msgstr "割り当てられたツールボタンのコールバックは、複数のノードでは使用できません。"
+msgstr ""
+"割り当てられたツールボタンのコールバックは、複数のノードでは使用できません。"
 
 #: editor/plugins/editor_plugin_settings.cpp
 msgid ""
@@ -11285,9 +11285,9 @@ msgid ""
 "Consider enabling GDScript warnings for this plugin by adding an entry for "
 "it to the project setting Debug > GDScript > Warnings > Directory Rules."
 msgstr ""
-"プロジェクト設定（デバッグ > GDScript > 警告 > ディレクトリのルール）に"
-"エントリを追加して、このプラグインに対する GDScript の警告を有効にすることを"
-"検討してください。"
+"プロジェクト設定（デバッグ > GDScript > 警告 > ディレクトリのルール）にエント"
+"リを追加して、このプラグインに対する GDScript の警告を有効にすることを検討し"
+"てください。"
 
 #: editor/plugins/plugin_config_dialog.cpp
 msgid "Edit a Plugin"
@@ -15882,6 +15882,72 @@ msgstr "%f 度回転。"
 msgid "Scaling %s."
 msgstr "%s スケール。"
 
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Orbit Modifier 1"
+msgstr "ビューポート 回転の修飾キー1"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Orbit Modifier 2"
+msgstr "ビューポート 回転の修飾キー2"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Viewport Orbit Snap Modifier 1"
+msgstr "ビューポート 回転の修飾キー1"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+#, fuzzy
+msgid "Viewport Orbit Snap Modifier 2"
+msgstr "ビューポート 回転の修飾キー2"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Pan Modifier 1"
+msgstr "ビューポート パンの修飾キー1"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Pan Modifier 2"
+msgstr "ビューポート パンの修飾キー2"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Zoom Modifier 1"
+msgstr "ビューポート ズームの修飾キー1"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Viewport Zoom Modifier 2"
+msgstr "ビューポート ズームの修飾キー2"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Left"
+msgstr "フリールック左"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Right"
+msgstr "フリールック右"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Forward"
+msgstr "フリールック前進"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Backwards"
+msgstr "フリールック後進"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Up"
+msgstr "フリールック上"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Down"
+msgstr "フリールック下"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Speed Modifier"
+msgstr "フリールックの速度調整"
+
+#: editor/scene/3d/node_3d_editor_plugin.cpp
+msgid "Freelook Slow Modifier"
+msgstr "フリールックの減速調整"
+
 #. TRANSLATORS: Noun, name of the 2D/3D View menus.
 #: editor/scene/3d/node_3d_editor_plugin.cpp
 #: editor/scene/canvas_item_editor_plugin.cpp
@@ -16191,72 +16257,6 @@ msgstr "ドップラー効果を有効化"
 #: editor/scene/3d/node_3d_editor_plugin.cpp
 msgid "Cinematic Preview"
 msgstr "シネマティックプレビュー"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Orbit Modifier 1"
-msgstr "ビューポート 回転の修飾キー1"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Orbit Modifier 2"
-msgstr "ビューポート 回転の修飾キー2"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Viewport Orbit Snap Modifier 1"
-msgstr "ビューポート 回転の修飾キー1"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-#, fuzzy
-msgid "Viewport Orbit Snap Modifier 2"
-msgstr "ビューポート 回転の修飾キー2"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Pan Modifier 1"
-msgstr "ビューポート パンの修飾キー1"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Pan Modifier 2"
-msgstr "ビューポート パンの修飾キー2"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Zoom Modifier 1"
-msgstr "ビューポート ズームの修飾キー1"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Viewport Zoom Modifier 2"
-msgstr "ビューポート ズームの修飾キー2"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Left"
-msgstr "フリールック左"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Right"
-msgstr "フリールック右"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Forward"
-msgstr "フリールック前進"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Backwards"
-msgstr "フリールック後進"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Up"
-msgstr "フリールック上"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Down"
-msgstr "フリールック下"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Speed Modifier"
-msgstr "フリールックの速度調整"
-
-#: editor/scene/3d/node_3d_editor_plugin.cpp
-msgid "Freelook Slow Modifier"
-msgstr "フリールックの減速調整"
 
 #: editor/scene/3d/node_3d_editor_plugin.cpp
 msgid "Lock Transformation to X axis"
@@ -21487,6 +21487,34 @@ msgstr "エディター機能のプロファイルの管理"
 
 #: editor/settings/editor_layouts_dialog.cpp
 #, fuzzy
+msgid "Layout name can't be empty."
+msgstr "タグ名を空にすることはできません。"
+
+#: editor/settings/editor_layouts_dialog.cpp
+#, fuzzy
+msgid "Layout name contains invalid characters: \"/\" or \"\\\"."
+msgstr "ライブラリ名に無効な文字( '/'、':'、','、'[' )が含まれています。"
+
+#: editor/settings/editor_layouts_dialog.cpp
+msgid "Selected layout will be overridden."
+msgstr ""
+
+#: editor/settings/editor_layouts_dialog.cpp
+msgid "Layout already exists and will be overridden."
+msgstr ""
+
+#: editor/settings/editor_layouts_dialog.cpp
+#, fuzzy
+msgid "Layout name is valid."
+msgstr "ライブラリ名は有効です。"
+
+#: editor/settings/editor_layouts_dialog.cpp
+#, fuzzy
+msgid "Default (Restore)"
+msgstr "デフォルト(リセット)"
+
+#: editor/settings/editor_layouts_dialog.cpp
+#, fuzzy
 msgid "Select Existing Layout:"
 msgstr "既存のレイアウトを選択:"
 
@@ -21498,6 +21526,14 @@ msgstr "または、新しいレイアウト名を入力"
 #: editor/settings/editor_layouts_dialog.cpp
 msgid "New layout name"
 msgstr "新しいレイアウト名"
+
+#: editor/settings/editor_layouts_dialog.cpp
+msgid "Save Layout"
+msgstr "レイアウトを保存"
+
+#: editor/settings/editor_layouts_dialog.cpp
+msgid "Delete Layout"
+msgstr "レイアウトを削除"
 
 #: editor/settings/editor_settings_dialog.cpp
 msgid "Edit Built-in Action: %s"
@@ -24419,6 +24455,11 @@ msgid "GridMap Delete Selection"
 msgstr "GridMap 選択範囲を削除"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
+#, fuzzy
+msgid "GridMap Clear Selection"
+msgstr "GridMap 選択範囲を削除"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "GridMap Fill Selection"
 msgstr "GridMap 選択範囲を埋める"
 
@@ -24438,6 +24479,16 @@ msgstr "GridMap ペイント"
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "GridMap Selection"
 msgstr "GridMap の選択"
+
+#: modules/gridmap/editor/grid_map_editor_plugin.cpp
+msgid ""
+"Change Grid Floor:\n"
+"Previous Plane (%s)\n"
+"Next Plane (%s)"
+msgstr ""
+"グリッドフロアを変更:\n"
+"前の平面(%s)\n"
+"次の平面(%s)"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Previous Floor"
@@ -24494,16 +24545,6 @@ msgstr "Z軸でカーソルを回転"
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Change Grid Floor:"
 msgstr "グリッドフロアを変更:"
-
-#: modules/gridmap/editor/grid_map_editor_plugin.cpp
-msgid ""
-"Change Grid Floor:\n"
-"Previous Plane (%s)\n"
-"Next Plane (%s)"
-msgstr ""
-"グリッドフロアを変更:\n"
-"前の平面(%s)\n"
-"次の平面(%s)"
 
 #: modules/gridmap/editor/grid_map_editor_plugin.cpp
 msgid "Filter Meshes"
@@ -25687,7 +25728,8 @@ msgstr "アクションセット"
 #: modules/openxr/editor/openxr_action_set_editor.cpp
 msgid ""
 "Human-readable name of the action set. This can be displayed to end users."
-msgstr "アクションセットの人間が読める名前。エンドユーザーに表示することができます。"
+msgstr ""
+"アクションセットの人間が読める名前。エンドユーザーに表示することができます。"
 
 #: modules/openxr/editor/openxr_action_set_editor.cpp
 #, fuzzy
@@ -26009,9 +26051,8 @@ msgid ""
 "If enabled, \"scrcpy\" is used to start the project and automatically stream "
 "device display (or virtual display) content."
 msgstr ""
-"有効にすると、\"scrcpy\" を使用してプロジェクトを開始し、デバイスの"
-"ディスプレイ（または仮想ディスプレイ）のコンテンツを自動的にストリーミングし"
-"ます。"
+"有効にすると、\"scrcpy\" を使用してプロジェクトを開始し、デバイスのディスプレ"
+"イ（または仮想ディスプレイ）のコンテンツを自動的にストリーミングします。"
 
 #: platform/android/export/export_plugin.cpp
 msgid "Exporting APK..."
@@ -26334,6 +26375,16 @@ msgstr ""
 #: platform/android/export/export_plugin.cpp
 msgid "Could not write expansion package file!"
 msgstr "拡張パッケージファイルを書き込めませんでした！"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Failed to copy debug keystore to temp directory."
+msgstr "エクスポートテンプレートのコピーに失敗しました。"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Failed to copy release keystore to temp directory."
+msgstr "ディレクトリ \"%s\"を作成できませんでした"
 
 #: platform/android/export/export_plugin.cpp
 msgid "Building of Android project failed, check output for the error:"
@@ -27283,9 +27334,9 @@ msgid ""
 "two axes of the global scale will be used to scale the radius. This value "
 "may change in unexpected ways when the node is rotated."
 msgstr ""
-"エージェントの半径は均等にしかスケールできません。半径のスケールには、"
-"グローバルスケールの2つの軸のうち最大の値が使用されます。この値は、ノードが回"
-"転したときに予期しない変化をする可能性があります。"
+"エージェントの半径は均等にしかスケールできません。半径のスケールには、グロー"
+"バルスケールの2つの軸のうち最大の値が使用されます。この値は、ノードが回転した"
+"ときに予期しない変化をする可能性があります。"
 
 #: scene/2d/navigation/navigation_obstacle_2d.cpp
 msgid "Skew has no effect on the agent radius."
@@ -27759,16 +27810,16 @@ msgstr ""
 "きます。\n"
 "お使いの GPU (%s) は Vulkan、Direct3D 12、または Metal をサポートしていないた"
 "め、RenderingDevice をサポートしていません。\n"
-"このデバイスではライトマップのベイクは利用できませんが、既存のベイク済み"
-"ライトマップのレンダリングは動作します。"
+"このデバイスではライトマップのベイクは利用できませんが、既存のベイク済みライ"
+"トマップのレンダリングは動作します。"
 
 #: scene/3d/lightmap_gi.cpp
 msgid ""
 "The lightmap has no baked shadowmask textures. Please rebake with the "
 "Shadowmask Mode set to anything other than None."
 msgstr ""
-"ライトマップにシャドウマスクテクスチャがベイクされていません。"
-"シャドウマスクモードを「None」以外に設定して再ベイクしてください。"
+"ライトマップにシャドウマスクテクスチャがベイクされていません。シャドウマスク"
+"モードを「None」以外に設定して再ベイクしてください。"
 
 #: scene/3d/lightmap_gi.cpp
 msgid ""
@@ -27783,9 +27834,9 @@ msgid ""
 "Lightmaps cannot be baked, as the `lightmapper_rd` module was disabled at "
 "compile-time. Rendering existing baked lightmaps will still work."
 msgstr ""
-"コンパイル時に `lightmapper_rd` モジュールが無効化されていたため、"
-"ライトマップはベイクできません。既存のベイク済みライトマップのレンダリングは"
-"引き続き動作します。"
+"コンパイル時に `lightmapper_rd` モジュールが無効化されていたため、ライトマッ"
+"プはベイクできません。既存のベイク済みライトマップのレンダリングは引き続き動"
+"作します。"
 
 #: scene/3d/look_at_modifier_3d.cpp
 msgid "Forward axis and primary rotation axis must not be parallel."
@@ -28336,8 +28387,8 @@ msgid ""
 "Disabled.\n"
 "Change the process mode in the inspector to allow playback."
 msgstr ""
-"AnimationTree ノード（またはその親ノードのいずれか）のプロセスモードが「"
-"Disabled」に設定されています。\n"
+"AnimationTree ノード（またはその親ノードのいずれか）のプロセスモードが"
+"「Disabled」に設定されています。\n"
 "再生できるようにするには、インスペクターでプロセスモードを変更してください。"
 
 #: scene/gui/base_button.cpp
@@ -28387,7 +28438,8 @@ msgstr ""
 
 #: scene/gui/control.cpp
 msgid "Accessibility Name must not be empty, or contain only spaces."
-msgstr "アクセシビリティ名は、空であるか、またはスペースのみであってはなりません。"
+msgstr ""
+"アクセシビリティ名は、空であるか、またはスペースのみであってはなりません。"
 
 #: scene/gui/control.cpp
 msgid "Accessibility Name must not include Node class name."
@@ -28399,7 +28451,8 @@ msgstr "アクセシビリティ名に制御文字を含めることはできま
 
 #: scene/gui/control.cpp
 msgid "%s grabbed. Select target and use %s to drop, use %s to cancel."
-msgstr "%s を掴んでいます。ターゲットを選択し、%s でドロップ、%s でキャンセルします。"
+msgstr ""
+"%s を掴んでいます。ターゲットを選択し、%s でドロップ、%s でキャンセルします。"
 
 #: scene/gui/control.cpp
 msgid "%s can be dropped here. Use %s to drop, use %s to cancel."
@@ -28440,10 +28493,9 @@ msgid ""
 "those won't display correctly if \"display/window/per_pixel_transparency/"
 "allowed\" isn't enabled in the Project Settings, nor if it isn't supported."
 msgstr ""
-"現在のテーマスタイルにはポップアップのシャドウや角丸が設定されていますが、"
-"プロジェクト設定の「display/window/per_pixel_transparency/allowed」が有効にな"
-"っていないか、あるいはサポートされていない場合、これらは正しく表示されません"
-"。"
+"現在のテーマスタイルにはポップアップのシャドウや角丸が設定されていますが、プ"
+"ロジェクト設定の「display/window/per_pixel_transparency/allowed」が有効になっ"
+"ていないか、あるいはサポートされていない場合、これらは正しく表示されません。"
 
 #: scene/gui/range.cpp
 #, fuzzy
@@ -28506,8 +28558,8 @@ msgid ""
 "Ancestor \"%s\" clips its children, so this node will not be able to clip "
 "its children."
 msgstr ""
-"祖先ノード \"%s\" が子ノードをクリップしているため、このノードは自身の子"
-"ノードをクリップすることができません。"
+"祖先ノード \"%s\" が子ノードをクリップしているため、このノードは自身の子ノー"
+"ドをクリップすることができません。"
 
 #: scene/main/canvas_item.cpp
 msgid ""
