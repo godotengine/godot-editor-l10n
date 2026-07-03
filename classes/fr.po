@@ -142,13 +142,14 @@
 # LeRetardatN <leretardatn@gmail.com>, 2026.
 # "Alyx.dev" <alyxdev@ik.me>, 2026.
 # phylaine MacKendal <phylaine@mailo.com>, 2026.
+# Anon_Ally <lang_open_project@bridge2open.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Godot Engine class reference\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-06-02 07:01+0000\n"
-"Last-Translator: phylaine MacKendal <phylaine@mailo.com>\n"
+"PO-Revision-Date: 2026-07-02 10:28+0000\n"
+"Last-Translator: aioshiro <aioshiro57@proton.me>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/godot-engine/"
 "godot-class-reference/fr/>\n"
 "Language: fr\n"
@@ -156,7 +157,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: doc/tools/make_rst.py
 msgid "All classes"
@@ -519,7 +520,6 @@ msgstr ""
 "virgule flottante."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
-#, fuzzy
 msgid ""
 "Asserts that the [param condition] is [code]true[/code]. If the [param "
 "condition] is [code]false[/code], an error is generated and the current "
@@ -548,21 +548,20 @@ msgid ""
 "access it as a [Callable] or use it inside expressions."
 msgstr ""
 "Vérifie que la [param condition] est vraie ([code]true[/code]). Si la [param "
-"condition] est fausse ([code]false[/code]), une erreur est générée. Lors de "
-"l'exécution à partir de l'éditeur, le projet en cours d'exécution sera "
-"également mis en pause jusqu'à ce que vous le repreniez. Cela peut être "
-"utilisé comme une alternative plus radicale à [method "
-"@GlobalScope.push_error] pour signaler des erreurs aux développeurs de "
-"projets ou utilisateurs de plugins.\n"
+"condition] est fausse ([code]false[/code]), une erreur est générée et la "
+"méthode courante retourne une valeur par défaut. Lors de l'exécution à "
+"partir de l'éditeur, si des vérifications échouent cela provoque aussi un "
+"arrêt du débogueur. Cela peut être utilisé comme une alternative plus "
+"radicale à [method @GlobalScope.push_error] pour signaler des erreurs aux "
+"développeurs de projet ou utilisateurs de plugins.\n"
 "Un [param message] facultatif peut être affiché en plus du message générique "
-"\"Assertion failed\". Vous pouvez l'utiliser pour fournir des détails "
+"\"Vérification échouée\". Vous pouvez l'utiliser pour fournir des détails "
 "supplémentaires sur la raison de l'échec de l'assertion.\n"
-"[b]Attention :[/b] Par souci de performance, le code inclus dans [method "
+"[b]Attention :[/b] Par souci de performance, le code inclus dans [method "
 "assert] n'est exécuté que dans les builds de débogage ou quand vous lancez "
-"votre projet depuis l'éditeur. N'incluez pas de code qui modifie l'état du "
-"script dans un appel à [method assert]. Sinon, votre projet aura un "
-"fonctionnement différent une fois exporté pour la production (release "
-"build).\n"
+"votre projet depuis l'éditeur. N'incluez pas de code qui présente des effets "
+"de bord dans un appel à [method assert]. Sinon, votre projet aura un "
+"fonctionnement différent une fois exporté en mode version.\n"
 "[codeblock]\n"
 "# Imaginez que nous voulons une vitesse toujours comprise entre 0 et 20.\n"
 "var speed = -10\n"
@@ -570,10 +569,9 @@ msgstr ""
 "assert(speed >= 0) # Faux, le programme s'interrompt.\n"
 "assert(speed >= 0 and speed < 20) # Vous pouvez aussi combiner les deux "
 "conditions en une seule vérification.\n"
-"assert(speed < 20, \"speed = %f, mais la limite de vitesse est 20\" % speed) "
-"# Affiche un message avec de plus amples détails.\n"
+"assert(speed < 20, \"la limite de vitesse est 20\") # Affiche un message.\n"
 "[/codeblock]\n"
-"[b]Note :[/b] [method assert] est un mot-clé, pas une fonction. Vous ne "
+"[b]Note :[/b] [method assert] est un mot-clé, pas une fonction. Vous ne "
 "pouvez donc pas y accéder en tant que [Callable] ou l'utiliser dans des "
 "expressions."
 
@@ -747,7 +745,6 @@ msgstr ""
 "dupliquées."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
-#, fuzzy
 msgid ""
 "Returns [code]true[/code] if [param value] is an instance of [param type]. "
 "The [param type] value must be one of the following:\n"
@@ -783,9 +780,9 @@ msgstr ""
 "classe interne).\n"
 "Contrairement à l'opérande droit de l'opérateur [code]is[/code], [param "
 "type] peut être une valeur non constante. L'opérateur [code]is[/code] prend "
-"en charge davantage de fonctionnalités (telles que les tableaux typés). "
-"Utilisez l'opérateur au lieu de cette méthode si vous n'avez pas besoin "
-"d'une vérification dynamique des types.\n"
+"en charge davantage de fonctionnalités (telles que des tableaux typés et des "
+"dictionnaires). Utilisez l'opérateur au lieu de cette méthode si vous n'avez "
+"pas besoin de vérifier le type dynamiquement.\n"
 "[b]Exemples :[/b]\n"
 "[codeblock]\n"
 "print(is_instance_of(a, TYPE_INT))\n"
@@ -796,8 +793,10 @@ msgstr ""
 "[b]Note :[/b] Si [param value] et/ou [param type] sont des objets libérés "
 "(voir [method @GlobalScope.is_instance_valid]), ou si [param type] n'est pas "
 "l'une des options ci-dessus, cette méthode lèvera une erreur d'exécution.\n"
-"Voir aussi [method @GlobalScope.typeof], [method type_exists], [method "
-"Array.is_same_typed] (et les autres méthodes de [Array])."
+"Voir aussi [method @GlobalScope.typeof], method Object.is_class], [method "
+"Object.get_script], [method Array.is_same_typed] (et d'autres méthodes de "
+"type [Array], [method Dictionary.is_same_typed] (et d'autres méthodes "
+"[Dictionary])."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid ""
@@ -1107,9 +1106,8 @@ msgstr ""
 "[/codeblock]"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
-#, fuzzy
 msgid "Use [method ClassDB.class_exists] instead."
-msgstr "Utilisez [method push_input] à la place."
+msgstr "Utilisez [method ClassDB.class_exists] à la place."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid ""
@@ -3645,7 +3643,6 @@ msgstr ""
 "[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Returns the [url=https://en.wikipedia.org/wiki/Natural_logarithm]natural "
 "logarithm[/url] of [param x] (base [url=https://en.wikipedia.org/wiki/"
@@ -3662,10 +3659,10 @@ msgid ""
 "while negative values return [code]-nan[/code]."
 msgstr ""
 "Renvoie le [url=https://fr.wikipedia.org/wiki/"
-"Logarithme_n%C3%A9p%C3%A9rien]logarithme naturel (ou népérien)[/url] de "
-"[param x] (en base [url=https://fr.wikipedia.org/wiki/E_(nombre)][i]e[/i][/"
-"url], avec [i]e[/i] une constante environ égale à 2.71828). Il s'agit du "
-"temps nécessaire pour atteindre un certain niveau de croissance continue.\n"
+"Logarithme_n%C3%A9p%C3%A9rien]logarithme népérien)[/url] de [param x] (en "
+"base [url=https://fr.wikipedia.org/wiki/E_(nombre)][i]e[/i][/url], avec "
+"[i]e[/i] environ égal à 2.71828). Il s'agit du temps nécessaire pour "
+"atteindre un certain niveau de croissance continue.\n"
 "[b]Note :[/b] Il ne s'agit pas de la même fonction que la fonction \"log\" "
 "sur la plupart des calculateurs, qui utilise un logarithme en base 10. Pour "
 "utiliser le logarithme en base 10, utilisez [code]log(x) / log(10)[/code].\n"
@@ -5241,9 +5238,8 @@ msgstr ""
 "[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [AccessibilityServer] singleton."
-msgstr "Le singleton [DisplayServer]."
+msgstr "Le singleton [AccessibilityServer]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [AudioServer] singleton."
@@ -5282,13 +5278,12 @@ msgid "The [GDExtensionManager] singleton."
 msgstr "Le singleton [GDExtensionManager]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "The [GDScriptLanguageProtocol] singleton.\n"
 "[b]Note:[/b] Only available in editor builds."
 msgstr ""
-"Le singleton [EditorInterface].\n"
-"[b]Note :[/b] Uniquement disponible dans les compilations de l'éditeur."
+"Le singleton [GDScriptLanguageProtocol].\n"
+"[b]Note :[/b] Uniquement disponible dans les versions avec éditeur."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [Geometry2D] singleton."
@@ -5646,70 +5641,70 @@ msgstr ""
 "[code]INLINE_ALIGNMENT_TO_*[/code]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic XYZ order. When "
 "composing, the rotations happen around the local X, Y, and Z axes, in that "
 "order. When decomposing, the order is reversed, first Z, then Y, and X last."
 msgstr ""
-"Indique que les angles Euler doivent être dans l'ordre XYZ. Lors de la "
-"composition, l'ordre est X, Y, Z. Lors de la décomposition, l'ordre est "
-"inversé, Z en premier, puis Y, et enfin X."
+"Spécifie que les angles d'Euler doivent être dans l'ordre intrinsèque XYZ. "
+"Lors de la composition, les rotations ont lieu autour des axes locaux X, Y "
+"et Z dans cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord "
+"Z, puis Y, et enfin X."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic XZY order. When "
 "composing, the rotations happen around the local X, Z, and Y axes, in that "
 "order. When decomposing, the order is reversed, first Y, then Z, and X last."
 msgstr ""
-"Indique que les angles Euler doivent être dans l'ordre XZY. Lors de la "
-"composition, l'ordre est X, Z, Y. Lors de la décomposition, l'ordre est "
-"inversé, Y en premier, puis Z, et enfin X."
+"Spécifie que les angles d'Euler doivent être dans l'ordre intrinsèque XZY. "
+"Lors de la composition, les rotations ont lieu autour des axes locaux X, Z "
+"et Y, dans cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord "
+"Y, puis Z, et enfin X."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic YXZ order. When "
 "composing, the rotations happen around the local Y, X, and Z axes, in that "
 "order. When decomposing, the order is reversed, first Z, then X, and Y last."
 msgstr ""
-"Indique que les angles Euler doivent être dans l'ordre YXZ. Lors de la "
-"composition, l'ordre est Y, X, Z. Lors de la décomposition, l'ordre est "
-"inversé, Z en premier, puis X, et enfin Y."
+"Spécifie que les angles d'Euler doivent être dans l'ordre intrinsèque YXZ. "
+"Lors de la composition, les rotation ont lieu autour des axes locaux Y, X, "
+"et Z, dans cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord "
+"Z, puis X, et enfin Y."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic YZX order. When "
 "composing, the rotations happen around the local Y, Z, and X axes, in that "
 "order. When decomposing, the order is reversed, first X, then Z, and Y last."
 msgstr ""
-"Indique que les angles d'Euler doivent être dans l'ordre YZX. Lors de la "
-"composition, l'ordre est Y, Z, X. Lors de la décomposition, l'ordre est "
-"inversé, X en premier, puis Z et enfin Y."
+"Spécifie que les angles d'Euler doivent être dans l'ordre YZX. Lors de la "
+"composition, les rotations ont lieu autour des axes locaux Y, Z, et X, dans "
+"cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord X, puis Z "
+"et enfin Y."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic ZXY order. When "
 "composing, the rotations happen around the local Z, X, and Y axes, in that "
 "order. When decomposing, the order is reversed, first Y, then X, and Z last."
 msgstr ""
-"Indique que les angles Euler doivent être dans l'ordre ZXY. Lors de la "
-"composition, l'ordre est Z, X, Y. Lors de la décomposition, l'ordre est "
-"inversé, Y en premier, puis X, et enfin Z."
+"Spécifie que les angles d'Euler doivent être dans l'ordre intrinsèque ZXY. "
+"Lors de la composition, les rotations ont lieu autour des axes locaux Z, X, "
+"et Y, dans cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord "
+"Y, puis X, et enfin Z."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Specifies that Euler angles should be in intrinsic ZYX order. When "
 "composing, the rotations happen around the local Z, Y, and X axes, in that "
 "order. When decomposing, the order is reversed, first X, then Y, and Z last."
 msgstr ""
-"Indique que les angles Euler doivent être dans l'ordre ZYX. Lors de la "
-"composition, l'ordre est Z, Y, X. Lors de la décomposition, l'ordre est "
-"inversé, X en premier, puis Y, et enfin Z."
+"Spécifie que les angles d'Euler doivent être dans l'ordre intrinsèque ZYX. "
+"Lors de la composition, les rotations ont lieu autour des axes locaux Z, Y, "
+"et X, dan cet ordre. Lors de la décomposition, l'ordre est inversé, d'abord "
+"X, puis Y, et enfin Z."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -6515,6 +6510,13 @@ msgid ""
 "print(keycode) # KEY_A\n"
 "[/codeblock]"
 msgstr ""
+"Masque d'octet avec tous les octets activés sauf pour les clefs de "
+"modificateur. Appliquer ceci pour supprimer les modificateurs.\n"
+"[codeblock]\n"
+"var keycode = KEY_A | KEY_MASK_SHIFT\n"
+"keycode = keycode & KEY_CODE_MASK\n"
+"print(keycode) # KEY_A\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -6525,6 +6527,13 @@ msgid ""
 "print(keycode) # KEY_MASK_SHIFT\n"
 "[/codeblock]"
 msgstr ""
+"Masque d'octet avec tous les octets de modificateur activés. Appliquer ceci "
+"afin d'isoler les modificateurs.\n"
+"[codeblock]\n"
+"var keycode = KEY_A | KEY_MASK_SHIFT\n"
+"keycode = keycode & KEY_MODIFIER_MASK\n"
+"print(keycode) # KEY_MASK_SHIFT\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -6802,11 +6811,12 @@ msgid ""
 "Game controller SDL miscellaneous button. Used by Nintendo Switch 2 Pro "
 "Controller and Horipad Steam controllers."
 msgstr ""
+"Bouton divers pour manette de jeu SDL. Utilisé par la manette Nintendo "
+"Switch 2 pro et les manettes Horipad de Steam."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "Game controller SDL miscellaneous button."
-msgstr "Bouton de palette 1 de manette SDL."
+msgstr "Bouton divers de manette de jeux SDL."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The number of SDL game controller buttons."
@@ -9759,7 +9769,7 @@ msgstr "Définit l'élément suivant sur la ligne."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Sets numeric value jump."
-msgstr ""
+msgstr "Définit le saut de valeur numérique."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Sets numeric value range."
@@ -9775,7 +9785,7 @@ msgstr "Définit la valeur numérique."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Sets placeholder text."
-msgstr ""
+msgstr "Définit le texte de remplacement."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Sets popup type for popup buttons."
@@ -9910,7 +9920,7 @@ msgstr "Élément de lecteur vidéo."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Non-editable text label."
-msgstr ""
+msgstr "Libellé non modifiable."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid ""
@@ -9932,7 +9942,7 @@ msgstr "Élément de lien."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Check box element."
-msgstr ""
+msgstr "Élément de case à cocher."
 
 #: doc/classes/AccessibilityServer.xml doc/classes/DisplayServer.xml
 msgid "Radio button element."
@@ -33819,7 +33829,6 @@ msgstr ""
 "votre appareil."
 
 #: doc/classes/CameraFeed.xml
-#, fuzzy
 msgid ""
 "A camera feed gives you access to a single physical camera attached to your "
 "device. When enabled, Godot will start capturing frames from the camera "
@@ -33834,17 +33843,16 @@ msgid ""
 "camera]."
 msgstr ""
 "Un flux de caméra vous donne accès à une seule caméra physique attachée à "
-"votre appareil. Lorsque activé, Godot commencera à capturer des trames de la "
-"caméra qui peut alors être utilisées. Voir aussi [CameraServer].\n"
+"votre appareil. Lorsqu'activé, Godot commencera à capturer des trames de la "
+"caméra qui peuvent alors être utilisées. Voir aussi [CameraServer].\n"
 "[b]Note :[/b] Beaucoup de caméras renverront des images YCbCr qui sont "
 "divisées en deux textures et doivent être combinées dans un shader. Godot "
 "fait cela automatiquement pour vous si vous configurez l'environnement pour "
-"montrer l'image de la caméra en arrière-plan.\n"
+"afficher l'image de la caméra en arrière-plan.\n"
 "[b]Note :[/b] Cette classe est actuellement seulement implémentée sur Linux, "
 "Android, macOS et iOS. Sur d'autres plates-formes, aucune [CameraFeed] ne "
-"sera disponible. Pour obtenir un [CameraFeed] sur iOS, le plugin de caméra "
-"de [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/"
-"url] est nécessaire."
+"sera disponible. Pour obtenir un [CameraFeed] sur iOS, activez [member "
+"EditorExportPlatformIOS.modules/camera]."
 
 #: doc/classes/CameraFeed.xml
 msgid "Called when the camera feed is activated."
@@ -34006,7 +34014,6 @@ msgstr ""
 "Le serveur garde la liste des différentes caméras accessibles dans Godot."
 
 #: doc/classes/CameraServer.xml
-#, fuzzy
 msgid ""
 "The [CameraServer] keeps track of different cameras accessible in Godot. "
 "These are external cameras such as webcams or the cameras on your phone.\n"
@@ -34023,9 +34030,8 @@ msgstr ""
 "caméra aux modules AR.\n"
 "[b]Note :[/b] Cette classe n'est actuellement implémentée que sur Linux, "
 "Android, macOS et iOS. Sur les autres plates-formes, aucun [CameraFeed] ne "
-"sera disponible. Pour obtenir un [CameraFeed] sur iOS, le plugin de caméra "
-"de [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/"
-"url] est nécessaire."
+"sera disponible. Pour obtenir un [CameraFeed] sur iOS, activez [member "
+"EditorExportPlatformIOS.modules/camera]."
 
 #: doc/classes/CameraServer.xml
 msgid "Adds the camera [param feed] to the camera server."

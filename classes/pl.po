@@ -40,7 +40,7 @@
 # Aleksander Łagowiec <mineolek10@users.noreply.hosted.weblate.org>, 2023.
 # Jakub Marcowski <chubercikbattle@gmail.com>, 2024.
 # BlueCube3310 <bluecube3310@gmail.com>, 2024.
-# Dawid Kobylewski <d.kobylewski@gmail.com>, 2024, 2025.
+# Dawid Kobylewski <d.kobylewski@gmail.com>, 2024, 2025, 2026.
 # szymon ignaczak <SUPSZYM02@gmail.com>, 2024, 2025.
 # Szymon Ignaczak <wdym@users.noreply.hosted.weblate.org>, 2025.
 # Jakub <pixelingoo@gmail.com>, 2025.
@@ -55,12 +55,13 @@
 # Pcniado <bratuspro2137@gmail.com>, 2025.
 # Andrzej Manderla <andrzejmmm1@gmail.com>, 2026.
 # Mikołaj Mądrzyk <matvete@hotmail.com>, 2026.
+# Dominik Chadała <dmnkchdl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Godot Engine class reference\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\n"
-"PO-Revision-Date: 2026-04-04 14:29+0000\n"
-"Last-Translator: Mikołaj Mądrzyk <matvete@hotmail.com>\n"
+"PO-Revision-Date: 2026-06-28 14:14+0000\n"
+"Last-Translator: Dawid Kobylewski <d.kobylewski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/godot-engine/"
 "godot-class-reference/pl/>\n"
 "Language: pl\n"
@@ -69,7 +70,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 #: doc/tools/make_rst.py
 msgid "All classes"
@@ -4321,6 +4322,27 @@ msgid ""
 "[/csharp]\n"
 "[/codeblocks]"
 msgstr ""
+"Ustawia ziarno generatora liczb losowych na wartość parametru [param base]. "
+"Ustawianie ziarna ręcznie może zapewnić stałe, powtarzalne wyniki dla "
+"większości funkcji generujących liczby losowe.\n"
+"[codeblocks]\n"
+"[gdscript]\n"
+"var my_seed = \"Godot Rocks\".hash()\n"
+"seed(my_seed)\n"
+"var a = randf() + randi()\n"
+"seed(my_seed)\n"
+"var b = randf() + randi()\n"
+"# a oraz b są teraz identyczne\n"
+"[/gdscript]\n"
+"[csharp]\n"
+"ulong mySeed = (ulong)GD.Hash(\"Godot Rocks\");\n"
+"GD.Seed(mySeed);\n"
+"var a = GD.Randf() + GD.Randi();\n"
+"GD.Seed(mySeed);\n"
+"var b = GD.Randf() + GD.Randi();\n"
+"// a oraz b są teraz identyczne\n"
+"[/csharp]\n"
+"[/codeblocks]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4341,6 +4363,23 @@ msgid ""
 "[method Vector2.sign], [method Vector2i.sign], [method Vector3.sign], "
 "[method Vector3i.sign], [method Vector4.sign], or [method Vector4i.sign]."
 msgstr ""
+"Zwraca ten sam typ [Variant] jak [param x], o wartości [code]-1[/code] dla "
+"wartości ujemnych, [code]1[/code] dla wartości dodatnich oraz [code]0[/code] "
+"dla zer. Dla wartości [code]nan[/code] zwraca 0.\n"
+"Wspierane typy: [int], [float], [Vector2], [Vector2i], [Vector3], "
+"[Vector3i], [Vector4], [Vector4i].\n"
+"[codeblock]\n"
+"sign(-6.0) # Zwraca -1\n"
+"sign(0.0)  # Zwraca 0\n"
+"sign(6.0)  # Zwraca 1\n"
+"sign(NAN)  # Zwraca 0\n"
+"\n"
+"sign(Vector3(-6.0, 0.0, 6.0)) # Zwraca (-1, 0, 1)\n"
+"[/codeblock]\n"
+"[b]Uwaga:[/b] Dla lepszego bezpieczeństwa typów, użyj [method signf], "
+"[method signi], [method Vector2.sign], [method Vector2i.sign], [method "
+"Vector3.sign], [method Vector3i.sign], [method Vector4.sign], lub [method "
+"Vector4i.sign]."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4520,6 +4559,16 @@ msgid ""
 "[b]Note:[/b] Negative values of [param x] return NaN (\"Not a Number\"). In "
 "C#, if you need negative inputs, use [code]System.Numerics.Complex[/code]."
 msgstr ""
+"Zwraca pierwiastek kwadratowy z [param x], gdzie [param x] jest liczbą "
+"nieujemną.\n"
+"[codeblock]\n"
+"sqrt(9)          # Zwraca 3\n"
+"sqrt(10.24) # Zwraca 3.2\n"
+"sqrt(-1)        # Zwraca NaN\n"
+"[/codeblock]\n"
+"[b]Uwaga:[/b] Przy ujemnych wartościach [param x] zwraca NaN (\"Not a "
+"Number\" - \"Nie liczba\"). W C#, jeśli potrzebujesz ujemnych wartości "
+"wejściowych, użyj [code]System.Numerics.Complex[/code]."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4532,6 +4581,14 @@ msgid ""
 "n = step_decimals(0.000000005) # n is 9\n"
 "[/codeblock]"
 msgstr ""
+"Zwraca pozycję pierwszej, nie-zerowej liczby po przecinku. Zauważ, że "
+"maksymalna zwracana wartość to 10, co jest decyzją projektową w "
+"implementacji.\n"
+"[codeblock]\n"
+"var n = step_decimals(5) \t       \t   # n wynosi 0\n"
+"n = step_decimals(1.0005\t\t   # n wynosi 4\n"
+"n = step_decimals(0.000000005) # n wynosi 9\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -4631,6 +4688,14 @@ msgid ""
 "[/codeblock]\n"
 "See also [method typeof]."
 msgstr ""
+"Zwraca czytelną dla człowieka nazwę podanego parametru [param type], "
+"używając wartości z [enum Variant.Type].\n"
+"[codeblock]\n"
+"print(TYPE_INT) # Wyświetla 2\n"
+"print(type_string(TYPE_INT)) # Wyświetla \"int\"\n"
+"print(type_string(TYPE_STRING)) # Wyświetla \"String\"\n"
+"[/codeblock]\n"
+"Zobacz również [method typeof]."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4647,6 +4712,18 @@ msgid ""
 "[/codeblock]\n"
 "See also [method type_string]."
 msgstr ""
+"Zwraca typ wewnętrzny podanego parametru [param variable], używając wartości "
+"z [enum Variant.Type].\n"
+"[codeblock]\n"
+"var json = JSON.new()\n"
+"json.parse('[\"a\", \"b\", \"c\"]')\n"
+"var result = json.get_data()\n"
+"if typeof(result) == TYPE_ARRAY:\n"
+"\tprint(result[0]) # Wyświetla \"a\"\n"
+"else:\n"
+"\tprint(\"Niespodziewany wynik!\")\n"
+"[/codeblock]\n"
+"Zobacz również [method type_string]."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -6193,7 +6270,7 @@ msgstr ""
 
 #: doc/classes/@GlobalScope.xml
 msgid "Middle mouse button."
-msgstr ""
+msgstr "Środkowy przycisk myszy."
 
 #: doc/classes/@GlobalScope.xml
 msgid "Mouse wheel scrolling up."
