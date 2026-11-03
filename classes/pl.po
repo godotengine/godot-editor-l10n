@@ -38,7 +38,7 @@
 # Pawel Michalak <pawelmichalak@icloud.com>, 2023.
 # Dawid Kędzierski <dawidk612@wp.pl>, 2023.
 # Aleksander Łagowiec <mineolek10@users.noreply.hosted.weblate.org>, 2023.
-# Jakub Marcowski <chubercikbattle@gmail.com>, 2024.
+# Jakub Marcowski <chubercikbattle@gmail.com>, 2024, 2026.
 # BlueCube3310 <bluecube3310@gmail.com>, 2024.
 # Dawid Kobylewski <d.kobylewski@gmail.com>, 2024, 2025, 2026.
 # szymon ignaczak <SUPSZYM02@gmail.com>, 2024, 2025.
@@ -60,7 +60,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Godot Engine class reference\n"
 "Report-Msgid-Bugs-To: https://github.com/godotengine/godot\n"
-"PO-Revision-Date: 2026-06-28 14:14+0000\n"
+"PO-Revision-Date: 2026-09-23 12:54+0000\n"
 "Last-Translator: Dawid Kobylewski <d.kobylewski@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/godot-engine/"
 "godot-class-reference/pl/>\n"
@@ -70,7 +70,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.7.dev0\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: doc/tools/make_rst.py
 msgid "All classes"
@@ -1000,9 +1000,8 @@ msgstr ""
 "[/codeblock]"
 
 #: modules/gdscript/doc_classes/@GDScript.xml
-#, fuzzy
 msgid "Use [method ClassDB.class_exists] instead."
-msgstr "Zamiast tego użyj [method @GlobalScope.type_convert]."
+msgstr "Zamiast tego użyj [method ClassDB.class_exists]."
 
 #: modules/gdscript/doc_classes/@GDScript.xml
 msgid ""
@@ -4438,7 +4437,6 @@ msgstr ""
 "[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid ""
 "Returns the hyperbolic sine of [param x].\n"
 "[codeblock]\n"
@@ -4446,10 +4444,10 @@ msgid ""
 "sinh(a) # Returns 0.75\n"
 "[/codeblock]"
 msgstr ""
-"Zwraca hiperboliczny cosinus [code]s[/code] w radianach.\n"
+"Zwraca sinus hiperboliczny [param x].\n"
 "[codeblock]\n"
-"# Wypisze 1.543081\n"
-"print(cosh(1))\n"
+"var a = log(2.0) # Zwraca 0.693147\n"
+"sinh(a) # Zwraca 0.75\n"
 "[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
@@ -4626,6 +4624,21 @@ msgid ""
 "[/csharp]\n"
 "[/codeblocks]"
 msgstr ""
+"Konwertuje sformatowany [param string], który został zwrócony przez [method "
+"var_to_str] do oryginalnego [Variant].\n"
+"[codeblocks]\n"
+"[gdscript]\n"
+"var data = '{ \"a\": 1, \"b\": 2 }' # data jest String\n"
+"var dict = str_to_var(data)     # dict jest Dictionary\n"
+"print(dict[\"a\"])                # Wyświetla 1\n"
+"[/gdscript]\n"
+"[csharp]\n"
+"string data = \"{ \\\"a\\\": 1, \\\"b\\\": 2 }\";           // data jest "
+"string\n"
+"var dict = GD.StrToVar(data).AsGodotDictionary(); // dict jest Dictionary\n"
+"GD.Print(dict[\"a\"]);                              // Wyświetla 1\n"
+"[/csharp]\n"
+"[/codeblocks]"
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -4676,6 +4689,23 @@ msgid ""
 "type_convert(\"Hi!\", TYPE_NIL) # Returns null\n"
 "[/codeblock]"
 msgstr ""
+"Konwertuje podany [param variant] na podany [param type], używając wartości "
+"z [enum Variant.Type]. Ta metoda jest elastyczna w obsłudze typów, potrafi "
+"automatycznie konwertować typy tablic, konwertować numeryczne [String]'i na "
+"[int], oraz konwertuje większość rzeczy na [String].\n"
+"Jeśli konwersja typów nie może zostać wykonana, ta metoda zwróci wartość "
+"domyślną tego typu, na przykład konwertując [Rect2] na [Vector2] zawsze "
+"zwróci [constant Vector2.ZERO]. Ta metoda nie pokaże wiadomości błędów tak "
+"długo jak [param type] jest prawidłowym typem Variant.\n"
+"Zwrócona wartość to [Variant], ale dane w środku i jej typ będą takie same "
+"jak żądany typ.\n"
+"[codeblock]\n"
+"type_convert(\"Hi!\", TYPE_INT) # Zwraca 0\n"
+"type_convert(\"123\", TYPE_INT) # Zwraca 123\n"
+"type_convert(123.4, TYPE_INT) # Zwraca 123\n"
+"type_convert(5, TYPE_VECTOR2) # Zwraca (0, 0)\n"
+"type_convert(\"Hi!\", TYPE_NIL) # Zwraca null\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4734,6 +4764,12 @@ msgid ""
 "[b]Note:[/b] Encoding [Callable] is not supported and will result in an "
 "empty value, regardless of the data."
 msgstr ""
+"Koduje wartość [Variant] to tablicy bajtów, bez kodowania obiektów. Można "
+"odkodować używając [method bytes_to_var].\n"
+"[b]Uwaga:[/b] Jeśli potrzebujesz serializacji obiektu, zobacz [method "
+"var_to_bytes_with_objects].\n"
+"[b]Uwaga:[/b] Kodowanie [Callable] nie jest wspierane i spowoduje, że "
+"wartość będzie pusta, bez względu na dane."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4743,6 +4779,11 @@ msgid ""
 "[b]Note:[/b] Encoding [Callable] is not supported and will result in an "
 "empty value, regardless of the data."
 msgstr ""
+"Koduje wartość [Variant] to tablicy bajtów. Kodowanie obiektów jest "
+"dozwolone (i może potencjalnie zawierać kod wykonywalny). Można odkodować "
+"używając [method bytes_to_var_with_objects].\n"
+"[b]Uwaga:[/b] Kodowanie [Callable] nie jest wspierane i spowoduje, że "
+"wartość będzie pusta, bez względu na dane."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4768,6 +4809,27 @@ msgid ""
 "[b]Note:[/b] Converting [Signal] or [Callable] is not supported and will "
 "result in an empty value for these types, regardless of their data."
 msgstr ""
+"Konwertuje [Variant] [param variable] do sformatowanego [String], który może "
+"zostać przetworzony używając [method str_to_var].\n"
+"[codeblocks]\n"
+"[gdscript]\n"
+"var a = { \"a\": 1, \"b\": 2 }\n"
+"print(var_to_str(a))\n"
+"[/gdscript]\n"
+"[csharp]\n"
+"var a = new Godot.Collections.Dictionary { [\"a\"] = 1, [\"b\"] = 2 };\n"
+"GD.Print(GD.VarToStr(a));\n"
+"[/csharp]\n"
+"[/codeblocks]\n"
+"Wyświetla:\n"
+"[codeblock lang=text]\n"
+"{\n"
+"\t\"a\": 1,\n"
+"\t\"b\": 2\n"
+"}\n"
+"[/codeblock]\n"
+"[b]Uwaga:[/b] Konwertowanie [Signal] lub [Callable] nie jest wspierane i "
+"spowoduje, że wartość będzie pusta dla tych typów, bez względu na ich dane."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4781,6 +4843,16 @@ msgid ""
 "something else. However, until the object is actually destroyed the weak "
 "reference may return the object even if there are no strong references to it."
 msgstr ""
+"Zwraca instancję [WeakRef], która przechowuje słabe referencje do [param "
+"obj]. Zwraca pustą instancję [WeakRef] jeśli [param obj] jest [code]null[/"
+"code]. Wyświetla błąd i zwraca[code]null[/code] jeśli [param obj] nie "
+"dziedziczy po [Object] ani nie jest [code]null[/code].\n"
+"Słabe referencje do obiektu nie jest wystarczające aby utrzymać obiekt przy "
+"życiu: kiedy jednymi pozostałymi odwołaniami są słabe referencje, "
+"automatyczne zarządzanie pamięcią może zniszczyć to odwołanie i użyć jego "
+"pamięć ponownie dla innych celów. Jednakże, dopóki obiekt nie zostanie "
+"faktycznie zniszczony, słaba referencja może zwrócić obiekt, nawet jeśli nie "
+"ma do niego silnych referencji."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4800,6 +4872,23 @@ msgid ""
 "# a is 5.5 (float)\n"
 "[/codeblock]"
 msgstr ""
+"Zawija [Variant] [param value] pomiędzy [param min] oraz [param max]. [param "
+"min] jest [i]włączający[/i], kiedy [param max] jest [i] wykluczający[/i]. "
+"Może to zostać użyte do utworzenia cyklicznych zachowań lub nieskończonych "
+"powierzchni.\n"
+"Typy warianatu [int] oraz [float] są wspierane. Jeśli jakiś z argumentów "
+"jest typu [float], ta funckja zwraca [float], w przeciwnym wypadku zwraca "
+"[int].\n"
+"[codeblock]\n"
+"var a = wrap(4, 5, 10)\n"
+"# a wynosi 9 (int)\n"
+"\n"
+"var a = wrap(7, 5, 10)\n"
+"# a wynosi 7 (int)\n"
+"\n"
+"var a = wrap(10.5, 5, 10)\n"
+"# a wynosi 5.5 (float)\n"
+"[/codeblock]"
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4823,6 +4912,26 @@ msgid ""
 "using the [method fposmod] approach by giving the user control over the "
 "minimum value."
 msgstr ""
+"Zawija [param value] typu float pomiędzy [param min] i [param max]. [param "
+"min] jest [i]włączający[/i], kiedy [param max] jest [i]wykluczający[/i]. "
+"Może to zostać użyte do utworzenia cyklicznych zachowań lub nieskończonych "
+"powierzchni.\n"
+"[codeblock]\n"
+"# Nieskończona pętla pomiędzy 5.0 a 9.9\n"
+"value = wrapf(value + 0.1, 5.0, 10.0)\n"
+"[/codeblock]\n"
+"[codeblock]\n"
+"# Nieskończona rotacja (w radianach)\n"
+"angle = wrapf(angle + 0.1, 0.0, TAU)\n"
+"[/codeblock]\n"
+"[codeblock]\n"
+"# Nieskończona rotacja (w radianach)\n"
+"angle = wrapf(angle + 0.1, -PI, PI)\n"
+"[/codeblock]\n"
+"[b]Uwaga:[/b] Jeśli [param min] jest równe [code]0[/code], jest to "
+"równoważne z [method fposmod], więc lepiej użyj tej metody. [method wrapf] "
+"jest bardziej elastyczna niż używanie [method fposmod], tylko po to aby dać "
+"użytkownikowi kontrolę nad wartością minimalną."
 
 #: doc/classes/@GlobalScope.xml
 msgid ""
@@ -4880,9 +4989,8 @@ msgid "The [EngineDebugger] singleton."
 msgstr "Singleton [Engine]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [GDExtensionManager] singleton."
-msgstr "Singleton [Engine]."
+msgstr "Singleton [GDExtensionManager]."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
@@ -4894,14 +5002,12 @@ msgstr ""
 "[b]Uwaga:[/b] Zaimplementowany tylko na Androidzie."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [Geometry2D] singleton."
 msgstr "Singleton [Geometry2D]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [Geometry3D] singleton."
-msgstr "Singleton [Geometry2D]."
+msgstr "Singleton [Geometry3D]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [IP] singleton."
@@ -4946,29 +5052,24 @@ msgstr ""
 "[b]Uwaga:[/b] Zaimplementowany tylko na Androidzie."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [NavigationMeshGenerator] singleton."
 msgstr "Singleton [NavigationMeshGenerator]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [NavigationServer2D] singleton."
-msgstr "Singleton [TranslationServer]."
+msgstr "Singleton [NavigationServer2D]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [NavigationServer2DManager] singleton."
-msgstr "Singleton [TranslationServer]."
+msgstr "Singleton [NavigationServer2DManager]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [NavigationServer3D] singleton."
-msgstr "Singleton [TranslationServer]."
+msgstr "Singleton [NavigationServer3D]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [NavigationServer3DManager] singleton."
-msgstr "Singleton [TranslationServer]."
+msgstr "Singleton [NavigationServer3DManager]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [OS] singleton."
@@ -4979,33 +5080,28 @@ msgid "The [Performance] singleton."
 msgstr "Singleton [Performance]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [PhysicsServer2D] singleton."
 msgstr "Singleton [PhysicsServer2D]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [PhysicsServer2DManager] singleton."
-msgstr "Singleton [PhysicsServer2D]."
+msgstr "Singleton [PhysicsServer2DManager]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [PhysicsServer3D] singleton."
-msgstr "Singleton [PhysicsServer2D]."
+msgstr "Singleton [PhysicsServer3D]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [PhysicsServer3DManager] singleton."
-msgstr "Singleton [PhysicsServer2D]."
+msgstr "Singleton [PhysicsServer3DManager]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [ProjectSettings] singleton."
 msgstr "Singleton [ProjectSettings]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [RenderingServer] singleton."
-msgstr "Singleton [AudioServer]."
+msgstr "Singleton [RenderingServer]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [ResourceLoader] singleton."
@@ -5016,33 +5112,28 @@ msgid "The [ResourceSaver] singleton."
 msgstr "Singleton [ResourceSaver]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [ResourceUID] singleton."
-msgstr "Singleton [ResourceSaver]."
+msgstr "Singleton [ResourceUID]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [TextServerManager] singleton."
-msgstr "Singleton [CameraServer]."
+msgstr "Singleton [TextServerManager]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [ThemeDB] singleton."
-msgstr "Singleton [Engine]."
+msgstr "Singleton [ThemeDB]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [Time] singleton."
-msgstr "Singleton [Engine]."
+msgstr "Singleton [Time]."
 
 #: doc/classes/@GlobalScope.xml
 msgid "The [TranslationServer] singleton."
 msgstr "Singleton [TranslationServer]."
 
 #: doc/classes/@GlobalScope.xml
-#, fuzzy
 msgid "The [WorkerThreadPool] singleton."
-msgstr "Singleton [Marshalls]."
+msgstr "Singleton [WorkerThreadPool]."
 
 #: doc/classes/@GlobalScope.xml
 #, fuzzy
