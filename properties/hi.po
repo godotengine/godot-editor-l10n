@@ -53,8 +53,8 @@ msgstr "कॉन्फ़िग"
 
 #: core/config/project_settings.cpp core/io/resource.cpp
 #: editor/animation/animation_track_editor.cpp
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
 #: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
 #: platform/android/export/export_plugin.cpp scene/2d/physics/area_2d.cpp
 #: scene/3d/physics/area_3d.cpp scene/gui/control.cpp scene/main/window.cpp
 #: scene/resources/3d/mesh_library.cpp scene/resources/3d/skin.cpp
@@ -103,6 +103,11 @@ msgstr "हेडर छपाई"
 #: core/config/project_settings.cpp
 msgid "Enable Alt Space Menu"
 msgstr "\"Alt Space Menu\" चालू करे"
+
+#: core/config/project_settings.cpp
+#, fuzzy
+msgid "Use Game Mode"
+msgstr "अद्यतन"
 
 #: core/config/project_settings.cpp
 msgid "Use Hidden Project Data Directory"
@@ -199,10 +204,11 @@ msgstr "दृश्यद्वार ऊंचाई"
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_streamed_texture.cpp
 #: editor/import/resource_importer_texture.cpp
-#: editor/import/resource_importer_wav.cpp
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: modules/csg/csg_shape.cpp modules/visual_shader/visual_shader.cpp
+#: editor/import/resource_importer_wav.cpp modules/csg/csg_shape.cpp
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: modules/visual_shader/visual_shader.cpp
 #: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
 #: scene/2d/visible_on_screen_notifier_2d.cpp scene/3d/light_3d.cpp
 #: scene/3d/lightmap_gi.cpp scene/3d/reflection_probe.cpp
@@ -267,6 +273,10 @@ msgid "Maximize Disabled"
 msgstr "मैक्सिमाइज़ अक्षम"
 
 #: core/config/project_settings.cpp
+msgid "Enable Toggle Fullscreen Shortcut"
+msgstr ""
+
+#: core/config/project_settings.cpp
 msgid "Window Width Override"
 msgstr "विंडो की चौड़ाई बदलना"
 
@@ -293,10 +303,10 @@ msgstr "स्क्रीन को चालू रखें"
 
 #: core/config/project_settings.cpp editor/animation/animation_track_editor.cpp
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: editor/settings/editor_settings.cpp scene/2d/animated_sprite_2d.cpp
-#: scene/2d/cpu_particles_2d.cpp scene/2d/sprite_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/3d/sprite_3d.cpp
+#: editor/settings/editor_settings.cpp
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: scene/2d/animated_sprite_2d.cpp scene/2d/cpu_particles_2d.cpp
+#: scene/2d/sprite_2d.cpp scene/3d/cpu_particles_3d.cpp scene/3d/sprite_3d.cpp
 #: scene/animation/animation_blend_tree.cpp
 #: scene/resources/particle_process_material.cpp
 msgid "Animation"
@@ -320,6 +330,7 @@ msgid "Check Angle Interpolation Type Conflicting"
 msgstr "एंगल इंटरपोलेशन टाइप के विरोध की जाँच करें"
 
 #: core/config/project_settings.cpp core/input/input.cpp
+#: servers/text/text_server.cpp
 msgid "Compatibility"
 msgstr "अनुकूलता"
 
@@ -328,7 +339,8 @@ msgid "Default Parent Skeleton in Mesh Instance 3D"
 msgstr "मेश इनस्टन्स 3डी में प्रायिक पैरेंट स्केलेटन"
 
 #: core/config/project_settings.cpp main/main.cpp main/performance.cpp
-#: scene/animation/animation_mixer.cpp servers/audio/audio_server.cpp
+#: scene/animation/animation_mixer.cpp servers/audio/audio_driver.cpp
+#: servers/audio/audio_server.cpp
 msgid "Audio"
 msgstr "ऑडियो"
 
@@ -339,6 +351,10 @@ msgstr "ऑडियो बस"
 #: core/config/project_settings.cpp
 msgid "Default Bus Layout"
 msgstr "मूल बस व्यवस्था"
+
+#: core/config/project_settings.cpp
+msgid "GUI Theme Bus"
+msgstr ""
 
 #: core/config/project_settings.cpp
 msgid "Default Playback Type"
@@ -395,17 +411,21 @@ msgstr "स्वैपी मोड"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
-#: modules/jolt_physics/jolt_project_settings.cpp scene/2d/tile_map_layer.cpp
+#: modules/jolt_physics/jolt_project_settings.cpp
+#: modules/tilemap/tile_map_layer.cpp modules/tilemap/tile_set.cpp
 #: scene/main/scene_tree.cpp scene/main/scene_tree_fti.cpp
-#: scene/main/viewport.cpp scene/resources/2d/tile_set.cpp
-#: servers/physics_2d/physics_server_2d.cpp
+#: scene/main/viewport.cpp servers/physics_2d/physics_server_2d.cpp
+#: servers/physics_2d/physics_server_2d_manager.cpp
 #: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_3d/physics_server_3d_manager.cpp
 msgid "Physics"
 msgstr "फिजिक्स"
 
 #: core/config/project_settings.cpp editor/settings/editor_settings.cpp
 #: scene/main/scene_tree.cpp servers/navigation_2d/navigation_server_2d.cpp
+#: servers/navigation_2d/navigation_server_2d_manager.cpp
 #: servers/physics_2d/physics_server_2d.cpp
+#: servers/physics_2d/physics_server_2d_manager.cpp
 #: servers/rendering/rendering_server.cpp
 msgid "2D"
 msgstr "2डी"
@@ -416,7 +436,9 @@ msgstr "अलग थ्रेड पर चलाएँ"
 
 #: core/config/project_settings.cpp editor/settings/editor_settings.cpp
 #: scene/main/scene_tree_fti.cpp servers/navigation_3d/navigation_server_3d.cpp
+#: servers/navigation_3d/navigation_server_3d_manager.cpp
 #: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_3d/physics_server_3d_manager.cpp
 msgid "3D"
 msgstr "3 डी"
 
@@ -453,7 +475,8 @@ msgstr "स्केल मोड"
 #: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
 #: editor/settings/editor_settings.cpp main/main.cpp
-#: modules/gdscript/gdscript.cpp platform/android/export/export_plugin.cpp
+#: modules/gdscript/gdscript.cpp modules/gridmap/grid_map.cpp
+#: platform/android/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
 #: platform/web/export/export_plugin.cpp
 #: scene/2d/navigation/navigation_agent_2d.cpp
@@ -534,9 +557,11 @@ msgstr "मैसेज"
 #: editor/import/dynamic_font_import_settings.cpp
 #: editor/import/resource_importer_dynamic_font.cpp main/main.cpp
 #: modules/basis_universal/register_types.cpp
-#: modules/lightmapper_rd/register_types.cpp scene/2d/tile_map_layer.cpp
+#: modules/lightmapper_rd/register_types.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+#: modules/tilemap/tile_map_layer.cpp modules/tilemap/tile_set.cpp
 #: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp servers/rendering/renderer_scene_cull.cpp
+#: servers/rendering/renderer_scene_cull.cpp
 #: servers/rendering/rendering_server.cpp
 msgid "Rendering"
 msgstr "रेंडरिंग"
@@ -610,7 +635,7 @@ msgid "Show Focus State on Pointer Event"
 msgstr "पॉइंटर इवेंट पर फोकस स्थिति दिखाएँ"
 
 #: core/config/project_settings.cpp editor/settings/editor_settings.cpp
-#: scene/gui/control.cpp scene/main/window.cpp
+#: scene/gui/control.cpp scene/main/window.cpp servers/text/text_server.cpp
 msgid "Fonts"
 msgstr "लिपि"
 
@@ -621,6 +646,10 @@ msgstr "गतिशील लिपि"
 #: core/config/project_settings.cpp
 msgid "Use Oversampling"
 msgstr "ओवरसैंपलिंग का उपयोग करें"
+
+#: core/config/project_settings.cpp
+msgid "Auto Focus Strategy"
+msgstr ""
 
 #: core/config/project_settings.cpp main/main.cpp
 msgid "Rendering Device"
@@ -664,8 +693,8 @@ msgstr "पाइपलाइन कैश"
 
 #: core/config/project_settings.cpp
 #: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
-#: editor/settings/editor_settings.cpp modules/gdscript/gdscript.cpp
-#: platform/windows/export/export_plugin.cpp
+#: editor/settings/editor_settings.cpp main/main.cpp
+#: modules/gdscript/gdscript.cpp platform/windows/export/export_plugin.cpp
 #: scene/3d/physics/joints/hinge_joint_3d.cpp scene/3d/retarget_modifier_3d.cpp
 #: servers/rendering/rendering_server.cpp
 msgid "Enable"
@@ -700,7 +729,8 @@ msgid "Agility SDK Version"
 msgstr "चपलता SDK संस्करण"
 
 #: core/config/project_settings.cpp modules/basis_universal/register_types.cpp
-#: modules/gltf/gltf_state.cpp scene/3d/decal.cpp scene/gui/texture_button.cpp
+#: modules/gltf/gltf_state.cpp modules/texture_streaming/texture_streaming.cpp
+#: scene/3d/decal.cpp scene/gui/texture_button.cpp
 #: scene/gui/texture_progress_bar.cpp servers/rendering/rendering_server.cpp
 msgid "Textures"
 msgstr "बनावटें"
@@ -755,9 +785,11 @@ msgstr "स्क्रॉल डेडज़ोन निष्क्रिय 
 
 #: core/config/project_settings.cpp editor/settings/editor_settings.cpp
 #: main/performance.cpp modules/gridmap/grid_map.cpp
-#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
+#: modules/tilemap/tile_map_layer.cpp modules/tilemap/tile_set.cpp
 #: servers/navigation_2d/navigation_server_2d.cpp
+#: servers/navigation_2d/navigation_server_2d_manager.cpp
 #: servers/navigation_3d/navigation_server_3d.cpp
+#: servers/navigation_3d/navigation_server_3d_manager.cpp
 msgid "Navigation"
 msgstr "मार्गदर्शन"
 
@@ -917,6 +949,11 @@ msgid "Enable Magnetometer"
 msgstr "मैग्नेटोमीटर सक्षम करें"
 
 #: core/input/input.cpp
+#, fuzzy
+msgid "Enable Device Orientation"
+msgstr "ऑनलाइन डॉक्स"
+
+#: core/input/input.cpp
 msgid "Joypads"
 msgstr "जॉयपैड"
 
@@ -986,8 +1023,10 @@ msgstr "बटन मास्क"
 #: scene/2d/remote_transform_2d.cpp scene/3d/node_3d.cpp
 #: scene/3d/remote_transform_3d.cpp scene/gui/control.cpp scene/main/window.cpp
 #: scene/resources/particle_process_material.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#: servers/physics_3d/queries/physics_point_query_parameters_3d.cpp
 msgid "Position"
 msgstr "स्थान"
 
@@ -1056,6 +1095,11 @@ msgstr "इंडेक्स"
 #: core/input/input_event.cpp
 msgid "Double Tap"
 msgstr "दो बार टैप"
+
+#: core/input/input_event.cpp
+#, fuzzy
+msgid "Long Press"
+msgstr "प्रीसेट"
 
 #: core/input/input_event.cpp
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
@@ -1304,6 +1348,74 @@ msgstr "कार्यकर्ता पूल"
 msgid "Low Priority Thread Ratio"
 msgstr "कम प्राथमिकता थ्रेड अनुपात"
 
+#: core/string/fuzzy_search.cpp scene/3d/skeleton_ik_3d.cpp
+#: scene/3d/xr/xr_face_modifier_3d.cpp
+msgid "Target"
+msgstr "लक्ष्य"
+
+#: core/string/fuzzy_search.cpp
+msgid "Score"
+msgstr ""
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Original Index"
+msgstr "प्लगइन्स"
+
+#: core/string/fuzzy_search.cpp editor/animation/animation_track_editor.cpp
+#: scene/animation/animation_blend_tree.cpp
+msgid "Start Offset"
+msgstr "ऑफसेट प्रारंभ करें"
+
+#: core/string/fuzzy_search.cpp editor/settings/editor_settings.cpp
+#: scene/2d/physics/shape_cast_2d.cpp scene/3d/physics/shape_cast_3d.cpp
+msgid "Max Results"
+msgstr "अधिकतम परिणाम"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Max Misses"
+msgstr "अधिकतम Fuzzy Misses"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Use Exact Tokens"
+msgstr "बाहरी उपयोग"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Case Sensitive"
+msgstr "अक्षर संवेदनशील"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Filter Low Scores"
+msgstr "नोड फिल्टर किजिये"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Filter Factor"
+msgstr "फैक्टर"
+
+#: core/string/fuzzy_search.cpp
+#, fuzzy
+msgid "Filter Cutoff"
+msgstr "फिल्टर:"
+
+#: core/string/regex.cpp
+msgid "Subject"
+msgstr "विषय"
+
+#: core/string/regex.cpp
+#, fuzzy
+msgid "Names"
+msgstr "नाम"
+
+#: core/string/regex.cpp scene/gui/code_edit.cpp
+#, fuzzy
+msgid "Strings"
+msgstr "एडीटर सेटिन्गस..."
+
 #: core/string/translation.cpp core/string/translation_server.cpp
 #: servers/text/text_server.cpp
 msgid "Locale"
@@ -1412,11 +1524,6 @@ msgid "Stream"
 msgstr "धारा"
 
 #: editor/animation/animation_track_editor.cpp
-#: scene/animation/animation_blend_tree.cpp
-msgid "Start Offset"
-msgstr "ऑफसेट प्रारंभ करें"
-
-#: editor/animation/animation_track_editor.cpp
 msgid "End Offset"
 msgstr "अंत ऑफसेट"
 
@@ -1462,6 +1569,11 @@ msgstr "अस्थायी"
 #: editor/docks/editor_dock.cpp
 msgid "Closable"
 msgstr "बंद करने योग्य"
+
+#: editor/docks/editor_dock.cpp
+#, fuzzy
+msgid "Allow Switch Screen"
+msgstr "स्टैक ट्रेस पर स्वचालित स्विच"
 
 #: editor/docks/editor_dock.cpp
 msgid "Icon Name"
@@ -1630,20 +1742,13 @@ msgid "Additional"
 msgstr "अतिरिक्त"
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
+#: platform/ios/export/export_plugin.cpp
 msgid "Capabilities"
 msgstr "क्षमता"
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
 msgid "Access Wi-Fi"
 msgstr "एक्सेस Wi-FI"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-msgid "Performance Gaming Tier"
-msgstr "प्रदर्शन गेमिंग टियर"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-msgid "Performance A 12"
-msgstr "प्रदर्शन ए 12"
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
 #: editor/export/editor_export_platform_pc.cpp
@@ -1657,7 +1762,8 @@ msgstr "शेडर बेकर"
 #: editor/import/3d/resource_importer_scene.cpp main/main.cpp
 #: modules/fbx/register_types.cpp modules/gltf/register_types.cpp
 #: modules/openxr/extensions/openxr_frame_synthesis_extension.cpp
-#: modules/visual_shader/visual_shader.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+#: modules/tilemap/tile_map_layer.cpp modules/visual_shader/visual_shader.cpp
 #: platform/android/export/export_plugin.cpp
 #: platform/linuxbsd/export/export_plugin.cpp
 #: platform/macos/export/export_plugin.cpp
@@ -1666,7 +1772,7 @@ msgstr "शेडर बेकर"
 #: scene/2d/light_2d.cpp scene/2d/navigation/navigation_link_2d.cpp
 #: scene/2d/navigation/navigation_region_2d.cpp
 #: scene/2d/physics/ray_cast_2d.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/2d/tile_map_layer.cpp scene/3d/navigation/navigation_link_3d.cpp
+#: scene/3d/navigation/navigation_link_3d.cpp
 #: scene/3d/navigation/navigation_region_3d.cpp
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
 #: scene/3d/physics/ray_cast_3d.cpp scene/3d/physics/shape_cast_3d.cpp
@@ -1698,34 +1804,6 @@ msgstr "गोपनीयता"
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
 #: platform/macos/export/export_plugin.cpp
-msgid "Camera Usage Description"
-msgstr "कैमरा उपयोग विवरण"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Camera Usage Description Localized"
-msgstr "कैमरा उपयोग विवरण स्थानीयकृत"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Microphone Usage Description"
-msgstr "माइक्रोफोन उपयोग विवरण"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-#: platform/macos/export/export_plugin.cpp
-msgid "Microphone Usage Description Localized"
-msgstr "माइक्रोफोन उपयोग विवरण स्थानीयकृत"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-msgid "Photolibrary Usage Description"
-msgstr "चित्र पुस्तकालय उपयोग विवरण"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-msgid "Photolibrary Usage Description Localized"
-msgstr "चित्र पुस्तकालय उपयोग विवरण स्थानीयकृत"
-
-#: editor/export/editor_export_platform_apple_embedded.cpp
-#: platform/macos/export/export_plugin.cpp
 msgid "Tracking Enabled"
 msgstr "ट्रैकिंग सक्रिय"
 
@@ -1735,7 +1813,8 @@ msgid "Tracking Domains"
 msgstr "ट्रैकिंग डोमेन"
 
 #: editor/export/editor_export_platform_apple_embedded.cpp
-#: platform/ios/export/export_plugin.cpp scene/gui/control.cpp
+#: platform/ios/export/export_plugin.cpp
+#: platform/visionos/export/export_plugin.cpp scene/gui/control.cpp
 #: scene/main/window.cpp
 msgid "Icons"
 msgstr "कई चिह्न"
@@ -1758,7 +1837,14 @@ msgid "Export Console Wrapper"
 msgstr "कंसोल रैपर निर्यात करें"
 
 #: editor/export/editor_export_platform_pc.cpp
+#: platform/macos/export/export_plugin.cpp
+#, fuzzy
+msgid "Export Debug Symbols"
+msgstr "निर्यात मेथड डिबग"
+
+#: editor/export/editor_export_platform_pc.cpp
 #: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Binary Format"
 msgstr "बाइनरी फ़ोर्मैट"
@@ -1871,6 +1957,12 @@ msgstr "बचे हुए पर ग्लोबल रेस्ट बना�
 
 #: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
 #: scene/3d/retarget_modifier_3d.cpp
+#, fuzzy
+msgid "Copy Bone Skin Scale"
+msgstr "सब दिखाइए"
+
+#: editor/import/3d/post_import_plugin_skeleton_rest_fixer.cpp
+#: scene/3d/retarget_modifier_3d.cpp
 msgid "Use Global Pose"
 msgstr "वैश्विक मुद्रा उपयोग"
 
@@ -1958,7 +2050,7 @@ msgid "Node Type"
 msgstr "नोड प्ररूप"
 
 #: editor/import/3d/resource_importer_scene.cpp
-#: editor/register_editor_types.cpp main/main.cpp
+#: editor/register_editor_types.cpp
 msgid "Script"
 msgstr "लिपि"
 
@@ -2016,7 +2108,7 @@ msgstr "मुखौटा"
 msgid "Mesh Instance"
 msgstr "मेश इनस्टन्स"
 
-#: editor/import/3d/resource_importer_scene.cpp scene/2d/tile_map.cpp
+#: editor/import/3d/resource_importer_scene.cpp modules/tilemap/tile_map.cpp
 #: scene/3d/visual_instance_3d.cpp scene/resources/placeholder_textures.cpp
 msgid "Layers"
 msgstr "परतें"
@@ -2189,7 +2281,7 @@ msgstr "बाहरी उपयोग"
 #: editor/import/3d/resource_importer_scene.cpp
 #: editor/import/resource_importer_wav.cpp
 #: scene/animation/animation_blend_tree.cpp scene/resources/animation.cpp
-#: scene/resources/audio_stream_wav.cpp
+#: scene/resources/audio/audio_stream_wav.cpp
 msgid "Loop Mode"
 msgstr "लूप मोड"
 
@@ -2284,6 +2376,10 @@ msgstr "मेश संग्रह"
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Use Node Names as Mesh Names"
 msgstr "नोड के नामों को मेश के नामों के तौर पर इस्तेमाल करें"
+
+#: editor/import/3d/resource_importer_scene.cpp
+msgid "Create Categories From Hierarchy"
+msgstr ""
 
 #: editor/import/3d/resource_importer_scene.cpp
 msgid "Array Mesh"
@@ -2478,6 +2574,7 @@ msgstr "फ़ॉलबैक"
 #: editor/import/resource_importer_dynamic_font.cpp
 #: editor/import/resource_importer_imagefont.cpp
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_streamed_texture.cpp
 #: editor/import/resource_importer_svg.cpp
 #: editor/import/resource_importer_texture.cpp
 #: editor/import/resource_importer_wav.cpp
@@ -2519,8 +2616,11 @@ msgstr "चेहरा सूचकांक"
 #: scene/3d/node_3d.cpp scene/gui/control.cpp scene/gui/rich_text_effect.cpp
 #: scene/main/canvas_layer.cpp scene/resources/font.cpp
 #: scene/resources/material.cpp servers/camera/camera_feed.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp servers/xr/xr_pose.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+#: servers/xr/xr_pose.cpp
 msgid "Transform"
 msgstr "परिवर्तन"
 
@@ -2554,7 +2654,7 @@ msgid "Kerning Pairs"
 msgstr "कर्निंग युग्म"
 
 #: editor/import/resource_importer_imagefont.cpp
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
 #: scene/gui/grid_container.cpp scene/gui/item_list.cpp scene/gui/tree.cpp
 msgid "Columns"
 msgstr "कॉलम"
@@ -2580,8 +2680,15 @@ msgid "Descent"
 msgstr "अवरोहण"
 
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_streamed_texture.cpp
 #: editor/import/resource_importer_texture.cpp
 msgid "High Quality"
+msgstr "उच्च गुणवत्ता"
+
+#: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "High Quality Mode"
 msgstr "उच्च गुणवत्ता"
 
 #: editor/import/resource_importer_layered_texture.cpp
@@ -2600,11 +2707,13 @@ msgid "RDO Quality Loss"
 msgstr "RDO गुणवत्ता हानि"
 
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_streamed_texture.cpp
 #: editor/import/resource_importer_texture.cpp
 msgid "HDR Compression"
 msgstr "HDR संपीड़न"
 
 #: editor/import/resource_importer_layered_texture.cpp
+#: editor/import/resource_importer_streamed_texture.cpp
 #: editor/import/resource_importer_texture.cpp
 msgid "Channel Pack"
 msgstr "चैनल पैक"
@@ -2645,6 +2754,41 @@ msgstr "व्यवस्था"
 msgid "Layout"
 msgstr "लेआउट"
 
+#: editor/import/resource_importer_streamed_texture.cpp
+#: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
+msgid "Normal Map"
+msgstr "सामान्य मानचित्र"
+
+#: editor/import/resource_importer_streamed_texture.cpp
+#: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
+msgid "Roughness"
+msgstr "बेअदबी"
+
+#: editor/import/resource_importer_streamed_texture.cpp
+#: editor/import/resource_importer_texture.cpp
+msgid "Src Normal"
+msgstr "Src सामान्य"
+
+#: editor/import/resource_importer_streamed_texture.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+#, fuzzy
+msgid "Streaming"
+msgstr "धारा"
+
+#: editor/import/resource_importer_streamed_texture.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+#: scene/resources/streamed_texture.cpp
+#, fuzzy
+msgid "Min LOD Override"
+msgstr "अधिभावी करता है:"
+
+#: editor/import/resource_importer_streamed_texture.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+#: scene/resources/streamed_texture.cpp
+#, fuzzy
+msgid "Max LOD Override"
+msgstr "मौजूदा के ऊपर लिखे"
+
 #: editor/import/resource_importer_svg.cpp scene/2d/parallax_background.cpp
 #: scene/resources/dpi_texture.cpp scene/theme/theme_db.cpp
 msgid "Base Scale"
@@ -2669,17 +2813,15 @@ msgstr "अल्फ़ा बॉर्डर ठीक करें"
 msgid "Premult Alpha"
 msgstr "प्रीमल्ट अल्फ़ा"
 
-#: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
-msgid "Normal Map"
-msgstr "सामान्य मानचित्र"
-
-#: editor/import/resource_importer_texture.cpp scene/resources/material.cpp
-msgid "Roughness"
-msgstr "बेअदबी"
+#: editor/import/resource_importer_texture.cpp
+#, fuzzy
+msgid "Preserve Alpha Test Coverage"
+msgstr "अल्फ़ा से कवरेज"
 
 #: editor/import/resource_importer_texture.cpp
-msgid "Src Normal"
-msgstr "Src सामान्य"
+#, fuzzy
+msgid "Alpha Test Threshold"
+msgstr "अल्फा कटौती सीमा"
 
 #: editor/import/resource_importer_texture.cpp main/performance.cpp
 #: scene/animation/animation_mixer.cpp scene/main/node.cpp
@@ -2735,7 +2877,7 @@ msgid "SVG"
 msgstr "SVG"
 
 #: editor/import/resource_importer_texture.cpp editor/register_editor_types.cpp
-#: editor/settings/editor_settings.cpp main/main.cpp scene/2d/camera_2d.cpp
+#: editor/settings/editor_settings.cpp scene/2d/camera_2d.cpp
 #: scene/3d/light_3d.cpp scene/gui/progress_bar.cpp scene/main/node.cpp
 #: servers/movie_writer/movie_writer.cpp
 msgid "Editor"
@@ -2799,11 +2941,13 @@ msgstr "काटना"
 msgid "Normalize"
 msgstr "सामान्य"
 
-#: editor/import/resource_importer_wav.cpp scene/resources/audio_stream_wav.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/resources/audio/audio_stream_wav.cpp
 msgid "Loop Begin"
 msgstr "लूप आरंभ"
 
-#: editor/import/resource_importer_wav.cpp scene/resources/audio_stream_wav.cpp
+#: editor/import/resource_importer_wav.cpp
+#: scene/resources/audio/audio_stream_wav.cpp
 msgid "Loop End"
 msgstr "लूप समाप्त"
 
@@ -2931,69 +3075,6 @@ msgstr "प्लगइन नाम"
 msgid "Autoload on Startup"
 msgstr "स्टार्टअप पर स्वतः लोड"
 
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: editor/scene/2d/tiles/tile_set_scenes_collection_source_editor.cpp
-msgid "ID"
-msgstr "ID"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
-#: scene/2d/cpu_particles_2d.cpp scene/2d/gpu_particles_2d.cpp
-#: scene/2d/light_2d.cpp scene/2d/line_2d.cpp scene/2d/mesh_instance_2d.cpp
-#: scene/2d/multimesh_instance_2d.cpp scene/2d/polygon_2d.cpp
-#: scene/2d/sprite_2d.cpp scene/3d/gpu_particles_collision_3d.cpp
-#: scene/3d/light_3d.cpp scene/3d/sprite_3d.cpp scene/gui/nine_patch_rect.cpp
-#: scene/gui/texture_rect.cpp scene/main/canvas_item.cpp
-#: scene/main/scene_tree.cpp scene/main/viewport.cpp
-#: scene/resources/2d/tile_set.cpp scene/resources/material.cpp
-#: scene/resources/style_box_texture.cpp
-msgid "Texture"
-msgstr "बुनावट"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Margins"
-msgstr "मार्जिन्स"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: scene/theme/default_theme.cpp
-msgid "Separation"
-msgstr "विभाजन"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Texture Region Size"
-msgstr "बुनावट क्षेत्र आकार"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Use Texture Padding"
-msgstr "बुनावट पैडिंग का उपयोग करें"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Atlas Coords"
-msgstr "एटलस निर्देशांक"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Size in Atlas"
-msgstr "एटलस में आकार"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Alternative ID"
-msgstr "वैकल्पिक ID"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: scene/2d/camera_2d.cpp scene/resources/camera_attributes.cpp
-msgid "Speed"
-msgstr "स्पीड"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-msgid "Frames Count"
-msgstr "फ़्रेम गणना"
-
-#: editor/scene/2d/tiles/tile_set_atlas_source_editor.cpp
-#: modules/openxr/action_map/openxr_haptic_feedback.cpp
-#: scene/3d/look_at_modifier_3d.cpp
-msgid "Duration"
-msgstr "अवधि"
-
 #: editor/scene/3d/bone_map_editor_plugin.cpp
 msgid "Current Group Idx"
 msgstr "वर्तमान समूह Idx"
@@ -3020,6 +3101,12 @@ msgstr "गिज़मो कलर्स"
 #: editor/scene/3d/gizmos/particles_3d_emission_shape_gizmo_plugin.cpp
 msgid "Particles Emission Shape"
 msgstr "कण उत्सर्जन आकार"
+
+#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: scene/resources/3d/mesh_library.cpp
+#, fuzzy
+msgid "Category"
+msgstr "ऐप श्रेणी"
 
 #: editor/scene/3d/mesh_library_editor_plugin.cpp modules/csg/csg_shape.cpp
 #: modules/gltf/structures/gltf_mesh.cpp modules/gltf/structures/gltf_node.cpp
@@ -3059,13 +3146,13 @@ msgstr "नेविगेशन मेश"
 msgid "Navigation Mesh Transform"
 msgstr "नेविगेशन मेश ट्रांसफ़ॉर्म"
 
-#: editor/scene/3d/mesh_library_editor_plugin.cpp
+#: editor/scene/3d/mesh_library_editor_plugin.cpp modules/tilemap/tile_set.cpp
 #: scene/2d/navigation/navigation_agent_2d.cpp
 #: scene/2d/navigation/navigation_link_2d.cpp
 #: scene/2d/navigation/navigation_region_2d.cpp
 #: scene/3d/navigation/navigation_agent_3d.cpp
 #: scene/3d/navigation/navigation_link_3d.cpp
-#: scene/3d/navigation/navigation_region_3d.cpp scene/resources/2d/tile_set.cpp
+#: scene/3d/navigation/navigation_region_3d.cpp
 #: scene/resources/3d/mesh_library.cpp
 #: servers/navigation_2d/navigation_path_query_parameters_2d.cpp
 #: servers/navigation_3d/navigation_path_query_parameters_3d.cpp
@@ -3098,6 +3185,11 @@ msgid "Use Threads"
 msgstr "थ्रेड्स का प्रयोग करें"
 
 #: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Show Incompatible Assets"
+msgstr "असंगत त्रिक"
+
+#: editor/settings/editor_settings.cpp
 msgid "Available URLs"
 msgstr "उपलब्ध URLs"
 
@@ -3116,6 +3208,11 @@ msgstr "डॉक टैब शैली"
 #: editor/settings/editor_settings.cpp
 msgid "Bottom Dock Tab Style"
 msgstr "बॉटम डॉक टैब स्टाइल"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Main Screen Dock Tab Style"
+msgstr "डॉक टैब शैली"
 
 #: editor/settings/editor_settings.cpp
 msgid "UI Layout Direction"
@@ -3165,6 +3262,10 @@ msgstr "नेटिव नत्थी डायलॉग का उपयो�
 #: editor/settings/editor_settings.cpp
 msgid "Expand to Title"
 msgstr "शीर्षक तक विस्तृत करें"
+
+#: editor/settings/editor_settings.cpp
+msgid "Max Sticky Tree Items"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Main Font Size"
@@ -3295,12 +3396,12 @@ msgid "Show Renderer Selector"
 msgstr "रेंडरर चयनकर्ता दिखाएँ"
 
 #: editor/settings/editor_settings.cpp
-msgid "Derive Script Globals by Name"
-msgstr "नाम से स्क्रिप्ट ग्लोबल्स प्राप्त करें"
-
-#: editor/settings/editor_settings.cpp
 msgid "Scene Tree"
 msgstr "दृश्य वृक्ष"
+
+#: editor/settings/editor_settings.cpp
+msgid "Derive Script Globals by Name"
+msgstr "नाम से स्क्रिप्ट ग्लोबल्स प्राप्त करें"
 
 #: editor/settings/editor_settings.cpp
 msgid "Ask Before Revoking Unique Name"
@@ -3622,11 +3723,6 @@ msgstr "थंबनेल साइज"
 msgid "Quick Open Dialog"
 msgstr "त्वरित खुला संवाद"
 
-#: editor/settings/editor_settings.cpp scene/2d/physics/shape_cast_2d.cpp
-#: scene/3d/physics/shape_cast_3d.cpp
-msgid "Max Results"
-msgstr "अधिकतम परिणाम"
-
 #: editor/settings/editor_settings.cpp
 msgid "Instant Preview"
 msgstr "तुरंत प्रीव्यू"
@@ -3900,6 +3996,11 @@ msgid "Empty Selection Clipboard"
 msgstr "क्लिपबोर्ड में कुछ नहीं चुना गया है"
 
 #: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Find in File Extensions"
+msgstr "फ़ाइल एक्सटेंशन में खोजें"
+
+#: editor/settings/editor_settings.cpp
 msgid "Move Caret on Right Click"
 msgstr "दाएं क्लिक पर कैरेट ले जाएं"
 
@@ -4000,14 +4101,18 @@ msgid "Drop Preload Resources as UID"
 msgstr "प्रीलोड संसाधनों को UID के रूप में हटाएं"
 
 #: editor/settings/editor_settings.cpp
-#, fuzzy
-msgid "Documentation"
-msgstr "ऑनलाइन डॉक्स"
+msgid "Diagnostics"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
 msgid "Enable Tooltips"
 msgstr "हल नहीं कर सकते"
+
+#: editor/settings/editor_settings.cpp
+#, fuzzy
+msgid "Documentation"
+msgstr "ऑनलाइन डॉक्स"
 
 #: editor/settings/editor_settings.cpp
 #, fuzzy
@@ -4156,6 +4261,10 @@ msgstr "कक्षा संदर्भ उदाहरण"
 #: editor/settings/editor_settings.cpp
 msgid "Sort Functions Alphabetically"
 msgstr "फ़ंक्शन को वर्णानुक्रम में क्रमबद्ध करें"
+
+#: editor/settings/editor_settings.cpp
+msgid "Show Property Setters and Getters"
+msgstr ""
 
 #: editor/settings/editor_settings.cpp
 msgid "Grid Map"
@@ -5181,7 +5290,7 @@ msgstr "पाथ कौपी कीजिये"
 msgid "Max Log Files"
 msgstr "फिल्टर:"
 
-#: main/main.cpp main/performance.cpp servers/audio/audio_server.cpp
+#: main/main.cpp main/performance.cpp servers/audio/audio_driver.cpp
 #: servers/rendering/rendering_server.cpp
 msgid "Driver"
 msgstr "ड्राइवर"
@@ -5363,6 +5472,10 @@ msgid "Foveation with Subsampled Images"
 msgstr ""
 
 #: main/main.cpp
+msgid "Create Default Foveated Inset Viewport"
+msgstr ""
+
+#: main/main.cpp
 msgid "Submit Depth Buffer"
 msgstr "गहराई बफर सबमिट करें"
 
@@ -5392,6 +5505,11 @@ msgstr "फ्रेम संश्लेषण"
 
 #: main/main.cpp
 #, fuzzy
+msgid "Flip Y"
+msgstr "पलटना H"
+
+#: main/main.cpp
+#, fuzzy
 msgid "Hand Tracking"
 msgstr "पैक कर रहा है"
 
@@ -5409,6 +5527,21 @@ msgstr "पैक कर रहा है"
 #, fuzzy
 msgid "Hand Interaction Profile"
 msgstr "इंटरपोलेशन मोड"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Spatial Container"
+msgstr "बटन अनुक्रमणिका"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Bounds Mode"
+msgstr "माउस मोड"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Bounds"
+msgstr "उछाल"
 
 #: main/main.cpp
 #, fuzzy
@@ -5442,13 +5575,13 @@ msgstr "अधिकतम लंबित कनेक्शन"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Enable Marker Tracking"
+msgid "Marker Tracking"
 msgstr "फ्रेम पेइसिंग सक्षम करें"
 
 #: main/main.cpp
 #, fuzzy
-msgid "Enable Builtin Marker Tracking"
-msgstr "फ्रेम पेइसिंग सक्षम करें"
+msgid "Enable Builtin for Types"
+msgstr "अधिकतम लंबित कनेक्शन"
 
 #: main/main.cpp
 #: modules/openxr/extensions/spatial_entities/openxr_spatial_marker_tracking.cpp
@@ -5487,6 +5620,40 @@ msgstr "एनालॉग थ्रेशोल्ड"
 #, fuzzy
 msgid "Dpad Binding"
 msgstr "कोन्स्टन्ट"
+
+#: main/main.cpp
+#, fuzzy
+msgid "visionOS"
+msgstr "उत्सर्जन"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Enable Hand Tracking"
+msgstr "फ्रेम पेइसिंग सक्षम करें"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Enable Controller Tracking"
+msgstr "फ्रेम पेइसिंग सक्षम करें"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Dynamic Render Quality"
+msgstr "गतिक परास"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Maximum Quality"
+msgstr "अधिकतम चौड़ाई"
+
+#: main/main.cpp
+#, fuzzy
+msgid "Upper Limb Visibility"
+msgstr "दृश्यता"
+
+#: main/main.cpp
+msgid "Persistent System Overlays"
+msgstr ""
 
 #: main/main.cpp
 msgid "Boot Splash"
@@ -5537,11 +5704,6 @@ msgstr "विंडोज़ मूल चिह्न"
 #, fuzzy
 msgid "Text Driver"
 msgstr "टैब ड्राइवर"
-
-#: main/main.cpp
-#, fuzzy
-msgid "Search in File Extensions"
-msgstr "फ़ाइल एक्सटेंशन में खोजें"
 
 #: main/main.cpp
 msgid "Mouse Cursor"
@@ -5803,6 +5965,10 @@ msgstr "सदस्यता बनाएं"
 msgid "Navigation 3D"
 msgstr "सदस्यता बनाएं"
 
+#: main/performance.cpp
+msgid "Streaming Texture Mem Used"
+msgstr ""
+
 #: modules/basis_universal/register_types.cpp
 msgid "Basis Universal"
 msgstr "आधार सार्वभौमिक"
@@ -5856,8 +6022,9 @@ msgstr "सदस्यता बनाएं"
 msgid "Use Collision"
 msgstr "सदस्यता बनाएं"
 
-#: modules/csg/csg_shape.cpp servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: modules/csg/csg_shape.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Collision Layer"
 msgstr "सदस्यता बनाएं"
@@ -5865,8 +6032,15 @@ msgstr "सदस्यता बनाएं"
 #: modules/csg/csg_shape.cpp scene/2d/physics/ray_cast_2d.cpp
 #: scene/2d/physics/shape_cast_2d.cpp scene/3d/physics/ray_cast_3d.cpp
 #: scene/3d/physics/shape_cast_3d.cpp scene/3d/physics/spring_arm_3d.cpp
-#: scene/resources/navigation_mesh.cpp servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: scene/resources/navigation_mesh.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+#: servers/physics_3d/queries/physics_point_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
 #, fuzzy
 msgid "Collision Mask"
 msgstr "सदस्यता बनाएं"
@@ -5880,8 +6054,9 @@ msgstr "सदस्यता बनाएं"
 msgid "Flip Faces"
 msgstr "चेहरे पलटें"
 
-#: modules/csg/csg_shape.cpp scene/3d/fog_volume.cpp scene/main/canvas_item.cpp
-#: scene/resources/2d/tile_set.cpp scene/resources/3d/primitive_meshes.cpp
+#: modules/csg/csg_shape.cpp modules/tilemap/tile_set.cpp
+#: scene/3d/fog_volume.cpp scene/3d/trail_3d.cpp scene/main/canvas_item.cpp
+#: scene/resources/3d/primitive_meshes.cpp
 msgid "Material"
 msgstr "सामग्री"
 
@@ -5919,10 +6094,10 @@ msgstr "बाहरी त्रिज्या"
 msgid "Ring Sides"
 msgstr "रिंग साइड"
 
-#: modules/csg/csg_shape.cpp scene/2d/light_occluder_2d.cpp
-#: scene/2d/physics/collision_polygon_2d.cpp scene/2d/polygon_2d.cpp
-#: scene/3d/occluder_instance_3d.cpp scene/3d/physics/collision_polygon_3d.cpp
-#: scene/resources/2d/tile_set.cpp
+#: modules/csg/csg_shape.cpp modules/tilemap/tile_set.cpp
+#: scene/2d/light_occluder_2d.cpp scene/2d/physics/collision_polygon_2d.cpp
+#: scene/2d/polygon_2d.cpp scene/3d/occluder_instance_3d.cpp
+#: scene/3d/physics/collision_polygon_3d.cpp
 #, fuzzy
 msgid "Polygon"
 msgstr "सदस्यता बनाएं"
@@ -6236,6 +6411,11 @@ msgstr "Onready के बिना नोड डिफ़ॉल्ट प्र
 msgid "Onready With Export"
 msgstr "निर्यात के साथ तैयार"
 
+#: modules/gdscript/gdscript_warning.cpp
+#, fuzzy
+msgid "Onready With Cast"
+msgstr "निर्यात के साथ तैयार"
+
 #: modules/gltf/editor/editor_scene_exporter_gltf_settings.cpp
 #: modules/gltf/gltf_state.cpp platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
@@ -6264,12 +6444,12 @@ msgstr "मोड टॉगल कीजिये"
 #: modules/gltf/extensions/gltf_light.cpp scene/2d/canvas_modulate.cpp
 #: scene/2d/cpu_particles_2d.cpp scene/2d/light_2d.cpp scene/2d/polygon_2d.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/light_3d.cpp
-#: scene/3d/reflection_probe.cpp scene/animation/root_motion_view.cpp
-#: scene/gui/color_picker.cpp scene/gui/color_rect.cpp
-#: scene/gui/rich_text_effect.cpp scene/main/canvas_item.cpp
-#: scene/resources/3d/sky_material.cpp scene/resources/environment.cpp
-#: scene/resources/label_settings.cpp scene/resources/material.cpp
-#: scene/resources/particle_process_material.cpp
+#: scene/3d/reflection_probe.cpp scene/3d/trail_3d.cpp
+#: scene/animation/root_motion_view.cpp scene/gui/color_picker.cpp
+#: scene/gui/color_rect.cpp scene/gui/rich_text_effect.cpp
+#: scene/main/canvas_item.cpp scene/resources/3d/sky_material.cpp
+#: scene/resources/environment.cpp scene/resources/label_settings.cpp
+#: scene/resources/material.cpp scene/resources/particle_process_material.cpp
 #: scene/resources/style_box_flat.cpp scene/resources/style_box_line.cpp
 #: scene/resources/style_box_texture.cpp
 msgid "Color"
@@ -6327,26 +6507,28 @@ msgid "Mass"
 msgstr "द्रव्यमान"
 
 #: modules/gltf/extensions/physics/gltf_physics_body.cpp
-#: scene/3d/physics/physical_bone_3d.cpp scene/resources/2d/tile_set.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp servers/xr/xr_pose.cpp
+#: modules/tilemap/tile_set.cpp scene/3d/physics/physical_bone_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+#: servers/xr/xr_pose.cpp
 #, fuzzy
 msgid "Linear Velocity"
 msgstr "रैखिक"
 
 #: modules/gltf/extensions/physics/gltf_physics_body.cpp
-#: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
-#: scene/3d/physics/physical_bone_3d.cpp scene/resources/2d/tile_set.cpp
+#: modules/tilemap/tile_set.cpp scene/2d/cpu_particles_2d.cpp
+#: scene/3d/cpu_particles_3d.cpp scene/3d/physics/physical_bone_3d.cpp
 #: scene/resources/particle_process_material.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp servers/xr/xr_pose.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+#: servers/xr/xr_pose.cpp
 msgid "Angular Velocity"
 msgstr "कोणीय वेग"
 
 #: modules/gltf/extensions/physics/gltf_physics_body.cpp
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Center of Mass"
 msgstr "को हटा दें"
@@ -6400,7 +6582,7 @@ msgid "Root Node Mode"
 msgstr "रूट नोड"
 
 #: modules/gltf/gltf_document.cpp modules/gridmap/grid_map.cpp
-#: scene/2d/physics/touch_screen_button.cpp scene/2d/tile_map_layer.cpp
+#: modules/tilemap/tile_map_layer.cpp scene/2d/physics/touch_screen_button.cpp
 #: scene/gui/virtual_joystick.cpp
 msgid "Visibility Mode"
 msgstr "दृश्यता मोड"
@@ -6799,6 +6981,16 @@ msgstr "प्राथमिकता"
 #, fuzzy
 msgid "Bake Navigation"
 msgstr "सदस्यता बनाएं"
+
+#: modules/gridmap/grid_map.cpp
+#, fuzzy
+msgid "Debug Show Octants"
+msgstr "डीबग करें"
+
+#: modules/gridmap/grid_map.cpp
+#, fuzzy
+msgid "Debug Octant Color"
+msgstr "चूक"
 
 #: modules/interactive_music/audio_stream_interactive.cpp
 #, fuzzy
@@ -7298,10 +7490,10 @@ msgid "Fractal Gain"
 msgstr "आंशिक लाभ"
 
 #: modules/noise/noise_texture_2d.cpp modules/noise/noise_texture_3d.cpp
-#: scene/2d/line_2d.cpp scene/3d/label_3d.cpp scene/gui/text_edit.cpp
-#: scene/resources/3d/primitive_meshes.cpp scene/resources/curve_texture.cpp
-#: scene/resources/gradient_texture.cpp scene/resources/text_line.cpp
-#: scene/resources/text_paragraph.cpp
+#: scene/2d/line_2d.cpp scene/3d/label_3d.cpp scene/3d/trail_3d.cpp
+#: scene/gui/text_edit.cpp scene/resources/3d/primitive_meshes.cpp
+#: scene/resources/curve_texture.cpp scene/resources/gradient_texture.cpp
+#: scene/resources/text_line.cpp scene/resources/text_paragraph.cpp
 msgid "Width"
 msgstr "चौड़ाई"
 
@@ -7373,6 +7565,12 @@ msgstr "इंटरपोलेशन मोड"
 #, fuzzy
 msgid "Actions"
 msgstr "कार्य"
+
+#: modules/openxr/action_map/openxr_haptic_feedback.cpp
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: scene/3d/look_at_modifier_3d.cpp
+msgid "Duration"
+msgstr "अवधि"
 
 #: modules/openxr/action_map/openxr_interaction_profile.cpp
 #, fuzzy
@@ -7665,19 +7863,367 @@ msgstr "ट्रैक जोड़ें"
 msgid "Make Local to Pose"
 msgstr "स्थानीय से दृश्य"
 
-#: modules/regex/regex.cpp
-msgid "Subject"
-msgstr "विषय"
+#: modules/texture_streaming/texture_streaming.cpp
+msgid "Memory Budget (MB) Override"
+msgstr ""
 
-#: modules/regex/regex.cpp
+#: modules/texture_streaming/texture_streaming.cpp
 #, fuzzy
-msgid "Names"
-msgstr "नाम"
+msgid "Memory Budget Enabled"
+msgstr "स्क्रीनिंग सिग्नल"
 
-#: modules/regex/regex.cpp scene/gui/code_edit.cpp
+#: modules/texture_streaming/texture_streaming.cpp
+msgid "Memory Budget (MB)"
+msgstr ""
+
+#: modules/texture_streaming/texture_streaming.cpp
 #, fuzzy
-msgid "Strings"
-msgstr "एडीटर सेटिन्गस..."
+msgid "Max Ops per Second"
+msgstr "प्रति सेकंड अधिकतम अक्षर"
+
+#: modules/texture_streaming/texture_streaming.cpp
+#, fuzzy
+msgid "Min LOD"
+msgstr "आकार: "
+
+#: modules/texture_streaming/texture_streaming.cpp
+#, fuzzy
+msgid "Max LOD"
+msgstr "मेश LOD"
+
+#: modules/texture_streaming/texture_streaming.cpp
+msgid "Inactivity Decay Rate (ms)"
+msgstr ""
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: modules/tilemap/editor/tile_set_scenes_collection_source_editor.cpp
+msgid "ID"
+msgstr "ID"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: modules/tilemap/tile_set.cpp
+#: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
+#: scene/2d/cpu_particles_2d.cpp scene/2d/gpu_particles_2d.cpp
+#: scene/2d/light_2d.cpp scene/2d/line_2d.cpp scene/2d/mesh_instance_2d.cpp
+#: scene/2d/multimesh_instance_2d.cpp scene/2d/polygon_2d.cpp
+#: scene/2d/sprite_2d.cpp scene/3d/gpu_particles_collision_3d.cpp
+#: scene/3d/light_3d.cpp scene/3d/sprite_3d.cpp scene/gui/nine_patch_rect.cpp
+#: scene/gui/texture_rect.cpp scene/main/canvas_item.cpp
+#: scene/main/scene_tree.cpp scene/main/viewport.cpp
+#: scene/resources/material.cpp scene/resources/style_box_texture.cpp
+msgid "Texture"
+msgstr "बुनावट"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Margins"
+msgstr "मार्जिन्स"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: scene/theme/default_theme.cpp
+msgid "Separation"
+msgstr "विभाजन"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Texture Region Size"
+msgstr "बुनावट क्षेत्र आकार"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Use Texture Padding"
+msgstr "बुनावट पैडिंग का उपयोग करें"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Atlas Coords"
+msgstr "एटलस निर्देशांक"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Size in Atlas"
+msgstr "एटलस में आकार"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Alternative ID"
+msgstr "वैकल्पिक ID"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+#: scene/2d/camera_2d.cpp scene/resources/camera_attributes.cpp
+msgid "Speed"
+msgstr "स्पीड"
+
+#: modules/tilemap/editor/tile_set_atlas_source_editor.cpp
+msgid "Frames Count"
+msgstr "फ़्रेम गणना"
+
+#: modules/tilemap/tile_map.cpp modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Tile Set"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_map.cpp modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Rendering Quadrant Size"
+msgstr "रेंडरिंग"
+
+#: modules/tilemap/tile_map.cpp
+#, fuzzy
+msgid "Collision Animatable"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_map.cpp modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Visibility Mode"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_map.cpp
+#, fuzzy
+msgid "Navigation Visibility Mode"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Occlusion Enabled"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_map_layer.cpp modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Y Sort Origin"
+msgstr "संस्करण:"
+
+#: modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "X Draw Order Reversed"
+msgstr "X ड्रॉ ऑर्डर उल्टा"
+
+#: modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Collision Enabled"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_map_layer.cpp
+msgid "Use Kinematic Bodies"
+msgstr "किनेमैटिक देह का उपयोग करें"
+
+#: modules/tilemap/tile_map_layer.cpp
+#, fuzzy
+msgid "Physics Quadrant Size"
+msgstr "रेंडरिंग"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Right Side"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Right Corner"
+msgstr "कार्यों"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Bottom Right Side"
+msgstr "शो में फाइल सिस्टम"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Bottom Right Corner"
+msgstr "आइटम निकालें"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Bottom Side"
+msgstr "आइटम निकालें"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Bottom Corner"
+msgstr "आइटम निकालें"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Bottom Left Side"
+msgstr "नीचे बाईं ओर"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Bottom Left Corner"
+msgstr "आइटम निकालें"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Left Side"
+msgstr "समय"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Left Corner"
+msgstr "स्केल अनुपात:"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Top Left Side"
+msgstr "डेवलपर्स"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Top Left Corner"
+msgstr "शीर्ष बायां कोना"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Top Side"
+msgstr "अनेक ग्रुप"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Top Corner"
+msgstr "आइटम निकालें"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Top Right Side"
+msgstr "शीर्ष दाहिनी ओर"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Top Right Corner"
+msgstr "शीर्ष दायां कोना"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Terrains"
+msgstr "भूमियाँ"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Custom Data"
+msgstr "कस्टम उपयोगकर्ता डायरेक्टरी का उपयोग करें"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Tile Shape"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Tile Layout"
+msgstr "लेआउट हटाएं"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Tile Offset Axis"
+msgstr "नोड वक्र संपादित करें"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Tile Size"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_set.cpp
+msgid "UV Clipping"
+msgstr "यूवी क्लिपिंग"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Occlusion Layers"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Physics Layers"
+msgstr "फिजिक्स फ्रेम %"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Terrain Sets"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Custom Data Layers"
+msgstr "अनेक सेट करे:"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Scenes"
+msgstr "मुख्य दृश्य"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Scene"
+msgstr "मुख्य दृश्य"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Display Placeholder"
+msgstr "सब दिखाइए"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Polygons Count"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_set.cpp scene/2d/cpu_particles_2d.cpp
+#: scene/2d/line_2d.cpp scene/3d/cpu_particles_3d.cpp
+#: scene/resources/2d/convex_polygon_shape_2d.cpp
+#: scene/resources/3d/convex_polygon_shape_3d.cpp scene/resources/curve.cpp
+#, fuzzy
+msgid "Points"
+msgstr "बिंदु"
+
+#: modules/tilemap/tile_set.cpp
+msgid "One Way"
+msgstr "एक तरफ़ा रास्ता"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "One Way Margin"
+msgstr "सदस्यता बनाएं"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Terrains Peering Bit"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_set.cpp scene/2d/animated_sprite_2d.cpp
+#: scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp scene/gui/texture_button.cpp
+#: scene/gui/texture_rect.cpp
+msgid "Flip H"
+msgstr "पलटना H"
+
+#: modules/tilemap/tile_set.cpp scene/2d/animated_sprite_2d.cpp
+#: scene/2d/sprite_2d.cpp scene/3d/sprite_3d.cpp scene/gui/texture_button.cpp
+#: scene/gui/texture_rect.cpp
+msgid "Flip V"
+msgstr "पलटना V"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Transpose"
+msgstr "ट्रांसपोज़"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Texture Origin"
+msgstr "सुविधाऐं"
+
+#: modules/tilemap/tile_set.cpp scene/3d/decal.cpp scene/3d/label_3d.cpp
+#: scene/3d/sprite_3d.cpp scene/main/canvas_item.cpp
+#: scene/resources/style_box_texture.cpp
+msgid "Modulate"
+msgstr "मिलाना"
+
+#: modules/tilemap/tile_set.cpp scene/main/canvas_item.cpp
+msgid "Z Index"
+msgstr "Z सूचकांक"
+
+#: modules/tilemap/tile_set.cpp
+#, fuzzy
+msgid "Terrain Set"
+msgstr "Tileset ..."
+
+#: modules/tilemap/tile_set.cpp
+msgid "Terrain"
+msgstr "भू-भाग"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Miscellaneous"
+msgstr "विविध"
+
+#: modules/tilemap/tile_set.cpp
+msgid "Probability"
+msgstr "संभावना"
 
 #: modules/upnp/upnp.cpp
 msgid "Discover Multicast If"
@@ -7802,6 +8348,26 @@ msgstr "नाम"
 msgid "Varying Type"
 msgstr "संस्करण:"
 
+#: modules/visual_shader/visual_shader_group.cpp
+#, fuzzy
+msgid "Group Name"
+msgstr "संसाधन"
+
+#: modules/visual_shader/visual_shader_group.cpp
+#, fuzzy
+msgid "Input Port Count"
+msgstr "पसंदीदा:"
+
+#: modules/visual_shader/visual_shader_group.cpp
+#, fuzzy
+msgid "Output Port Count"
+msgstr "पूर्वावलोकन के लिए आउटपुट पोर्ट"
+
+#: modules/visual_shader/visual_shader_group.cpp scene/main/node.cpp
+#, fuzzy
+msgid "Group"
+msgstr "अनेक ग्रुप"
+
 #: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp
 #: modules/visual_shader/vs_nodes/visual_shader_particle_nodes.cpp
 #, fuzzy
@@ -7846,8 +8412,9 @@ msgid "Hint"
 msgstr "संकेत"
 
 #: modules/visual_shader/vs_nodes/visual_shader_nodes.cpp scene/gui/range.cpp
-#: scene/resources/animation.cpp servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: scene/resources/animation.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 msgid "Step"
 msgstr "कदम"
 
@@ -7993,6 +8560,11 @@ msgid "Requested Reference Space Types"
 msgstr "अनुरोधित संदर्भ स्थान प्रकार"
 
 #: modules/webxr/webxr_interface.cpp
+#, fuzzy
+msgid "Disable Webxr Layers"
+msgstr "बंद कर दिया गया है"
+
+#: modules/webxr/webxr_interface.cpp
 msgid "Reference Space Type"
 msgstr "संदर्भ स्थान प्रकार"
 
@@ -8018,6 +8590,16 @@ msgstr "डीबग करें"
 #: platform/android/export/export.cpp
 msgid "Debug Keystore Pass"
 msgstr "कीस्टोर पास डीबग करें"
+
+#: platform/android/export/export.cpp
+#, fuzzy
+msgid "Build"
+msgstr "SDK निर्माण"
+
+#: platform/android/export/export.cpp
+#, fuzzy
+msgid "Automatically Delete Build Directory"
+msgstr "डायरेक्टरी चुनें"
 
 #: platform/android/export/export.cpp
 msgid "Install Exported APK"
@@ -8141,6 +8723,11 @@ msgstr "एंड्रॉइड स्रोत टेम्पलेट"
 #: platform/android/export/export_plugin.cpp
 msgid "Compress Native Libraries"
 msgstr "मूल लाइब्रेरी को संपीड़ित करें"
+
+#: platform/android/export/export_plugin.cpp
+#, fuzzy
+msgid "Minification"
+msgstr "कोन्स्टन्ट"
 
 #: platform/android/export/export_plugin.cpp
 #, fuzzy
@@ -8359,6 +8946,14 @@ msgid "Custom BG Color"
 msgstr "प्रतिलिपि"
 
 #: platform/ios/export/export_plugin.cpp
+msgid "Performance Gaming Tier"
+msgstr "प्रदर्शन गेमिंग टियर"
+
+#: platform/ios/export/export_plugin.cpp
+msgid "Performance A 12"
+msgstr "प्रदर्शन ए 12"
+
+#: platform/ios/export/export_plugin.cpp
 #, fuzzy
 msgid "Settings 58 X 58"
 msgstr "सेटिंग्स"
@@ -8429,6 +9024,7 @@ msgid "App Store 1024 X 1024"
 msgstr "ऐप स्टोर 1024 X 1024"
 
 #: platform/linuxbsd/export/export_plugin.cpp
+#: platform/macos/export/export_plugin.cpp
 #: platform/windows/export/export_plugin.cpp
 msgid "Architecture"
 msgstr "वास्तुकला"
@@ -8715,6 +9311,22 @@ msgid "API Key ID"
 msgstr "API कुंजी ID"
 
 #: platform/macos/export/export_plugin.cpp
+msgid "Microphone Usage Description"
+msgstr "माइक्रोफोन उपयोग विवरण"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Microphone Usage Description Localized"
+msgstr "माइक्रोफोन उपयोग विवरण स्थानीयकृत"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Camera Usage Description"
+msgstr "कैमरा उपयोग विवरण"
+
+#: platform/macos/export/export_plugin.cpp
+msgid "Camera Usage Description Localized"
+msgstr "कैमरा उपयोग विवरण स्थानीयकृत"
+
+#: platform/macos/export/export_plugin.cpp
 #, fuzzy
 msgid "Location Usage Description"
 msgstr "विवरण"
@@ -8804,6 +9416,30 @@ msgstr "मेथड विवरण"
 #, fuzzy
 msgid "Min visionOS Version"
 msgstr "संस्करण:"
+
+#: platform/visionos/export/export_plugin.cpp
+msgid "App Role"
+msgstr ""
+
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Immersion Style"
+msgstr "मोड टॉगल कीजिये"
+
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Icon Front Layer 1024 X 1024"
+msgstr "दृश्यचिन्ह 1024 X 1024"
+
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Icon Middle Layer 1024 X 1024"
+msgstr "दृश्यचिन्ह 1024 X 1024"
+
+#: platform/visionos/export/export_plugin.cpp
+#, fuzzy
+msgid "Icon Back Layer 1024 X 1024"
+msgstr "दृश्यचिन्ह 1024 X 1024"
 
 #: platform/web/export/export.cpp
 msgid "Web"
@@ -9024,18 +9660,6 @@ msgstr "गति पैमाना"
 #, fuzzy
 msgid "Centered"
 msgstr "को हटा दें"
-
-#: scene/2d/animated_sprite_2d.cpp scene/2d/sprite_2d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/texture_button.cpp
-#: scene/gui/texture_rect.cpp scene/resources/2d/tile_set.cpp
-msgid "Flip H"
-msgstr "पलटना H"
-
-#: scene/2d/animated_sprite_2d.cpp scene/2d/sprite_2d.cpp
-#: scene/3d/sprite_3d.cpp scene/gui/texture_button.cpp
-#: scene/gui/texture_rect.cpp scene/resources/2d/tile_set.cpp
-msgid "Flip V"
-msgstr "पलटना V"
 
 #: scene/2d/audio_listener_2d.cpp scene/3d/audio_listener_3d.cpp
 #: scene/3d/camera_3d.cpp scene/3d/xr/xr_nodes.cpp
@@ -9259,12 +9883,14 @@ msgstr "संकेत"
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/gpu_particles_2d.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/gpu_particles_3d.cpp
+#: scene/3d/trail_3d.cpp
 #, fuzzy
 msgid "Emitting"
 msgstr "एडीटर सेटिन्गस..."
 
 #: scene/2d/cpu_particles_2d.cpp scene/2d/gpu_particles_2d.cpp
 #: scene/3d/cpu_particles_3d.cpp scene/3d/gpu_particles_3d.cpp
+#: scene/3d/trail_3d.cpp
 msgid "Lifetime"
 msgstr "जीवनकाल"
 
@@ -9338,8 +9964,8 @@ msgstr "दृश्यमान टकराव आकार"
 #: scene/3d/cpu_particles_3d.cpp scene/3d/fog_volume.cpp
 #: scene/3d/physics/collision_shape_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/primitive_meshes.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
 msgid "Shape"
 msgstr "आकार"
 
@@ -9350,14 +9976,6 @@ msgstr "गोले की त्रिज्या"
 #: scene/2d/cpu_particles_2d.cpp
 msgid "Rect Extents"
 msgstr "रेक्ट विस्तार"
-
-#: scene/2d/cpu_particles_2d.cpp scene/2d/line_2d.cpp
-#: scene/3d/cpu_particles_3d.cpp scene/resources/2d/convex_polygon_shape_2d.cpp
-#: scene/resources/2d/tile_set.cpp
-#: scene/resources/3d/convex_polygon_shape_3d.cpp scene/resources/curve.cpp
-#, fuzzy
-msgid "Points"
-msgstr "बिंदु"
 
 #: scene/2d/cpu_particles_2d.cpp scene/3d/cpu_particles_3d.cpp
 msgid "Normals"
@@ -9730,7 +10348,7 @@ msgstr "सदस्यता बनाएं"
 msgid "Occluder Light Mask"
 msgstr "सदस्यता बनाएं"
 
-#: scene/2d/line_2d.cpp
+#: scene/2d/line_2d.cpp scene/3d/trail_3d.cpp
 #, fuzzy
 msgid "Width Curve"
 msgstr "नोड वक्र संपादित करें"
@@ -10103,8 +10721,10 @@ msgid "Ignore Camera Zoom"
 msgstr "कैमरा ज़ूम को अनदेखा करें"
 
 #: scene/2d/parallax_layer.cpp scene/3d/physics/vehicle_body_3d.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
 #, fuzzy
 msgid "Motion"
 msgstr "कार्य"
@@ -10168,6 +10788,8 @@ msgid "Space Override"
 msgstr "अधिभावी करता है:"
 
 #: scene/2d/physics/area_2d.cpp scene/3d/physics/area_3d.cpp
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
 msgid "Point"
 msgstr "बिंदु"
 
@@ -10318,8 +10940,10 @@ msgstr "सदस्यता बनाएं"
 #: scene/3d/physics/collision_polygon_3d.cpp scene/3d/physics/shape_cast_3d.cpp
 #: scene/3d/physics/spring_arm_3d.cpp scene/resources/3d/shape_3d.cpp
 #: scene/resources/atlas_texture.cpp scene/theme/default_theme.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
 #, fuzzy
 msgid "Margin"
 msgstr "मार्जिन"
@@ -10453,8 +11077,8 @@ msgid "Target Position"
 msgstr "डॉक पोजीशन"
 
 #: scene/2d/physics/ray_cast_2d.cpp scene/3d/physics/ray_cast_3d.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
 #, fuzzy
 msgid "Hit From Inside"
 msgstr "अंदर से हिट करें"
@@ -10499,8 +11123,8 @@ msgid "Deactivation"
 msgstr "विवरण"
 
 #: scene/2d/physics/rigid_body_2d.cpp scene/3d/physics/rigid_body_3d.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Sleeping"
 msgstr "आकस्मिक:"
@@ -10692,60 +11316,6 @@ msgstr "फ़्रेम%"
 msgid "Filter Clip Enabled"
 msgstr "फिल्टर:"
 
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Tile Set"
-msgstr "Tileset ..."
-
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Rendering Quadrant Size"
-msgstr "रेंडरिंग"
-
-#: scene/2d/tile_map.cpp
-#, fuzzy
-msgid "Collision Animatable"
-msgstr "सदस्यता बनाएं"
-
-#: scene/2d/tile_map.cpp scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Collision Visibility Mode"
-msgstr "सदस्यता बनाएं"
-
-#: scene/2d/tile_map.cpp
-#, fuzzy
-msgid "Navigation Visibility Mode"
-msgstr "सदस्यता बनाएं"
-
-#: scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Occlusion Enabled"
-msgstr "सदस्यता बनाएं"
-
-#: scene/2d/tile_map_layer.cpp scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Y Sort Origin"
-msgstr "संस्करण:"
-
-#: scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "X Draw Order Reversed"
-msgstr "X ड्रॉ ऑर्डर उल्टा"
-
-#: scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Collision Enabled"
-msgstr "सदस्यता बनाएं"
-
-#: scene/2d/tile_map_layer.cpp
-msgid "Use Kinematic Bodies"
-msgstr "किनेमैटिक देह का उपयोग करें"
-
-#: scene/2d/tile_map_layer.cpp
-#, fuzzy
-msgid "Physics Quadrant Size"
-msgstr "रेंडरिंग"
-
 #: scene/2d/visible_on_screen_notifier_2d.cpp
 #, fuzzy
 msgid "Show Rect"
@@ -10847,6 +11417,15 @@ msgstr "अगले संपादक खोलें"
 msgid "External Skeleton"
 msgstr "नोड हटाएं"
 
+#: scene/3d/bone_space_adjuster_3d.cpp
+msgid "Use Bone Skin Scale for All Bones"
+msgstr ""
+
+#: scene/3d/bone_space_adjuster_3d.cpp
+#, fuzzy
+msgid "Setting Size"
+msgstr "सेटिंग्स"
+
 #: scene/3d/bone_twist_disperser_3d.cpp scene/3d/ik_modifier_3d.cpp
 #: scene/3d/spring_bone_simulator_3d.cpp
 #, fuzzy
@@ -10940,6 +11519,10 @@ msgstr "Albedo"
 
 #: scene/3d/decal.cpp scene/resources/2d/world_boundary_shape_2d.cpp
 #: scene/resources/material.cpp
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
 #, fuzzy
 msgctxt "Geometry"
 msgid "Normal"
@@ -10962,12 +11545,6 @@ msgstr "पैरैमिटर्स"
 #, fuzzy
 msgid "Emission Energy"
 msgstr "दृश्यमान टकराव आकार"
-
-#: scene/3d/decal.cpp scene/3d/label_3d.cpp scene/3d/sprite_3d.cpp
-#: scene/main/canvas_item.cpp scene/resources/2d/tile_set.cpp
-#: scene/resources/style_box_texture.cpp
-msgid "Modulate"
-msgstr "मिलाना"
 
 #: scene/3d/decal.cpp
 msgid "Albedo Mix"
@@ -11305,6 +11882,16 @@ msgstr "धुंधला"
 msgid "Caster Mask"
 msgstr "परत"
 
+#: scene/3d/light_3d.cpp
+#, fuzzy
+msgid "Contact Shadows"
+msgstr "छाया डालें"
+
+#: scene/3d/light_3d.cpp
+#, fuzzy
+msgid "Sky Mode"
+msgstr "मोड टॉगल कीजिये"
+
 #: scene/3d/light_3d.cpp servers/rendering/rendering_server.cpp
 #, fuzzy
 msgid "Directional Shadow"
@@ -11339,11 +11926,6 @@ msgstr "शुरू कीजिये"
 #, fuzzy
 msgid "Pancake Size"
 msgstr "पृष्ठ: माप"
-
-#: scene/3d/light_3d.cpp
-#, fuzzy
-msgid "Sky Mode"
-msgstr "मोड टॉगल कीजिये"
 
 #: scene/3d/light_3d.cpp
 #, fuzzy
@@ -11416,6 +11998,11 @@ msgstr "उछाल अप्रत्यक्ष ऊर्जा"
 #, fuzzy
 msgid "Directional"
 msgstr "निर्देशों"
+
+#: scene/3d/lightmap_gi.cpp
+#, fuzzy
+msgid "Specular Intensity"
+msgstr "तीव्रता"
 
 #: scene/3d/lightmap_gi.cpp
 #, fuzzy
@@ -11492,8 +12079,12 @@ msgid "Light Data"
 msgstr "प्रकाश डेटा"
 
 #: scene/3d/limit_angular_velocity_modifier_3d.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_point_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
 msgid "Exclude"
 msgstr "निकालना"
 
@@ -11526,8 +12117,10 @@ msgid "Origin Settings"
 msgstr "सेटिंग्स"
 
 #: scene/3d/look_at_modifier_3d.cpp scene/resources/gradient_texture.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
 #, fuzzy
 msgid "From"
 msgstr "सदस्यता बनाएं"
@@ -11560,6 +12153,11 @@ msgstr "कार्यों:"
 #: scene/3d/look_at_modifier_3d.cpp
 #, fuzzy
 msgid "Use Angle Limitation"
+msgstr "कार्यों:"
+
+#: scene/3d/look_at_modifier_3d.cpp
+#, fuzzy
+msgid "Use Rest for Limitation"
 msgstr "कार्यों:"
 
 #: scene/3d/look_at_modifier_3d.cpp
@@ -11822,6 +12420,11 @@ msgid "Equilibrium Point"
 msgstr "संतुलन बिंदु"
 
 #: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#, fuzzy
+msgid "Linear Drive"
+msgstr "रैखिक"
+
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
 #: scene/3d/physics/joints/slider_joint_3d.cpp
 msgid "Upper Angle"
 msgstr "ऊपरी कोण"
@@ -11845,6 +12448,16 @@ msgstr "कार्यों:"
 #, fuzzy
 msgid "Angular Spring"
 msgstr "कार्यों:"
+
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#, fuzzy
+msgid "Angular Drive"
+msgstr "इनस्टन्स"
+
+#: scene/3d/physics/joints/generic_6dof_joint_3d.cpp
+#, fuzzy
+msgid "Torque Limit"
+msgstr "कॉल"
 
 #: scene/3d/physics/joints/hinge_joint_3d.cpp
 #: scene/3d/physics/joints/pin_joint_3d.cpp
@@ -12082,7 +12695,8 @@ msgstr "कोणीय Y"
 msgid "Angular Z"
 msgstr "कोणीय Z"
 
-#: scene/3d/physics/ray_cast_3d.cpp servers/physics_3d/physics_server_3d.cpp
+#: scene/3d/physics/ray_cast_3d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
 msgid "Hit Back Faces"
 msgstr "पीछे की सतहों से टकराएं"
 
@@ -12282,10 +12896,6 @@ msgstr "एक नया बनाएं"
 msgid "Tip Bone"
 msgstr "टिप हड्डी"
 
-#: scene/3d/skeleton_ik_3d.cpp scene/3d/xr/xr_face_modifier_3d.cpp
-msgid "Target"
-msgstr "लक्ष्य"
-
 #: scene/3d/skeleton_ik_3d.cpp
 #, fuzzy
 msgid "Override Tip Basis"
@@ -12330,10 +12940,50 @@ msgstr "अंदर"
 msgid "External Force"
 msgstr "फ़ाइल खोलिये"
 
-#: scene/3d/velocity_tracker_3d.cpp
+#: scene/3d/trail_3d.cpp
 #, fuzzy
-msgid "Track Physics Step"
-msgstr "फिजिक्स फ्रेम %"
+msgid "Limit Mode"
+msgstr "सदस्यता बनाएं"
+
+#: scene/3d/trail_3d.cpp scene/gui/line_edit.cpp
+#: scene/resources/navigation_mesh.cpp
+msgid "Max Length"
+msgstr "अधिकतम लंबाई"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Color Gradient"
+msgstr "ग्रेडिएंट"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Mesh Alignment"
+msgstr "संरेखण"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Material Mode"
+msgstr "सामग्री"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Tiling Mode"
+msgstr "स्केलिंग मोड"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Tiling Multiplier"
+msgstr "अनेक सेट करे:"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Pin UV"
+msgstr "UV2 पर"
+
+#: scene/3d/trail_3d.cpp
+#, fuzzy
+msgid "Min Section Length"
+msgstr "एनिमेशन लंबाई बदलें"
 
 #: scene/3d/visual_instance_3d.cpp
 #, fuzzy
@@ -12691,6 +13341,10 @@ msgstr "चूक"
 msgid "Movie Quit on Finish"
 msgstr "मूवी खत्म होने पर बंद करें"
 
+#: scene/animation/animation_player.cpp
+msgid "Clear Cache on Stop"
+msgstr ""
+
 #: scene/animation/animation_tree.cpp
 #, fuzzy
 msgid "Tree Root"
@@ -12766,6 +13420,11 @@ msgstr "Docs की प्रतिक्रिया भेजें"
 #: scene/gui/base_button.cpp
 msgid "Allow Unpress"
 msgstr "अनप्रेस को अनुमति दें"
+
+#: scene/gui/box_container.cpp
+#, fuzzy
+msgid "Reverse Sort"
+msgstr "बस की ध्वनि मात्रा पूर्वरूप करे"
 
 #: scene/gui/button.cpp scene/gui/link_button.cpp
 #, fuzzy
@@ -12990,6 +13649,11 @@ msgstr "आकार: "
 msgid "Styles"
 msgstr "छोटा करो"
 
+#: scene/gui/control.cpp scene/main/window.cpp
+#, fuzzy
+msgid "Sounds"
+msgstr "चारों ओर"
+
 #: scene/gui/control.cpp
 #, fuzzy
 msgid "Custom Minimum Size"
@@ -13063,7 +13727,7 @@ msgstr "एनीमेशन परिवर्तन परिणत"
 msgid "Position Ratio"
 msgstr "स्थान"
 
-#: scene/gui/control.cpp
+#: scene/gui/control.cpp scene/theme/default_theme.cpp
 msgid "Pivot"
 msgstr ""
 
@@ -13286,6 +13950,21 @@ msgstr "अधिलेखित चेतावनी अक्षम करे
 #, fuzzy
 msgid "Deleting Enabled"
 msgstr "सिर्फ चयन किये हुए"
+
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Navigation Buttons Enabled"
+msgstr "स्क्रीनिंग सिग्नल"
+
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Drive Selector Enabled"
+msgstr "सिर्फ चयन किये हुए"
+
+#: scene/gui/file_dialog.cpp
+#, fuzzy
+msgid "Filters Enabled"
+msgstr "फिल्टर:"
 
 #: scene/gui/flow_container.cpp
 #, fuzzy
@@ -13557,6 +14236,20 @@ msgid "Tab Stops"
 msgstr "टैब स्टॉप"
 
 #: scene/gui/label.cpp scene/gui/rich_text_label.cpp
+msgid "Resize Font to Fit"
+msgstr ""
+
+#: scene/gui/label.cpp scene/gui/rich_text_label.cpp
+#, fuzzy
+msgid "Minimum Font Size"
+msgstr "मुख्य फ़ॉन्ट आकार"
+
+#: scene/gui/label.cpp scene/gui/rich_text_label.cpp
+#, fuzzy
+msgid "Maximum Font Size"
+msgstr "मुख्य फ़ॉन्ट आकार"
+
+#: scene/gui/label.cpp scene/gui/rich_text_label.cpp
 #, fuzzy
 msgid "Displayed Text"
 msgstr "सब दिखाइए"
@@ -13588,10 +14281,6 @@ msgstr "दर्शनीय नेविगेशन"
 #: scene/gui/line_edit.cpp scene/gui/text_edit.cpp
 msgid "Placeholder Text"
 msgstr "प्लेसहोल्डर लेख"
-
-#: scene/gui/line_edit.cpp scene/resources/navigation_mesh.cpp
-msgid "Max Length"
-msgstr "अधिकतम लंबाई"
 
 #: scene/gui/line_edit.cpp
 msgid "Keep Editing on Text Submit"
@@ -13904,6 +14593,11 @@ msgstr "सापेक्ष सूचकांक"
 
 #: scene/gui/rich_text_label.cpp
 #, fuzzy
+msgid "Resource Access Flags"
+msgstr "संसाधन"
+
+#: scene/gui/rich_text_label.cpp
+#, fuzzy
 msgid "BBCode Enabled"
 msgstr "अवरुद्ध मोड सक्रिय"
 
@@ -14065,6 +14759,21 @@ msgstr "प्रतिलिपि"
 msgid "Custom Arrow Round"
 msgstr "प्रतिलिपि"
 
+#: scene/gui/spin_box.cpp scene/resources/audio/audio_stream_wav.cpp
+#: servers/audio/effects/audio_effect_record.cpp
+msgid "Format"
+msgstr "फ़ोर्मैट"
+
+#: scene/gui/spin_box.cpp
+#, fuzzy
+msgid "Plural Format"
+msgstr "बुनावट फ़ोर्मैट"
+
+#: scene/gui/spin_box.cpp
+#, fuzzy
+msgid "Format Auto Translate Mode"
+msgstr "संक्रमण: "
+
 #: scene/gui/split_container.cpp
 #, fuzzy
 msgid "Split Offsets"
@@ -14137,6 +14846,11 @@ msgstr "वर्तमान बनाय"
 #, fuzzy
 msgid "Tab Alignment"
 msgstr "स्क्रीनिंग सिग्नल"
+
+#: scene/gui/tab_bar.cpp scene/gui/tab_container.cpp
+#, fuzzy
+msgid "Tab Sizing"
+msgstr "आकार: "
 
 #: scene/gui/tab_bar.cpp scene/gui/tab_container.cpp
 #, fuzzy
@@ -14228,6 +14942,11 @@ msgstr "सदस्यता बनाएं"
 #, fuzzy
 msgid "Tab Input Mode"
 msgstr "माउस मोड"
+
+#: scene/gui/text_edit.cpp
+#, fuzzy
+msgid "Selection Handle Enabled"
+msgstr "सिर्फ चयन किये हुए"
 
 #: scene/gui/text_edit.cpp
 #, fuzzy
@@ -14515,10 +15234,6 @@ msgstr "दृश्यता परत"
 msgid "Ordering"
 msgstr "रेंडरिंग"
 
-#: scene/main/canvas_item.cpp scene/resources/2d/tile_set.cpp
-msgid "Z Index"
-msgstr "Z सूचकांक"
-
 #: scene/main/canvas_item.cpp
 #, fuzzy
 msgid "Z as Relative"
@@ -14554,6 +15269,16 @@ msgstr "डाउनलोड"
 #: scene/main/http_request.cpp
 #, fuzzy
 msgid "Download Chunk Size"
+msgstr "डाउनलोड"
+
+#: scene/main/http_request.cpp
+#, fuzzy
+msgid "Keep Partial Download"
+msgstr "गहरी पैरालैक्स"
+
+#: scene/main/http_request.cpp
+#, fuzzy
+msgid "Append to Download File"
 msgstr "डाउनलोड"
 
 #: scene/main/http_request.cpp
@@ -14615,11 +15340,6 @@ msgstr "सदस्यता बनाएं"
 #, fuzzy
 msgid "Thread Group"
 msgstr "मोड टॉगल कीजिये"
-
-#: scene/main/node.cpp
-#, fuzzy
-msgid "Group"
-msgstr "अनेक ग्रुप"
 
 #: scene/main/node.cpp
 #, fuzzy
@@ -15089,6 +15809,11 @@ msgstr "विंडो"
 
 #: scene/main/window.cpp
 #, fuzzy
+msgid "Fullscreen Shortcut Enabled"
+msgstr "शॉर्टकट कुंजियाँ सक्रिय"
+
+#: scene/main/window.cpp
+#, fuzzy
 msgid "Force Native"
 msgstr "कॉल"
 
@@ -15304,195 +16029,6 @@ msgstr "निर्देशों"
 msgid "Modification Count"
 msgstr "पसंदीदा:"
 
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Right Side"
-msgstr "सदस्यता बनाएं"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Right Corner"
-msgstr "कार्यों"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Bottom Right Side"
-msgstr "शो में फाइल सिस्टम"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Bottom Right Corner"
-msgstr "आइटम निकालें"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Bottom Side"
-msgstr "आइटम निकालें"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Bottom Corner"
-msgstr "आइटम निकालें"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Bottom Left Side"
-msgstr "नीचे बाईं ओर"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Bottom Left Corner"
-msgstr "आइटम निकालें"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Left Side"
-msgstr "समय"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Left Corner"
-msgstr "स्केल अनुपात:"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Top Left Side"
-msgstr "डेवलपर्स"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Top Left Corner"
-msgstr "शीर्ष बायां कोना"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Top Side"
-msgstr "अनेक ग्रुप"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Top Corner"
-msgstr "आइटम निकालें"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Top Right Side"
-msgstr "शीर्ष दाहिनी ओर"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Top Right Corner"
-msgstr "शीर्ष दायां कोना"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Terrains"
-msgstr "भूमियाँ"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Custom Data"
-msgstr "कस्टम उपयोगकर्ता डायरेक्टरी का उपयोग करें"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Tile Shape"
-msgstr "Tileset ..."
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Tile Layout"
-msgstr "लेआउट हटाएं"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Tile Offset Axis"
-msgstr "नोड वक्र संपादित करें"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Tile Size"
-msgstr "Tileset ..."
-
-#: scene/resources/2d/tile_set.cpp
-msgid "UV Clipping"
-msgstr "यूवी क्लिपिंग"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Occlusion Layers"
-msgstr "सदस्यता बनाएं"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Physics Layers"
-msgstr "फिजिक्स फ्रेम %"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Terrain Sets"
-msgstr "Tileset ..."
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Custom Data Layers"
-msgstr "अनेक सेट करे:"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Scenes"
-msgstr "मुख्य दृश्य"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Scene"
-msgstr "मुख्य दृश्य"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Display Placeholder"
-msgstr "सब दिखाइए"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Polygons Count"
-msgstr "सदस्यता बनाएं"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "One Way"
-msgstr "एक तरफ़ा रास्ता"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "One Way Margin"
-msgstr "सदस्यता बनाएं"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Terrains Peering Bit"
-msgstr "Tileset ..."
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Transpose"
-msgstr "ट्रांसपोज़"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Texture Origin"
-msgstr "सुविधाऐं"
-
-#: scene/resources/2d/tile_set.cpp
-#, fuzzy
-msgid "Terrain Set"
-msgstr "Tileset ..."
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Terrain"
-msgstr "भू-भाग"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Miscellaneous"
-msgstr "विविध"
-
-#: scene/resources/2d/tile_set.cpp
-msgid "Probability"
-msgstr "संभावना"
-
 #: scene/resources/2d/world_boundary_shape_2d.cpp scene/resources/material.cpp
 #, fuzzy
 msgid "Distance"
@@ -15532,10 +16068,6 @@ msgstr "नक्शा गहराई"
 #: scene/resources/3d/height_map_shape_3d.cpp
 msgid "Map Data"
 msgstr "नक्शा डेटा"
-
-#: scene/resources/3d/mesh_library.cpp
-msgid "Item"
-msgstr "वस्तु"
 
 #: scene/resources/3d/primitive_meshes.cpp
 msgid "Add UV2"
@@ -15738,23 +16270,48 @@ msgstr "मानचित्र संग्रह"
 msgid "Filter Clip"
 msgstr "फिल्टर:"
 
-#: scene/resources/audio_stream_polyphonic.cpp
+#: scene/resources/audio/audio_stream_generator.cpp
 #, fuzzy
-msgid "Polyphony"
-msgstr "सदस्यता बनाएं"
+msgid "Mix Rate Mode"
+msgstr "अद्यतन"
 
-#: scene/resources/audio_stream_wav.cpp
-#: servers/audio/effects/audio_effect_record.cpp
-msgid "Format"
-msgstr "फ़ोर्मैट"
-
-#: scene/resources/audio_stream_wav.cpp servers/audio/audio_server.cpp
-#: servers/audio/effects/audio_stream_generator.cpp
+#: scene/resources/audio/audio_stream_generator.cpp
+#: scene/resources/audio/audio_stream_wav.cpp servers/audio/audio_driver.cpp
 #: servers/movie_writer/movie_writer.cpp
 msgid "Mix Rate"
 msgstr "मिश्रण दर"
 
-#: scene/resources/audio_stream_wav.cpp
+#: scene/resources/audio/audio_stream_generator.cpp
+#: servers/audio/effects/audio_effect_capture.cpp
+#: servers/audio/effects/audio_effect_spectrum_analyzer.cpp
+msgid "Buffer Length"
+msgstr "बफ़र लंबाई"
+
+#: scene/resources/audio/audio_stream_polyphonic.cpp
+#, fuzzy
+msgid "Polyphony"
+msgstr "सदस्यता बनाएं"
+
+#: scene/resources/audio/audio_stream_randomizer.cpp
+#, fuzzy
+msgid "Playback Mode"
+msgstr "खेल"
+
+#: scene/resources/audio/audio_stream_randomizer.cpp
+#, fuzzy
+msgid "Random Pitch Semitones"
+msgstr "यादृच्छिक पिच"
+
+#: scene/resources/audio/audio_stream_randomizer.cpp
+msgid "Random Volume Offset dB"
+msgstr "यादृच्छिक ध्वनि मात्रा ऑफसेट dB"
+
+#: scene/resources/audio/audio_stream_randomizer.cpp
+#, fuzzy
+msgid "Streams"
+msgstr "नोड वक्र संपादित करें"
+
+#: scene/resources/audio/audio_stream_wav.cpp
 msgid "Stereo"
 msgstr "स्टीरियो"
 
@@ -15927,7 +16484,7 @@ msgstr "अलग स्पेकुलर की आवश्यकता"
 msgid "Compositor Effects"
 msgstr "बस प्रभाव हटो"
 
-#: scene/resources/compressed_texture.cpp
+#: scene/resources/compressed_texture.cpp scene/resources/streamed_texture.cpp
 #, fuzzy
 msgid "Load Path"
 msgstr "प्रायिक लोड कीजिये"
@@ -16357,8 +16914,8 @@ msgid "Use HDR"
 msgstr "HDR उपयोग"
 
 #: scene/resources/gradient_texture.cpp
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
 #, fuzzy
 msgid "To"
 msgstr "सर्वोच्च"
@@ -16812,6 +17369,11 @@ msgstr "नोड वक्र संपादित करें"
 #, fuzzy
 msgid "Inherit Emitter Scale"
 msgstr "संपादक स्केल के साथ स्केल"
+
+#: scene/resources/particle_process_material.cpp
+#, fuzzy
+msgid "Preserve Color"
+msgstr "वर्जन कंट्रोल"
 
 #: scene/resources/particle_process_material.cpp
 #, fuzzy
@@ -17893,6 +18455,26 @@ msgstr "स्क्रीनिंग सिग्नल"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
+msgid "Scrollbar Margin Left"
+msgstr "स्केल अनुपात:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Top"
+msgstr "स्केल अनुपात:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Right"
+msgstr "स्केल अनुपात:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Scrollbar Margin Bottom"
+msgstr "स्केल अनुपात:"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
 msgid "Normal Joystick"
 msgstr "मिटाना"
 
@@ -18113,6 +18695,11 @@ msgid "Labeled Separator Right"
 msgstr "लेबल विभाजक दायाँ"
 
 #: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Indeterminate Disabled"
+msgstr "सक्रिय करे"
+
+#: scene/theme/default_theme.cpp
 msgid "Submenu"
 msgstr "उपमेनू"
 
@@ -18291,11 +18878,6 @@ msgstr "प्रतिलिपि"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
-msgid "Indeterminate Disabled"
-msgstr "सक्रिय करे"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
 msgid "Select Arrow"
 msgstr "वर्तमान फ़ोल्डर सिलेक्ट कीजिये"
 
@@ -18457,26 +19039,6 @@ msgstr "प्ले सीन"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
-msgid "Scrollbar Margin Left"
-msgstr "स्केल अनुपात:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Scrollbar Margin Top"
-msgstr "स्केल अनुपात:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Scrollbar Margin Right"
-msgstr "स्केल अनुपात:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
-msgid "Scrollbar Margin Bottom"
-msgstr "स्केल अनुपात:"
-
-#: scene/theme/default_theme.cpp
-#, fuzzy
 msgid "Scrollbar H Separation"
 msgstr "संस्करण:"
 
@@ -18489,6 +19051,16 @@ msgstr "संस्करण:"
 #, fuzzy
 msgid "Icon Margin"
 msgstr "शो में फाइल सिस्टम"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Font Disabled Hovered Color"
+msgstr "कार्यों"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Disabled Hovered"
+msgstr "बंद कर दिया गया है"
 
 #: scene/theme/default_theme.cpp
 #, fuzzy
@@ -19003,6 +19575,16 @@ msgstr "पोर्ट हॉटज़ोन आंतरिक विस्त
 msgid "Port Hotzone Outer Extent"
 msgstr "पोर्ट हॉटज़ोन बाहरी विस्तार"
 
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Resize"
+msgstr "Array को बड़ा या छोटा करना"
+
+#: scene/theme/default_theme.cpp
+#, fuzzy
+msgid "Anchor"
+msgstr "एंकर मोड"
+
 #: scene/theme/theme_db.cpp
 #, fuzzy
 msgid "Default Theme Scale"
@@ -19028,7 +19610,12 @@ msgstr "फ़ॉलबैक"
 msgid "Stylebox"
 msgstr "छोटा करो"
 
-#: servers/audio/audio_server.cpp
+#: scene/theme/theme_db.cpp
+#, fuzzy
+msgid "Sound"
+msgstr "चारों ओर"
+
+#: servers/audio/audio_driver.cpp
 #, fuzzy
 msgid "Enable Input"
 msgstr "बंद कर दिया गया है"
@@ -19065,31 +19652,6 @@ msgstr "पकड़ना"
 #, fuzzy
 msgid "Playback Speed Scale"
 msgstr "प्ले सीन"
-
-#: servers/audio/audio_stream.cpp
-#, fuzzy
-msgid "Playback Mode"
-msgstr "खेल"
-
-#: servers/audio/audio_stream.cpp
-#, fuzzy
-msgid "Random Pitch Semitones"
-msgstr "यादृच्छिक पिच"
-
-#: servers/audio/audio_stream.cpp
-msgid "Random Volume Offset dB"
-msgstr "यादृच्छिक ध्वनि मात्रा ऑफसेट dB"
-
-#: servers/audio/audio_stream.cpp
-#, fuzzy
-msgid "Streams"
-msgstr "नोड वक्र संपादित करें"
-
-#: servers/audio/effects/audio_effect_capture.cpp
-#: servers/audio/effects/audio_effect_spectrum_analyzer.cpp
-#: servers/audio/effects/audio_stream_generator.cpp
-msgid "Buffer Length"
-msgstr "बफ़र लंबाई"
 
 #: servers/audio/effects/audio_effect_chorus.cpp
 msgid "Voice Count"
@@ -19253,11 +19815,6 @@ msgstr "समय पुलआउट (ms)"
 #: servers/audio/effects/audio_effect_stereo_enhance.cpp
 msgid "Surround"
 msgstr "चारों ओर"
-
-#: servers/audio/effects/audio_stream_generator.cpp
-#, fuzzy
-msgid "Mix Rate Mode"
-msgstr "अद्यतन"
 
 #: servers/camera/camera_feed.cpp
 #, fuzzy
@@ -19516,8 +20073,8 @@ msgstr "बाधा त्रिज्या सक्रिय करे"
 msgid "Enable Obstacles Static"
 msgstr "बाधाएँ स्थिर सक्रिय करे"
 
-#: servers/navigation_2d/navigation_server_2d.cpp
-#: servers/navigation_3d/navigation_server_3d.cpp
+#: servers/navigation_2d/navigation_server_2d_manager.cpp
+#: servers/navigation_3d/navigation_server_3d_manager.cpp
 #, fuzzy
 msgid "Navigation Engine"
 msgstr "सदस्यता बनाएं"
@@ -19551,84 +20108,38 @@ msgstr "अधिकतम लंबित कनेक्शन"
 msgid "Enable Agent Paths X-Ray"
 msgstr "कनेक्शन संपादित करें:"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 msgid "Inverse Mass"
 msgstr "विपरीत द्रव्यमान"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 msgid "Inverse Inertia"
 msgstr "व्युत्क्रम जड़त्व"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Total Angular Damp"
 msgstr "कुल कोणीय नमी"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Total Linear Damp"
 msgstr "रैखिक"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 #, fuzzy
 msgid "Total Gravity"
 msgstr "चूक"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/direct_states/physics_direct_body_state_2d.cpp
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
 msgid "Center of Mass Local"
 msgstr "द्रव्यमान केंद्र स्थानीय"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Collide with Bodies"
-msgstr "सदस्यता बनाएं"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Collide with Areas"
-msgstr "क्षेत्रों से टकराना"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#, fuzzy
-msgid "Canvas Instance ID"
-msgstr "इनस्टन्स"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-msgid "Shape RID"
-msgstr "आकार RID"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Collide Separation Ray"
-msgstr "संस्करण:"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Exclude Bodies"
-msgstr "को हटा दें"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Exclude Objects"
-msgstr "को हटा दें"
-
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
-#, fuzzy
-msgid "Recovery as Collision"
-msgstr "सदस्यता बनाएं"
 
 #: servers/physics_2d/physics_server_2d.cpp
 #: servers/physics_3d/physics_server_3d.cpp
@@ -19702,24 +20213,141 @@ msgstr "चूक"
 msgid "Default Constraint Bias"
 msgstr "चूक"
 
-#: servers/physics_2d/physics_server_2d.cpp
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/physics_server_2d_manager.cpp
+#: servers/physics_3d/physics_server_3d_manager.cpp
 #, fuzzy
 msgid "Physics Engine"
 msgstr "फिजिक्स फ्रेम %"
 
-#: servers/physics_3d/physics_server_3d.cpp
-msgid "Inverse Inertia Tensor"
-msgstr "व्युत्क्रम जड़त्व टेंसर"
+#: servers/physics_2d/queries/physics_cast_motion_result_2d.cpp
+#: servers/physics_3d/queries/physics_cast_motion_result_3d.cpp
+#, fuzzy
+msgid "Safe Fraction"
+msgstr "संस्करण:"
 
-#: servers/physics_3d/physics_server_3d.cpp
-msgid "Principal Inertia Axes"
-msgstr "मुख्य जड़त्व अक्षें"
+#: servers/physics_2d/queries/physics_cast_motion_result_2d.cpp
+#: servers/physics_3d/queries/physics_cast_motion_result_3d.cpp
+#, fuzzy
+msgid "Unsafe Fraction"
+msgstr "संस्करण:"
 
-#: servers/physics_3d/physics_server_3d.cpp
+#: servers/physics_2d/queries/physics_collide_shape_result_2d.cpp
+#: servers/physics_3d/queries/physics_collide_shape_result_3d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
 #, fuzzy
 msgid "Max Collisions"
 msgstr "सदस्यता बनाएं"
+
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#, fuzzy
+msgid "Collider RID"
+msgstr "टकराव करें"
+
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#, fuzzy
+msgid "Collider ID"
+msgstr "टकराव करें"
+
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#, fuzzy
+msgid "Collider Shape"
+msgstr "कोशिका का आकार"
+
+#: servers/physics_2d/queries/physics_get_rest_info_result_2d.cpp
+#: servers/physics_3d/queries/physics_get_rest_info_result_3d.cpp
+#, fuzzy
+msgid "Collider Velocity"
+msgstr "रैखिक"
+
+#: servers/physics_2d/queries/physics_intersect_point_result_2d.cpp
+#: servers/physics_2d/queries/physics_intersect_shape_result_2d.cpp
+#: servers/physics_3d/queries/physics_intersect_point_result_3d.cpp
+#: servers/physics_3d/queries/physics_intersect_shape_result_3d.cpp
+#, fuzzy
+msgid "Max Intersections"
+msgstr "कार्यों:"
+
+#: servers/physics_2d/queries/physics_intersect_ray_result_2d.cpp
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#, fuzzy
+msgid "Collider"
+msgstr "सदस्यता बनाएं"
+
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#, fuzzy
+msgid "Canvas Instance ID"
+msgstr "इनस्टन्स"
+
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_point_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+#, fuzzy
+msgid "Collide with Bodies"
+msgstr "सदस्यता बनाएं"
+
+#: servers/physics_2d/queries/physics_point_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_ray_query_parameters_2d.cpp
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_point_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_ray_query_parameters_3d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+#, fuzzy
+msgid "Collide with Areas"
+msgstr "क्षेत्रों से टकराना"
+
+#: servers/physics_2d/queries/physics_shape_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_shape_query_parameters_3d.cpp
+msgid "Shape RID"
+msgstr "आकार RID"
+
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
+#, fuzzy
+msgid "Collide Separation Ray"
+msgstr "संस्करण:"
+
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
+#, fuzzy
+msgid "Exclude Bodies"
+msgstr "को हटा दें"
+
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
+#, fuzzy
+msgid "Exclude Objects"
+msgstr "को हटा दें"
+
+#: servers/physics_2d/queries/physics_testmotion_query_parameters_2d.cpp
+#: servers/physics_3d/queries/physics_testmotion_query_parameters_3d.cpp
+#, fuzzy
+msgid "Recovery as Collision"
+msgstr "सदस्यता बनाएं"
+
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+msgid "Inverse Inertia Tensor"
+msgstr "व्युत्क्रम जड़त्व टेंसर"
+
+#: servers/physics_3d/direct_states/physics_direct_body_state_3d.cpp
+msgid "Principal Inertia Axes"
+msgstr "मुख्य जड़त्व अक्षें"
+
+#: servers/physics_3d/queries/physics_intersect_ray_result_3d.cpp
+#, fuzzy
+msgid "Collider Face Index"
+msgstr "चेहरा सूचकांक"
 
 #: servers/rendering/renderer_canvas_cull.cpp
 #, fuzzy
@@ -19880,8 +20508,28 @@ msgid "Use Physical Light Units"
 msgstr "भौतिक प्रकाश इकाइयों का उपयोग करें"
 
 #: servers/rendering/rendering_server.cpp
+#, fuzzy
+msgid "Contact Shadow"
+msgstr "छाया डालें"
+
+#: servers/rendering/rendering_server.cpp
+#, fuzzy
+msgid "Shadow Length"
+msgstr "चूक"
+
+#: servers/rendering/rendering_server.cpp
+#, fuzzy
+msgid "Surface Thickness"
+msgstr "घनत्व"
+
+#: servers/rendering/rendering_server.cpp
 msgid "Soft Shadow Filter Quality"
 msgstr "सॉफ्ट शैडो फ़िल्टर गुणवत्ता"
+
+#: servers/rendering/rendering_server.cpp
+#, fuzzy
+msgid "Multi Bounce Occlusion"
+msgstr "सदस्यता बनाएं"
 
 #: servers/rendering/rendering_server.cpp
 #, fuzzy
@@ -20203,6 +20851,11 @@ msgid "Max Renderable Elements"
 msgstr "अधिकतम प्रदर्शनीय तत्त्व"
 
 #: servers/rendering/rendering_server.cpp
+#, fuzzy
+msgid "Max Decals"
+msgstr "स्थानांतरण"
+
+#: servers/rendering/rendering_server.cpp
 msgid "Max Renderable Lights"
 msgstr "अधिकतम रेंडरिंग लाइट्स"
 
@@ -20438,6 +21091,11 @@ msgstr "प्रायिक लिपि मिपमैप्स उत्प
 #, fuzzy
 msgid "LCD Subpixel Layout"
 msgstr "लेआउट हटाएं"
+
+#: servers/text/text_server.cpp
+#, fuzzy
+msgid "MSDF Legacy Scaling"
+msgstr "डिबैंडिंग का उपयोग करें"
 
 #: servers/text/text_server.cpp
 msgid "Include Text Server Data"
