@@ -67,9 +67,9 @@ message_patterns = {
     re.compile(r'ADD_SUBGROUP\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)"\)'): ExtractType.SUBGROUP,
     re.compile(r'ADD_SUBGROUP_INDENT\("(?P<message>[^"]+)", "(?P<prefix>[^"]*)", '): ExtractType.GROUP,
     re.compile(r'PNAME\("(?P<message>[^"]+)"\)'): ExtractType.PROPERTY_PATH,
-}
-theme_property_patterns = {
-    re.compile(r'set_(?P<theme_item>constant|font|font_size|stylebox|color|icon)\("(?P<message>[^"]+)", '): ExtractType.PROPERTY_PATH,
+    re.compile(r'BIND_THEME_ITEM\(Theme::DATA_TYPE_(?P<theme_item>CONSTANT|FONT|FONT_SIZE|STYLEBOX|COLOR|ICON|SOUND), [_a-zA-Z0-9]+, (?P<message>[^"]+)\);'): ExtractType.PROPERTY_PATH,
+    re.compile(r'BIND_THEME_ITEM_EXT\(Theme::DATA_TYPE_(?P<theme_item>CONSTANT|FONT|FONT_SIZE|STYLEBOX|COLOR|ICON|SOUND), (?P<type>[_a-zA-Z0-9]+), [_a-z0-9]+, "(?P<message>[^"]+)",'): ExtractType.PROPERTY_PATH,
+    re.compile(r'BIND_THEME_ITEM_CUSTOM\(Theme::DATA_TYPE_(?P<theme_item>CONSTANT|FONT|FONT_SIZE|STYLEBOX|COLOR|ICON|SOUND), [_a-zA-Z0-9]+, [_a-z0-9]+, "(?P<message>[^"]+)"\);'): ExtractType.PROPERTY_PATH,
 }
 class_name_pattern = re.compile(r"^\w+ (?P<class_name>\w+)::\w+\(")
 
@@ -123,10 +123,6 @@ def process_file(f, fname):
     current_subgroup = ""
     current_class = ""
 
-    patterns = message_patterns
-    if os.path.basename(fname) == "default_theme.cpp":
-        patterns = {**message_patterns, **theme_property_patterns}
-
     while l:
         has_translation_comment = l.find("TRANSLATORS:") != -1
         # Skip code comments that aren't for translators.
@@ -151,7 +147,7 @@ def process_file(f, fname):
                     translator_comment = translator_comment[:-1]  # Remove extra \n at the end.
 
             if not reading_translator_comment:
-                for pattern, extract_type in patterns.items():
+                for pattern, extract_type in message_patterns.items():
                     for m in pattern.finditer(l):
                         location = os.path.relpath(fname).replace("\\", "/")
                         if line_nb:
@@ -190,9 +186,13 @@ def process_file(f, fname):
                             property_path = msg
                             theme_item = captures.get("theme_item")
                             if theme_item:
-                                if theme_item == "stylebox":
+                                theme_type = captures.get("type")
+                                if theme_type and theme_type in ["AnimationNodeStateMachineEditor", "EditorIcons"]:
+                                    continue
+
+                                if theme_item == "STYLEBOX":
                                     theme_item = "style"
-                                property_path = "theme_override_" + theme_item + "s/" + property_path
+                                property_path = "theme_override_" + theme_item.lower() + "s/" + property_path
 
                             if current_subgroup:
                                 if msg.startswith(current_subgroup):
