@@ -91093,9 +91093,10 @@ msgstr ""
 "ហើយសម្រាប់ [code]\"capsule\"[/code] វាគួរតែយ៉ាងហោចណាស់ពីរដងនៃ radius។"
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The [ImporterMesh] resource of the shape. This is only used when the shape "
-"type is [code]\"hull\"[/code] (convex hull) or [code]\"trimesh\"[/code] "
+"type is [code]\"convex\"[/code] (convex hull) or [code]\"trimesh\"[/code] "
 "(concave trimesh)."
 msgstr ""
 "resource [ImporterMesh] នៃ shape។ វាត្រូវបានប្រើតែនៅពេលដែល shape type គឺ [code]"
@@ -91117,9 +91118,10 @@ msgstr ""
 "នៅឯណា។"
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The index of the shape's mesh in the glTF file. This is only used when the "
-"shape type is [code]\"hull\"[/code] (convex hull) or [code]\"trimesh\"[/"
+"shape type is [code]\"convex\"[/code] (convex hull) or [code]\"trimesh\"[/"
 "code] (concave trimesh)."
 msgstr ""
 "index នៃ mesh របស់ shape នៅក្នុងឯកសារ glTF។ វាត្រូវបានប្រើតែនៅពេលដែល shape type គឺ "
@@ -91137,10 +91139,11 @@ msgstr ""
 "ប៉ុណ្ណោះ។ តម្លៃនេះមិនគួរអវិជ្ជមានទេ។"
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The type of shape this shape represents. Valid values are [code]\"box\"[/"
 "code], [code]\"capsule\"[/code], [code]\"cylinder\"[/code], [code]"
-"\"sphere\"[/code], [code]\"hull\"[/code], and [code]\"trimesh\"[/code]."
+"\"sphere\"[/code], [code]\"convex\"[/code], and [code]\"trimesh\"[/code]."
 msgstr ""
 "ប្រភេទនៃ shape ដែល shape នេះតំណាងឱ្យ។ តម្លៃដែលត្រឹមត្រូវគឺ [code]\"box\"[/code], "
 "[code]\"capsule\"[/code], [code]\"cylinder\"[/code], [code]\"sphere\"[/"
@@ -92408,6 +92411,21 @@ msgstr "ចំនួន draw passes នៅពេល render particles។"
 
 #: doc/classes/GPUParticles3D.xml
 msgid ""
+"Defines a skin to use with particle trails when [member trail_enabled] is "
+"enabled. It will apply this skin to a skinned mesh assigned as a draw pass. "
+"This should be left empty if using [RibbonTrailMesh] or [TubeTrailMesh].\n"
+"[b]Note:[/b] Bones will be positioned in the trail in order based on the ID "
+"of the bone, no matter their position in the skeleton. Bone [code]0[/code], "
+"followed by Bone [code]1[/code], followed by Bone [code]2[/code], etc. When "
+"making a skinned mesh for this purpose, care should be taken that the bones "
+"are evenly spaced and facing away from the following bone, or the result "
+"will look incorrect. This means that if each parent bone points toward its "
+"child, that is 180 degrees off from what it should be, and could result in a "
+"trail that looks \"inside-out.\""
+msgstr ""
+
+#: doc/classes/GPUParticles3D.xml
+msgid ""
 "Time ratio between each emission. If [code]0[/code], particles are emitted "
 "continuously. If [code]1[/code], all particles are emitted simultaneously."
 msgstr ""
@@ -92484,15 +92502,18 @@ msgstr ""
 "[GPUParticles3D] នឹងលែងបញ្ចេញ particles ដោយខ្លួនឯងទៀតហើយ។"
 
 #: doc/classes/GPUParticles3D.xml
+#, fuzzy
 msgid ""
 "If [code]true[/code], enables particle trails using a mesh skinning system. "
-"Designed to work with [RibbonTrailMesh] and [TubeTrailMesh].\n"
+"Designed to work with [RibbonTrailMesh] and [TubeTrailMesh] or with a custom "
+"skinned mesh if [member draw_skin] is set.\n"
 "[b]Note:[/b] [member BaseMaterial3D.use_particle_trails] must also be "
 "enabled on the particle mesh's material. Otherwise, setting [member "
 "trail_enabled] to [code]true[/code] will have no effect.\n"
 "[b]Note:[/b] Unlike [GPUParticles2D], the number of trail sections and "
 "subdivisions is set in the [RibbonTrailMesh] or the [TubeTrailMesh]'s "
-"properties."
+"properties. If [member draw_skin] is set, the number of trail sections will "
+"be based on the number of bones in the skin."
 msgstr ""
 "ប្រសិនបើ [code]true[/code] បើក particle trails ដោយប្រើប្រព័ន្ធ mesh skinning។ "
 "ត្រូវបានរចនាឡើងដើម្បីដំណើរការជាមួយ [RibbonTrailMesh] និង [TubeTrailMesh]។\n"
@@ -157261,19 +157282,6 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
-"If [code]true[/code], the engine will request [url=https://github.com/"
-"FeralInteractive/gamemode]GameMode[/url] to be activated. This allows "
-"optimizing system performance during gameplay, e.g. by using a specific CPU "
-"governor or forcing a high GPU power state. The GameMode daemon needs to be "
-"installed and running on the system to work (typically available as "
-"[code]gamemode[/code] in Linux distribution repositories).\n"
-"[b]Note:[/b] This setting does not affect the editor itself, although it "
-"affects projects being run from the editor.\n"
-"[b]Note:[/b] This setting is available only on Linux."
-msgstr ""
-
-#: doc/classes/ProjectSettings.xml
-msgid ""
 "Audio buses will disable automatically when sound goes below a given dB "
 "threshold for a given time. This saves CPU as effects assigned to that bus "
 "will no longer do any processing."
@@ -161150,6 +161158,15 @@ msgstr ""
 "ប្រសិនបើ [code]false[/code] គ្មាន input ណាមួយនឹងត្រូវបានបាត់បង់ទេ។\n"
 "[b]ចំណាំ:[/b] អ្នកគួរតែជ្រើសរើសការកំណត់ [code]false[/code] ក្នុងករណីភាគច្រើន។ ឥរិយាបថ "
 "legacy គឺដើម្បីគាំទ្រ projects ចាស់ដែលពឹងផ្អែកលើ logic ចាស់ ដោយមិនចាំបាច់ផ្លាស់ប្តូរ script។"
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code], disables bulk processing of raw input, enable it if "
+"you want to process [code]WM_INPUT[/code] messages directly. Enabling this "
+"setting will significantly decrease performance with high polling rate "
+"devices.\n"
+"[b]Note:[/b] This property is implemented only on Windows."
+msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
@@ -205929,8 +205946,19 @@ msgstr ""
 "constant_linear_velocity] និង [member constant_angular_velocity])។"
 
 #: doc/classes/StatusIndicator.xml
+#, fuzzy
 msgid ""
-"Application status indicator (aka notification area icon).\n"
+"Application status indicator (also known as notification area icon, or tray "
+"icon)."
+msgstr ""
+"សូចនាករស្ថានភាពកម្មវិធី (ហៅម្យ៉ាងទៀតថា រូបតំណាងតំបន់ជូនដំណឹង)។\n"
+"[b]ចំណាំ៖[/b] សូចនាករស្ថានភាពត្រូវបានអនុវត្តនៅលើ macOS និង Windows។"
+
+#: doc/classes/StatusIndicator.xml
+#, fuzzy
+msgid ""
+"Displays an icon in the system tray when visible. The icon and tooltip can "
+"be customized, and the indicator also supports custom menu.\n"
 "[b]Note:[/b] Status indicator is implemented on macOS and Windows."
 msgstr ""
 "សូចនាករស្ថានភាពកម្មវិធី (ហៅម្យ៉ាងទៀតថា រូបតំណាងតំបន់ជូនដំណឹង)។\n"
@@ -218250,10 +218278,15 @@ msgid "A control that displays a texture."
 msgstr "Control ដែលបង្ហាញ texture។"
 
 #: doc/classes/TextureRect.xml
+#, fuzzy
 msgid ""
 "A control that displays a texture, for example an icon inside a GUI. The "
 "texture's placement can be controlled with the [member stretch_mode] "
-"property. It can scale, tile, or stay centered inside its bounding rectangle."
+"property. It can scale, tile, or stay centered inside its bounding "
+"rectangle.\n"
+"By default, the minimum size of [TextureRect] is equal to the assigned "
+"[member texture]'s size. If you want it to be smaller, set [member "
+"expand_mode] to [constant EXPAND_IGNORE_SIZE]."
 msgstr ""
 "Control ដែលបង្ហាញ texture ឧទាហរណ៍ icon នៅខាងក្នុង GUI។ ការដាក់របស់ texture "
 "អាចត្រូវបានគ្រប់គ្រងជាមួយនឹងលក្ខណៈសម្បត្តិ [member stretch_mode]។ វាអាចធ្វើមាត្រដ្ឋាន "

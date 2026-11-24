@@ -84571,9 +84571,10 @@ msgstr ""
 "\"capsule\"[/code] ມັນຄວນຈະມີຄ່າຢ່າງໜ້ອຍສອງເທົ່າຂອງລັດສະໝີ."
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The [ImporterMesh] resource of the shape. This is only used when the shape "
-"type is [code]\"hull\"[/code] (convex hull) or [code]\"trimesh\"[/code] "
+"type is [code]\"convex\"[/code] (convex hull) or [code]\"trimesh\"[/code] "
 "(concave trimesh)."
 msgstr ""
 "ຊັບພະຍາກອນ [ImporterMesh] ຂອງຮູບຊົງ. ຈະຖືກໃຊ້ກໍຕໍ່ເມື່ອປະເພດຮູບຊົງເປັນ [code]\"hull\"[/"
@@ -84593,9 +84594,10 @@ msgstr ""
 "ມັນຖືກອອກແບບມາເພື່ອໃຊ້ຮ່ວມກັນໃນຕອນທີ່ຕັດສິນໃຈວ່າຈະເພີ່ມໂນດທີ່ສ້າງຂຶ້ນເປັນໂນດລູກຢູ່ບ່ອນໃດ."
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The index of the shape's mesh in the glTF file. This is only used when the "
-"shape type is [code]\"hull\"[/code] (convex hull) or [code]\"trimesh\"[/"
+"shape type is [code]\"convex\"[/code] (convex hull) or [code]\"trimesh\"[/"
 "code] (concave trimesh)."
 msgstr ""
 "ດັດຊະນີ (index) ຂອງເມຊ (mesh) ຂອງຮູບຊົງໃນໄຟລ໌ glTF. ຈະຖືກໃຊ້ກໍຕໍ່ເມື່ອປະເພດຮູບຊົງເປັນ [code]"
@@ -84613,10 +84615,11 @@ msgstr ""
 "ຄ່ານີ້ບໍ່ຄວນເປັນຄ່າລົບ."
 
 #: modules/gltf/doc_classes/GLTFPhysicsShape.xml
+#, fuzzy
 msgid ""
 "The type of shape this shape represents. Valid values are [code]\"box\"[/"
 "code], [code]\"capsule\"[/code], [code]\"cylinder\"[/code], [code]"
-"\"sphere\"[/code], [code]\"hull\"[/code], and [code]\"trimesh\"[/code]."
+"\"sphere\"[/code], [code]\"convex\"[/code], and [code]\"trimesh\"[/code]."
 msgstr ""
 "ປະເພດຂອງຮູບຊົງທີ່ຮູບຊົງນີ້ສະແດງແທນ. ຄ່າທີ່ໃຊ້ໄດ້ແມ່ນ [code]\"box\"[/code], [code]"
 "\"capsule\"[/code], [code]\"cylinder\"[/code], [code]\"sphere\"[/code], "
@@ -85828,6 +85831,21 @@ msgstr "ຈຳນວນຮອບການແຕ້ມ (draw passes) ໃນເວ
 
 #: doc/classes/GPUParticles3D.xml
 msgid ""
+"Defines a skin to use with particle trails when [member trail_enabled] is "
+"enabled. It will apply this skin to a skinned mesh assigned as a draw pass. "
+"This should be left empty if using [RibbonTrailMesh] or [TubeTrailMesh].\n"
+"[b]Note:[/b] Bones will be positioned in the trail in order based on the ID "
+"of the bone, no matter their position in the skeleton. Bone [code]0[/code], "
+"followed by Bone [code]1[/code], followed by Bone [code]2[/code], etc. When "
+"making a skinned mesh for this purpose, care should be taken that the bones "
+"are evenly spaced and facing away from the following bone, or the result "
+"will look incorrect. This means that if each parent bone points toward its "
+"child, that is 180 degrees off from what it should be, and could result in a "
+"trail that looks \"inside-out.\""
+msgstr ""
+
+#: doc/classes/GPUParticles3D.xml
+msgid ""
 "Time ratio between each emission. If [code]0[/code], particles are emitted "
 "continuously. If [code]1[/code], all particles are emitted simultaneously."
 msgstr ""
@@ -85902,15 +85920,18 @@ msgstr ""
 "ທີ່ເປັນເປົ້າໝາຍຈະບໍ່ປ່ອຍອະນຸພາກດ້ວຍຕົວມັນເອງອີກຕໍ່ໄປ."
 
 #: doc/classes/GPUParticles3D.xml
+#, fuzzy
 msgid ""
 "If [code]true[/code], enables particle trails using a mesh skinning system. "
-"Designed to work with [RibbonTrailMesh] and [TubeTrailMesh].\n"
+"Designed to work with [RibbonTrailMesh] and [TubeTrailMesh] or with a custom "
+"skinned mesh if [member draw_skin] is set.\n"
 "[b]Note:[/b] [member BaseMaterial3D.use_particle_trails] must also be "
 "enabled on the particle mesh's material. Otherwise, setting [member "
 "trail_enabled] to [code]true[/code] will have no effect.\n"
 "[b]Note:[/b] Unlike [GPUParticles2D], the number of trail sections and "
 "subdivisions is set in the [RibbonTrailMesh] or the [TubeTrailMesh]'s "
-"properties."
+"properties. If [member draw_skin] is set, the number of trail sections will "
+"be based on the number of bones in the skin."
 msgstr ""
 "ຖ້າເປັນ [code]true[/code], ຈະເປີດໃຊ້ຫາງອະນຸພາກ (particle trails) "
 "ໂດຍໃຊ້ລະບົບເມຊສະກິນນິງ (mesh skinning system). ອອກແບບມາເພື່ອເຮັດວຽກຮ່ວມກັບ "
@@ -146147,19 +146168,6 @@ msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
-"If [code]true[/code], the engine will request [url=https://github.com/"
-"FeralInteractive/gamemode]GameMode[/url] to be activated. This allows "
-"optimizing system performance during gameplay, e.g. by using a specific CPU "
-"governor or forcing a high GPU power state. The GameMode daemon needs to be "
-"installed and running on the system to work (typically available as "
-"[code]gamemode[/code] in Linux distribution repositories).\n"
-"[b]Note:[/b] This setting does not affect the editor itself, although it "
-"affects projects being run from the editor.\n"
-"[b]Note:[/b] This setting is available only on Linux."
-msgstr ""
-
-#: doc/classes/ProjectSettings.xml
-msgid ""
 "Audio buses will disable automatically when sound goes below a given dB "
 "threshold for a given time. This saves CPU as effects assigned to that bus "
 "will no longer do any processing."
@@ -149885,6 +149893,15 @@ msgstr ""
 "ຖ້າຫາກເປັນ [code]false[/code], ຈະບໍ່ມີການປ້ອນຂໍ້ມູນໃດໆສູນຫາຍ.\n"
 "[b]ໝາຍເຫດ:[/b] ໃນເກືອບທຸກກໍລະນີ ເຈົ້າຄວນເລືອກໃຊ້ຄ່າ [code]false[/code]. "
 "ພຶດຕິກຳແບບເກົ່ານີ້ມີໄວ້ເພື່ອຮອງຮັບໂປຣເຈັກເກົ່າທີ່ອາໄສຕັກກະແບບເດີມ ໂດຍບໍ່ຕ້ອງປ່ຽນແປງສະຄຣິບ."
+
+#: doc/classes/ProjectSettings.xml
+msgid ""
+"If [code]true[/code], disables bulk processing of raw input, enable it if "
+"you want to process [code]WM_INPUT[/code] messages directly. Enabling this "
+"setting will significantly decrease performance with high polling rate "
+"devices.\n"
+"[b]Note:[/b] This property is implemented only on Windows."
+msgstr ""
 
 #: doc/classes/ProjectSettings.xml
 msgid ""
@@ -192638,8 +192655,19 @@ msgstr ""
 "[member constant_angular_velocity])."
 
 #: doc/classes/StatusIndicator.xml
+#, fuzzy
 msgid ""
-"Application status indicator (aka notification area icon).\n"
+"Application status indicator (also known as notification area icon, or tray "
+"icon)."
+msgstr ""
+"ຕົວບົ່ງຊີ້ສະຖານະແອັບພລິເຄຊັນ (ຫຼື ໄອຄອນໃນແຖບການແຈ້ງເຕືອນ).\n"
+"[b]ໝາຍເຫດ:[/b] ຕົວບົ່ງຊີ້ສະຖານະແມ່ນຮອງຮັບໃນ macOS ແລະ Windows."
+
+#: doc/classes/StatusIndicator.xml
+#, fuzzy
+msgid ""
+"Displays an icon in the system tray when visible. The icon and tooltip can "
+"be customized, and the indicator also supports custom menu.\n"
 "[b]Note:[/b] Status indicator is implemented on macOS and Windows."
 msgstr ""
 "ຕົວບົ່ງຊີ້ສະຖານະແອັບພລິເຄຊັນ (ຫຼື ໄອຄອນໃນແຖບການແຈ້ງເຕືອນ).\n"
@@ -204669,10 +204697,15 @@ msgid "A control that displays a texture."
 msgstr "ການຄວບຄຸມ (control) ທີ່ສະແດງເທັກເຈີ."
 
 #: doc/classes/TextureRect.xml
+#, fuzzy
 msgid ""
 "A control that displays a texture, for example an icon inside a GUI. The "
 "texture's placement can be controlled with the [member stretch_mode] "
-"property. It can scale, tile, or stay centered inside its bounding rectangle."
+"property. It can scale, tile, or stay centered inside its bounding "
+"rectangle.\n"
+"By default, the minimum size of [TextureRect] is equal to the assigned "
+"[member texture]'s size. If you want it to be smaller, set [member "
+"expand_mode] to [constant EXPAND_IGNORE_SIZE]."
 msgstr ""
 "ການຄວບຄຸມທີ່ສະແດງເທັກເຈີ, ຕົວຢ່າງເຊັ່ນ ໄອຄອນພາຍໃນ GUI. "
 "ການຈັດວາງເທັກເຈີສາມາດຄວບຄຸມໄດ້ດ້ວຍຄຸນສົມບັດ [member stretch_mode]. ມັນສາມາດປັບຂະໜາດ, "
